@@ -1,0 +1,2482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Gestión Integral — Club Judicial Villa Mercedes | Defensa de PPS</title>
+  
+  <!-- Tipografías Oficiales del Club Judicial -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ====================================================================
+       SISTEMA DE DISEÑO LIGHT MINIMALISTA — CLUB JUDICIAL VILLA MERCEDES
+       Fondo claro marfil/blanco, alto contraste, líneas limpias y elegantes.
+       ==================================================================== */
+    :root {
+      --bg-stage: #F4F1EA;          /* Marfil cálido de fondo general */
+      --bg-slide: #FFFFFF;          /* Blanco puro para diapositivas */
+      --bg-card: #FAF8F5;           /* Fondo suave para tarjetas */
+      --bg-card-hover: #FFFFFF;
+      --border-subtle: rgba(71, 105, 70, 0.14);
+      --border-gold: rgba(194, 154, 29, 0.35);
+
+      --primary-dark: #1B211B;      /* Texto principal: carbón oscuro */
+      --text-secondary: #4A564A;    /* Texto secundario legible */
+      --text-muted: #7A877A;        /* Metadatos */
+      
+      --brand-green: #273B27;       /* Verde bosque institucional */
+      --brand-green-light: #476946; /* Verde laurel */
+      --brand-green-pale: rgba(71, 105, 70, 0.08);
+      
+      --brand-gold: #C29A1D;        /* Dorado oficial del Club Judicial */
+      --brand-gold-dark: #A17D12;
+      --brand-gold-pale: rgba(194, 154, 29, 0.1);
+
+      --speaker-subtle-bg: #F0EEE6;
+      --speaker-subtle-text: #4E594E;
+      --speaker-subtle-border: #D8D4C7;
+      
+      --shadow-soft: 0 8px 24px rgba(27, 33, 27, 0.05);
+      --shadow-hover: 0 14px 34px rgba(27, 33, 27, 0.09);
+      --shadow-slide: 0 16px 48px rgba(39, 59, 39, 0.08);
+
+      --font-primary: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-code: 'Fira Code', monospace;
+      
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-full: 9999px;
+      
+      --transition-base: all 0.25s cubic-bezier(0.2, 0.8, 0.25, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      background-color: var(--bg-stage);
+      color: var(--primary-dark);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      user-select: none;
+    }
+
+    #app-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* ====================================================================
+       BARRA SUPERIOR MINIMALISTA
+       ==================================================================== */
+    header.top-bar {
+      height: 56px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 100;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo-mini {
+      height: 32px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-text h1 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--brand-green);
+      letter-spacing: 0.3px;
+    }
+
+    .brand-text p {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-action {
+      background: #FAF8F5;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      padding: 6px 14px;
+      font-family: var(--font-primary);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-base);
+    }
+
+    .btn-action:hover {
+      background: var(--brand-green);
+      color: #FFFFFF;
+      border-color: var(--brand-green);
+    }
+
+    .btn-action.active {
+      background: var(--brand-gold);
+      color: #1A1A1A;
+      border-color: var(--brand-gold);
+      font-weight: 700;
+    }
+
+    /* Barra de Progreso */
+    .progress-track {
+      position: absolute;
+      top: 55px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(71, 105, 70, 0.08);
+      z-index: 101;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 3%;
+      background: linear-gradient(90deg, var(--brand-green-light), var(--brand-gold));
+      transition: width 0.25s ease;
+    }
+
+    /* ====================================================================
+       ESCENARIO PRINCIPAL DE DIAPOSITIVAS (STAGE)
+       ==================================================================== */
+    main#slide-stage {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 24px 20px 24px;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      width: calc(100% - 48px);
+      height: calc(100% - 36px);
+      max-width: 1480px;
+      background: var(--bg-slide);
+      border: 1px solid rgba(71, 105, 70, 0.15);
+      border-radius: var(--radius-lg);
+      padding: 30px 40px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-slide);
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.98) translateY(12px);
+      transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
+      overflow-y: auto;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: scale(1) translateY(0);
+      z-index: 10;
+    }
+
+    /* Cabecera Sutil y Minimalista */
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid rgba(71, 105, 70, 0.1);
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+    }
+
+    .slide-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .slide-block-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--brand-green-light);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .slide-title {
+      font-family: var(--font-display);
+      font-size: 1.95rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      line-height: 1.15;
+    }
+
+    .slide-subtitle {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    /* ETIQUETA SUTIL DEL ORADOR (Discreta, no gigante) */
+    .speaker-subtle-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: var(--speaker-subtle-bg);
+      border: 1px solid var(--speaker-subtle-border);
+      border-radius: var(--radius-full);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--speaker-subtle-text);
+      letter-spacing: 0.3px;
+    }
+
+    .speaker-subtle-badge .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+
+    .speaker-elenio .dot { background: #1976d2; }
+    .speaker-german .dot { background: #388e3c; }
+    .speaker-matias .dot { background: #C29A1D; }
+    .speaker-equipo .dot { background: #7b1fa2; }
+
+    /* Cuerpo del Slide */
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      font-size: 0.95rem;
+      color: var(--primary-dark);
+    }
+
+    /* Grids minimalistas */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      height: 100%;
+      align-items: stretch;
+    }
+
+    .grid-2col-visual {
+      display: grid;
+      grid-template-columns: 46% 54%;
+      gap: 24px;
+      height: 100%;
+      align-items: stretch;
+    }
+
+    .grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-4col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    /* Tarjetas Minimalistas Claras */
+    .card-clean {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: var(--transition-base);
+    }
+
+    .card-clean:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--brand-gold);
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .card-clean.accent-gold {
+      border-left: 4px solid var(--brand-gold);
+    }
+
+    .card-clean.accent-green {
+      border-left: 4px solid var(--brand-green-light);
+    }
+
+    .card-clean.accent-blue {
+      border-left: 4px solid #1976d2;
+    }
+
+    .card-heading {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--brand-green);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-heading svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--brand-gold);
+    }
+
+    .clean-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+
+    .clean-list li {
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .clean-list li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      color: var(--brand-gold);
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .clean-list strong {
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    /* Contenedor de Capturas / Fotos */
+    .photo-container {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo-container img {
+      max-width: 100%;
+      max-height: 380px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: var(--radius-sm);
+      cursor: zoom-in;
+      transition: transform 0.2s ease;
+    }
+
+    .photo-container img:hover {
+      transform: scale(1.015);
+    }
+
+    .photo-caption {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .photo-zoom-hint {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      padding: 3px 8px;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      pointer-events: none;
+    }
+
+    /* Chips minimalistas */
+    .chip {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 0.74rem;
+      font-weight: 600;
+      background: var(--brand-green-pale);
+      color: var(--brand-green);
+      border: 1px solid rgba(71, 105, 70, 0.15);
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+
+    .chip.gold {
+      background: var(--brand-gold-pale);
+      color: var(--brand-gold-dark);
+      border-color: rgba(194, 154, 29, 0.25);
+    }
+
+    .chip.blue {
+      background: rgba(25, 118, 210, 0.08);
+      color: #1565c0;
+      border-color: rgba(25, 118, 210, 0.2);
+    }
+
+    /* Código minimalista */
+    .code-snippet {
+      font-family: var(--font-code);
+      background: #F8F9F7;
+      border: 1px solid #E2E6E2;
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 0.82rem;
+      color: #2E402E;
+      line-height: 1.4;
+      overflow-x: auto;
+    }
+
+    .method {
+      font-weight: 700;
+      font-size: 0.7rem;
+      padding: 2px 5px;
+      border-radius: 4px;
+      margin-right: 4px;
+    }
+    .m-get { background: #E3F2FD; color: #1565C0; }
+    .m-post { background: #E8F5E9; color: #2E7D32; }
+    .m-patch { background: #FFF3E0; color: #E65100; }
+
+    /* Tablas minimalistas */
+    .clean-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    .clean-table th {
+      text-align: left;
+      padding: 10px 14px;
+      background: #F4F1EA;
+      color: var(--brand-green);
+      font-weight: 700;
+      border-bottom: 2px solid var(--border-gold);
+    }
+    .clean-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(71, 105, 70, 0.08);
+      color: var(--text-secondary);
+    }
+    .clean-table tr:hover td {
+      background: #FAF8F5;
+    }
+
+    /* Portada minimalista */
+    .hero-clean {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100%;
+      gap: 20px;
+    }
+
+    .unvim-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--brand-gold-dark);
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-full);
+      background: var(--brand-gold-pale);
+    }
+
+    .hero-heading {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--brand-green);
+      line-height: 1.15;
+      max-width: 960px;
+    }
+
+    .hero-heading span {
+      color: var(--brand-gold-dark);
+    }
+
+    .team-pills {
+      display: flex;
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .team-pill-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 22px;
+      text-align: left;
+      min-width: 220px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .team-pill-card .p-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .team-pill-card .p-role {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--brand-green-light);
+      margin-top: 2px;
+    }
+
+    /* ====================================================================
+       PANEL DE NOTAS DEL ORADOR (GUIÓN PARA ESTUDIAR)
+       ==================================================================== */
+    #speaker-notes-panel {
+      position: absolute;
+      bottom: 66px;
+      right: 24px;
+      width: 460px;
+      max-height: 480px;
+      background: #FFFFFF;
+      border: 1px solid var(--brand-gold);
+      border-radius: var(--radius-md);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 150;
+      transform: translateY(16px);
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-base);
+      overflow-y: auto;
+    }
+
+    #speaker-notes-panel.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .notes-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 8px;
+    }
+
+    .notes-header h3 {
+      font-size: 0.95rem;
+      color: var(--brand-green);
+      font-weight: 700;
+    }
+
+    .notes-body {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .notes-body strong {
+      color: var(--primary-dark);
+    }
+
+    .notes-handover {
+      background: var(--brand-gold-pale);
+      border-left: 3px solid var(--brand-gold);
+      padding: 8px 12px;
+      border-radius: 4px;
+      margin-top: 8px;
+      font-size: 0.82rem;
+      color: #5A4700;
+    }
+
+    /* ====================================================================
+       BARRA INFERIOR DE CONTROL
+       ==================================================================== */
+    footer.bottom-bar {
+      height: 56px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 100;
+    }
+
+    .slide-counter {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .slide-counter .current {
+      color: var(--brand-green);
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .quick-jump-select {
+      background: #FAF8F5;
+      border: 1px solid var(--border-subtle);
+      color: var(--primary-dark);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-primary);
+      font-size: 0.8rem;
+      cursor: pointer;
+      outline: none;
+      max-width: 280px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-nav {
+      background: #FAF8F5;
+      color: var(--primary-dark);
+      border: 1px solid var(--border-subtle);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: var(--transition-base);
+    }
+
+    .btn-nav:hover:not(:disabled) {
+      background: var(--brand-green);
+      color: #FFFFFF;
+      border-color: var(--brand-green);
+    }
+
+    .btn-nav:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    /* Modal de Zoom de Imagen */
+    #lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(20, 26, 20, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 400;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      cursor: zoom-out;
+    }
+
+    #lightbox-modal.open {
+      display: flex;
+    }
+
+    #lightbox-img {
+      max-width: 95vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: var(--radius-md);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      background: #FFFFFF;
+      padding: 6px;
+    }
+
+    /* Modal de Índice */
+    #index-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(20, 26, 20, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 300;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    #index-modal.open {
+      display: flex;
+    }
+
+    .index-content {
+      width: 100%;
+      max-width: 1000px;
+      max-height: 80vh;
+      background: #FFFFFF;
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 24px 30px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+
+    .index-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+    }
+
+    .index-item {
+      padding: 10px 14px;
+      background: #FAF8F5;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition-base);
+      font-size: 0.82rem;
+    }
+
+    .index-item:hover {
+      background: var(--brand-gold-pale);
+      border-color: var(--brand-gold);
+      transform: translateX(3px);
+    }
+  </style>
+</head>
+<body>
+
+<div id="app-container">
+  <!-- BARRA SUPERIOR -->
+  <header class="top-bar">
+    <div class="brand-group">
+      <img src="ClubJudicialFront/public/logo.svg" alt="Logo Club Judicial" class="brand-logo-mini" onerror="this.style.display='none'">
+      <div class="brand-text">
+        <h1>CLUB SOCIAL, CULTURAL Y DEPORTIVO JUDICIAL</h1>
+        <p>Defensa de PPS · Ingeniería en Sistemas de Información · UNViM 2026</p>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <button id="btn-index" class="btn-action" title="Índice de Diapositivas (I)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+        Índice (34)
+      </button>
+      <button id="btn-notes" class="btn-action" title="Guión / Notas de Orador (G)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        Guión del Orador
+      </button>
+      <button id="btn-fullscreen" class="btn-action" title="Pantalla Completa (F / F11)">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+        F11
+      </button>
+    </div>
+  </header>
+
+  <!-- PISTA DE PROGRESO -->
+  <div class="progress-track">
+    <div id="progress-bar" class="progress-fill"></div>
+  </div>
+
+  <!-- ESCENARIO PRINCIPAL -->
+  <main id="slide-stage">
+
+    <!-- SLIDE 1: PORTADA -->
+    <section class="slide active" data-slide="1" data-speaker="equipo" data-block="BLOQUE 1 — INTRODUCCIÓN">
+      <div class="hero-clean">
+        <div class="unvim-tag">Universidad Nacional de Villa Mercedes · Escuela de Ingeniería</div>
+        <h1 class="hero-heading">Sistema de Gestión Integral para el <span>Club Judicial Villa Mercedes</span></h1>
+        <p style="font-size: 1.05rem; color: var(--text-secondary); max-width: 760px;">
+          Práctica Profesional Supervisada — Ingeniería en Sistemas de Información · 2026
+        </p>
+
+        <div class="team-pills">
+          <div class="team-pill-card">
+            <div class="p-name">Elenio García</div>
+            <div class="p-role">Base de Datos & Persistencia</div>
+            <p style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">DNI 45.474.097 · Mat. 35-7886-22</p>
+          </div>
+          <div class="team-pill-card">
+            <div class="p-name">Germán Muñoz</div>
+            <div class="p-role">Backend & API REST</div>
+            <p style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">DNI 34.833.221 · Mat. 35-7889-22</p>
+          </div>
+          <div class="team-pill-card">
+            <div class="p-name">Matías Giménez</div>
+            <div class="p-role">Frontend & QA / UX</div>
+            <p style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">DNI 44.994.312 · Mat. 35-7889-22</p>
+          </div>
+        </div>
+
+        <div style="font-size: 0.82rem; color: var(--text-muted); margin-top: 8px;">
+          <strong>Tutor Académico:</strong> Ing. Alejandro Marcelo Altaba &nbsp;·&nbsp;
+          <strong>Supervisor Institucional:</strong> Fernando Rigoni &nbsp;·&nbsp;
+          <strong>Carga:</strong> 210 hs individuales (630 hs totales)
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: ¿QUÉ PROBLEMA RESOLVIMOS? -->
+    <section class="slide" data-slide="2" data-speaker="german" data-block="BLOQUE 1 — INTRODUCCIÓN">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 1 · Diagnóstico</span>
+          <h2 class="slide-title">¿Qué problema resolvimos?</h2>
+          <p class="slide-subtitle">La realidad operativa del Club Judicial antes de la informatización</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-german">
+          <span class="dot"></span>
+          <span>GM · Backend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col-visual">
+          <div style="display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+            <div class="card-clean accent-green">
+              <div class="card-heading">Gestión Manual en Planillas</div>
+              <p class="clean-list">Planillas de cálculo dispersas sin sincronización ni copias de seguridad.</p>
+            </div>
+            <div class="card-clean accent-gold">
+              <div class="card-heading">Solapamiento de Reservas</div>
+              <p class="clean-list">Superposición frecuente de turnos en canchas y quinchos anotados en papel.</p>
+            </div>
+            <div class="card-clean accent-blue">
+              <div class="card-heading">Falta de Autogestión</div>
+              <p class="clean-list">El socio no podía consultar su deuda ni reservar fuera de horario de guardia.</p>
+            </div>
+          </div>
+          <div class="photo-container">
+            <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
+            <img src="ClubJudicialFront/public/clubjudicial.webp" alt="Complejo Polideportivo Club Judicial" onclick="openLightbox(this.src)">
+            <div class="photo-caption">Predio Polideportivo del Club Judicial — Villa Mercedes, San Luis</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: OBJETIVOS DEL PROYECTO -->
+    <section class="slide" data-slide="3" data-speaker="elenio" data-block="BLOQUE 1 — INTRODUCCIÓN">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 1 · Propósito</span>
+          <h2 class="slide-title">Objetivos del Proyecto</h2>
+          <p class="slide-subtitle">Modernización digital, automatización integral y autogestión 24/7</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-elenio">
+          <span class="dot"></span>
+          <span>EG · Base de Datos</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col-visual">
+          <div style="display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+            <div class="card-clean accent-gold">
+              <div class="card-heading">Objetivo General</div>
+              <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.5;">
+                Diseñar e implementar un sistema web que centralice la gestión social, deportiva y financiera del Club Judicial bajo una arquitectura modular y segura.
+              </p>
+            </div>
+            <div class="card-clean accent-green">
+              <div class="card-heading">Metas Específicas</div>
+              <ul class="clean-list">
+                <li><strong>Autogestión 24/7:</strong> Reservas y pagos online para socios y particulares.</li>
+                <li><strong>Persistencia 3FN:</strong> Integridad referencial y auditoría estricta.</li>
+                <li><strong>Cobranzas MercadoPago:</strong> Automatización con webhooks desatendidos.</li>
+                <li><strong>Planillas Judiciales:</strong> Importación masiva con capacidad de Rollback.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="photo-container">
+            <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
+            <img src="ClubJudicialFront/public/quintaclub.webp" alt="Quinta y Salón Club Judicial" onclick="openLightbox(this.src)">
+            <div class="photo-caption">Instalaciones Recreativas y Quincho Social del Club</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: EL EQUIPO Y LOS ROLES -->
+    <section class="slide" data-slide="4" data-speaker="matias" data-block="BLOQUE 1 — INTRODUCCIÓN">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 1 · Organización del Trabajo</span>
+          <h2 class="slide-title">El Equipo y la Distribución de Roles</h2>
+          <p class="slide-subtitle">Especialización técnica con coordinación interdisciplinaria continua</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-matias">
+          <span class="dot"></span>
+          <span>MG · Frontend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <table class="clean-table">
+          <thead>
+            <tr>
+              <th>Integrante</th>
+              <th>Especialidad</th>
+              <th>Responsabilidades Clave</th>
+              <th>Tecnologías Dominantes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Elenio García</strong></td>
+              <td><span class="chip blue">Base de Datos</span></td>
+              <td>Modelo relacional 3FN, índices B-Tree/FULLTEXT, Event Scheduler, columnas generadas y migraciones.</td>
+              <td>MySQL 8.0, InnoDB</td>
+            </tr>
+            <tr>
+              <td><strong>Germán Muñoz</strong></td>
+              <td><span class="chip">Backend API</span></td>
+              <td>API RESTful, JWT doble token, middlewares RBAC, MercadoPago SDK, Resend, Cloudinary y XLSX.</td>
+              <td>Node.js, Express.js</td>
+            </tr>
+            <tr>
+              <td><strong>Matías Giménez</strong></td>
+              <td><span class="chip gold">Frontend & QA</span></td>
+              <td>Single Page Application, Material UI v6, rutas protegidas, testing E2E automatizado con Playwright y CI/CD.</td>
+              <td>React 19, Vite, Playwright</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="card-clean" style="margin-top: 10px; background: #FAF8F5;">
+          <p style="font-size: 0.88rem; color: var(--text-secondary);">
+            <strong>Tareas transversales compartidas:</strong> Relevamiento de requisitos con la directiva, definición de los 31 casos de uso, reuniones quincenales de avance y despliegue final en Railway.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: LA ORGANIZACIÓN: CLUB JUDICIAL -->
+    <section class="slide" data-slide="5" data-speaker="german" data-block="BLOQUE 1 — INTRODUCCIÓN">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 1 · Institución</span>
+          <h2 class="slide-title">La Organización: Club Judicial</h2>
+          <p class="slide-subtitle">Asociación civil deportiva, social y cultural de Villa Mercedes</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-german">
+          <span class="dot"></span>
+          <span>GM · Backend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col">
+          <div class="card-clean accent-green">
+            <div class="card-heading">Perfil Institucional</div>
+            <ul class="clean-list">
+              <li>Entidad civil sin fines de lucro en Villa Mercedes, San Luis.</li>
+              <li>Nuclea a empleados del Poder Judicial de la 2da Circunscripción y comunidad afín.</li>
+              <li>Ofrece canchas de pádel, fútbol, quincho cerrado, salón de fiestas y actividades.</li>
+            </ul>
+          </div>
+          <div class="card-clean accent-gold">
+            <div class="card-heading">Estructura Operativa y Stakeholders</div>
+            <ul class="clean-list">
+              <li><strong>Comisión Directiva:</strong> Definición arancelaria y gobierno institucional.</li>
+              <li><strong>Secretaría:</strong> Padrón social, altas de socios y legajos.</li>
+              <li><strong>Tesorería:</strong> Liquidación de cuotas, planillas judiciales y cobros.</li>
+              <li><strong>Subcomisión de Alquileres:</strong> Asignación y control de turnos deportivos.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: METODOLOGÍA DE DESARROLLO -->
+    <section class="slide" data-slide="6" data-speaker="elenio" data-block="BLOQUE 2 — METODOLOGÍA Y ARQUITECTURA">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 2 · Metodología</span>
+          <h2 class="slide-title">Metodología de Desarrollo</h2>
+          <p class="slide-subtitle">Ciclo iterativo e incremental con gestión ágil en Notion</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-elenio">
+          <span class="dot"></span>
+          <span>EG · Base de Datos</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-3col">
+          <div class="card-clean accent-green">
+            <div class="card-heading">1. Relevamiento y Diseño</div>
+            <p class="clean-list">Entrevistas con Fernando Rigoni, análisis de planillas históricas y modelado conceptual previo a la codificación.</p>
+          </div>
+          <div class="card-clean accent-gold">
+            <div class="card-heading">2. Sprints Modulares</div>
+            <p class="clean-list">Entregas incrementales por dominio: Auth ➔ Socios ➔ Espacios ➔ Pagos ➔ Noticias. Cada módulo completo antes de avanzar.</p>
+          </div>
+          <div class="card-clean accent-blue">
+            <div class="card-heading">3. Tablero en Notion</div>
+            <p class="clean-list">Seguimiento centralizado de más de 190 tareas y requerimientos documentados con trazabilidad de blockers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: CONTROL DE VERSIONES Y CI/CD -->
+    <section class="slide" data-slide="7" data-speaker="german" data-block="BLOQUE 2 — METODOLOGÍA Y ARQUITECTURA">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 2 · Calidad & DevOps</span>
+          <h2 class="slide-title">Control de Versiones y Pipeline de CI</h2>
+          <p class="slide-subtitle">Flujo GitFlow protegido y validación automatizada con GitHub Actions</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-german">
+          <span class="dot"></span>
+          <span>GM · Backend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col">
+          <div class="card-clean accent-green">
+            <div class="card-heading">Flujo GitFlow Protegido</div>
+            <ul class="clean-list">
+              <li>Rama <code>main</code> protegida contra pushes directos.</li>
+              <li>Ramas <code>feature/*</code> y <code>fix/*</code> independientes.</li>
+              <li>Pull Requests obligatorios con revisión de código de pares.</li>
+            </ul>
+          </div>
+          <div class="card-clean accent-gold">
+            <div class="card-heading">Integración Continua (CI)</div>
+            <ul class="clean-list">
+              <li>Pipeline automatizado en <strong>GitHub Actions</strong> (Ubuntu runner).</li>
+              <li>Ejecución de suite Playwright E2E ante cada PR.</li>
+              <li><strong>Merge bloqueado</strong> si algún test falla.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="code-snippet">
+          # Trigger CI en GitHub Actions (.github/workflows/e2e.yml)
+          on: [pull_request, push] ➔ jobs: test-e2e ➔ npx playwright test
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: ARQUITECTURA GENERAL DEL SISTEMA -->
+    <section class="slide" data-slide="8" data-speaker="matias" data-block="BLOQUE 2 — METODOLOGÍA Y ARQUITECTURA">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 2 · Arquitectura Lógica</span>
+          <h2 class="slide-title">Arquitectura General del Sistema</h2>
+          <p class="slide-subtitle">Patrón MVC desacoplado para web moderna y API RESTful</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-matias">
+          <span class="dot"></span>
+          <span>MG · Frontend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-3col">
+          <div class="card-clean accent-gold">
+            <div class="card-heading">Frontend (Vista)</div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);"><strong>React 19 + Vite:</strong> Single Page Application. Enrutamiento cliente, Material UI v6 responsivo y Axios.</p>
+          </div>
+          <div class="card-clean accent-green">
+            <div class="card-heading">Backend (Controlador)</div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);"><strong>Node.js + Express:</strong> API RESTful stateless. Doble JWT, express-validator, pagos y webhooks.</p>
+          </div>
+          <div class="card-clean accent-blue">
+            <div class="card-heading">Persistencia (Modelo)</div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);"><strong>MySQL 8.0 (InnoDB):</strong> ACID, claves foráneas, índices B-Tree/FULLTEXT y Event Scheduler.</p>
+          </div>
+        </div>
+        <div style="background: #FFFFFF; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 14px; display: flex; justify-content: space-around; align-items: center; font-size: 0.85rem; font-weight: 700;">
+          <div class="chip gold">CLIENTE (React SPA)</div>
+          <span style="color: var(--brand-gold);">⇄ HTTPS / JSON ⇄</span>
+          <div class="chip">API REST (Node/Express)</div>
+          <span style="color: var(--brand-green);">⇄ SQL Pool (mysql2) ⇄</span>
+          <div class="chip blue">PERSISTENCIA (MySQL 8)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: STACK TECNOLÓGICO COMPLETO -->
+    <section class="slide" data-slide="9" data-speaker="german" data-block="BLOQUE 2 — METODOLOGÍA Y ARQUITECTURA">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 2 · Tecnologías</span>
+          <h2 class="slide-title">Stack Tecnológico Completo</h2>
+          <p class="slide-subtitle">Ecosistema moderno, mantenible y de alto rendimiento</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-german">
+          <span class="dot"></span>
+          <span>GM · Backend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-4col">
+          <div class="card-clean">
+            <div class="card-heading">Frontend</div>
+            <div><span class="chip gold">React 19</span><span class="chip gold">Vite 6</span><span class="chip gold">Material UI</span><span class="chip gold">React Router</span></div>
+          </div>
+          <div class="card-clean">
+            <div class="card-heading">Backend API</div>
+            <div><span class="chip">Node.js 20</span><span class="chip">Express 4</span><span class="chip">JWT</span><span class="chip">BcryptJS</span><span class="chip">Multer</span></div>
+          </div>
+          <div class="card-clean">
+            <div class="card-heading">Base de Datos</div>
+            <div><span class="chip blue">MySQL 8.0</span><span class="chip blue">InnoDB</span><span class="chip blue">B-Tree</span><span class="chip blue">FULLTEXT</span><span class="chip blue">Events</span></div>
+          </div>
+          <div class="card-clean">
+            <div class="card-heading">Cloud & QA</div>
+            <div><span class="chip">MercadoPago</span><span class="chip">Cloudinary</span><span class="chip">Resend</span><span class="chip">Playwright</span><span class="chip">Railway</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: ACTORES DEL SISTEMA Y ROLES (RBAC) -->
+    <section class="slide" data-slide="10" data-speaker="elenio" data-block="BLOQUE 2 — METODOLOGÍA Y ARQUITECTURA">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 2 · Control de Acceso</span>
+          <h2 class="slide-title">Actores y Modelo de Permisos (RBAC)</h2>
+          <p class="slide-subtitle">Separación de perfiles sociales y 5 roles de backoffice</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-elenio">
+          <span class="dot"></span>
+          <span>EG · Base de Datos</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col">
+          <div class="card-clean accent-green">
+            <div class="card-heading">Actores Públicos y Socios</div>
+            <ul class="clean-list">
+              <li><strong>Particular / Invitado:</strong> Alquiler directo vía token único sin registro.</li>
+              <li><strong>Socio Común:</strong> Tarifas bonificadas y gestión familiar.</li>
+              <li><strong>Socio Adherente:</strong> Cuota mensualizada y pagos online.</li>
+              <li><strong>Socio Vitalicio:</strong> Exento de cuota con plenos derechos.</li>
+            </ul>
+          </div>
+          <div class="card-clean accent-gold">
+            <div class="card-heading">Backoffice (5 Roles RBAC)</div>
+            <ul class="clean-list">
+              <li><code>SUPERADMIN</code>: Control total y gestión de administradores.</li>
+              <li><code>ADMIN_USUARIOS</code>: Padrón de socios y solicitudes de cambio.</li>
+              <li><code>ADMIN_ALQUILER</code>: Turnos deportivos y devoluciones de seña.</li>
+              <li><code>ADMIN_PLANILLAS</code>: Importación masiva XLSX y Rollback.</li>
+              <li><code>ADMIN_NOTICIAS</code>: Redacción editorial y programación.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: DIAGRAMAS DE CASOS DE USO -->
+    <section class="slide" data-slide="11" data-speaker="matias" data-block="BLOQUE 2 — METODOLOGÍA Y ARQUITECTURA">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 2 · Modelado Funcional</span>
+          <h2 class="slide-title">Modelado de Casos de Uso (31 Casos)</h2>
+          <p class="slide-subtitle">Diagramas UML formales para Portal de Autogestión y Backoffice</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-matias">
+          <span class="dot"></span>
+          <span>MG · Frontend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col-visual">
+          <div style="display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+            <div class="card-clean accent-gold">
+              <div class="card-heading">Portal Público (14 Casos)</div>
+              <p class="clean-list">Registro, Login, Catálogo, Alquiler Socio/Invitado, Pago de Cuotas y Perfil.</p>
+            </div>
+            <div class="card-clean accent-green">
+              <div class="card-heading">Backoffice (17 Casos)</div>
+              <p class="clean-list">Aprobación de socios, horarios de espacios, cancelación con seña, planillas y noticias.</p>
+            </div>
+          </div>
+          <div class="photo-container">
+            <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
+            <img src="assets_presentacion/matias_image2.png" alt="Diagrama de Casos de Uso Portal" onclick="openLightbox(this.src)">
+            <div class="photo-caption">Diagrama de Casos de Uso UML — Portal Público y Autogestión del Socio</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: DB AUTENTICACIÓN -->
+    <section class="slide" data-slide="12" data-speaker="elenio" data-block="BLOQUE 3 — AUTENTICACIÓN Y REGISTRO">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 3 · Autenticación</span>
+          <h2 class="slide-title">Base de Datos: Autenticación y Roles</h2>
+          <p class="slide-subtitle">Desacoplamiento de cuentas, integridad y hashing seguro</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-elenio">
+          <span class="dot"></span>
+          <span>EG · Base de Datos</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col-visual">
+          <div style="display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+            <div class="card-clean accent-blue">
+              <div class="card-heading">Desacoplamiento Usuario / Socio</div>
+              <ul class="clean-list">
+                <li><code>Usuario</code>: Credenciales puras (<code>Username</code>, <code>PasswordHash</code>).</li>
+                <li><code>Socio</code>: Ficha personal ligada por clave foránea.</li>
+                <li><code>Rol</code> y <code>Usuario_Rol</code>: RBAC muchos a muchos normalizado.</li>
+              </ul>
+            </div>
+            <div class="card-clean accent-gold">
+              <div class="card-heading">Reglas de Integridad</div>
+              <ul class="clean-list">
+                <li>Zero texto plano: Hash Bcrypt de 60 caracteres.</li>
+                <li>Claves <code>UNIQUE</code> en <code>Username</code>, <code>DNI</code> y <code>Email</code>.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="photo-container">
+            <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
+            <img src="assets_presentacion/elenio_image4.png" alt="Diagrama EER Módulo Autenticación" onclick="openLightbox(this.src)">
+            <div class="photo-caption">Modelo Relacional EER — Tablas Usuario, Rol, Usuario_Rol y Socio</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: BACKEND API DE AUTENTICACIÓN -->
+    <section class="slide" data-slide="13" data-speaker="german" data-block="BLOQUE 3 — AUTENTICACIÓN Y REGISTRO">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 3 · Autenticación</span>
+          <h2 class="slide-title">Backend: API de Autenticación</h2>
+          <p class="slide-subtitle">Esquema de doble token JWT y autorización RBAC</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-german">
+          <span class="dot"></span>
+          <span>GM · Backend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col">
+          <div class="card-clean accent-green">
+            <div class="card-heading">Esquema de Doble Token</div>
+            <ul class="clean-list">
+              <li><strong>Access Token:</strong> Corta duración (15-60 min). En header <code>Authorization: Bearer</code>.</li>
+              <li><strong>Refresh Token:</strong> 7 días de vigencia para renovación silenciosa sin re-login.</li>
+              <li><strong>BcryptJS:</strong> Cifrado de contraseñas con 10 rondas de salteo.</li>
+            </ul>
+          </div>
+          <div class="card-clean accent-gold">
+            <div class="card-heading">Endpoints Implementados</div>
+            <div class="code-snippet">
+              <span class="method m-post">POST</span> /api/auth/login-socio<br>
+              <span class="method m-post">POST</span> /api/auth/login-admin<br>
+              <span class="method m-post">POST</span> /api/auth/refresh-token<br>
+              <span class="method m-post">POST</span> /api/auth/validate-email<br>
+              <span class="method m-post">POST</span> /api/auth/reset-password
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;">Middleware <code>requireRole()</code> valida firma y roles en cada request protegido.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: FRONTEND PANTALLAS DE ACCESO -->
+    <section class="slide" data-slide="14" data-speaker="matias" data-block="BLOQUE 3 — AUTENTICACIÓN Y REGISTRO">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 3 · Autenticación</span>
+          <h2 class="slide-title">Frontend: Pantallas de Acceso y Rutas</h2>
+          <p class="slide-subtitle">Interfaces diferenciadas, carga con Cloudinary y enrutamiento protegido</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-matias">
+          <span class="dot"></span>
+          <span>MG · Frontend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col-visual">
+          <div style="display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+            <div class="card-clean accent-gold">
+              <div class="card-heading">Vistas de Acceso</div>
+              <ul class="clean-list">
+                <li><code>LoginPage</code> (socios) y <code>AdminLoginPage</code> (decodifica roles).</li>
+                <li><code>RegisterPage</code> con foto de perfil directa a Cloudinary.</li>
+                <li>Validación interactiva con react-hook-form / MUI.</li>
+              </ul>
+            </div>
+            <div class="card-clean accent-green">
+              <div class="card-heading">Seguridad en Cliente</div>
+              <ul class="clean-list">
+                <li>Componentes <code>ProtectedRoute</code> y <code>ProtectedRouteAdmin</code>.</li>
+                <li>Interceptor Axios: captura 401 y solicita nuevo token con Refresh Token de forma transparente.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="photo-container">
+            <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
+            <img src="assets_presentacion/matias_image4.png" alt="Captura de Pantalla Login / Register" onclick="openLightbox(this.src)">
+            <div class="photo-caption">Interfaz de Inicio de Sesión y Acceso Seguro de Socios</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 15: DB SOCIOS -->
+    <section class="slide" data-slide="15" data-speaker="elenio" data-block="BLOQUE 4 — GESTIÓN DE SOCIOS">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 4 · Padrón Social</span>
+          <h2 class="slide-title">Base de Datos: Socios y Membresía</h2>
+          <p class="slide-subtitle">Modelo normalizado 3FN y optimización con índice FULLTEXT</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-elenio">
+          <span class="dot"></span>
+          <span>EG · Base de Datos</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col-visual">
+          <div style="display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+            <div class="card-clean accent-blue">
+              <div class="card-heading">Estructura Relacional Normalizada</div>
+              <ul class="clean-list">
+                <li><code>Socio</code>, <code>Miembro_Familiar</code> y catálogo <code>Parentesco</code>.</li>
+                <li>Entidad auditable: <code>Solicitud_Cambio_Datos</code>.</li>
+                <li>Estados: <code>Pendiente</code>, <code>Aprobado</code>, <code>Rechazado</code>.</li>
+              </ul>
+            </div>
+            <div class="card-clean accent-gold">
+              <div class="card-heading">Optimización de Búsqueda</div>
+              <p class="clean-list"><strong>Índice FULLTEXT</strong> en <code>(Name, Surname, DNI)</code>: búsquedas instantáneas en secretaría evitando escaneos completos.</p>
+            </div>
+          </div>
+          <div class="photo-container">
+            <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
+            <img src="assets_presentacion/elenio_image9.png" alt="Normalización de Socios" onclick="openLightbox(this.src)">
+            <div class="photo-caption">Esquema de Dependencias Funcionales y Normalización (3FN)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 16: BACKEND API DE SOCIOS -->
+    <section class="slide" data-slide="16" data-speaker="german" data-block="BLOQUE 4 — GESTIÓN DE SOCIOS">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 4 · Padrón Social</span>
+          <h2 class="slide-title">Backend: API de Gestión de Socios</h2>
+          <p class="slide-subtitle">Reglas de negocio, circuito de aprobación y notificaciones Resend</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-german">
+          <span class="dot"></span>
+          <span>GM · Backend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col">
+          <div class="card-clean accent-green">
+            <div class="card-heading">Reglas de Negocio</div>
+            <ul class="clean-list">
+              <li>El socio nace en estado <code>Pendiente</code> (sin acceso operativo).</li>
+              <li>Aprobación o rechazo administrativo con registro obligatorio de motivo.</li>
+              <li>Despacho de correo transaccional automático mediante <strong>Resend</strong>.</li>
+              <li>Modificaciones de datos sensibles requieren aprobación de secretaría.</li>
+            </ul>
+          </div>
+          <div class="card-clean accent-gold">
+            <div class="card-heading">Endpoints Principales</div>
+            <div class="code-snippet">
+              <span class="method m-get">GET</span> /api/socios (Paginado + Filtros)<br>
+              <span class="method m-patch">PATCH</span> /api/socios/:id/aprobar<br>
+              <span class="method m-patch">PATCH</span> /api/socios/:id/rechazar<br>
+              <span class="method m-post">POST</span> /api/socios/solicitud-cambio
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 17: FRONTEND PANEL DE SOCIOS -->
+    <section class="slide" data-slide="17" data-speaker="matias" data-block="BLOQUE 4 — GESTIÓN DE SOCIOS">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 4 · Padrón Social</span>
+          <h2 class="slide-title">Frontend: Panel de Socios y Perfil</h2>
+          <p class="slide-subtitle">DataGrid administrativo y autogestión de credencial y familia</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-matias">
+          <span class="dot"></span>
+          <span>MG · Frontend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col-visual">
+          <div style="display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+            <div class="card-clean accent-gold">
+              <div class="card-heading">AdminSociosPage (Backoffice)</div>
+              <ul class="clean-list">
+                <li>DataGrid con ordenamiento, filtrado por estado y búsqueda reactiva.</li>
+                <li>Modales contextuales: <code>AprobarSocioModal</code> y <code>EditarSocioModal</code>.</li>
+                <li>Pestaña de auditoría para solicitudes de cambio pendientes.</li>
+              </ul>
+            </div>
+            <div class="card-clean accent-green">
+              <div class="card-heading">ProfilePage (Socio)</div>
+              <ul class="clean-list">
+                <li>Credencial digital, estado de cuenta y foto de perfil en Cloudinary.</li>
+                <li>Gestión de miembros familiares adjuntando foto del DNI.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="photo-container">
+            <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
+            <img src="assets_presentacion/matias_image5.png" alt="Captura AdminSociosPage" onclick="openLightbox(this.src)">
+            <div class="photo-caption">Panel Administrativo de Socios — Aprobación y Gestión de Solicitudes</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 18: DB ESPACIOS Y ALQUILERES -->
+    <section class="slide" data-slide="18" data-speaker="elenio" data-block="BLOQUE 5 — ESPACIOS Y ALQUILERES">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 5 · Deportes & Alquileres</span>
+          <h2 class="slide-title">Base de Datos: Espacios y Alquileres</h2>
+          <p class="slide-subtitle">Disponibilidad horaria y liberación automática vía Event Scheduler</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-elenio">
+          <span class="dot"></span>
+          <span>EG · Base de Datos</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col-visual">
+          <div style="display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+            <div class="card-clean accent-blue">
+              <div class="card-heading">Esquema Relacional</div>
+              <ul class="clean-list">
+                <li><code>Espacio</code>: Precios socio / no socio, seña y seguro de garantía.</li>
+                <li><code>Horario_Espacio</code>: Franjas por día de semana.</li>
+                <li><code>Accesorio</code>: Control de stock disponible.</li>
+              </ul>
+            </div>
+            <div class="card-clean accent-gold">
+              <div class="card-heading">MySQL Event Scheduler (1 Hora)</div>
+              <p class="clean-list">Evento recurrente cada minuto: si una reserva no abona la seña en 60 minutos, <strong>expira y libera el turno automáticamente</strong>.</p>
+            </div>
+          </div>
+          <div class="photo-container">
+            <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
+            <img src="assets_presentacion/elenio_image6.png" alt="Diagrama EER Alquileres" onclick="openLightbox(this.src)">
+            <div class="photo-caption">Modelo Relacional EER — Espacios, Horarios, Accesorios y Alquileres</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 19: BACKEND API DE ALQUILERES -->
+    <section class="slide" data-slide="19" data-speaker="german" data-block="BLOQUE 5 — ESPACIOS Y ALQUILERES">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 5 · Deportes & Alquileres</span>
+          <h2 class="slide-title">Backend: API de Alquileres y Turnos</h2>
+          <p class="slide-subtitle">Concurrencia atómica, token de invitado y reintegros</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-german">
+          <span class="dot"></span>
+          <span>GM · Backend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col">
+          <div class="card-clean accent-green">
+            <div class="card-heading">Motor de Reservas</div>
+            <ul class="clean-list">
+              <li>Verificación atómica en transacción SQL para impedir solapamientos.</li>
+              <li><strong>Token de Invitado:</strong> <code>TokenSeguimiento</code> único para no socios, permitiendo consultar y pagar vía email sin registrarse.</li>
+              <li>Cancelación con &gt;48 hs calcula devolución de seña y registra Alias/CBU.</li>
+            </ul>
+          </div>
+          <div class="card-clean accent-gold">
+            <div class="card-heading">Endpoints Principales</div>
+            <div class="code-snippet">
+              <span class="method m-get">GET</span> /api/espacios/:id/horarios-disponibles<br>
+              <span class="method m-post">POST</span> /api/alquileres (Crear reserva)<br>
+              <span class="method m-get">GET</span> /api/alquileres/guest/:token (Invitado)<br>
+              <span class="method m-patch">PATCH</span> /api/alquileres/:id/cancelar
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 20: FRONTEND RESERVA DE ESPACIOS -->
+    <section class="slide" data-slide="20" data-speaker="matias" data-block="BLOQUE 5 — ESPACIOS Y ALQUILERES">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 5 · Deportes & Alquileres</span>
+          <h2 class="slide-title">Frontend: Catálogo y Wizard de Reserva</h2>
+          <p class="slide-subtitle">Selección en tiempo real, desglose de seña y autogestión</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-matias">
+          <span class="dot"></span>
+          <span>MG · Frontend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col-visual">
+          <div style="display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+            <div class="card-clean accent-gold">
+              <div class="card-heading">Wizard Interactivo (3 Pasos)</div>
+              <ul class="clean-list">
+                <li>1. Selección de fecha en calendario dinámico.</li>
+                <li>2. Grilla de turnos: verde disponibles, ocupados bloqueados.</li>
+                <li>3. Accesorios con cálculo en vivo de seña y seguro.</li>
+              </ul>
+            </div>
+            <div class="card-clean accent-green">
+              <div class="card-heading">Seguimiento y Cancelaciones</div>
+              <ul class="clean-list">
+                <li><code>MisAlquileresPage</code>: Historial, botón pagar saldo o cancelar.</li>
+                <li><code>AlquilerGuestPage</code>: Vista directa para invitados tokenizados.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="photo-container">
+            <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
+            <img src="assets_presentacion/matias_image7.png" alt="Captura ReservarEspacioPage" onclick="openLightbox(this.src)">
+            <div class="photo-caption">Wizard de Reserva de Espacios Deportivos con Disponibilidad en Tiempo Real</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 21: DB CUOTAS Y PAGOS -->
+    <section class="slide" data-slide="21" data-speaker="elenio" data-block="BLOQUE 6 — PAGOS Y CUOTAS">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 6 · Finanzas & Cuotas</span>
+          <h2 class="slide-title">Base de Datos: Cuotas, Pagos y Cajas</h2>
+          <p class="slide-subtitle">Soporte de pagos parciales y trazabilidad de ingresos</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-elenio">
+          <span class="dot"></span>
+          <span>EG · Base de Datos</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col-visual">
+          <div style="display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+            <div class="card-clean accent-blue">
+              <div class="card-heading">Cuotas y Pagos Parciales</div>
+              <ul class="clean-list">
+                <li><code>Cuota</code> con <code>PorcentajePagado (0.00 a 1.00)</code> y <code>CHECK</code> constraint.</li>
+                <li>Desnormalización controlada en <code>Deuda_Socio</code> para consultas veloces.</li>
+                <li><code>Caja</code> y <code>Caja_Movimiento</code> para libro diario de ingresos.</li>
+              </ul>
+            </div>
+            <div class="card-clean accent-gold">
+              <div class="card-heading">Conciliación de Pasarelas</div>
+              <p class="clean-list">Almacenamiento de <code>PreferenceID</code> y <code>PaymentID</code> de MercadoPago.</p>
+            </div>
+          </div>
+          <div class="photo-container">
+            <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
+            <img src="assets_presentacion/elenio_image5.png" alt="Diagrama EER Cuotas y Pagos" onclick="openLightbox(this.src)">
+            <div class="photo-caption">Modelo Relacional EER — Cuotas, Pagos, Deudas y Descuentos por Planilla</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 22: BACKEND INTEGRACIÓN PAGOS -->
+    <section class="slide" data-slide="22" data-speaker="german" data-block="BLOQUE 6 — PAGOS Y CUOTAS">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 6 · Finanzas & Cuotas</span>
+          <h2 class="slide-title">Backend: MercadoPago y Planillas con Rollback</h2>
+          <p class="slide-subtitle">Checkout Pro, Webhooks IPN y procesamiento XLSX seguro</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-german">
+          <span class="dot"></span>
+          <span>GM · Backend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col">
+          <div class="card-clean accent-green">
+            <div class="card-heading">MercadoPago Checkout Pro</div>
+            <ul class="clean-list">
+              <li>Generación de preferencias seguras con <code>back_urls</code> dinámicas.</li>
+              <li><strong>Webhooks IPN asíncronos:</strong> Actualización desatendida e idempotente de cuotas y alquileres confirmados.</li>
+            </ul>
+          </div>
+          <div class="card-clean accent-gold">
+            <div class="card-heading">Planillas Excel y Rollback</div>
+            <ul class="clean-list">
+              <li>Librería <code>xlsx</code>: Procesa retenciones de sueldos judiciales por DNI.</li>
+              <li><strong>Rollback Transaccional:</strong> Capacidad de deshacer una planilla errónea restaurando deudas anteriores en un clic.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 23: FRONTEND PAGO DE CUOTAS -->
+    <section class="slide" data-slide="23" data-speaker="matias" data-block="BLOQUE 6 — PAGOS Y CUOTAS">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 6 · Finanzas & Cuotas</span>
+          <h2 class="slide-title">Frontend: Pago de Cuotas y Tesorería</h2>
+          <p class="slide-subtitle">Autogestión de deuda, importador drag & drop y 6 páginas de retorno</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-matias">
+          <span class="dot"></span>
+          <span>MG · Frontend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col-visual">
+          <div style="display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+            <div class="card-clean accent-gold">
+              <div class="card-heading">PagosCuotasPage (Socio)</div>
+              <p class="clean-list">Resumen mensualizado, selección de cuotas y botón oficial MercadoPago.</p>
+            </div>
+            <div class="card-clean accent-green">
+              <div class="card-heading">PagosSociosPage (Tesorería)</div>
+              <p class="clean-list">Drag & drop de archivos <code>.xlsx</code>, previsualización de errores y botón de <strong>Rollback</strong>.</p>
+            </div>
+            <div class="card-clean accent-blue">
+              <div class="card-heading">6 Páginas de Retorno</div>
+              <p class="clean-list">Vistas de Éxito, Pendiente y Fallo para cuotas y alquileres.</p>
+            </div>
+          </div>
+          <div class="photo-container">
+            <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
+            <img src="DocumentacionNotion/Admin_Payment_Import-2026-05-10-154528.png" alt="Captura Importación Planillas" onclick="openLightbox(this.src)">
+            <div class="photo-caption">Panel de Tesorería — Carga Masiva de Planillas y Previsualización de Imputaciones</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 24: DB NOTICIAS -->
+    <section class="slide" data-slide="24" data-speaker="elenio" data-block="BLOQUE 7 — NOTICIAS Y PRENSA">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 7 · Prensa & Noticias</span>
+          <h2 class="slide-title">Base de Datos: Noticias y Categorías</h2>
+          <p class="slide-subtitle">Estructura periodística y programación de publicaciones</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-elenio">
+          <span class="dot"></span>
+          <span>EG · Base de Datos</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col-visual">
+          <div style="display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+            <div class="card-clean accent-blue">
+              <div class="card-heading">Estructura Editorial</div>
+              <ul class="clean-list">
+                <li>Atributos: <code>Volanta</code>, <code>Titulo</code>, <code>Copete</code>, <code>Cuerpo (LONGTEXT)</code> y <code>EmbedLink</code>.</li>
+                <li>Categorización normalizada: Torneos, Obras, Sociales.</li>
+              </ul>
+            </div>
+            <div class="card-clean accent-gold">
+              <div class="card-heading">Publicación Diferida</div>
+              <p class="clean-list">Campo <code>FechaPublicacion</code>: las noticias programadas no se exponen al público hasta que <code>FechaPublicacion &lt;= NOW()</code>.</p>
+            </div>
+          </div>
+          <div class="photo-container">
+            <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
+            <img src="assets_presentacion/elenio_image7.png" alt="Diagrama EER Noticias" onclick="openLightbox(this.src)">
+            <div class="photo-caption">Modelo Relacional EER — Entidades Noticia, Categoria y Media</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 25: BACKEND API DE NOTICIAS -->
+    <section class="slide" data-slide="25" data-speaker="german" data-block="BLOQUE 7 — NOTICIAS Y PRENSA">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 7 · Prensa & Noticias</span>
+          <h2 class="slide-title">Backend: API de Prensa y Cloudinary</h2>
+          <p class="slide-subtitle">Subida en memoria, optimización en la nube y sanitización XSS</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-german">
+          <span class="dot"></span>
+          <span>GM · Backend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col">
+          <div class="card-clean accent-green">
+            <div class="card-heading">Gestión Multimedia Cloud</div>
+            <ul class="clean-list">
+              <li>Multer en memoria y SDK de <strong>Cloudinary</strong>: transformación a WebP y CDN rápido.</li>
+              <li>Sanitización de HTML enriquecido contra inyecciones XSS.</li>
+              <li>Control estricto restringido al rol <code>ADMIN_NOTICIAS</code>.</li>
+            </ul>
+          </div>
+          <div class="card-clean accent-gold">
+            <div class="card-heading">Endpoints Implementados</div>
+            <div class="code-snippet">
+              <span class="method m-get">GET</span> /api/noticias (Publicadas)<br>
+              <span class="method m-post">POST</span> /api/noticias (Admin prensa)<br>
+              <span class="method m-patch">PATCH</span> /api/noticias/:id<br>
+              <span class="method m-get">GET</span> /api/categorias
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 26: FRONTEND NOTICIAS -->
+    <section class="slide" data-slide="26" data-speaker="matias" data-block="BLOQUE 7 — NOTICIAS Y PRENSA">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 7 · Prensa & Noticias</span>
+          <h2 class="slide-title">Frontend: Portal Editorial y Portada</h2>
+          <p class="slide-subtitle">Editor visual con previsualización en vivo y lectura cuidada</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-matias">
+          <span class="dot"></span>
+          <span>MG · Frontend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col">
+          <div class="card-clean accent-gold">
+            <div class="card-heading">AdminNoticiasPage (Prensa)</div>
+            <ul class="clean-list">
+              <li>Editor con previsualización simultánea.</li>
+              <li>Programación diferida con selector de fecha/hora.</li>
+              <li>Subida de fotografía Cloudinary con indicador de progreso.</li>
+            </ul>
+          </div>
+          <div class="card-clean accent-green">
+            <div class="card-heading">Componentes Públicos (Home)</div>
+            <ul class="clean-list">
+              <li>Componentes <code>NewsList</code> y <code>NewsCard</code> con hover animado.</li>
+              <li><code>NoticiaDetallePage</code>: Tipografía editorial Playfair Display y reproductor de video responsivo.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 27: ESTRATEGIA DE TESTING E2E -->
+    <section class="slide" data-slide="27" data-speaker="matias" data-block="BLOQUE 8 — TESTING, CALIDAD Y DESPLIEGUE">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 8 · Calidad de Software</span>
+          <h2 class="slide-title">Testing E2E Automatizado (Playwright)</h2>
+          <p class="slide-subtitle">18 Archivos de especificación: Suite Real y Suite Mock</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-matias">
+          <span class="dot"></span>
+          <span>MG · Frontend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col">
+          <div class="card-clean accent-gold">
+            <div class="card-heading">Suite Real (17 Archivos)</div>
+            <ul class="clean-list">
+              <li>Ejecución contra backend y base de datos real de pruebas.</li>
+              <li>Ciclo completo de registro, aprobación y login de socio.</li>
+              <li>Reserva completa de turnos deportivos y pagos simulados.</li>
+              <li>CRUD de espacios, noticias y usuarios administrativos.</li>
+            </ul>
+          </div>
+          <div class="card-clean accent-green">
+            <div class="card-heading">Suite Mock (1 Archivo)</div>
+            <ul class="clean-list">
+              <li>Interceptación HTTP vía <code>page.route()</code> sin backend.</li>
+              <li>Validación ultrarrápida de estados visuales y manejo de errores 401/403/500.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 28: INTEGRACIÓN CONTINUA Y AISLAMIENTO -->
+    <section class="slide" data-slide="28" data-speaker="german" data-block="BLOQUE 8 — TESTING, CALIDAD Y DESPLIEGUE">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 8 · DevOps & Calidad</span>
+          <h2 class="slide-title">CI y Aislamiento de Datos de Prueba</h2>
+          <p class="slide-subtitle">Idempotencia de pruebas y retención de artefactos de debugging</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-german">
+          <span class="dot"></span>
+          <span>GM · Backend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col">
+          <div class="card-clean accent-green">
+            <div class="card-heading">Aislamiento de Datos</div>
+            <ul class="clean-list">
+              <li>Base de datos efímera réplica para testing independiente.</li>
+              <li>Sufijos aleatorios únicos en DNI y usuarios para evitar colisiones.</li>
+              <li>Helpers compartidos para login y preparación de estados por API.</li>
+            </ul>
+          </div>
+          <div class="card-clean accent-gold">
+            <div class="card-heading">GitHub Actions Artifacts</div>
+            <ul class="clean-list">
+              <li>Bloqueo estricto del merge si un solo test falla.</li>
+              <li>Retención de grabaciones en video, capturas y trazas durante 7 días para depuración inmediata.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 29: DESPLIEGUE EN PRODUCCIÓN -->
+    <section class="slide" data-slide="29" data-speaker="elenio" data-block="BLOQUE 8 — TESTING, CALIDAD Y DESPLIEGUE">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 8 · Infraestructura</span>
+          <h2 class="slide-title">Despliegue y Arquitectura Cloud</h2>
+          <p class="slide-subtitle">Plataforma PaaS en Railway con baja latencia y HTTPS</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-elenio">
+          <span class="dot"></span>
+          <span>EG · Base de Datos</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-3col">
+          <div class="card-clean accent-gold">
+            <div class="card-heading">Frontend SPA</div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">Bundle Vite estático optimizado bajo CDN con certificado SSL/TLS automático.</p>
+          </div>
+          <div class="card-clean accent-green">
+            <div class="card-heading">Backend Node.js</div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">Contenedor cloud con variables de entorno protegidas y auto-reinicio ante fallos.</p>
+          </div>
+          <div class="card-clean accent-blue">
+            <div class="card-heading">MySQL Gestionado</div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">Base de datos en la misma red privada para latencias menores a 2 milisegundos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 30: CONCLUSIÓN MATÍAS -->
+    <section class="slide" data-slide="30" data-speaker="matias" data-block="BLOQUE 9 — CONCLUSIONES">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 9 · Balance de Rol</span>
+          <h2 class="slide-title">Conclusiones: Frontend & QA</h2>
+          <p class="slide-subtitle">Balance individual del Desarrollador Frontend</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-matias">
+          <span class="dot"></span>
+          <span>MG · Frontend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col">
+          <div class="card-clean accent-gold">
+            <div class="card-heading">Competencias Técnicas</div>
+            <ul class="clean-list">
+              <li>Consolidación en React 19, Vite y sistema de diseño unificado en Material UI.</li>
+              <li>Seguridad en cliente con RBAC y renovación silenciosa con interceptores Axios.</li>
+              <li>Integración exitosa de pasarela MercadoPago y Cloudinary.</li>
+            </ul>
+          </div>
+          <div class="card-clean accent-green">
+            <div class="card-heading">Cultura de Calidad</div>
+            <ul class="clean-list">
+              <li>Adopción de pruebas automatizadas con Playwright cubriendo flujos reales.</li>
+              <li>Garantía de cero regresiones en producción gracias a CI en GitHub Actions.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 31: CONCLUSIÓN GERMÁN -->
+    <section class="slide" data-slide="31" data-speaker="german" data-block="BLOQUE 9 — CONCLUSIONES">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 9 · Balance de Rol</span>
+          <h2 class="slide-title">Conclusiones: Backend & API REST</h2>
+          <p class="slide-subtitle">Balance individual del Desarrollador Backend</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-german">
+          <span class="dot"></span>
+          <span>GM · Backend</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col">
+          <div class="card-clean accent-green">
+            <div class="card-heading">Arquitectura y Seguridad</div>
+            <ul class="clean-list">
+              <li>Diseño de API RESTful desacoplada, modular y escalable.</li>
+              <li>Seguridad robusta con esquema de doble token JWT y control granular de roles.</li>
+              <li>Orquestación confiable de servicios en la nube (MercadoPago, Resend, Cloudinary).</li>
+            </ul>
+          </div>
+          <div class="card-clean accent-gold">
+            <div class="card-heading">Procesos Críticos</div>
+            <ul class="clean-list">
+              <li>Módulo de liquidación de sueldos por planilla Excel con capacidad de Rollback contable.</li>
+              <li>Manejo de transacciones atómicas para reservas deportivas sin solapamiento.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 32: CONCLUSIÓN ELENIO -->
+    <section class="slide" data-slide="32" data-speaker="elenio" data-block="BLOQUE 9 — CONCLUSIONES">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 9 · Balance de Rol</span>
+          <h2 class="slide-title">Conclusiones: Base de Datos</h2>
+          <p class="slide-subtitle">Balance individual del Desarrollador de Base de Datos</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-elenio">
+          <span class="dot"></span>
+          <span>EG · Base de Datos</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col">
+          <div class="card-clean accent-blue">
+            <div class="card-heading">Modelado y Normalización</div>
+            <ul class="clean-list">
+              <li>Modelo relacional en 3FN con integridad referencial infranqueable.</li>
+              <li>Desnormalización justificada y controlada en <code>Deuda_Socio</code> para alta velocidad.</li>
+              <li>Versionado controlado del esquema mediante migraciones incrementales.</li>
+            </ul>
+          </div>
+          <div class="card-clean accent-gold">
+            <div class="card-heading">Optimización Avanzada</div>
+            <ul class="clean-list">
+              <li>Índices B-Tree compuestos y FULLTEXT para búsquedas en sub-milisegundos.</li>
+              <li>MySQL Event Scheduler: liberación desatendida de reservas vencidas en 1 hora.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 33: IMPACTO ORGANIZACIONAL Y FUTURO -->
+    <section class="slide" data-slide="33" data-speaker="equipo" data-block="BLOQUE 9 — CONCLUSIONES">
+      <div class="slide-header">
+        <div class="slide-meta">
+          <span class="slide-block-tag">Bloque 9 · Impacto</span>
+          <h2 class="slide-title">Impacto Organizacional y Trabajo Futuro</h2>
+          <p class="slide-subtitle">Transformación del Club Judicial y líneas evolutivas</p>
+        </div>
+        <div class="speaker-subtle-badge speaker-equipo">
+          <span class="dot"></span>
+          <span>Equipo PPS</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2col">
+          <div class="card-clean accent-green">
+            <div class="card-heading">Impacto Real en la Organización</div>
+            <ul class="clean-list">
+              <li><strong>Cero solapamientos</strong> en reservas de canchas y salones.</li>
+              <li><strong>Transparencia total:</strong> el socio consulta y paga cuotas 24/7.</li>
+              <li><strong>Reducción de carga administrativa</strong> y erradicación del papel disperso.</li>
+            </ul>
+          </div>
+          <div class="card-clean accent-gold">
+            <div class="card-heading">Líneas de Trabajo Futuro</div>
+            <ul class="clean-list">
+              <li>Notificaciones Push en tiempo real para avisos de reservas.</li>
+              <li>Módulo de Business Intelligence y métricas para la Comisión Directiva.</li>
+              <li>Aplicación móvil nativa en React Native y control de acceso QR en molinete.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 34: CIERRE Y PREGUNTAS -->
+    <section class="slide" data-slide="34" data-speaker="equipo" data-block="BLOQUE 9 — CONCLUSIONES">
+      <div class="hero-clean">
+        <div class="unvim-tag">Universidad Nacional de Villa Mercedes</div>
+        <h1 class="hero-heading">¡Muchas Gracias!</h1>
+        <p style="font-size: 1.25rem; color: var(--brand-green); font-weight: 600;">
+          Quedamos a disposición del Tribunal Evaluador para la ronda de preguntas.
+        </p>
+
+        <div style="background: #FFFFFF; border: 1px solid var(--border-gold); border-radius: var(--radius-md); padding: 20px 36px; max-width: 650px; text-align: center; margin-top: 10px; box-shadow: var(--shadow-soft);">
+          <p style="font-size: 0.95rem; color: var(--primary-dark); font-weight: 700; margin-bottom: 6px;">
+            Sistema de Gestión Integral — Club Social, Cultural y Deportivo Judicial
+          </p>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">
+            Elenio García (Base de Datos) · Germán Muñoz (Backend) · Matías Giménez (Frontend)<br>
+            Tutor: Ing. Alejandro Marcelo Altaba · Supervisor: Fernando Rigoni · 2026
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PANEL DE NOTAS DEL ORADOR (GUIÓN) -->
+  <aside id="speaker-notes-panel">
+    <div class="notes-header">
+      <h3>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: -2px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        Guión para la Exposición
+      </h3>
+      <button id="btn-close-notes" style="background:none; border:none; font-size:1.1rem; cursor:pointer; color:var(--text-muted);">✕</button>
+    </div>
+    <div id="notes-content-box" class="notes-body">
+      <!-- Inyectado por JS -->
+    </div>
+  </aside>
+
+  <!-- BARRA INFERIOR -->
+  <footer class="bottom-bar">
+    <div class="slide-counter">
+      <span class="current" id="current-slide-num">1</span>
+      <span>/ 34</span>
+      <select id="quick-jump" class="quick-jump-select">
+        <!-- Opciones generadas dinámicamente -->
+      </select>
+    </div>
+
+    <div class="nav-buttons">
+      <button id="btn-prev" class="btn-nav" title="Anterior (Flecha Izq)">❮</button>
+      <button id="btn-next" class="btn-nav" title="Siguiente (Flecha Der / Espacio)">❯</button>
+    </div>
+  </footer>
+</div>
+
+<!-- LIGHTBOX PARA AMPLIAR CAPTURAS Y DIAGRAMAS -->
+<div id="lightbox-modal" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="Ampliación">
+</div>
+
+<!-- MODAL DE ÍNDICE -->
+<div id="index-modal">
+  <div class="index-content">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-gold); padding-bottom: 10px;">
+      <h2 style="font-family: var(--font-display); color: var(--brand-green); font-size: 1.3rem;">Índice General de Diapositivas (34)</h2>
+      <button id="btn-close-index" style="background:none; border:none; font-size:1.3rem; cursor:pointer; color:var(--text-muted);">✕</button>
+    </div>
+    <div id="index-list" class="index-grid">
+      <!-- Generado dinámicamente -->
+    </div>
+  </div>
+</div>
+
+<script>
+  // Guión detallado para cada una de las 34 diapositivas
+  const speakerNotesData = {
+    1: {
+      speaker: "Matías Giménez (Apertura)",
+      content: "<strong>Qué decir:</strong> 'Buenos días al tribunal evaluador, profesor Altaba y presentes. Presentamos la defensa de nuestra Práctica Profesional Supervisada: Sistema de Gestión Integral para el Club Social, Cultural y Deportivo Judicial de Villa Mercedes. Nuestro equipo: Elenio García en Base de Datos, Germán Muñoz en Backend y quien les habla, Matías Giménez, en Frontend.'",
+      handover: "Pase a Germán: Mi compañero Germán explicará la problemática detectada en la institución."
+    },
+    2: {
+      speaker: "Germán Muñoz [Backend]",
+      content: "<strong>Qué decir:</strong> 'El relevamiento detectó que el club funcionaba 100% manual con planillas Excel dispersas. Esto generaba inconsistencias contables, pérdida de datos por falta de concurrencia y solapamiento de reservas los fines de semana en canchas y quinchos. Además, el socio no podía consultar su deuda ni reservar de forma remota.'",
+      handover: "Pase a Elenio: Elenio comentará los objetivos fijados para resolver esta situación."
+    },
+    3: {
+      speaker: "Elenio García [Base de Datos]",
+      content: "<strong>Qué decir:</strong> 'Fijamos como objetivo general desarrollar e implementar un sistema web integral que automatice la gestión social, deportiva y contable. Como metas específicas: autogestión 24/7, modelo relacional 3FN con integridad estricta, cobro online con MercadoPago y conciliación masiva de sueldos con rollback contable.'",
+      handover: "Pase a Matías: Matías expondrá la distribución de roles y responsabilidades."
+    },
+    4: {
+      speaker: "Matías Giménez [Frontend]",
+      content: "<strong>Qué decir:</strong> 'Nos organizamos con responsabilidades claras: Elenio en el diseño y optimización de base de datos en MySQL; Germán en la API RESTful y seguridad en Node/Express; y yo en la interfaz React 19, Material UI y testing E2E automatizado con Playwright. Todas las tareas de relevamiento y pruebas fueron compartidas.'",
+      handover: "Pase a Germán: Germán presentará la institución receptora."
+    },
+    5: {
+      speaker: "Germán Muñoz [Backend]",
+      content: "<strong>Qué decir:</strong> 'El Club Judicial es una asociación civil sin fines de lucro de Villa Mercedes, San Luis. Nuclea a los empleados del Poder Judicial de la 2da Circunscripción y a la comunidad. Cuenta con canchas de pádel, fútbol, quincho y salón. Entrevistamos a directivos, secretaría y tesorería para modelar cada circuito operativo.'",
+      handover: "Pase a Elenio: Elenio detallará la metodología de trabajo adoptada."
+    },
+    6: {
+      speaker: "Elenio García [Base de Datos]",
+      content: "<strong>Qué decir:</strong> 'Adoptamos una metodología iterativa e incremental. Desarrollamos por módulos funcionales (Auth ➔ Socios ➔ Espacios ➔ Pagos ➔ Noticias). Coordinamos más de 190 tareas en un tablero Kanban en Notion y mantuvimos reuniones quincenales de validación académica con el tutor y técnica con el supervisor.'",
+      handover: "Pase a Germán: Germán explicará el control de versiones y la integración continua."
+    },
+    7: {
+      speaker: "Germán Muñoz [Backend]",
+      content: "<strong>Qué decir:</strong> 'Implementamos GitFlow con la rama main protegida. Todo cambio requirió Pull Request con revisión cruzada. En GitHub Actions configuramos un pipeline de CI que corre las pruebas E2E de Playwright ante cada PR. Si un test falla, el merge queda bloqueado para asegurar que no haya regresiones en producción.'",
+      handover: "Pase a Matías: Matías presentará la arquitectura general del sistema."
+    },
+    8: {
+      speaker: "Matías Giménez [Frontend]",
+      content: "<strong>Qué decir:</strong> 'La arquitectura adopta el patrón MVC desacoplado: una SPA en React 19 como Vista, la API REST en Node.js/Express como Controlador y orquestador de negocio, y MySQL 8 como Modelo de datos. Comunicación asíncrona vía HTTPS/JSON con autenticación JWT stateless y servicios cloud MercadoPago, Cloudinary y Resend.'",
+      handover: "Pase a Germán: Germán resumirá el stack tecnológico del proyecto."
+    },
+    9: {
+      speaker: "Germán Muñoz [Backend]",
+      content: "<strong>Qué decir:</strong> 'El stack se compone de Node.js 20, Express, JWT y BcryptJS en el backend; MySQL 8 con motor InnoDB en persistencia; React 19, Vite y Material UI v6 en el frontend; y los SDK de MercadoPago, Cloudinary, Resend y Playwright para QA. Es un ecosistema moderno, maduro y de alto rendimiento.'",
+      handover: "Pase a Elenio: Elenio presentará los actores del sistema y el modelo de roles.'",
+    },
+    10: {
+      speaker: "Elenio García [Base de Datos]",
+      content: "<strong>Qué decir:</strong> 'Modelamos cuatro tipos de actores sociales: el particular sin registro, el socio común, el socio adherente y el vitalicio. Para el backoffice administrativo, diseñamos un esquema RBAC con 5 roles: SUPERADMIN, ADMIN_USUARIOS, ADMIN_ALQUILER, ADMIN_PLANILLAS y ADMIN_NOTICIAS para garantizar el principio de mínimo privilegio.'",
+      handover: "Pase a Matías: Matías presentará los casos de uso y diagramas UML."
+    },
+    11: {
+      speaker: "Matías Giménez [Frontend]",
+      content: "<strong>Qué decir:</strong> 'Especificamos 31 casos de uso en dos diagramas UML: el portal de autogestión pública y del socio con 14 casos de uso, y el backoffice administrativo con 17 casos de uso. Definimos relaciones de inclusión obligatoria para la pasarela de pagos y de extensión para el cálculo de devolución de señas.'",
+      handover: "Pase a Elenio: Comenzamos con los módulos funcionales. Elenio iniciará con la base de datos de Autenticación."
+    },
+    12: {
+      speaker: "Elenio García [Base de Datos]",
+      content: "<strong>Qué decir:</strong> 'En autenticación, desacoplamos la tabla Usuario de la tabla Socio. Esto permite administradores que no son socios y desacopla identidades. Las contraseñas se almacenan únicamente como hashes Bcrypt de 60 caracteres y aplicamos restricciones UNIQUE en username y DNI para evitar duplicaciones.'",
+      handover: "Pase a Germán: Germán explicará la implementación de la API de autenticación."
+    },
+    13: {
+      speaker: "Germán Muñoz [Backend]",
+      content: "<strong>Qué decir:</strong> 'La API de autenticación implementa un esquema de doble token JWT: Access Token de 15 minutos para peticiones seguras y Refresh Token de 7 días para renovación silenciosa. Las contraseñas se cifran con 10 rondas de salteo y middlewares requireRole() validan los permisos en cada endpoint protegido.'",
+      handover: "Pase a Matías: Matías mostrará cómo consume el frontend esta capa de autenticación."
+    },
+    14: {
+      speaker: "Matías Giménez [Frontend]",
+      content: "<strong>Qué decir:</strong> 'En el cliente desarrollamos LoginPage y AdminLoginPage. Las rutas están protegidas con ProtectedRoute según los roles del token. Mediante interceptores de Axios, cuando la API retorna un 401 por token expirado, el cliente solicita un nuevo Access Token de forma transparente sin interrumpir la navegación.'",
+      handover: "Pase a Elenio: Pasamos al Módulo de Socios. Elenio explicará el modelo de datos de miembros y familias."
+    },
+    15: {
+      speaker: "Elenio García [Base de Datos]",
+      content: "<strong>Qué decir:</strong> 'El padrón de socios está normalizado en 3FN e incluye las tablas Socio, Miembro_Familiar y Parentesco. Modelamos Solicitud_Cambio_Datos para auditar cambios. Además, creamos un índice FULLTEXT sobre Nombre, Apellido y DNI para búsquedas instantáneas en secretaría sin escaneos completos de tabla.'",
+      handover: "Pase a Germán: Germán detallará las reglas de negocio de la API de socios."
+    },
+    16: {
+      speaker: "Germán Muñoz [Backend]",
+      content: "<strong>Qué decir:</strong> 'En la API de socios, el registro inicial nace en estado Pendiente. El administrador revisa la documentación y aprueba o rechaza, momento en que el sistema despacha un email automático vía Resend. Ningún socio puede modificar su DNI directamente: debe generar una solicitud auditable.'",
+      handover: "Pase a Matías: Matías mostrará las pantallas del panel de socios y perfil."
+    },
+    17: {
+      speaker: "Matías Giménez [Frontend]",
+      content: "<strong>Qué decir:</strong> 'AdminSociosPage utiliza Material UI DataGrid para ordenar, paginar y filtrar en milisegundos con modales de aprobación y rechazo. En ProfilePage, el socio visualiza su credencial digital, sube su foto a Cloudinary y gestiona familiares adjuntando la foto de su DNI.'",
+      handover: "Pase a Elenio: Entramos al módulo de Alquileres. Elenio explicará la disponibilidad y el Event Scheduler."
+    },
+    18: {
+      speaker: "Elenio García [Base de Datos]",
+      content: "<strong>Qué decir:</strong> 'El módulo de alquileres modela Espacios, Horarios por día y Accesorios con stock. Para evitar el bloqueo de turnos impagos, programamos un Evento en MySQL (Event Scheduler) cada 60 segundos: si una reserva no abona la seña en 1 hora, se cancela y el turno se libera automáticamente.'",
+      handover: "Pase a Germán: Germán explicará la API de reservas y la cancelación con devolución."
+    },
+    19: {
+      speaker: "Germán Muñoz [Backend]",
+      content: "<strong>Qué decir:</strong> 'La API asegura la disponibilidad atómica con transacciones SQL para evitar colisiones. Para invitados (no socios), generamos un TokenSeguimiento criptográfico que les permite gestionar su turno vía email sin crear cuenta. Cancelaciones con más de 48 hs registran el CBU para reintegro de seña.'",
+      handover: "Pase a Matías: Matías presentará el flujo interactivo de reserva en la web."
+    },
+    20: {
+      speaker: "Matías Giménez [Frontend]",
+      content: "<strong>Qué decir:</strong> 'ReservarEspacioPage funciona como un wizard de 3 pasos: el usuario elige la fecha, ve los turnos disponibles en tiempo real en verde y turnos ocupados deshabilitados, y selecciona accesorios con cálculo dinámico del total y de la seña mínima requerida antes de pagar con MercadoPago.'",
+      handover: "Pase a Elenio: Pasamos al Módulo de Pagos y Cuotas. Elenio explicará la estructura de cuotas y cajas.'"
+    },
+    21: {
+      speaker: "Elenio García [Base de Datos]",
+      content: "<strong>Qué decir:</strong> 'El modelo financiero soporta pagos parciales con el campo PorcentajePagado y restricción CHECK. Creamos Deuda_Socio como desnormalización controlada para conocer las cuotas adeudadas sin recalcular todo el histórico, y las tablas Caja y Caja_Movimiento para registrar cada ingreso dinerario.'",
+      handover: "Pase a Germán: Germán explicará la integración de MercadoPago y las planillas de sueldos."
+    },
+    22: {
+      speaker: "Germán Muñoz [Backend]",
+      content: "<strong>Qué decir:</strong> 'Integramos MercadoPago Checkout Pro con webhooks IPN que confirman pagos de forma desatendida. Para retenciones de sueldo judicial, procesamos archivos Excel con la librería xlsx y desarrollamos un mecanismo de Rollback transaccional que permite revertir una planilla errónea restaurando deudas previas.'",
+      handover: "Pase a Matías: Matías mostrará la experiencia de usuario en pagos y planillas."
+    },
+    23: {
+      speaker: "Matías Giménez [Frontend]",
+      content: "<strong>Qué decir:</strong> 'En PagosCuotasPage el socio consulta sus deudas y abona con el botón oficial de MercadoPago. Para Tesorería, creamos PagosSociosPage con drag & drop de planillas Excel, previsualización de inconsistencias y el botón de Rollback. Desarrollamos 6 páginas de retorno de pasarela.'",
+      handover: "Pase a Elenio: Avanzamos al Módulo de Noticias. Elenio comentará el esquema editorial.'"
+    },
+    24: {
+      speaker: "Elenio García [Base de Datos]",
+      content: "<strong>Qué decir:</strong> 'La tabla Noticia modela atributos periodísticos formales: volanta, título, copete, cuerpo LONGTEXT y embed para videos de YouTube. Mediante FechaPublicacion y el estado BORRADOR o PUBLICADA, permitimos programar noticias con publicación automática diferida.'",
+      handover: "Pase a Germán: Germán detallará la API editorial y la subida de imágenes."
+    },
+    25: {
+      speaker: "Germán Muñoz [Backend]",
+      content: "<strong>Qué decir:</strong> 'Conectamos Multer en memoria con Cloudinary para optimizar imágenes en la nube en formato WebP sin saturar el servidor local. Aplicamos validaciones contra ataques XSS en el cuerpo y restringimos la publicación a los roles ADMIN_NOTICIAS y SUPERADMIN.'",
+      handover: "Pase a Matías: Matías mostrará la interfaz editorial y la presentación en el Home."
+    },
+    26: {
+      speaker: "Matías Giménez [Frontend]",
+      content: "<strong>Qué decir:</strong> 'En AdminNoticiasPage construimos un editor con previsualización en vivo para prensa. En el portal público, las novedades se exhiben mediante componentes NewsList y NewsCard, y en NoticiaDetallePage brindamos una experiencia de lectura cuidada con tipografía Playfair Display.'",
+      handover: "Pase a Matías: Entramos al Bloque 8 de Testing y Despliegue. Yo iniciaré con la suite de Playwright."
+    },
+    27: {
+      speaker: "Matías Giménez [Frontend]",
+      content: "<strong>Qué decir:</strong> 'Desarrollamos 18 archivos de pruebas E2E con Playwright simulando usuarios reales en Chromium y Firefox. La Suite Real con 17 archivos corre contra backend y base de datos real cubriendo registros, alquileres, pagos y CRUDs; y la Suite Mock valida estados visuales y manejo de errores aisladamente.'",
+      handover: "Pase a Germán: Germán explicará cómo logramos aislar los datos en las pruebas continuas."
+    },
+    28: {
+      speaker: "Germán Muñoz [Backend]",
+      content: "<strong>Qué decir:</strong> 'Utilizamos una base de datos de testing réplica y generamos sufijos aleatorios en los DNI y usuarios para evitar colisiones de clave única. En GitHub Actions, si un test falla, el runner guarda grabaciones en video y capturas de pantalla durante 7 días para facilitar la depuración inmediata.'",
+      handover: "Pase a Elenio: Elenio explicará el despliegue en la nube."
+    },
+    29: {
+      speaker: "Elenio García [Base de Datos]",
+      content: "<strong>Qué decir:</strong> 'Desplegamos en la nube PaaS en Railway: el frontend se compila como bundle estático optimizado, el backend corre en un contenedor Node.js con certificados SSL automáticos y MySQL 8.0 se aloja en la misma red privada para garantizar latencias inferiores a 2 milisegundos.'",
+      handover: "Pase a Matías: Pasamos a las conclusiones. Matías iniciará con el balance de Frontend."
+    },
+    30: {
+      speaker: "Matías Giménez [Frontend]",
+      content: "<strong>Qué decir:</strong> 'La PPS me permitió consolidar competencias en React 19, Vite y diseño unificado en Material UI. Implementé seguridad RBAC en cliente con interceptores Axios para renovación silenciosa de tokens y adquirí experiencia formativa invaluable en testing automatizado con Playwright y CI/CD.'",
+      handover: "Pase a Germán: Germán compartirá sus conclusiones de Backend."
+    },
+    31: {
+      speaker: "Germán Muñoz [Backend]",
+      content: "<strong>Qué decir:</strong> 'Logramos una API RESTful modular y escalable en Node/Express, implementando autenticación stateless con doble token JWT y orquestando servicios cloud de MercadoPago, Resend y Cloudinary. Destaco la resolución del Rollback en planillas de sueldos para proteger la contabilidad del club.'",
+      handover: "Pase a Elenio: Elenio brindará sus conclusiones de Base de Datos."
+    },
+    32: {
+      speaker: "Elenio García [Base de Datos]",
+      content: "<strong>Qué decir:</strong> 'Logramos un modelo relacional en 3FN que asegura la integridad de los datos. La optimización con índices B-Tree y FULLTEXT garantiza consultas en sub-milisegundos, y el Event Scheduler resolvió el histórico problema de turnos bloqueados sin pagar. Las migraciones versionadas aseguran la evolución del esquema.'",
+      handover: "Pase a Equipo: Los tres cerraremos con el impacto institucional y el trabajo futuro."
+    },
+    33: {
+      speaker: "Equipo Completo (Los Tres)",
+      content: "<strong>Qué decir:</strong> 'El impacto en el Club Judicial es contundente: cero solapamientos en reservas, los socios ganaron autogestión 24/7 para consultar y pagar cuotas, y secretaría redujo el trabajo manual repetitivo. Como líneas futuras proyectamos notificaciones push, analítica para la directiva y control de acceso físico QR.'",
+      handover: "Pase a Cierre: Cierre de la presentación y apertura de preguntas del tribunal."
+    },
+    34: {
+      speaker: "Equipo Completo (Cierre)",
+      content: "<strong>Qué decir:</strong> 'Agradecemos profundamente a la Universidad Nacional de Villa Mercedes, a la Escuela de Ingeniería, a nuestro tutor Ing. Alejandro Marcelo Altaba y al supervisor Fernando Rigoni por su acompañamiento. Quedamos a total disposición del tribunal evaluador para responder sus preguntas. ¡Muchas gracias!'",
+      handover: "Fin de la exposición oral."
+    }
+  };
+
+  let currentSlide = 1;
+  const totalSlides = 34;
+
+  const slides = document.querySelectorAll('.slide');
+  const progressBar = document.getElementById('progress-bar');
+  const currentNumEl = document.getElementById('current-slide-num');
+  const quickJump = document.getElementById('quick-jump');
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
+  const btnNotes = document.getElementById('btn-notes');
+  const notesPanel = document.getElementById('speaker-notes-panel');
+  const notesContentBox = document.getElementById('notes-content-box');
+  const btnCloseNotes = document.getElementById('btn-close-notes');
+  const btnIndex = document.getElementById('btn-index');
+  const indexModal = document.getElementById('index-modal');
+  const indexList = document.getElementById('index-list');
+  const btnCloseIndex = document.getElementById('btn-close-index');
+  const btnFullscreen = document.getElementById('btn-fullscreen');
+  const lightboxModal = document.getElementById('lightbox-modal');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  function initNav() {
+    slides.forEach((slide, idx) => {
+      const num = idx + 1;
+      const titleEl = slide.querySelector('.slide-title');
+      const title = titleEl ? titleEl.textContent : (num === 1 ? 'Portada Oficial' : 'Diapositiva ' + num);
+      const speaker = slide.getAttribute('data-speaker') || 'equipo';
+
+      // Dropdown de salto
+      const opt = document.createElement('option');
+      opt.value = num;
+      opt.textContent = `${num}. ${title.substring(0, 34)}...`;
+      quickJump.appendChild(opt);
+
+      // Ítem de modal de índice
+      const item = document.createElement('div');
+      item.className = 'index-item';
+      item.innerHTML = `<strong>#${num}</strong> ${title} <span style="float:right; font-size:0.7rem; color:var(--text-muted);">${speaker.toUpperCase()}</span>`;
+      item.addEventListener('click', () => {
+        goToSlide(num);
+        indexModal.classList.remove('open');
+      });
+      indexList.appendChild(item);
+    });
+  }
+
+  function goToSlide(num) {
+    if (num < 1 || num > totalSlides) return;
+    currentSlide = num;
+
+    slides.forEach(s => s.classList.remove('active'));
+    const target = document.querySelector(`.slide[data-slide="${currentSlide}"]`);
+    if (target) target.classList.add('active');
+
+    currentNumEl.textContent = currentSlide;
+    quickJump.value = currentSlide;
+    const progressPct = (currentSlide / totalSlides) * 100;
+    progressBar.style.width = `${progressPct}%`;
+
+    btnPrev.disabled = currentSlide === 1;
+    btnNext.disabled = currentSlide === totalSlides;
+
+    updateNotes(currentSlide);
+  }
+
+  function updateNotes(num) {
+    const data = speakerNotesData[num] || { speaker: "Expositor", content: "Defensa técnica del contenido.", handover: "" };
+    notesContentBox.innerHTML = `
+      <div style="font-size:0.75rem; font-weight:700; color:var(--brand-gold-dark); text-transform:uppercase; margin-bottom:4px;">
+        Orador: ${data.speaker}
+      </div>
+      <div>${data.content}</div>
+      ${data.handover ? `<div class="notes-handover"><strong>Pase de palabra:</strong> ${data.handover}</div>` : ''}
+    `;
+  }
+
+  // Lightbox Zoom de imágenes
+  function openLightbox(src) {
+    lightboxImg.src = src;
+    lightboxModal.classList.add('open');
+  }
+
+  function closeLightbox() {
+    lightboxModal.classList.remove('open');
+  }
+
+  // Event Listeners
+  btnPrev.addEventListener('click', () => goToSlide(currentSlide - 1));
+  btnNext.addEventListener('click', () => goToSlide(currentSlide + 1));
+  quickJump.addEventListener('change', (e) => goToSlide(parseInt(e.target.value)));
+
+  btnNotes.addEventListener('click', () => {
+    notesPanel.classList.toggle('open');
+    btnNotes.classList.toggle('active');
+  });
+
+  btnCloseNotes.addEventListener('click', () => {
+    notesPanel.classList.remove('open');
+    btnNotes.classList.remove('active');
+  });
+
+  btnIndex.addEventListener('click', () => indexModal.classList.add('open'));
+  btnCloseIndex.addEventListener('click', () => indexModal.classList.remove('open'));
+  indexModal.addEventListener('click', (e) => {
+    if (e.target === indexModal) indexModal.classList.remove('open');
+  });
+
+  btnFullscreen.addEventListener('click', () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(() => {});
+    } else {
+      document.exitFullscreen().catch(() => {});
+    }
+  });
+
+  // Atajos de teclado
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+      e.preventDefault();
+      goToSlide(currentSlide + 1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      goToSlide(currentSlide - 1);
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      goToSlide(1);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      goToSlide(totalSlides);
+    } else if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    } else if (e.key === 'g' || e.key === 'G') {
+      notesPanel.classList.toggle('open');
+      btnNotes.classList.toggle('active');
+    } else if (e.key === 'i' || e.key === 'I') {
+      indexModal.classList.toggle('open');
+    } else if (e.key === 'Escape') {
+      indexModal.classList.remove('open');
+      notesPanel.classList.remove('open');
+      btnNotes.classList.remove('active');
+      closeLightbox();
+    }
+  });
+
+  // Swipe táctil
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+  document.addEventListener('touchend', e => {
+    let diff = e.changedTouches[0].screenX - touchStartX;
+    if (diff < -50) goToSlide(currentSlide + 1);
+    if (diff > 50) goToSlide(currentSlide - 1);
+  });
+
+  initNav();
+  goToSlide(1);
+</script>
+
+</body>
+</html>
