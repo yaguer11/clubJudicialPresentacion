@@ -10,7 +10,7 @@ Presentacion web de la PPS del Club Judicial.
 
 
 
-- `presentacion\_pps.html`: archivo principal de la presentacion.
+- `presentacion_pps.html`: archivo principal de la presentacion.
 
 - `slides/`: carpeta con cada diapositiva separada en archivos `.js`.
 
@@ -22,7 +22,7 @@ Presentacion web de la PPS del Club Judicial.
 
 
 
-1. Abri `presentacion\_pps.html` para cambiar la estructura general, CSS o comportamiento global.
+1. Abri `presentacion_pps.html` para cambiar la estructura general, CSS o comportamiento global.
 
 2. Para modificar el contenido de una diapositiva, editá el archivo correspondiente en `slides/slide-XX.js`.
 
@@ -41,9 +41,7 @@ Desde la carpeta del proyecto:
 
 
 ```bash
-
 python -m http.server 8000
-
 ```
 
 
@@ -53,9 +51,7 @@ Luego abri en el navegador:
 
 
 ```text
-
 http://localhost:8000/presentacion\_pps.html
-
 ```
 
 
@@ -81,9 +77,7 @@ Paso a paso:
 
 
 ```bash
-
 git checkout gh-pages
-
 ```
 
 
@@ -93,9 +87,7 @@ git checkout gh-pages
 
 
 ```bash
-
 git fetch origin
-
 ```
 
 
@@ -105,9 +97,7 @@ git fetch origin
 
 
 ```bash
-
 git merge origin/main
-
 ```
 
 
@@ -117,11 +107,8 @@ git merge origin/main
 
 
 ```bash
-
 git add .
-
 git commit
-
 ```
 
 
@@ -133,9 +120,7 @@ git commit
 
 
 ```bash
-
 git push origin gh-pages
-
 ```
 
 
@@ -151,15 +136,10 @@ Comandos utiles para volver a publicar:
 ```bash
 
 git checkout main
-
 git pull origin main
-
 git checkout gh-pages
-
 git fetch origin
-
 git merge origin/main
-
 git push origin gh-pages
 
 ```
