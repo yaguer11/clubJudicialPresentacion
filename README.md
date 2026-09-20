@@ -1,4 +1,4 @@
-\# Presentacion Club Judicial
+# Presentacion Club Judicial
 
 
 
@@ -6,33 +6,33 @@ Presentacion web de la PPS del Club Judicial.
 
 
 
-\## Estructura
+## Estructura
 
 
 
-\- `presentacion\_pps.html`: archivo principal de la presentacion.
+- `presentacion\_pps.html`: archivo principal de la presentacion.
 
-\- `slides/`: carpeta con cada diapositiva separada en archivos `.js`.
+- `slides/`: carpeta con cada diapositiva separada en archivos `.js`.
 
-\- `slides/index.js`: archivo central que importa todas las diapositivas y exporta `slideDefinitions` y `speakerNotesData`.
-
-
-
-\## Como editar
+- `slides/index.js`: archivo central que importa todas las diapositivas y exporta `slideDefinitions` y `speakerNotesData`.
 
 
 
-1\. Abri `presentacion\_pps.html` para cambiar la estructura general, CSS o comportamiento global.
-
-2\. Para modificar el contenido de una diapositiva, editá el archivo correspondiente en `slides/slide-XX.js`.
-
-3\. Si queres cambiar el texto de las notas del orador, editá tambien el objeto `notes` dentro de la misma diapositiva.
-
-4\. Si agregas o quitas slides, actualizá el orden en `slides/index.js` para que queden importados correctamente.
+## Como editar
 
 
 
-\## Ejecutar en local
+1. Abri `presentacion\_pps.html` para cambiar la estructura general, CSS o comportamiento global.
+
+2. Para modificar el contenido de una diapositiva, editá el archivo correspondiente en `slides/slide-XX.js`.
+
+3. Si queres cambiar el texto de las notas del orador, editá tambien el objeto `notes` dentro de la misma diapositiva.
+
+4. Si agregas o quitas slides, actualizá el orden en `slides/index.js` para que queden importados correctamente.
+
+
+
+## Ejecutar en local
 
 
 
@@ -60,7 +60,7 @@ http://localhost:8000/presentacion\_pps.html
 
 
 
-\## Deploy en GitHub Pages
+## Deploy en GitHub Pages
 
 
 
@@ -72,11 +72,11 @@ Paso a paso:
 
 
 
-1\. Hacer los cambios en `main` y verificar que la presentacion funcione en local.
+1. Hacer los cambios en `main` y verificar que la presentacion funcione en local.
 
-2\. Asegurarte de que no haya cambios pendientes en el working tree.
+2. Asegurarte de que no haya cambios pendientes en el working tree.
 
-3\. Cambiar a la rama de publicacion:
+3. Cambiar a la rama de publicacion:
 
 
 
@@ -88,7 +88,7 @@ git checkout gh-pages
 
 
 
-4\. Traer la informacion mas reciente del remoto:
+4. Traer la informacion mas reciente del remoto:
 
 
 
@@ -100,7 +100,7 @@ git fetch origin
 
 
 
-5\. Mezclar `origin/main` dentro de `gh-pages`:
+5. Mezclar `origin/main` dentro de `gh-pages`:
 
 
 
@@ -112,7 +112,7 @@ git merge origin/main
 
 
 
-6\. Si aparecen conflictos, resolverlos, agregar los archivos resueltos y terminar el merge:
+6. Si aparecen conflictos, resolverlos, agregar los archivos resueltos y terminar el merge:
 
 
 
@@ -126,9 +126,9 @@ git commit
 
 
 
-7\. Revisar que el contenido final en `gh-pages` sea el que queres publicar.
+7. Revisar que el contenido final en `gh-pages` sea el que queres publicar.
 
-8\. Subir `gh-pages` al remoto:
+8. Subir `gh-pages` al remoto:
 
 
 
@@ -140,7 +140,7 @@ git push origin gh-pages
 
 
 
-9\. Esperar a que GitHub Pages termine de redeployar el sitio.
+9. Esperar a que GitHub Pages termine de redeployar el sitio.
 
 
 
