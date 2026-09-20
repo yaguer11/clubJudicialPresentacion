@@ -1,0 +1,15 @@
+# Archivos auxiliares del generador
+generate_slides_modular.py
+patch_html_modules.py
+slides_data.json
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Editor/OS
+.vscode/
+.DS_Store
+Thumbs.db
