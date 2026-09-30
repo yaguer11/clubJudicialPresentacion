@@ -1,0 +1,313 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 620" width="100%" height="100%">
+  <defs>
+    <!-- Filtros de sombra -->
+    <filter id="shadow" x="-8%" y="-8%" width="120%" height="124%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#1b211b" flood-opacity="0.08" />
+    </filter>
+    <filter id="shadow-primary" x="-8%" y="-8%" width="120%" height="124%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#1e3a5f" flood-opacity="0.14" />
+    </filter>
+    <filter id="shadow-gold" x="-8%" y="-8%" width="120%" height="124%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#c29a1d" flood-opacity="0.18" />
+    </filter>
+
+    <!-- Marcadores de flechas -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#1E3A5F" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#273B27" />
+    </marker>
+    <marker id="arrow-gold" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#C29A1D" />
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#7C3AED" />
+    </marker>
+  </defs>
+
+  <style>
+    .bg-canvas { fill: #FAF8F5; }
+    .table-card { fill: #FFFFFF; rx: 12px; stroke-width: 1.5px; }
+    .table-title { font-family: 'Outfit', sans-serif; font-size: 14.5px; font-weight: 700; fill: #FFFFFF; letter-spacing: 0.5px; }
+    .table-sub { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 400; fill: rgba(255,255,255,0.88); }
+    
+    .col-pk { font-family: 'Fira Code', monospace; font-size: 11.5px; font-weight: 700; fill: #C29A1D; }
+    .col-fk { font-family: 'Fira Code', monospace; font-size: 11.5px; font-weight: 700; fill: #1976D2; }
+    .col-uq { font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 700; fill: #059669; }
+    .col-name { font-family: 'Fira Code', monospace; font-size: 11.5px; font-weight: 600; fill: #1B211B; }
+    .col-type { font-family: 'Outfit', sans-serif; font-size: 11px; fill: #7A877A; }
+    .col-badge { font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 700; }
+    
+    .divider { stroke: #ECE7DF; stroke-width: 1; }
+    .rel-line { fill: none; stroke-width: 2.2; stroke-linecap: round; }
+    .callout-box { fill: #FFFFFF; stroke-width: 1.2px; rx: 8px; }
+    .callout-title { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 700; }
+    .callout-desc { font-family: 'Outfit', sans-serif; font-size: 11px; fill: #4A564A; }
+  </style>
+
+  <!-- Fondo Canvas -->
+  <rect width="100%" height="100%" class="bg-canvas" rx="14" />
+  <rect x="1" y="1" width="918" height="618" rx="14" fill="none" stroke="#E3DDD1" stroke-width="2" />
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 1: NOTICIA (Centro Principal - Módulo Editorial) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(305, 30)" filter="url(#shadow-primary)">
+    <rect class="table-card" width="310" height="415" stroke="#1E3A5F" />
+    <path d="M 0,0 L 310,0 L 310,44 L 0,44 Z" fill="#1E3A5F" rx="12" />
+    <rect x="0" y="32" width="310" height="12" fill="#1E3A5F" />
+    <text x="14" y="24" class="table-title">Noticia</text>
+    <text x="14" y="38" class="table-sub">Publicación institucional con estructura de prensa</text>
+
+    <!-- Campos -->
+    <g transform="translate(14, 64)">
+      <text class="col-pk">PK</text>
+      <text x="28" y="0" class="col-name">ID_Noticia</text>
+      <text x="200" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="14" y1="72" x2="296" y2="72" class="divider" />
+
+    <g transform="translate(14, 88)">
+      <text class="col-fk">FK</text>
+      <text x="28" y="0" class="col-name">ID_Categoria</text>
+      <text x="200" y="0" class="col-type">INT (RESTRICT)</text>
+    </g>
+    <line x1="14" y1="96" x2="296" y2="96" class="divider" />
+
+    <g transform="translate(14, 112)">
+      <text class="col-fk">FK</text>
+      <text x="28" y="0" class="col-name">ID_Autor</text>
+      <text x="200" y="0" class="col-type">INT (SET NULL)</text>
+    </g>
+    <line x1="14" y1="120" x2="296" y2="120" class="divider" />
+
+    <g transform="translate(14, 136)">
+      <text class="col-name">Volanta</text>
+      <text x="200" y="0" class="col-type">VARCHAR(150)</text>
+      <text x="0" y="14" class="col-badge" fill="#1E3A5F">● Ante-título orientativo o sección</text>
+    </g>
+    <line x1="14" y1="158" x2="296" y2="158" class="divider" />
+
+    <g transform="translate(14, 174)">
+      <text class="col-name">Titulo</text>
+      <text x="200" y="0" class="col-type">VARCHAR(255)</text>
+    </g>
+    <line x1="14" y1="182" x2="296" y2="182" class="divider" />
+
+    <g transform="translate(14, 198)">
+      <text class="col-name">Copete (Bajada)</text>
+      <text x="200" y="0" class="col-type">VARCHAR(300)</text>
+      <text x="0" y="14" class="col-badge" fill="#7A877A">● Resumen inicial para tarjetas públicas</text>
+    </g>
+    <line x1="14" y1="220" x2="296" y2="220" class="divider" />
+
+    <g transform="translate(14, 236)">
+      <text class="col-name">Cuerpo</text>
+      <text x="200" y="0" class="col-type">LONGTEXT</text>
+      <text x="0" y="14" class="col-badge" fill="#0D9488">● Artículos extensos y formato HTML</text>
+    </g>
+    <line x1="14" y1="258" x2="296" y2="258" class="divider" />
+
+    <g transform="translate(14, 274)">
+      <text class="col-name">ImagenDestacada, Epigrafe</text>
+      <text x="200" y="0" class="col-type">VARCHAR(255)</text>
+      <text x="0" y="14" class="col-badge" fill="#0284C7">● Portada WebP alojada en Cloudinary</text>
+    </g>
+    <line x1="14" y1="296" x2="296" y2="296" class="divider" />
+
+    <g transform="translate(14, 312)">
+      <text class="col-name">EmbedLink</text>
+      <text x="200" y="0" class="col-type">TEXT</text>
+      <text x="0" y="14" class="col-badge" fill="#DC2626">● Video YouTube responsivo</text>
+    </g>
+    <line x1="14" y1="334" x2="296" y2="334" class="divider" />
+
+    <g transform="translate(14, 350)">
+      <circle cx="8" cy="-4" r="4" fill="#C29A1D" />
+      <text x="24" y="0" class="col-name">FechaPublicacion</text>
+      <text x="200" y="0" class="col-type">DATETIME</text>
+      <text x="0" y="14" class="col-badge" fill="#C29A1D">● Publicación programada diferida</text>
+    </g>
+    <line x1="14" y1="372" x2="296" y2="372" class="divider" />
+
+    <g transform="translate(14, 388)">
+      <circle cx="8" cy="-4" r="4" fill="#1E3A5F" />
+      <text x="24" y="0" class="col-name">Estado</text>
+      <text x="200" y="0" class="col-type">ENUM</text>
+      <text x="0" y="14" class="col-badge" fill="#1E3A5F">● BORRADOR | PUBLICADO | PROGRAMADO</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 2: CATEGORIA (Izquierda Arriba - Catálogo 3FN) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(25, 45)" filter="url(#shadow)">
+    <rect class="table-card" width="245" height="135" stroke="#C29A1D" />
+    <path d="M 0,0 L 245,0 L 245,40 L 0,40 Z" fill="#C29A1D" rx="12" />
+    <rect x="0" y="28" width="245" height="12" fill="#C29A1D" />
+    <text x="14" y="23" class="table-title">Categoria (3FN)</text>
+    <text x="14" y="37" class="table-sub">Catálogo temático institucional</text>
+
+    <!-- Campos -->
+    <g transform="translate(14, 60)">
+      <text class="col-pk">PK</text>
+      <text x="28" y="0" class="col-name">ID_Categoria</text>
+      <text x="155" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="14" y1="68" x2="231" y2="68" class="divider" />
+
+    <g transform="translate(14, 88)">
+      <text class="col-uq">UQ</text>
+      <text x="28" y="0" class="col-name">Nombre</text>
+      <text x="155" y="0" class="col-type">VARCHAR(50)</text>
+      <text x="0" y="14" class="col-badge" fill="#C29A1D">● Torneos, Obras, Sociales, Beneficios</text>
+      <text x="0" y="28" class="col-type">Sin redundancia de texto en Noticia</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 3: USUARIO / AUTOR (Izquierda Abajo - Auditoría de Prensa) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(25, 230)" filter="url(#shadow)">
+    <rect class="table-card" width="245" height="165" stroke="#273B27" />
+    <path d="M 0,0 L 245,0 L 245,40 L 0,40 Z" fill="#273B27" rx="12" />
+    <rect x="0" y="28" width="245" height="12" fill="#273B27" />
+    <text x="14" y="23" class="table-title">Usuario (Autor / Prensa)</text>
+    <text x="14" y="37" class="table-sub">Control de redactor responsable</text>
+
+    <!-- Campos -->
+    <g transform="translate(14, 60)">
+      <text class="col-pk">PK</text>
+      <text x="28" y="0" class="col-name">ID_Usuario</text>
+      <text x="155" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="14" y1="68" x2="231" y2="68" class="divider" />
+
+    <g transform="translate(14, 86)">
+      <text class="col-name">Username</text>
+      <text x="155" y="0" class="col-type">VARCHAR(100)</text>
+    </g>
+    <line x1="14" y1="94" x2="231" y2="94" class="divider" />
+
+    <g transform="translate(14, 110)">
+      <text class="col-name">Rol Requerido</text>
+      <text x="0" y="14" class="col-badge" fill="#273B27">● ADMIN_NOTICIAS | SUPERADMIN</text>
+      <text x="0" y="28" class="col-type">SET NULL al borrar el usuario</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 4: NOTICIA_IMAGEN (Galería Multimedia 1 a N) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(650, 45)" filter="url(#shadow)">
+    <rect class="table-card" width="245" height="185" stroke="#7C3AED" />
+    <path d="M 0,0 L 245,0 L 245,40 L 0,40 Z" fill="#7C3AED" rx="12" />
+    <rect x="0" y="28" width="245" height="12" fill="#7C3AED" />
+    <text x="14" y="23" class="table-title">Noticia_Imagen (Galería)</text>
+    <text x="14" y="37" class="table-sub">Imágenes secundarias en Cloudinary</text>
+
+    <!-- Campos -->
+    <g transform="translate(14, 60)">
+      <text class="col-pk">PK</text>
+      <text x="28" y="0" class="col-name">ID_Imagen</text>
+      <text x="155" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="14" y1="68" x2="231" y2="68" class="divider" />
+
+    <g transform="translate(14, 84)">
+      <text class="col-fk">FK</text>
+      <text x="28" y="0" class="col-name">ID_Noticia</text>
+      <text x="155" y="0" class="col-type">INT (CASCADE)</text>
+    </g>
+    <line x1="14" y1="92" x2="231" y2="92" class="divider" />
+
+    <g transform="translate(14, 108)">
+      <text class="col-name">Url / PublicId</text>
+      <text x="155" y="0" class="col-type">VARCHAR(255)</text>
+      <text x="0" y="14" class="col-badge" fill="#7C3AED">● Transformaciones automáticas WebP</text>
+    </g>
+    <line x1="14" y1="130" x2="231" y2="130" class="divider" />
+
+    <g transform="translate(14, 146)">
+      <text class="col-name">Orden</text>
+      <text x="155" y="0" class="col-type">INT (Carrusel)</text>
+      <text x="0" y="14" class="col-type">idx_noticia_imagen_noticia</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- CAJA DESTACADA: QUERY DE PUBLICACIÓN DIFERIDA -->
+  <!-- ====================================================================== -->
+  <g transform="translate(650, 255)" filter="url(#shadow-gold)">
+    <rect class="callout-box" width="245" height="190" fill="#FFFDF5" stroke="#C29A1D" stroke-width="1.6" />
+    <rect x="0" y="0" width="245" height="34" rx="8" fill="#C29A1D" />
+    <text x="12" y="22" class="callout-title" fill="#FFFFFF" style="font-size:12px;">🕒 Publicación Diferida</text>
+    
+    <text x="12" y="52" class="callout-desc" font-weight="700" fill="#8C6D07">Filtro de Exposición Pública</text>
+    <text x="12" y="70" class="callout-desc">El portal público solo proyecta:</text>
+    
+    <!-- Code snippet simulado -->
+    <rect x="10" y="78" width="225" height="52" rx="6" fill="#1E293B" />
+    <text x="16" y="94" font-family="'Fira Code', monospace" font-size="9.5px" fill="#38BDF8">SELECT * FROM Noticia</text>
+    <text x="16" y="108" font-family="'Fira Code', monospace" font-size="9.5px" fill="#FDE047">WHERE Estado = 'PUBLICADO'</text>
+    <text x="16" y="122" font-family="'Fira Code', monospace" font-size="9.5px" fill="#4ADE80">  AND FechaPublicacion &lt;= NOW();</text>
+
+    <text x="12" y="146" class="callout-desc">✔ Permite redactar comunicados</text>
+    <text x="12" y="160" class="callout-desc">con antelación programada.</text>
+    <text x="12" y="174" class="callout-desc" font-weight="700" fill="#059669">0 exposición prematura de notas.</text>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- CAJAS CALLOUTS INFERIORES: DECISIONES DE ARQUITECTURA -->
+  <!-- ====================================================================== -->
+
+  <!-- Callout 1: Rigor Periodístico Formal -->
+  <g transform="translate(25, 465)" filter="url(#shadow)">
+    <rect class="callout-box" width="415" height="135" fill="#FFFFFF" stroke="#1E3A5F" stroke-width="1.4" />
+    <rect x="0" y="0" width="415" height="30" rx="8" fill="#1E3A5F" />
+    <text x="12" y="20" class="callout-title" fill="#FFFFFF">Decisión 1: Estructura Periodística Formal</text>
+    
+    <text x="12" y="48" class="callout-desc" font-weight="700" fill="#1E3A5F">Volanta, Título, Copete, Cuerpo y Embed</text>
+    <text x="12" y="66" class="callout-desc">✔ Estructura clásica de prensa: la Volanta orienta la sección temática,</text>
+    <text x="24" y="80" class="callout-desc">el Copete provee el resumen inicial y el Cuerpo (LONGTEXT) el artículo.</text>
+    <text x="12" y="96" class="callout-desc">✔ EmbedLink: soporta videos de YouTube incrustados de forma nativa.</text>
+    <text x="12" y="112" class="callout-desc">✔ Catálogo Categoria (3FN): evita repetición de cadenas de texto en disco.</text>
+  </g>
+
+  <!-- Callout 2: Multimedia en la Nube y Programación Temporal -->
+  <g transform="translate(460, 465)" filter="url(#shadow)">
+    <rect class="callout-box" width="435" height="135" fill="#FFFDF5" stroke="#C29A1D" stroke-width="1.4" />
+    <rect x="0" y="0" width="435" height="30" rx="8" fill="#C29A1D" />
+    <text x="12" y="20" class="callout-title" fill="#FFFFFF">Decisión 2: Multimedia Externa y Programación Temporal</text>
+    
+    <text x="12" y="48" class="callout-desc" font-weight="700" fill="#8C6D07">Desacoplamiento de Archivos y Publicación Desatendida</text>
+    <text x="12" y="66" class="callout-desc">✔ Cloudinary CDN: las portadas y galerías (Noticia_Imagen) residen en la</text>
+    <text x="24" y="80" class="callout-desc">nube en formato WebP; la base de datos solo almacena URLs seguras.</text>
+    <text x="12" y="96" class="callout-desc">✔ Publicación diferida: Prensa redacta noticias con días de antelación y la</text>
+    <text x="24" y="110" class="callout-desc">web las activa automáticamente al llegar su FechaPublicacion sin cron jobs.</text>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- LÍNEAS DE RELACIÓN CONECTADAS -->
+  <!-- ====================================================================== -->
+
+  <!-- Relación Categoria a Noticia (1 a N, RESTRICT) -->
+  <path d="M 270,110 L 305,110" class="rel-line" stroke="#C29A1D" marker-end="url(#arrow-gold)" />
+  <g transform="translate(275, 102)">
+    <text font-family="'Fira Code', monospace" font-size="10.5px" font-weight="700" fill="#A17D12">1:N</text>
+  </g>
+
+  <!-- Relación Usuario a Noticia (1 a N, SET NULL) -->
+  <path d="M 270,300 L 285,300 L 285,150 L 305,150" class="rel-line" stroke="#273B27" marker-end="url(#arrow-green)" />
+  <g transform="translate(288, 220)">
+    <text font-family="'Fira Code', monospace" font-size="10.5px" font-weight="700" fill="#273B27">1:N</text>
+  </g>
+
+  <!-- Relación Noticia a Noticia_Imagen (1 a N, CASCADE) -->
+  <path d="M 615,135 L 650,135" class="rel-line" stroke="#7C3AED" marker-end="url(#arrow-purple)" />
+  <g transform="translate(620, 127)">
+    <text font-family="'Fira Code', monospace" font-size="10.5px" font-weight="700" fill="#7C3AED">1:N</text>
+  </g>
+
+</svg>

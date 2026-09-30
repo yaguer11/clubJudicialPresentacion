@@ -2828,41 +2828,37 @@
                 style="
                   display: flex;
                   flex-direction: column;
-                  gap: 12px;
+                  gap: 10px;
                   justify-content: center;
                 "
               >
-                <div class="card-clean accent-blue">
-                  <div class="card-heading">Estructura Editorial</div>
-                  <ul class="clean-list">
-                    <li>
-                      Atributos: <code>Volanta</code>, <code>Titulo</code>,
-                      <code>Copete</code>, <code>Cuerpo (LONGTEXT)</code> y
-                      <code>EmbedLink</code>.
-                    </li>
-                    <li>
-                      Categorización normalizada: Torneos, Obras, Sociales.
-                    </li>
+                <div class="card-clean accent-blue" style="padding: 12px 14px; gap: 6px;">
+                  <div class="card-heading" style="font-size: 0.92rem;">1. Estructura Periodística Formal y 3FN</div>
+                  <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
+                    <li><strong>Anatomía de prensa:</strong> <code>Volanta</code> (sección), <code>Titulo</code>, <code>Copete</code> (bajada de tarjeta) y <code>Cuerpo (LONGTEXT)</code> para artículos editoriales completos.</li>
+                    <li><strong>Multimedia enriquecida:</strong> Soporte nativo para <code>EmbedLink</code> (reproductor YouTube responsivo) y galería <code>Noticia_Imagen</code> en Cloudinary.</li>
+                    <li><strong>Catálogo <code>Categoria</code> (3FN):</strong> Normalización de etiquetas (Torneos, Obras, Sociales) eliminando cadenas repetidas.</li>
                   </ul>
                 </div>
-                <div class="card-clean accent-gold">
-                  <div class="card-heading">Publicación Diferida</div>
-                  <p class="clean-list">
-                    Campo <code>FechaPublicacion</code>: las noticias
-                    programadas no se exponen al público hasta que
-                    <code>FechaPublicacion &lt;= NOW()</code>.
-                  </p>
+                <div class="card-clean accent-gold" style="padding: 12px 14px; gap: 6px;">
+                  <div class="card-heading" style="font-size: 0.92rem;">2. Programación Temporal y Seguridad</div>
+                  <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
+                    <li><strong>Publicación diferida:</strong> Subcomisión de prensa programa comunicados; la query pública filtra <code>Estado = 'PUBLICADO' AND FechaPublicacion &lt;= NOW()</code> con 0 exposición prematura.</li>
+                    <li><strong>Auditoría de autor:</strong> <code>ID_Autor</code> vincula con <code>Usuario</code> con política <code>ON DELETE SET NULL</code> preservando el histórico de noticias del club.</li>
+                    <li><strong>Gobierno editorial:</strong> Creación y edición restringida estrictamente a roles <code>ADMIN_NOTICIAS</code> y <code>SUPERADMIN</code>.</li>
+                  </ul>
                 </div>
               </div>
-              <div class="photo-container">
+              <div class="photo-container" style="padding: 4px; min-height: 0;">
                 <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
                 <img
-                  src="assets_presentacion/elenio_image7.png"
-                  alt="Diagrama EER Noticias"
+                  src="assets_presentacion/diagrama_noticias_prensa.svg"
+                  alt="Diagrama EER de Noticias, Categorías y Prensa"
+                  style="max-height: 300px;"
                   onclick="openLightbox(this.src)"
                 />
-                <div class="photo-caption">
-                  Modelo Relacional EER — Entidades Noticia, Categoria y Media
+                <div class="photo-caption" style="margin-top: 2px;">
+                  Esquema Relacional Focalizado — Noticia, Categoria (3FN), Noticia_Imagen y Publicación Diferida
                 </div>
               </div>
             </div>
@@ -3094,7 +3090,7 @@
               <span class="slide-block-tag">Bloque 8 · Infraestructura</span>
               <h2 class="slide-title">Despliegue y Arquitectura Cloud</h2>
               <p class="slide-subtitle">
-                Plataforma PaaS en Railway con baja latencia y HTTPS
+                ¿Cómo y dónde está publicado el sistema en internet?
               </p>
             </div>
             <div class="speaker-subtle-badge speaker-elenio">
@@ -3103,30 +3099,106 @@
             </div>
           </div>
           <div class="slide-body">
-            <div class="grid-3col">
-              <div class="card-clean accent-gold">
-                <div class="card-heading">Frontend SPA</div>
-                <p style="font-size: 0.88rem; color: var(--text-secondary)">
-                  Bundle Vite estático optimizado bajo CDN con certificado
-                  SSL/TLS automático.
-                </p>
+        <!-- GRID DE 3 COLUMNAS SIMPLES Y CLARAS -->
+        <div class="grid-3col" style="align-items: stretch; gap: 16px;">
+          <!-- 1. FRONTEND -->
+          <div class="card-clean accent-gold" style="padding: 16px 18px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                <div class="card-heading" style="font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+                  <img src="assets_presentacion/logo_react.svg" alt="React" style="width: 22px; height: 22px;" />
+                  <span>1. Pantalla Web (Frontend)</span>
+                </div>
+                <span class="chip gold" style="font-size: 0.72rem; font-weight: 700;">Lo que ve el socio</span>
               </div>
-              <div class="card-clean accent-green">
-                <div class="card-heading">Backend Node.js</div>
-                <p style="font-size: 0.88rem; color: var(--text-secondary)">
-                  Contenedor cloud con variables de entorno protegidas y
-                  auto-reinicio ante fallos.
-                </p>
-              </div>
-              <div class="card-clean accent-blue">
-                <div class="card-heading">MySQL Gestionado</div>
-                <p style="font-size: 0.88rem; color: var(--text-secondary)">
-                  Base de datos en la misma red privada para latencias menores a
-                  2 milisegundos.
-                </p>
-              </div>
+              <ul class="clean-list" style="font-size: 0.86rem; gap: 8px; line-height: 1.45;">
+                <li><strong>Acceso desde cualquier lugar:</strong> La web se abre desde celulares, tablets o computadoras sin instalar nada.</li>
+                <li><strong>Carga instantánea:</strong> La página está optimizada para que cargue en menos de un segundo.</li>
+                <li><strong>Conexión segura:</strong> Funciona con <code>https://</code> y candado verde para proteger los datos de los socios.</li>
+              </ul>
+            </div>
+            <div style="margin-top: 14px; padding-top: 10px; border-top: 1px dashed rgba(194, 154, 29, 0.3); display: flex; align-items: center; gap: 6px;">
+              <span class="tech-chip"><img src="assets_presentacion/logo_react.svg" alt="React" /> React</span>
+              <span class="chip gold">Web Pública</span>
             </div>
           </div>
+
+          <!-- 2. BACKEND -->
+          <div class="card-clean accent-green" style="padding: 16px 18px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                <div class="card-heading" style="font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+                  <img src="assets_presentacion/logo_nodejs.svg" alt="Node.js" style="width: 22px; height: 22px;" />
+                  <span>2. Servidor en la Nube (API)</span>
+                </div>
+                <span class="chip" style="font-size: 0.72rem; font-weight: 700;">El cerebro del sistema</span>
+              </div>
+              <ul class="clean-list" style="font-size: 0.86rem; gap: 8px; line-height: 1.45;">
+                <li><strong>Activo las 24 horas:</strong> Si ocurre algún error en el servidor, se reinicia solo automáticamente.</li>
+                <li><strong>Seguridad de contraseñas:</strong> Las claves de MercadoPago y del sistema no están en el código, están protegidas en la nube.</li>
+                <li><strong>Conexión con servicios:</strong> Procesa pagos online, sube fotos a Cloudinary y envía emails a los socios.</li>
+              </ul>
+            </div>
+            <div style="margin-top: 14px; padding-top: 10px; border-top: 1px dashed rgba(71, 105, 70, 0.3); display: flex; align-items: center; gap: 6px;">
+              <span class="tech-chip"><img src="assets_presentacion/logo_nodejs.svg" alt="Node.js" /> Node.js</span>
+              <span class="chip">Siempre Activo</span>
+            </div>
+          </div>
+
+          <!-- 3. BASE DE DATOS -->
+          <div class="card-clean accent-blue" style="padding: 16px 18px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                <div class="card-heading" style="font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+                  <img src="assets_presentacion/logo_mysql.svg" alt="MySQL" style="width: 22px; height: 22px;" />
+                  <span>3. Base de Datos Protegida</span>
+                </div>
+                <span class="chip blue" style="font-size: 0.72rem; font-weight: 700;">Donde se guarda todo</span>
+              </div>
+              <ul class="clean-list" style="font-size: 0.86rem; gap: 8px; line-height: 1.45;">
+                <li><strong>Red privada e invisible:</strong> Nadie puede entrar a la base de datos desde internet; solo nuestro servidor tiene acceso.</li>
+                <li><strong>Respuesta inmediata:</strong> Como el servidor y la base de datos están juntos en Railway, las consultas tardan menos de 2 milisegundos.</li>
+                <li><strong>Limpieza de turnos:</strong> Si alguien reserva una cancha y no la paga, el sistema la libera solo a los 15 minutos.</li>
+              </ul>
+            </div>
+            <div style="margin-top: 14px; padding-top: 10px; border-top: 1px dashed rgba(25, 118, 210, 0.3); display: flex; align-items: center; gap: 6px;">
+              <span class="tech-chip"><img src="assets_presentacion/logo_mysql.svg" alt="MySQL" /> MySQL</span>
+              <span class="chip blue">Red Privada</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BANNER RESUMEN CLARO -->
+        <div
+          style="
+            background: #ffffff;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            gap: 12px;
+          "
+        >
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(71, 105, 70, 0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <img src="assets_presentacion/logo_railway.svg" alt="Railway" style="width: 20px; height: 20px;" />
+            </div>
+            <div>
+              <div style="font-size: 0.9rem; font-weight: 700; color: var(--brand-green);">En resumen: ¿Dónde y cómo está publicado el sistema?</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Está todo alojado en <strong>Railway</strong>, una plataforma cloud que mantiene el sistema online las 24 hs de forma segura y automática.</div>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="chip" style="background: #e8f5e9; color: #2e7d32; font-size: 0.75rem;">🔒 Seguro (HTTPS)</span>
+            <span class="chip" style="background: #e3f2fd; color: #1565c0; font-size: 0.75rem;">⚡ Rápido (&lt; 2 ms)</span>
+            <span class="chip" style="background: #fff8e1; color: #f57f17; font-size: 0.75rem;">🛡️ Base de datos oculta</span>
+          </div>
+        </div>
+      </div>
         </section>
 
         <!-- SLIDE 30: CONCLUSIÓN MATÍAS -->
@@ -3251,7 +3323,7 @@
               <span class="slide-block-tag">Bloque 9 · Balance de Rol</span>
               <h2 class="slide-title">Conclusiones: Base de Datos</h2>
               <p class="slide-subtitle">
-                Balance individual del Desarrollador de Base de Datos
+                Evolución del modelo relacional, optimización y resolución de problemas reales mediante migraciones
               </p>
             </div>
             <div class="speaker-subtle-badge speaker-elenio">
@@ -3259,37 +3331,109 @@
               <span>EG · Base de Datos</span>
             </div>
           </div>
-          <div class="slide-body">
-            <div class="grid-2col">
-              <div class="card-clean accent-blue">
-                <div class="card-heading">Modelado y Normalización</div>
-                <ul class="clean-list">
-                  <li>
-                    Modelo relacional en 3FN con integridad referencial
-                    infranqueable.
-                  </li>
-                  <li>
-                    Desnormalización justificada y controlada en
-                    <code>Deuda_Socio</code> para alta velocidad.
-                  </li>
-                  <li>
-                    Versionado controlado del esquema mediante migraciones
-                    incrementales.
-                  </li>
-                </ul>
+          <div class="slide-body" style="gap: 14px;">
+            <!-- COLUMNAS PRINCIPALES: LOGROS DE MODELADO + MIGRACIONES CLAVE -->
+            <div class="grid-2col" style="align-items: stretch; gap: 16px;">
+              <!-- 1. MODELADO Y RENDIMIENTO -->
+              <div class="card-clean accent-blue" style="padding: 16px 18px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                    <div class="card-heading" style="font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+                      <img src="assets_presentacion/logo_mysql.svg" alt="MySQL" style="width: 20px; height: 20px;" />
+                      <span>Logros de Modelado y Rendimiento</span>
+                    </div>
+                    <span class="chip blue" style="font-size: 0.72rem; font-weight: 700;">Base Sólida</span>
+                  </div>
+                  <ul class="clean-list" style="font-size: 0.86rem; gap: 9px; line-height: 1.45;">
+                    <li>
+                      <strong>Tercera Forma Normal (3FN):</strong> Estructuramos más de 20 tablas sin datos duplicados ni inconsistencias, garantizando integridad referencial estricta.
+                    </li>
+                    <li>
+                      <strong>Desnormalización Inteligente:</strong> Guardamos el saldo acumulado en <code>Deuda_Socio</code> para que la consulta de deudas sea instantánea sin sumar cientos de filas cada vez.
+                    </li>
+                    <li>
+                      <strong>Búsquedas en Sub-milisegundos:</strong> Con índices B-Tree e índices FULLTEXT en Socios, el buscador por nombre, apellido o CUIL responde en menos de 2 ms.
+                    </li>
+                    <li>
+                      <strong>Mantenimiento Autónomo:</strong> Tareas programadas con MySQL Event Scheduler liberan turnos impagos y recalculan resúmenes diarios de caja automáticamente.
+                    </li>
+                  </ul>
+                </div>
+                <div style="margin-top: 12px; padding-top: 8px; border-top: 1px dashed rgba(25, 118, 210, 0.3); display: flex; align-items: center; gap: 6px;">
+                  <span class="tech-chip"><img src="assets_presentacion/logo_mysql.svg" alt="MySQL" /> MySQL 8.0</span>
+                  <span class="chip blue">3FN + B-Tree</span>
+                  <span class="chip">Event Scheduler</span>
+                </div>
               </div>
-              <div class="card-clean accent-gold">
-                <div class="card-heading">Optimización Avanzada</div>
-                <ul class="clean-list">
-                  <li>
-                    Índices B-Tree compuestos y FULLTEXT para búsquedas en
-                    sub-milisegundos.
-                  </li>
-                  <li>
-                    MySQL Event Scheduler: liberación desatendida de reservas
-                    vencidas en 1 hora.
-                  </li>
-                </ul>
+
+              <!-- 2. MIGRACIONES CLAVE Y QUÉ RESOLVIERON -->
+              <div class="card-clean accent-gold" style="padding: 16px 18px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+                    <div class="card-heading" style="font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
+                      <span>🔄 Migraciones del Proyecto: ¿Qué Resolvieron?</span>
+                    </div>
+                    <span class="chip gold" style="font-size: 0.72rem; font-weight: 700;">Evolución Sin Caídas</span>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.84rem;">
+                    <!-- Migración 1 -->
+                    <div style="background: rgba(194, 154, 29, 0.08); border-left: 3px solid var(--brand-gold); padding: 7px 10px; border-radius: 4px;">
+                      <div style="font-weight: 700; color: var(--primary-dark); font-size: 0.84rem;">1. Horarios Nocturnos que Cruzan Medianoche</div>
+                      <div style="color: var(--text-secondary); font-size: 0.78rem;"><strong>Qué resolvió:</strong> La base rechazaba turnos de 22:00 a 02:00 porque la hora fin era menor. Se flexibilizó el CHECK para permitir alquileres de quinchos que terminan al día siguiente.</div>
+                    </div>
+                    <!-- Migración 2 -->
+                    <div style="background: rgba(71, 105, 70, 0.08); border-left: 3px solid var(--brand-green-light); padding: 7px 10px; border-radius: 4px;">
+                      <div style="font-weight: 700; color: var(--primary-dark); font-size: 0.84rem;">2. Módulo de Seguro de Alquiler y Devoluciones</div>
+                      <div style="color: var(--text-secondary); font-size: 0.78rem;"><strong>Qué resolvió:</strong> Creó la tabla <code>Seguro_Devolucion</code> y campos para cobrar un depósito en garantía y registrar si se reintegra total, parcial o se retiene por roturas.</div>
+                    </div>
+                    <!-- Migración 3 -->
+                    <div style="background: rgba(25, 118, 210, 0.08); border-left: 3px solid #1976d2; padding: 7px 10px; border-radius: 4px;">
+                      <div style="font-weight: 700; color: var(--primary-dark); font-size: 0.84rem;">3. Precios Diferenciados por Día de la Semana</div>
+                      <div style="color: var(--text-secondary); font-size: 0.78rem;"><strong>Qué resolvió:</strong> Agregó <code>Espacio_Precio_Dia</code> para cobrar tarifas distintas en fin de semana vs días hábiles, tanto para socios como para invitados.</div>
+                    </div>
+                    <!-- Migración 4 -->
+                    <div style="background: rgba(100, 100, 100, 0.08); border-left: 3px solid #666; padding: 7px 10px; border-radius: 4px;">
+                      <div style="font-weight: 700; color: var(--primary-dark); font-size: 0.84rem;">4. Reparación y Precisión Exacta en Deudas</div>
+                      <div style="color: var(--text-secondary); font-size: 0.78rem;"><strong>Qué resolvió:</strong> Recálculo con redondeo a 2 decimales para evitar diferencias de centavos al importar los sueldos y descontar cuotas por planilla judicial.</div>
+                    </div>
+                  </div>
+                </div>
+                <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(194, 154, 29, 0.3); display: flex; align-items: center; gap: 6px;">
+                  <span class="chip gold">Scripts Idempotentes</span>
+                  <span class="chip">Zero Downtime</span>
+                  <span class="chip blue">Versionado SQL</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- BANNER RESUMEN CLARO Y SIMPLE -->
+            <div
+              style="
+                background: #ffffff;
+                border: 1px solid var(--border-subtle);
+                border-radius: var(--radius-md);
+                padding: 10px 16px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+                gap: 12px;
+              "
+            >
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 30px; height: 30px; border-radius: 8px; background: rgba(25, 118, 210, 0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <span style="font-size: 1.1rem;">💡</span>
+                </div>
+                <div>
+                  <div style="font-size: 0.88rem; font-weight: 700; color: var(--brand-green);">En resumen: ¿Por qué fue fundamental este trabajo?</div>
+                  <div style="font-size: 0.78rem; color: var(--text-secondary);">La base de datos no solo guarda información: se adaptó a las reglas reales del club mediante migraciones ordenadas sin perder ningún dato ni interrumpir el servicio.</div>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+                <span class="chip blue" style="font-size: 0.74rem;">🛡️ Datos 100% Íntegros</span>
+                <span class="chip" style="font-size: 0.74rem;">⚡ Menos de 2 ms</span>
+                <span class="chip gold" style="font-size: 0.74rem;">📈 Escalable</span>
               </div>
             </div>
           </div>
@@ -3636,8 +3780,8 @@
         },
         24: {
           speaker: "Elenio García [Base de Datos]",
-          content: "<strong>Qué decir:</strong> 'La tabla Noticia modela atributos periodísticos formales: volanta, título, copete, cuerpo LONGTEXT y embed para videos de YouTube. Mediante FechaPublicacion y el estado BORRADOR o PUBLICADA, permitimos programar noticias con publicación automática diferida.'",
-          handover: "Pase a Germán: Germán detallará la API editorial y la subida de imágenes."
+          content: "<strong>Qué decir:</strong> 'El canal de comunicación institucional del club requirió modelar la tabla Noticia con estricto rigor periodístico: incorporamos atributos formales de prensa como Volanta para orientar la sección, Titulo, Copete o bajada como resumen para las tarjetas de portada, Cuerpo de tipo LONGTEXT para artículos extensos con formato enriquecido, ImagenDestacada para la portada y EmbedLink para videos de YouTube incrustados. Normalizamos las etiquetas temáticas en la tabla catálogo Categoria en 3FN (Torneos, Obras, Sociales, Beneficios) para evitar redundancia textual. Asimismo, soportamos la publicación diferida: mediante el atributo FechaPublicacion y el estado BORRADOR o PUBLICADO, la subcomisión de prensa puede redactar comunicados con días de antelación, garantizando que el portal público solo proyecte aquellas notas donde FechaPublicacion sea menor o igual a NOW(), sin requerir tareas programadas adicionales.'",
+          handover: "Pase a Germán: Germán detallará la API editorial, el procesamiento de imágenes con Multer y Cloudinary, y la seguridad con sanitización contra XSS."
         },
         25: {
           speaker: "Germán Muñoz [Backend]",
@@ -3661,8 +3805,8 @@
         },
         29: {
           speaker: "Elenio García [Base de Datos]",
-          content: "<strong>Qué decir:</strong> 'Desplegamos en la nube PaaS en Railway: el frontend se compila como bundle estático optimizado, el backend corre en un contenedor Node.js con certificados SSL automáticos y MySQL 8.0 se aloja en la misma red privada para garantizar latencias inferiores a 2 milisegundos.'",
-          handover: "Pase a Matías: Pasamos a las conclusiones. Matías iniciará con el balance de Frontend."
+          content: "<strong>Qué decir:</strong> 'Desplegamos la solución completa en la nube PaaS de Railway con una arquitectura moderna de 3 niveles: 1) El frontend es una SPA en React 19 empaquetada con Vite 6 que se distribuye a través de una Edge CDN con compresión Brotli y certificados SSL/TLS automáticos; 2) La API REST en Node.js y Express corre dentro de un contenedor Docker/Nixpacks con auto-reinicio y healthchecks continuos, protegiendo todas las claves y tokens de MercadoPago, Cloudinary y Resend en variables de entorno cifradas; y 3) Nuestra base de datos MySQL 8.0 gestionada se comunica con la API dentro de la misma red privada virtual (VPC) sin transitar por el internet público, asegurando tiempos de respuesta de consulta de base de datos menores a 2 milisegundos y aislamiento total contra accesos no autorizados.'",
+          handover: "Pase a Matías: Pasamos a las conclusiones finales. Matías iniciará con el balance de Frontend."
         },
         30: {
           speaker: "Matías Giménez [Frontend]",
@@ -3676,8 +3820,8 @@
         },
         32: {
           speaker: "Elenio García [Base de Datos]",
-          content: "<strong>Qué decir:</strong> 'Logramos un modelo relacional en 3FN que asegura la integridad de los datos. La optimización con índices B-Tree y FULLTEXT garantiza consultas en sub-milisegundos, y el Event Scheduler resolvió el histórico problema de turnos bloqueados sin pagar. Las migraciones versionadas aseguran la evolución del esquema.'",
-          handover: "Pase a Equipo: Los tres cerraremos con el impacto institucional y el trabajo futuro."
+          content: "<strong>Qué decir:</strong> 'Como balance del área de base de datos, el objetivo principal fue construir un motor seguro, rápido y capaz de evolucionar junto a las necesidades del club sin romper nunca el sistema en producción. Por un lado, normalizamos en 3FN asegurando integridad total, y aplicamos una desnormalización inteligente en Deuda_Socio para que las consultas de saldo no demoren nada. Por otro lado, enfrentamos requerimientos reales que resolvimos mediante migraciones SQL controladas: 1) Permitir horarios nocturnos que cruzan la medianoche para quinchos; 2) Crear el módulo de depósito en garantía y devolución de seguro de alquiler; 3) Habilitar tarifas diferenciadas según el día de la semana; y 4) Corregir la precisión a dos decimales en deudas para que el cobro por planilla coincida al centavo. Todo esto se implementó con scripts seguros y sin caída del servicio.'",
+          handover: "Pase a Equipo: Los tres cerraremos con el impacto institucional y las líneas a futuro."
         },
         33: {
           speaker: "Equipo Completo (Los Tres)",
@@ -3747,7 +3891,7 @@
         currentSlide = num;
 
         slides.forEach((s) => s.classList.remove("active"));
-        const target = document.querySelector(`.slide[data-slide="${currentSlide}"]`);
+        const target = slides[currentSlide - 1] || document.querySelector(`.slide[data-slide="${currentSlide}"]`);
         if (target) {
           target.classList.add("active");
           target.scrollTop = 0;
@@ -3761,6 +3905,7 @@
 
         updateNotes(currentSlide);
       }
+      window.goToSlide = goToSlide;
 
       function updateNotes(num) {
         if (!notesContentBox) return;
@@ -3799,9 +3944,10 @@
       if (btnPrev) btnPrev.addEventListener("click", () => goToSlide(currentSlide - 1));
       if (btnNext) btnNext.addEventListener("click", () => goToSlide(currentSlide + 1));
       if (quickJump) {
-        quickJump.addEventListener("change", (e) =>
-          goToSlide(parseInt(e.target.value, 10))
-        );
+        quickJump.addEventListener("change", (e) => {
+          goToSlide(parseInt(e.target.value, 10));
+          quickJump.blur();
+        });
       }
 
       if (btnNotes && notesPanel) {
@@ -3841,6 +3987,13 @@
 
       // Atajos de teclado
       document.addEventListener("keydown", (e) => {
+        // Si el usuario presiona flechas sobre el selector desplegable o botón, desenfocar y navegar
+        if (document.activeElement && (document.activeElement.tagName === "SELECT" || document.activeElement.tagName === "BUTTON")) {
+          if (["ArrowRight", "ArrowLeft", "PageDown", "PageUp"].includes(e.key)) {
+            document.activeElement.blur();
+          }
+        }
+
         if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") {
           e.preventDefault();
           goToSlide(currentSlide + 1);
