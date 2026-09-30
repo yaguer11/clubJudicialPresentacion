@@ -2654,11 +2654,11 @@
                   </ul>
                 </div>
                 <div class="card-clean accent-gold" style="padding: 12px 14px; gap: 6px;">
-                  <div class="card-heading" style="font-size: 0.92rem;">2. Desnormalización y Libro Diario de Cajas</div>
+                  <div class="card-heading" style="font-size: 0.92rem;">2. Desnormalización Justificada en Deuda_Socio</div>
                   <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
-                    <li><strong>Rendimiento en login:</strong> <code>Deuda_Socio.Cant_Cuotas</code> almacena el saldo acumulado en tiempo real sin escaneos lentos de años previos.</li>
-                    <li><strong>Libro Diario en <code>Caja_Movimiento</code>:</strong> Restricción <code>UNIQUE (ID_Pago)</code> y <code>CHECK (Monto &gt; 0)</code>: cada ingreso registra medio de cobro (MercadoPago, Planilla, Efvo).</li>
-                    <li><strong>Auditoría externa:</strong> Tablas dedicadas para guardar <code>PreferenceID</code> y <code>PaymentID</code> garantizando idempotencia en Webhooks.</li>
+                    <li><strong>¿Por qué se desnormaliza?:</strong> Evita recálculos continuos <code>O(N)</code> con <code>SUM()</code> y <code>JOIN</code> sobre años de historial de cuotas en operaciones de alta frecuencia (login del socio, ver perfil, validar habilitación de reserva).</li>
+                    <li><strong>Lectura instantánea <code>O(1)</code>:</strong> <code>Deuda_Socio.Cant_Cuotas</code> entrega el saldo al milisegundo; la integridad se mantiene con transacciones SQL atómicas en cada pago o planilla.</li>
+                    <li><strong>Libro Diario en <code>Caja_Movimiento</code>:</strong> Restricción <code>UNIQUE (ID_Pago)</code> y <code>CHECK (Monto &gt; 0)</code>: cada peso ingresado audita medio de cobro y conciliación con pasarela.</li>
                   </ul>
                 </div>
               </div>
@@ -3621,7 +3621,7 @@
         },
         21: {
           speaker: "Elenio García [Base de Datos]",
-          content: "<strong>Qué decir:</strong> 'El módulo contable requería máxima rigurosidad en el modelado relacional: en la tabla Cuota implementamos el atributo PorcentajePagado DECIMAL(3,2) junto a una restricción de dominio CHECK (PorcentajePagado &gt;= 0.00 AND PorcentajePagado &lt;= 1.00). Esto permite que el sistema soporte pagos parciales de cuotas mensuales de forma nativa y matemáticamente exacta, evitando descalces en centavos. Para optimizar el tiempo de respuesta en el login y en la reserva de turnos, aplicamos una desnormalización controlada en la tabla Deuda_Socio, que mantiene actualizado el saldo acumulado en Cant_Cuotas sin escanear años de histórico. Asimismo, para asegurar la conciliación bancaria y la idempotencia de los webhooks de MercadoPago, creamos tablas dedicadas para registrar PreferenceID y PaymentID. Finalmente, modelamos el libro diario contable con Caja y Caja_Movimiento, garantizando que cada peso ingresado tenga trazabilidad según su medio de pago.'",
+          content: "<strong>Qué decir:</strong> 'El módulo contable requería máxima rigurosidad en el modelado relacional: en la tabla Cuota implementamos el atributo PorcentajePagado DECIMAL(3,2) junto a una restricción de dominio CHECK (PorcentajePagado &gt;= 0.00 AND PorcentajePagado &lt;= 1.00). Esto permite que el sistema soporte pagos parciales de cuotas mensuales de forma nativa y matemáticamente exacta, evitando descalces en centavos. Una decisión clave de arquitectura fue aplicar una desnormalización controlada en la tabla Deuda_Socio: ¿por qué lo hicimos? Porque cada vez que un socio inicia sesión, entra a su perfil o intenta reservar una cancha deportiva, el sistema necesita conocer si tiene cuotas adeudadas. Si mantuviéramos una 3FN pura sin desnormalizar, la base de datos tendría que ejecutar consultas con SUM() y JOIN sobre años de historial para miles de socios concurrentemente. Al almacenar Cant_Cuotas en Deuda_Socio logramos una lectura instantánea O(1), asegurando la consistencia mediante transacciones SQL atómicas cada vez que se registra un pago o se importa una planilla judicial. Asimismo, para asegurar la conciliación bancaria y la idempotencia de los webhooks de MercadoPago, registramos PreferenceID y PaymentID, y modelamos el libro diario contable con Caja y Caja_Movimiento.'",
           handover: "Pase a Germán: Germán explicará la integración de MercadoPago y el procesador de planillas con Rollback."
         },
         22: {
