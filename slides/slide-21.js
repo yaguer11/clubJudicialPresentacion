@@ -10,30 +10,35 @@ const slide = {
   "cards": [
     {
       "accent": "accent-blue",
-      "heading": "Cuotas y Pagos Parciales",
+      "heading": "1. Cuotas y Pagos Parciales Nativos",
       "list": [
-        "Cuota",
-        "PorcentajePagado",
-        "Deuda_Socio",
-        "Caja y Caja_Movimiento"
+        "Control matemático: Cuota.PorcentajePagado DECIMAL(3,2) con restricción CHECK (0.00 <= valor <= 1.00)",
+        "Flexibilidad contable: Soporta saldar cuotas al 50% o adelantos sin descalces en centavos",
+        "Imputación atómica: Pago_Cuota vincula cada cobro a su cuota con clave única compuesta",
+        "Estados consistentes: Ciclo de vida controlado PENDIENTE, PARCIAL y PAGADO"
       ]
     },
     {
       "accent": "accent-gold",
-      "heading": "Conciliación",
-      "text": "Se registran PreferenceID y PaymentID de MercadoPago para auditoría."
+      "heading": "2. Desnormalización y Libro Diario de Cajas",
+      "list": [
+        "Rendimiento en login: Deuda_Socio.Cant_Cuotas almacena el saldo acumulado en tiempo real",
+        "Libro Diario en Caja_Movimiento: UNIQUE (ID_Pago) y CHECK (Monto > 0) para balance exacto",
+        "Conciliación bancaria: PreferenceID y PaymentID de MercadoPago para idempotencia",
+        "Multi-canal: Registra pagos de MercadoPago, Planilla judicial, Transferencia y Efectivo"
+      ]
     }
   ],
   "image": {
-    "src": "assets_presentacion/elenio_image5.png",
-    "alt": "Diagrama EER Cuotas y Pagos",
-    "caption": "Modelo financiero del sistema"
+    "src": "assets_presentacion/diagrama_cuotas_pagos.svg",
+    "alt": "Diagrama EER de Cuotas, Pagos, Deudas y Cajas",
+    "caption": "Esquema relacional focalizado — Cuota, Deuda_Socio, Pago, Caja_Movimiento y Conciliación"
   }
 };
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> 'El modelo financiero soporta pagos parciales con el campo PorcentajePagado y restricción CHECK. Creamos Deuda_Socio como desnormalización controlada para conocer las cuotas adeudadas sin recalcular todo el histórico, y las tablas Caja y Caja_Movimiento para registrar cada ingreso dinerario.'",
-  "handover": "Pase a Germán: Germán explicará la integración de MercadoPago y las planillas de sueldos."
+  "content": "<strong>Qué decir:</strong> 'El módulo contable requería máxima rigurosidad en el modelado relacional: en la tabla Cuota implementamos el atributo PorcentajePagado DECIMAL(3,2) junto a una restricción de dominio CHECK (PorcentajePagado >= 0.00 AND PorcentajePagado <= 1.00). Esto permite que el sistema soporte pagos parciales de cuotas mensuales de forma nativa y matemáticamente exacta, evitando descalces en centavos. Para optimizar el tiempo de respuesta en el login y en la reserva de turnos, aplicamos una desnormalización controlada en la tabla Deuda_Socio, que mantiene actualizado el saldo acumulado en Cant_Cuotas sin escanear años de histórico. Asimismo, para asegurar la conciliación bancaria y la idempotencia de los webhooks de MercadoPago, creamos tablas dedicadas para registrar PreferenceID y PaymentID. Finalmente, modelamos el libro diario contable con Caja y Caja_Movimiento, garantizando que cada peso ingresado tenga trazabilidad según su medio de pago.'",
+  "handover": "Pase a Germán: Germán explicará la integración de MercadoPago y el procesador de planillas con Rollback."
 };
 export default slide;

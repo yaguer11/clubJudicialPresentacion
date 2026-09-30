@@ -1,0 +1,374 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 620" width="100%" height="100%">
+  <defs>
+    <!-- Filtros de sombra -->
+    <filter id="shadow" x="-8%" y="-8%" width="120%" height="124%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#1b211b" flood-opacity="0.08" />
+    </filter>
+    <filter id="shadow-primary" x="-8%" y="-8%" width="120%" height="124%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#1e3a5f" flood-opacity="0.14" />
+    </filter>
+    <filter id="shadow-gold" x="-8%" y="-8%" width="120%" height="124%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#c29a1d" flood-opacity="0.18" />
+    </filter>
+
+    <!-- Marcadores de flechas -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#1E3A5F" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#273B27" />
+    </marker>
+    <marker id="arrow-gold" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#C29A1D" />
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#0D9488" />
+    </marker>
+  </defs>
+
+  <style>
+    .bg-canvas { fill: #FAF8F5; }
+    .table-card { fill: #FFFFFF; rx: 12px; stroke-width: 1.5px; }
+    .table-title { font-family: 'Outfit', sans-serif; font-size: 14.5px; font-weight: 700; fill: #FFFFFF; letter-spacing: 0.5px; }
+    .table-sub { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 400; fill: rgba(255,255,255,0.88); }
+    
+    .col-pk { font-family: 'Fira Code', monospace; font-size: 11.5px; font-weight: 700; fill: #C29A1D; }
+    .col-fk { font-family: 'Fira Code', monospace; font-size: 11.5px; font-weight: 700; fill: #1976D2; }
+    .col-uq { font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 700; fill: #059669; }
+    .col-name { font-family: 'Fira Code', monospace; font-size: 11.5px; font-weight: 600; fill: #1B211B; }
+    .col-type { font-family: 'Outfit', sans-serif; font-size: 11px; fill: #7A877A; }
+    .col-badge { font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 700; }
+    
+    .divider { stroke: #ECE7DF; stroke-width: 1; }
+    .rel-line { fill: none; stroke-width: 2.2; stroke-linecap: round; }
+    .callout-box { fill: #FFFFFF; stroke-width: 1.2px; rx: 8px; }
+    .callout-title { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 700; }
+    .callout-desc { font-family: 'Outfit', sans-serif; font-size: 11px; fill: #4A564A; }
+  </style>
+
+  <!-- Fondo Canvas -->
+  <rect width="100%" height="100%" class="bg-canvas" rx="14" />
+  <rect x="1" y="1" width="918" height="618" rx="14" fill="none" stroke="#E3DDD1" stroke-width="2" />
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 1: CUOTA (Arriba Izquierda - Núcleo Arancelario) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(25, 30)" filter="url(#shadow-primary)">
+    <rect class="table-card" width="270" height="235" stroke="#1E3A5F" />
+    <path d="M 0,0 L 270,0 L 270,44 L 0,44 Z" fill="#1E3A5F" rx="12" />
+    <rect x="0" y="32" width="270" height="12" fill="#1E3A5F" />
+    <text x="14" y="24" class="table-title">Cuota</text>
+    <text x="14" y="38" class="table-sub">Periodos y pagos parciales por socio</text>
+
+    <!-- Campos -->
+    <g transform="translate(14, 64)">
+      <text class="col-pk">PK</text>
+      <text x="28" y="0" class="col-name">ID_Cuota</text>
+      <text x="175" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="14" y1="72" x2="256" y2="72" class="divider" />
+
+    <g transform="translate(14, 88)">
+      <text class="col-fk">FK</text>
+      <text x="28" y="0" class="col-name">ID_Socio</text>
+      <text x="175" y="0" class="col-type">INT (CASCADE)</text>
+    </g>
+    <line x1="14" y1="96" x2="256" y2="96" class="divider" />
+
+    <g transform="translate(14, 112)">
+      <text class="col-name">Periodo</text>
+      <text x="175" y="0" class="col-type">VARCHAR(7) '2026-08'</text>
+      <text x="0" y="14" class="col-badge" fill="#059669">● UNIQUE KEY (ID_Socio, Periodo)</text>
+    </g>
+    <line x1="14" y1="134" x2="256" y2="134" class="divider" />
+
+    <g transform="translate(14, 150)">
+      <circle cx="8" cy="-4" r="4" fill="#C29A1D" />
+      <text x="24" y="0" class="col-name">PorcentajePagado</text>
+      <text x="175" y="0" class="col-type">DECIMAL(3,2)</text>
+      <text x="0" y="14" class="col-badge" fill="#C29A1D">● CHECK (0.00 &lt;= valor &lt;= 1.00)</text>
+    </g>
+    <line x1="14" y1="172" x2="256" y2="172" class="divider" />
+
+    <g transform="translate(14, 188)">
+      <text class="col-name">Estado</text>
+      <text x="175" y="0" class="col-type">ENUM</text>
+      <text x="0" y="14" class="col-badge" fill="#1E3A5F">● PENDIENTE | PARCIAL | PAGADO</text>
+    </g>
+    <line x1="14" y1="210" x2="256" y2="210" class="divider" />
+
+    <g transform="translate(14, 224)">
+      <text class="col-name">FechaVencimiento, FechaCreacion</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 2: DEUDA_SOCIO (Abajo Izquierda - Desnormalización Controlada) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(25, 290)" filter="url(#shadow-gold)">
+    <rect class="table-card" width="270" height="155" stroke="#C29A1D" />
+    <path d="M 0,0 L 270,0 L 270,42 L 0,42 Z" fill="#C29A1D" rx="12" />
+    <rect x="0" y="30" width="270" height="12" fill="#C29A1D" />
+    <text x="14" y="23" class="table-title">Deuda_Socio (Desnormalizada)</text>
+    <text x="14" y="37" class="table-sub">Optimización para login y validación de turnos</text>
+
+    <!-- Campos -->
+    <g transform="translate(14, 62)">
+      <text class="col-pk">PK</text>
+      <text x="28" y="0" class="col-name">ID_Deuda</text>
+      <text x="175" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="14" y1="70" x2="256" y2="70" class="divider" />
+
+    <g transform="translate(14, 86)">
+      <text class="col-fk">FK</text>
+      <text x="28" y="0" class="col-name">ID_Socio</text>
+      <text x="175" y="0" class="col-type">INT (UNIQUE)</text>
+    </g>
+    <line x1="14" y1="94" x2="256" y2="94" class="divider" />
+
+    <g transform="translate(14, 110)">
+      <circle cx="8" cy="-4" r="4" fill="#059669" />
+      <text x="24" y="0" class="col-name">Cant_Cuotas</text>
+      <text x="175" y="0" class="col-type">DECIMAL(10,2)</text>
+      <text x="0" y="14" class="col-badge" fill="#059669">● Saldo acumulado (soporta decimales ej 1.50)</text>
+    </g>
+    <line x1="14" y1="132" x2="256" y2="132" class="divider" />
+
+    <g transform="translate(14, 146)">
+      <text class="col-name">FechaUltimaActualizacion</text>
+      <text x="175" y="0" class="col-type">TIMESTAMP</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 3: PAGO_CUOTA (Intermedia Centro-Arriba) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(330, 30)" filter="url(#shadow)">
+    <rect class="table-card" width="255" height="150" stroke="#1E3A5F" />
+    <path d="M 0,0 L 255,0 L 255,42 L 0,42 Z" fill="#1E3A5F" rx="12" />
+    <rect x="0" y="30" width="255" height="12" fill="#1E3A5F" />
+    <text x="14" y="23" class="table-title">Pago_Cuota</text>
+    <text x="14" y="37" class="table-sub">Imputación exacta de monto a cuota</text>
+
+    <!-- Campos -->
+    <g transform="translate(14, 62)">
+      <text class="col-pk">PK</text>
+      <text x="28" y="0" class="col-name">ID_PagoCuota</text>
+      <text x="165" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="14" y1="70" x2="241" y2="70" class="divider" />
+
+    <g transform="translate(14, 86)">
+      <text class="col-fk">FK</text>
+      <text x="28" y="0" class="col-name">ID_Cuota, ID_Pago, ID_Socio</text>
+    </g>
+    <line x1="14" y1="94" x2="241" y2="94" class="divider" />
+
+    <g transform="translate(14, 110)">
+      <text class="col-name">Monto</text>
+      <text x="165" y="0" class="col-type">DECIMAL(10,2)</text>
+      <text x="0" y="14" class="col-badge" fill="#1E3A5F">● UNIQUE (ID_Cuota, ID_Pago)</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 4: PAGO (Centro - Entidad Transaccional de Cobros) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(330, 205)" filter="url(#shadow-primary)">
+    <rect class="table-card" width="255" height="240" stroke="#273B27" />
+    <path d="M 0,0 L 255,0 L 255,44 L 0,44 Z" fill="#273B27" rx="12" />
+    <rect x="0" y="32" width="255" height="12" fill="#273B27" />
+    <text x="14" y="24" class="table-title">Pago</text>
+    <text x="14" y="38" class="table-sub">Cabecera polimórfica de cobros</text>
+
+    <!-- Campos -->
+    <g transform="translate(14, 64)">
+      <text class="col-pk">PK</text>
+      <text x="28" y="0" class="col-name">ID_Pago</text>
+      <text x="165" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="14" y1="72" x2="241" y2="72" class="divider" />
+
+    <g transform="translate(14, 88)">
+      <text class="col-name">Monto</text>
+      <text x="165" y="0" class="col-type">DECIMAL(10,2)</text>
+    </g>
+    <line x1="14" y1="96" x2="241" y2="96" class="divider" />
+
+    <g transform="translate(14, 112)">
+      <text class="col-name">MetodoPago</text>
+      <text x="165" y="0" class="col-type">ENUM</text>
+      <text x="0" y="14" class="col-badge" fill="#273B27">● MERCADOPAGO | PLANILLA | EFVO</text>
+    </g>
+    <line x1="14" y1="134" x2="241" y2="134" class="divider" />
+
+    <g transform="translate(14, 150)">
+      <text class="col-name">Concepto</text>
+      <text x="165" y="0" class="col-type">ENUM</text>
+      <text x="0" y="14" class="col-badge" fill="#1E3A5F">● CUOTA | ALQUILER | SEÑA | SEGURO</text>
+    </g>
+    <line x1="14" y1="172" x2="241" y2="172" class="divider" />
+
+    <g transform="translate(14, 188)">
+      <text class="col-name">Estado</text>
+      <text x="165" y="0" class="col-type">ENUM</text>
+      <text x="0" y="14" class="col-badge" fill="#C29A1D">● PENDIENTE | APROBADO | RECHAZADO</text>
+    </g>
+    <line x1="14" y1="210" x2="241" y2="210" class="divider" />
+
+    <g transform="translate(14, 226)">
+      <text class="col-fk">FK</text>
+      <text x="28" y="0" class="col-name">ID_Importacion (Planilla)</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 5: CAJA & CAJA_MOVIMIENTO (Derecha Superior - Tesorería) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(620, 30)" filter="url(#shadow)">
+    <rect class="table-card" width="275" height="235" stroke="#0D9488" />
+    <path d="M 0,0 L 275,0 L 275,44 L 0,44 Z" fill="#0D9488" rx="12" />
+    <rect x="0" y="32" width="275" height="12" fill="#0D9488" />
+    <text x="14" y="24" class="table-title">Caja &amp; Caja_Movimiento</text>
+    <text x="14" y="38" class="table-sub">Libro diario contable y arqueo</text>
+
+    <!-- Campos -->
+    <g transform="translate(14, 64)">
+      <text class="col-pk">PK</text>
+      <text x="28" y="0" class="col-name">ID_CajaMovimiento</text>
+      <text x="175" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="14" y1="72" x2="261" y2="72" class="divider" />
+
+    <g transform="translate(14, 88)">
+      <text class="col-fk">FK</text>
+      <text x="28" y="0" class="col-name">ID_Pago</text>
+      <text x="175" y="0" class="col-type">INT (UNIQUE)</text>
+      <text x="0" y="14" class="col-badge" fill="#0D9488">● Trazabilidad directa pago-asiento</text>
+    </g>
+    <line x1="14" y1="110" x2="261" y2="110" class="divider" />
+
+    <g transform="translate(14, 126)">
+      <text class="col-name">TipoMovimiento</text>
+      <text x="175" y="0" class="col-type">ENUM</text>
+      <text x="0" y="14" class="col-badge" fill="#1E3A5F">● INGRESO | EGRESO | AJUSTE</text>
+    </g>
+    <line x1="14" y1="148" x2="261" y2="148" class="divider" />
+
+    <g transform="translate(14, 164)">
+      <text class="col-name">Monto</text>
+      <text x="175" y="0" class="col-type">DECIMAL(10,2)</text>
+      <text x="0" y="14" class="col-badge" fill="#059669">● CHECK (Monto &gt; 0)</text>
+    </g>
+    <line x1="14" y1="186" x2="261" y2="186" class="divider" />
+
+    <g transform="translate(14, 202)">
+      <text class="col-name">MedioPago, Fecha, Observaciones</text>
+      <text x="0" y="14" class="col-type">Balance: Caja.SaldoActual en tiempo real</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 6: PAGO_CUOTA_MERCADOPAGO (Derecha Abajo - Conciliación) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(620, 290)" filter="url(#shadow)">
+    <rect class="table-card" width="275" height="155" stroke="#0284C7" />
+    <path d="M 0,0 L 275,0 L 275,42 L 0,42 Z" fill="#0284C7" rx="12" />
+    <rect x="0" y="30" width="275" height="12" fill="#0284C7" />
+    <text x="14" y="23" class="table-title">Pago_Cuota_MercadoPago</text>
+    <text x="14" y="37" class="table-sub">Conciliación con pasarela externa</text>
+
+    <!-- Campos -->
+    <g transform="translate(14, 62)">
+      <text class="col-pk">PK</text>
+      <text x="28" y="0" class="col-name">ID_Pago</text>
+      <text x="175" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="14" y1="70" x2="261" y2="70" class="divider" />
+
+    <g transform="translate(14, 86)">
+      <text class="col-uq">UQ</text>
+      <text x="28" y="0" class="col-name">PreferenceID</text>
+      <text x="175" y="0" class="col-type">VARCHAR(150)</text>
+    </g>
+    <line x1="14" y1="94" x2="261" y2="94" class="divider" />
+
+    <g transform="translate(14, 110)">
+      <text class="col-uq">UQ</text>
+      <text x="28" y="0" class="col-name">PaymentID</text>
+      <text x="175" y="0" class="col-type">VARCHAR(150)</text>
+      <text x="0" y="14" class="col-badge" fill="#0284C7">● Idempotencia de Webhook IPN</text>
+    </g>
+    <line x1="14" y1="132" x2="261" y2="132" class="divider" />
+
+    <g transform="translate(14, 146)">
+      <text class="col-name">Monto, Estado, ValorCuotaSnapshot</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- CAJAS CALLOUTS INFERIORES: DECISIONES DE ARQUITECTURA -->
+  <!-- ====================================================================== -->
+
+  <!-- Callout 1: Pagos Parciales & Restricción CHECK -->
+  <g transform="translate(25, 465)" filter="url(#shadow)">
+    <rect class="callout-box" width="415" height="135" fill="#FFFFFF" stroke="#1E3A5F" stroke-width="1.4" />
+    <rect x="0" y="0" width="415" height="30" rx="8" fill="#1E3A5F" />
+    <text x="12" y="20" class="callout-title" fill="#FFFFFF">Decisión 1: Pagos Parciales y Restricción CHECK</text>
+    
+    <text x="12" y="48" class="callout-desc" font-weight="700" fill="#1E3A5F">Atributo PorcentajePagado DECIMAL(3,2)</text>
+    <text x="12" y="66" class="callout-desc">✔ CHECK constraint (PorcentajePagado &gt;= 0.00 AND &lt;= 1.00) en el motor.</text>
+    <text x="12" y="82" class="callout-desc">✔ Permite liquidar el 50% de una cuota si el socio abona un adelanto.</text>
+    <text x="12" y="98" class="callout-desc">✔ Estados consistentes: PENDIENTE (0.00), PARCIAL (&gt;0 y &lt;1), PAGADO (1.00).</text>
+    <text x="12" y="114" class="callout-desc">✔ Elimina redondeos imprecisos en centavos al conciliar meses pasados.</text>
+  </g>
+
+  <!-- Callout 2: Desnormalización Controlada en Deuda_Socio -->
+  <g transform="translate(460, 465)" filter="url(#shadow)">
+    <rect class="callout-box" width="435" height="135" fill="#FFFDF5" stroke="#C29A1D" stroke-width="1.4" />
+    <rect x="0" y="0" width="435" height="30" rx="8" fill="#C29A1D" />
+    <text x="12" y="20" class="callout-title" fill="#FFFFFF">Decisión 2: Desnormalización en Deuda_Socio y Cajas</text>
+    
+    <text x="12" y="48" class="callout-desc" font-weight="700" fill="#8C6D07">Rendimiento en Login y Trazabilidad Financiera</text>
+    <text x="12" y="66" class="callout-desc">✔ Deuda_Socio mantiene Cant_Cuotas al día: respuesta inmediata sin escanear</text>
+    <text x="24" y="82" class="callout-desc">años de histórico de cuotas cada vez que un socio inicia sesión o alquila.</text>
+    <text x="12" y="98" class="callout-desc">✔ Libro Diario con Caja_Movimiento: uq_caja_pago vincula cada peso ingresado</text>
+    <text x="24" y="114" class="callout-desc">con su origen (MercadoPago, Planilla judicial, Transferencia o Efectivo).</text>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- LÍNEAS DE RELACIÓN CONECTADAS -->
+  <!-- ====================================================================== -->
+
+  <!-- Relación Cuota a Pago_Cuota -->
+  <path d="M 295,95 L 330,95" class="rel-line" stroke="#1E3A5F" marker-end="url(#arrow-blue)" />
+  <g transform="translate(305, 87)">
+    <text font-family="'Fira Code', monospace" font-size="10.5px" font-weight="700" fill="#1E3A5F">1:N</text>
+  </g>
+
+  <!-- Relación Pago a Pago_Cuota -->
+  <path d="M 455,205 L 455,180" class="rel-line" stroke="#1E3A5F" marker-end="url(#arrow-blue)" />
+  <g transform="translate(462, 195)">
+    <text font-family="'Fira Code', monospace" font-size="10.5px" font-weight="700" fill="#1E3A5F">1:N</text>
+  </g>
+
+  <!-- Relación Cuota a Deuda_Socio (Desnormalización conceptual) -->
+  <path d="M 160,265 L 160,290" class="rel-line" stroke="#C29A1D" stroke-dasharray="4 3" marker-end="url(#arrow-gold)" />
+  <g transform="translate(168, 280)">
+    <text font-family="'Outfit', sans-serif" font-size="10px" font-weight="700" fill="#A17D12">Suma</text>
+  </g>
+
+  <!-- Relación Pago a Caja_Movimiento -->
+  <path d="M 585,320 L 602,320 L 602,150 L 620,150" class="rel-line" stroke="#0D9488" marker-end="url(#arrow-purple)" />
+  <g transform="translate(595, 235)">
+    <text font-family="'Fira Code', monospace" font-size="10.5px" font-weight="700" fill="#0D9488">1:1</text>
+  </g>
+
+  <!-- Relación Pago a Pago_Cuota_MercadoPago (Conciliación) -->
+  <path d="M 585,370 L 620,370" class="rel-line" stroke="#0284C7" marker-end="url(#arrow-blue)" />
+  <g transform="translate(592, 362)">
+    <text font-family="'Fira Code', monospace" font-size="10.5px" font-weight="700" fill="#0284C7">Ref</text>
+  </g>
+
+</svg>
