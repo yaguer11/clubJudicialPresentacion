@@ -491,6 +491,33 @@
         border-color: rgba(25, 118, 210, 0.2);
       }
 
+      /* Chips con logo interactivo */
+      .tech-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 10px;
+        border-radius: var(--radius-sm);
+        font-size: 0.78rem;
+        font-weight: 600;
+        margin-right: 6px;
+        margin-bottom: 6px;
+        background: #ffffff;
+        border: 1px solid var(--border-subtle);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .tech-chip:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+      }
+      .tech-chip img {
+        width: 17px;
+        height: 17px;
+        object-fit: contain;
+        display: block;
+      }
+
       /* Código minimalista */
       .code-snippet {
         font-family: var(--font-code);
@@ -1781,40 +1808,40 @@
               <div class="card-clean">
                 <div class="card-heading">Frontend</div>
                 <div>
-                  <span class="chip gold">React 19</span
-                  ><span class="chip gold">Vite 6</span
-                  ><span class="chip gold">Material UI</span
-                  ><span class="chip gold">React Router</span>
+                  <span class="tech-chip"><img src="assets_presentacion/logo_react.svg" alt="React"> React 19</span>
+                  <span class="tech-chip"><img src="assets_presentacion/logo_materialui.svg" alt="MUI"> Material UI</span>
+                  <span class="chip gold">Vite 6</span>
+                  <span class="chip gold">React Router</span>
                 </div>
               </div>
               <div class="card-clean">
                 <div class="card-heading">Backend API</div>
                 <div>
-                  <span class="chip">Node.js 20</span
-                  ><span class="chip">Express 4</span
-                  ><span class="chip">JWT</span
-                  ><span class="chip">BcryptJS</span
-                  ><span class="chip">Multer</span>
+                  <span class="tech-chip"><img src="assets_presentacion/logo_nodejs.svg" alt="Node.js"> Node.js 20</span>
+                  <span class="tech-chip"><img src="assets_presentacion/logo_express.svg" alt="Express"> Express 4</span>
+                  <span class="chip">JWT</span>
+                  <span class="chip">BcryptJS</span>
+                  <span class="chip">Multer</span>
                 </div>
               </div>
               <div class="card-clean">
                 <div class="card-heading">Base de Datos</div>
                 <div>
-                  <span class="chip blue">MySQL 8.0</span
-                  ><span class="chip blue">InnoDB</span
-                  ><span class="chip blue">B-Tree</span
-                  ><span class="chip blue">FULLTEXT</span
-                  ><span class="chip blue">Events</span>
+                  <span class="tech-chip"><img src="assets_presentacion/logo_mysql.svg" alt="MySQL"> MySQL 8.0</span>
+                  <span class="chip blue">InnoDB</span>
+                  <span class="chip blue">B-Tree</span>
+                  <span class="chip blue">FULLTEXT</span>
+                  <span class="chip blue">Events</span>
                 </div>
               </div>
               <div class="card-clean">
                 <div class="card-heading">Cloud & QA</div>
                 <div>
-                  <span class="chip">MercadoPago</span
-                  ><span class="chip">Cloudinary</span
-                  ><span class="chip">Resend</span
-                  ><span class="chip">Playwright</span
-                  ><span class="chip">Railway</span>
+                  <span class="tech-chip"><img src="assets_presentacion/logo_cloudinary.svg" alt="Cloudinary"> Cloudinary</span>
+                  <span class="tech-chip"><img src="assets_presentacion/logo_railway.svg" alt="Railway"> Railway</span>
+                  <span class="chip">MercadoPago</span>
+                  <span class="chip">Playwright</span>
+                  <span class="chip">Resend</span>
                 </div>
               </div>
             </div>
