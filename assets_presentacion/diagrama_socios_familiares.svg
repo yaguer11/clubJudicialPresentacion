@@ -1,0 +1,278 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 620" width="100%" height="100%">
+  <defs>
+    <!-- Filtros de sombra -->
+    <filter id="shadow" x="-8%" y="-8%" width="120%" height="124%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#1b211b" flood-opacity="0.08" />
+    </filter>
+    <filter id="shadow-primary" x="-8%" y="-8%" width="120%" height="124%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#1e3a5f" flood-opacity="0.14" />
+    </filter>
+
+    <!-- Marcadores de flechas -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#1E3A5F" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#273B27" />
+    </marker>
+    <marker id="arrow-gold" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#C29A1D" />
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#6B21A8" />
+    </marker>
+  </defs>
+
+  <style>
+    .bg-canvas { fill: #FAF8F5; }
+    .table-card { fill: #FFFFFF; rx: 12px; stroke-width: 1.5px; }
+    .table-title { font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700; fill: #FFFFFF; letter-spacing: 0.5px; }
+    .table-sub { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 400; fill: rgba(255,255,255,0.88); }
+    
+    .col-pk { font-family: 'Fira Code', monospace; font-size: 12px; font-weight: 700; fill: #C29A1D; }
+    .col-fk { font-family: 'Fira Code', monospace; font-size: 12px; font-weight: 700; fill: #1976D2; }
+    .col-name { font-family: 'Fira Code', monospace; font-size: 12px; font-weight: 600; fill: #1B211B; }
+    .col-type { font-family: 'Outfit', sans-serif; font-size: 11.5px; fill: #7A877A; }
+    .col-badge { font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 700; }
+    
+    .divider { stroke: #ECE7DF; stroke-width: 1; }
+    .rel-line { fill: none; stroke-width: 2.2; stroke-linecap: round; }
+    .callout-box { fill: #FFFFFF; stroke-width: 1.2px; rx: 8px; }
+    .callout-title { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 700; }
+    .callout-desc { font-family: 'Outfit', sans-serif; font-size: 11px; fill: #4A564A; }
+  </style>
+
+  <!-- Fondo Canvas -->
+  <rect width="100%" height="100%" class="bg-canvas" rx="14" />
+  <rect x="1" y="1" width="918" height="618" rx="14" fill="none" stroke="#E3DDD1" stroke-width="2" />
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 1: SOCIO (Centro - Titular del Padrón) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(300, 40)" filter="url(#shadow-primary)">
+    <rect class="table-card" width="320" height="295" stroke="#1E3A5F" />
+    <path d="M 0,0 L 320,0 L 320,48 L 0,48 Z" fill="#1E3A5F" rx="12" />
+    <rect x="0" y="36" width="320" height="12" fill="#1E3A5F" />
+    <text x="16" y="27" class="table-title">Socio</text>
+    <text x="16" y="42" class="table-sub">Entidad principal del padrón social</text>
+
+    <!-- Campos -->
+    <g transform="translate(16, 70)">
+      <text class="col-pk">PK</text>
+      <text x="32" y="0" class="col-name">ID_Socio</text>
+      <text x="210" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="16" y1="78" x2="304" y2="78" class="divider" />
+
+    <g transform="translate(16, 96)">
+      <text class="col-fk">FK</text>
+      <text x="32" y="0" class="col-name">ID_Usuario</text>
+      <text x="210" y="0" class="col-type">INT (Login)</text>
+    </g>
+    <line x1="16" y1="104" x2="304" y2="104" class="divider" />
+
+    <g transform="translate(16, 122)">
+      <circle cx="10" cy="-4" r="4.5" fill="#E65100" />
+      <text x="32" y="0" class="col-name">DNI, Legajo</text>
+      <text x="210" y="0" class="col-type">VARCHAR / INT</text>
+      <text x="32" y="13" class="col-badge" fill="#E65100">● Claves UNIQUE independientes</text>
+    </g>
+    <line x1="16" y1="142" x2="304" y2="142" class="divider" />
+
+    <g transform="translate(16, 160)">
+      <circle cx="10" cy="-4" r="4.5" fill="#1565C0" />
+      <text x="32" y="0" class="col-name">Name, Surname, Email</text>
+      <text x="32" y="14" class="col-badge" fill="#1565C0">⚡ ÍNDICE FULLTEXT (Búsqueda instantánea)</text>
+    </g>
+    <line x1="16" y1="182" x2="304" y2="182" class="divider" />
+
+    <g transform="translate(16, 200)">
+      <text x="32" y="0" class="col-name">CUIL, Telefono, Domicilio</text>
+      <text x="210" y="0" class="col-type">Datos civiles</text>
+    </g>
+    <line x1="16" y1="208" x2="304" y2="208" class="divider" />
+
+    <g transform="translate(16, 226)">
+      <circle cx="10" cy="-4" r="4.5" fill="#2E7D32" />
+      <text x="32" y="0" class="col-name">Tipo</text>
+      <text x="210" y="0" class="col-type">ENUM</text>
+      <text x="32" y="13" class="col-badge" fill="#2E7D32">● COMUN | ADHERENTE | VITALICIO</text>
+    </g>
+    <line x1="16" y1="246" x2="304" y2="246" class="divider" />
+
+    <g transform="translate(16, 264)">
+      <circle cx="10" cy="-4" r="4.5" fill="#8A6D14" />
+      <text x="32" y="0" class="col-name">Aprobado, FechaAprobacion</text>
+      <text x="32" y="13" class="col-badge" fill="#8A6D14">● Circuito formal de admisión</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 2: MIEMBRO_FAMILIAR (Izquierda Abajo - Grupo Familiar) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(30, 370)" filter="url(#shadow)">
+    <rect class="table-card" width="295" height="215" stroke="#273B27" />
+    <path d="M 0,0 L 295,0 L 295,46 L 0,46 Z" fill="#273B27" rx="12" />
+    <rect x="0" y="34" width="295" height="12" fill="#273B27" />
+    <text x="14" y="26" class="table-title" style="font-size:14px;">Miembro_Familiar</text>
+    <text x="14" y="40" class="table-sub">Cargas familiares del titular</text>
+
+    <!-- Campos -->
+    <g transform="translate(14, 68)">
+      <text class="col-pk">PK</text>
+      <text x="30" y="0" class="col-name">ID_Miembro</text>
+      <text x="190" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="14" y1="76" x2="281" y2="76" class="divider" />
+
+    <g transform="translate(14, 94)">
+      <text class="col-fk">FK</text>
+      <text x="30" y="0" class="col-name">ID_Socio</text>
+      <text x="190" y="0" class="col-type">INT (CASCADE)</text>
+    </g>
+    <line x1="14" y1="102" x2="281" y2="102" class="divider" />
+
+    <g transform="translate(14, 120)">
+      <text class="col-fk">FK</text>
+      <text x="30" y="0" class="col-name">ID_Parentesco</text>
+      <text x="190" y="0" class="col-type">INT (RESTRICT)</text>
+    </g>
+    <line x1="14" y1="128" x2="281" y2="128" class="divider" />
+
+    <g transform="translate(14, 146)">
+      <circle cx="8" cy="-4" r="4" fill="#1565C0" />
+      <text x="26" y="0" class="col-name">Name, Surname, DNI</text>
+      <text x="26" y="13" class="col-badge" fill="#1565C0">⚡ FULLTEXT (`Name`,`Surname`)</text>
+    </g>
+    <line x1="14" y1="166" x2="281" y2="166" class="divider" />
+
+    <g transform="translate(14, 184)">
+      <text x="26" y="0" class="col-name">FechaNacimiento, DNI_Foto</text>
+      <text x="190" y="0" class="col-type">Cloudinary</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 3: PARENTESCO (Abajo Izquierda Extremo - Catálogo 3FN) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(30, 230)" filter="url(#shadow)">
+    <rect class="table-card" width="220" height="115" stroke="#C29A1D" />
+    <path d="M 0,0 L 220,0 L 220,40 L 0,40 Z" fill="#C29A1D" rx="12" />
+    <rect x="0" y="28" width="220" height="12" fill="#C29A1D" />
+    <text x="12" y="23" class="table-title" style="font-size:13.5px;">Parentesco (3FN)</text>
+    <text x="12" y="36" class="table-sub">Catálogo normalizado</text>
+
+    <!-- Campos -->
+    <g transform="translate(12, 60)">
+      <text class="col-pk">PK</text>
+      <text x="28" y="0" class="col-name">ID_Parentesco</text>
+      <text x="145" y="0" class="col-type">INT</text>
+    </g>
+    <line x1="12" y1="68" x2="208" y2="68" class="divider" />
+
+    <g transform="translate(12, 86)">
+      <text class="col-name">Nombre</text>
+      <text x="145" y="0" class="col-type">VARCHAR(30)</text>
+      <text x="28" y="13" class="col-badge" fill="#C29A1D">● Cónyuge, Hijo/a, Otro</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 4: SOLICITUD_CAMBIO_DATOS (Derecha Abajo - Auditoría) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(595, 370)" filter="url(#shadow)">
+    <rect class="table-card" width="295" height="215" stroke="#6B21A8" />
+    <path d="M 0,0 L 295,0 L 295,46 L 0,46 Z" fill="#6B21A8" rx="12" />
+    <rect x="0" y="34" width="295" height="12" fill="#6B21A8" />
+    <text x="14" y="26" class="table-title" style="font-size:14px;">Solicitud_Cambio_Datos</text>
+    <text x="14" y="40" class="table-sub">Trazabilidad y auditoría de cambios</text>
+
+    <!-- Campos -->
+    <g transform="translate(14, 68)">
+      <text class="col-pk">PK</text>
+      <text x="30" y="0" class="col-name">ID_Solicitud</text>
+      <text x="190" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="14" y1="76" x2="281" y2="76" class="divider" />
+
+    <g transform="translate(14, 94)">
+      <text class="col-fk">FK</text>
+      <text x="30" y="0" class="col-name">ID_Socio</text>
+      <text x="190" y="0" class="col-type">INT (Titular)</text>
+    </g>
+    <line x1="14" y1="102" x2="281" y2="102" class="divider" />
+
+    <g transform="translate(14, 120)">
+      <circle cx="8" cy="-4" r="4" fill="#6B21A8" />
+      <text x="26" y="0" class="col-name">New_DNI, New_CUIL, New_Email</text>
+      <text x="26" y="13" class="col-badge" fill="#6B21A8">● El socio NO modifica directo en DB</text>
+    </g>
+    <line x1="14" y1="140" x2="281" y2="140" class="divider" />
+
+    <g transform="translate(14, 158)">
+      <circle cx="8" cy="-4" r="4" fill="#E65100" />
+      <text x="26" y="0" class="col-name">Estado</text>
+      <text x="190" y="0" class="col-type">ENUM</text>
+      <text x="26" y="13" class="col-badge" fill="#E65100">● PENDIENTE | APROBADO | RECHAZADO</text>
+    </g>
+    <line x1="14" y1="178" x2="281" y2="178" class="divider" />
+
+    <g transform="translate(14, 196)">
+      <text class="col-fk">FK</text>
+      <text x="30" y="0" class="col-name">ID_Admin, FechaResolucion</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- LÍNEAS DE RELACIÓN CONECTADAS -->
+  <!-- ====================================================================== -->
+
+  <!-- Relación 1: Socio a Miembro_Familiar (1 a N, CASCADE) -->
+  <path d="M 330,335 L 330,350 L 180,350 L 180,370" class="rel-line" stroke="#273B27" marker-end="url(#arrow-green)" />
+  <g transform="translate(200, 342)">
+    <text font-family="'Fira Code', monospace" font-size="11px" font-weight="700" fill="#273B27">1 : N (CASCADE)</text>
+  </g>
+
+  <!-- Relación 2: Parentesco a Miembro_Familiar (1 a N, RESTRICT) -->
+  <path d="M 140,345 L 140,370" class="rel-line" stroke="#C29A1D" marker-end="url(#arrow-gold)" />
+  <g transform="translate(60, 355)">
+    <text font-family="'Fira Code', monospace" font-size="10.5px" font-weight="700" fill="#A17D12">1 : N (RESTRICT)</text>
+  </g>
+
+  <!-- Relación 3: Socio a Solicitud_Cambio_Datos (1 a N) -->
+  <path d="M 590,335 L 590,350 L 740,350 L 740,370" class="rel-line" stroke="#6B21A8" marker-end="url(#arrow-purple)" />
+  <g transform="translate(610, 342)">
+    <text font-family="'Fira Code', monospace" font-size="11px" font-weight="700" fill="#6B21A8">1 : N (Auditoría)</text>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- CALLOUT ARRIBA A LA IZQUIERDA: JUSTIFICACIÓN DE NORMALIZACIÓN (3FN) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(30, 40)" filter="url(#shadow)">
+    <rect class="callout-box" width="245" height="175" fill="#FFFFFF" stroke="#1E3A5F" />
+    <rect x="0" y="0" width="245" height="30" rx="8" fill="#1E3A5F" />
+    <text x="12" y="20" class="callout-title" fill="#FFFFFF">Decisión 1: Normalización 3FN</text>
+    <text x="12" y="48" class="callout-desc" font-weight="700" fill="#1E3A5F">Separación del Grupo Familiar</text>
+    <text x="12" y="66" class="callout-desc">1. Evita columnas repetidas y fijas</text>
+    <text x="22" y="82" class="callout-desc">(Hijo1, Hijo2...) en la tabla Socio.</text>
+    <text x="12" y="100" class="callout-desc">2. Cada carga familiar tiene DNI,</text>
+    <text x="22" y="116" class="callout-desc">foto comprobante y fecha de nac.</text>
+    <text x="12" y="134" class="callout-desc">3. Catálogo `Parentesco` normalizado</text>
+    <text x="22" y="150" class="callout-desc">para mantener integridad referencial.</text>
+  </g>
+
+  <!-- CALLOUT ARRIBA A LA DERECHA: AUDITORÍA + FULLTEXT -->
+  <g transform="translate(645, 40)" filter="url(#shadow)">
+    <rect class="callout-box" width="245" height="175" fill="#FFFFFF" stroke="#C29A1D" />
+    <rect x="0" y="0" width="245" height="30" rx="8" fill="#C29A1D" />
+    <text x="12" y="20" class="callout-title" fill="#FFFFFF">Decisión 2: Auditoría y Búsqueda</text>
+    <text x="12" y="48" class="callout-desc" font-weight="700" fill="#A17D12">Seguridad e Integridad del Padrón</text>
+    <text x="12" y="66" class="callout-desc">✔ Cero cambios directos en DB: Datos</text>
+    <text x="24" y="82" class="callout-desc">sensibles (DNI, CUIL) requieren</text>
+    <text x="24" y="98" class="callout-desc">aprobación de Secretaría/Admin.</text>
+    <text x="12" y="116" class="callout-desc">✔ Búsqueda instantánea en milisegundos</text>
+    <text x="24" y="132" class="callout-desc">con índice FULLTEXT sin escaneos</text>
+    <text x="24" y="148" class="callout-desc">lentos de tabla (`LIKE %query%`).</text>
+  </g>
+
+</svg>
