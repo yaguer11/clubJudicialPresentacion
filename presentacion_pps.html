@@ -2028,28 +2028,28 @@
                 style="
                   display: flex;
                   flex-direction: column;
-                  gap: 12px;
+                  gap: 10px;
                   justify-content: center;
                 "
               >
-                <div class="card-clean accent-blue">
-                  <div class="card-heading">
+                <div class="card-clean accent-blue" style="padding: 14px 16px;">
+                  <div class="card-heading" style="font-size: 0.95rem;">
                     1. Desacoplamiento Usuario vs Socio
                   </div>
-                  <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.45; margin: 0 0 6px 0;">
+                  <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.4; margin: 0 0 6px 0;">
                     Separamos la cuenta de acceso (<code>Usuario</code>) de los datos civiles del padrón (<code>Socio</code>).
                   </p>
-                  <ul class="clean-list" style="font-size: 0.82rem;">
-                    <li><strong>Administradores no socios:</strong> Permite que personal administrativo opere el sistema sin obligarlos a figurar como socios del club.</li>
+                  <ul class="clean-list" style="font-size: 0.8rem; gap: 6px;">
+                    <li><strong>Administradores no socios:</strong> Permite que personal administrativo opere el sistema sin figurar forzosamente como socios.</li>
                     <li><strong>Privacidad y seguridad:</strong> El login solo lee credenciales livianas, sin exponer datos personales ni bancarios en el token.</li>
                   </ul>
                 </div>
-                <div class="card-clean accent-gold">
-                  <div class="card-heading">2. Modelo RBAC y Reglas de Integridad</div>
-                  <ul class="clean-list" style="font-size: 0.82rem;">
+                <div class="card-clean accent-gold" style="padding: 14px 16px;">
+                  <div class="card-heading" style="font-size: 0.95rem;">2. Modelo RBAC y Reglas de Integridad</div>
+                  <ul class="clean-list" style="font-size: 0.8rem; gap: 6px;">
                     <li><strong>Tabla intermedia <code>Usuario_Rol</code>:</strong> Relación N:M que otorga permisos granulares (Superadmin, Secretaría, Alquileres, Tesorería, Noticias) con eliminación en cascada.</li>
                     <li><strong>Zero contraseñas planas:</strong> Hashing criptográfico irreversible Bcrypt (60 caracteres con 10 rondas de salt).</li>
-                    <li><strong>Unicidad estricta:</strong> Restricciones <code>UNIQUE</code> a nivel motor en <code>Username</code>, <code>DNI</code> y <code>Email</code> que previenen cualquier duplicidad o suplantación.</li>
+                    <li><strong>Unicidad estricta:</strong> Claves <code>UNIQUE</code> a nivel motor en <code>Username</code>, <code>DNI</code> y <code>Email</code> que previenen duplicidades o suplantación.</li>
                   </ul>
                 </div>
               </div>
