@@ -25,7 +25,7 @@ const slide = {
     }
   ],
   "image": {
-    "src": "DocumentacionNotion/Admin_Payment_Import-2026-05-10-154528.png",
+    "src": "assets_presentacion/Admin_Payment_Import-2026-05-10-154528.png",
     "alt": "Captura Importación Planillas",
     "caption": "Panel de tesorería con carga masiva"
   }

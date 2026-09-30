@@ -25,7 +25,7 @@ const slide = {
     }
   ],
   "image": {
-    "src": "ClubJudicialFront/public/quintaclub.webp",
+    "src": "assets_presentacion/quintaclub.webp",
     "alt": "Quinta y Salón Club Judicial",
     "caption": "Instalaciones Recreativas y Quincho Social del Club"
   }
