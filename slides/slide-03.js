@@ -17,10 +17,10 @@ const slide = {
       "accent": "accent-green",
       "heading": "Metas Específicas",
       "list": [
-        "Autogestión 24/7",
-        "Persistencia 3FN",
-        "Pagos online",
-        "Planillas con rollback contable"
+        "Autogestión 24/7 (reservas, pagos y trámites online)",
+        "Centralización operativa y eliminación de planillas manuales",
+        "Automatización de cobranzas y conciliación financiera",
+        "Seguridad, integridad y auditoría de la información"
       ]
     }
   ],
@@ -33,7 +33,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> Fijamos como objetivo general desarrollar...",
+  "content": "<strong>Qué decir:</strong> 'Fijamos como objetivo general desarrollar e implementar un sistema web integral que modernice la gestión social, deportiva y financiera del club. Como metas específicas definimos cuatro ejes clave: primero, autogestión 24/7 para que socios y la comunidad hagan reservas y trámites desde su celular; segundo, centralización operativa para terminar con las planillas dispersas y los turnos superpuestos; tercero, automatización de cobranzas para agilizar pagos y rendición de cuentas; y cuarto, seguridad e integridad para garantizar que toda la información esté protegida y auditada formalmente.'",
   "handover": "Pase a Matías: Matías expondrá la distribución de roles y responsabilidades."
 };
 export default slide;
