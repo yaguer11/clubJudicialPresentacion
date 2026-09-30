@@ -10,30 +10,35 @@ const slide = {
   "cards": [
     {
       "accent": "accent-blue",
-      "heading": "Estructura Relacional",
+      "heading": "1. Normalización 3FN del Grupo Familiar",
       "list": [
-        "Socio",
-        "Miembro_Familiar",
-        "Parentesco",
-        "Solicitud_Cambio_Datos"
+        "Desacoplamos cargas familiares en Miembro_Familiar y Parentesco",
+        "Sin redundancia: elimina columnas fijas (Hijo1, Hijo2) en Socio",
+        "Cargas auditadas con DNI, fecha de nacimiento y foto en Cloudinary",
+        "Integridad referencial con eliminación en CASCADA desde el titular"
       ]
     },
     {
       "accent": "accent-gold",
-      "heading": "Optimización",
-      "text": "Índice FULLTEXT en nombre, apellido y DNI para búsquedas instantáneas."
+      "heading": "2. Auditoría de Cambios y FULLTEXT",
+      "list": [
+        "Trazabilidad en Solicitud_Cambio_Datos: 0 cambios directos en DB",
+        "Modificaciones sensibles (DNI, CUIL, Email) requieren aprobación",
+        "Índice FULLTEXT (Name, Surname, Email) para búsqueda en milisegundos",
+        "Estados controlados: PENDIENTE, APROBADO, RECHAZADO"
+      ]
     }
   ],
   "image": {
-    "src": "assets_presentacion/elenio_image9.png",
-    "alt": "Normalización de Socios",
-    "caption": "Modelo de socios y miembros familiares"
+    "src": "assets_presentacion/diagrama_socios_familiares.svg",
+    "alt": "Diagrama EER de Padrón Social, Familiares y Auditoría",
+    "caption": "Esquema relacional focalizado — Tablas Socio, Miembro_Familiar, Parentesco y Solicitud_Cambio_Datos"
   }
 };
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> 'El padrón de socios está normalizado en 3FN e incluye las tablas Socio, Miembro_Familiar y Parentesco. Modelamos Solicitud_Cambio_Datos para auditar cambios. Además, creamos un índice FULLTEXT sobre Nombre, Apellido y DNI para búsquedas instantáneas en secretaría sin escaneos completos de tabla.'",
+  "content": "<strong>Qué decir:</strong> 'El modelo del padrón social fue concebido para garantizar administración transparente y auditable: la tabla Socio almacena los datos civiles y el estado de membresía. Para el grupo familiar diseñamos la tabla Miembro_Familiar vinculada al titular, normalizando los tipos de vínculos en el catálogo Parentesco en 3FN para erradicar columnas repetitivas. Un requerimiento crítico del club era la trazabilidad: ningún socio altera unilateralmente su DNI, CUIL o datos sensibles en la base de datos; para ello modelamos Solicitud_Cambio_Datos y Solicitud_Cambio_Familiar, que registran propuestas sujetas a resolución de secretaría. Finalmente, creamos un índice FULLTEXT sobre Nombre, Apellido y Email para búsquedas instantáneas en milisegundos sin escaneos lentos de tabla.'",
   "handover": "Pase a Germán: Germán detallará las reglas de negocio de la API de socios."
 };
 export default slide;
