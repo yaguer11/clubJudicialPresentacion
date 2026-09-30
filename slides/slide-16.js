@@ -28,7 +28,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Germán Muñoz [Backend]",
-  "content": "<strong>Qué decir:</strong> En la API de socios, el registro inicial nace en estado Pendiente...",
+  "content": "<strong>Qué decir:</strong> 'En la API de socios, el registro inicial nace en estado Pendiente. El administrador revisa la documentación y aprueba o rechaza, momento en que el sistema despacha un email automático vía Resend. Ningún socio puede modificar su DNI directamente: debe generar una solicitud auditable.'",
   "handover": "Pase a Matías: Matías mostrará las pantallas del panel de socios y perfil."
 };
 export default slide;

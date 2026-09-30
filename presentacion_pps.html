@@ -619,13 +619,13 @@
         position: absolute;
         bottom: 66px;
         right: 24px;
-        width: 460px;
-        max-height: 480px;
+        width: min(560px, calc(100vw - 48px));
+        max-height: calc(100vh - 120px);
         background: #ffffff;
-        border: 1px solid var(--brand-gold);
+        border: 1.5px solid var(--brand-gold);
         border-radius: var(--radius-md);
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
-        padding: 20px;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+        padding: 22px 24px;
         display: flex;
         flex-direction: column;
         gap: 12px;
@@ -635,6 +635,15 @@
         pointer-events: none;
         transition: var(--transition-base);
         overflow-y: auto;
+      }
+
+      #speaker-notes-panel::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      #speaker-notes-panel::-webkit-scrollbar-thumb {
+        background: rgba(194, 154, 29, 0.4);
+        border-radius: 4px;
       }
 
       #speaker-notes-panel.open {
@@ -1562,7 +1571,7 @@
               <span class="slide-block-tag">Bloque 2 · Metodología</span>
               <h2 class="slide-title">Metodología de Desarrollo</h2>
               <p class="slide-subtitle">
-                Ciclo iterativo e incremental con gestión ágil en Notion
+                Ciclo ágil iterativo: relevamiento, feedback continuo por WhatsApp/reuniones y backlog en Notion
               </p>
             </div>
             <div class="speaker-subtle-badge speaker-elenio">
@@ -1571,27 +1580,50 @@
             </div>
           </div>
           <div class="slide-body">
-            <div class="grid-3col">
-              <div class="card-clean accent-green">
-                <div class="card-heading">1. Relevamiento y Diseño</div>
-                <p class="clean-list">
-                  Entrevistas con Fernando Rigoni, análisis de planillas
-                  históricas y modelado conceptual previo a la codificación.
-                </p>
+            <div class="grid-2col-visual">
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                  justify-content: center;
+                "
+              >
+                <div class="card-clean accent-green">
+                  <div class="card-heading">1. Relevamiento y Diseño Inicial</div>
+                  <p class="clean-list">
+                    Entrevistas con Fernando Rigoni, análisis de planillas históricas y modelado relacional antes de codificar.
+                  </p>
+                </div>
+                <div class="card-clean accent-gold">
+                  <div class="card-heading">2. Sprints Modulares</div>
+                  <p class="clean-list">
+                    Desarrollo por dominio (Auth ➔ Socios ➔ Espacios ➔ Pagos ➔ Noticias) para validar módulos de punta a punta.
+                  </p>
+                </div>
+                <div class="card-clean accent-blue">
+                  <div class="card-heading">3. Tablero Kanban en Notion</div>
+                  <p class="clean-list">
+                    Gestión de más de 190 tareas y requerimientos con asignaciones, prioridades y trazabilidad completa de blockers.
+                  </p>
+                </div>
+                <div class="card-clean accent-gold" style="border-left: 3px solid #7c3aed;">
+                  <div class="card-heading" style="color: #6d28d9;">4. Ciclo de Feedback y Correcciones</div>
+                  <p class="clean-list">
+                    Validación continua: correcciones del tutor vía WhatsApp y reuniones técnicas con Fernando Rigoni; ciclo donde nos pedían módulos, los revisaban y corregíamos o sumábamos nuevas necesidades surgidas.
+                  </p>
+                </div>
               </div>
-              <div class="card-clean accent-gold">
-                <div class="card-heading">2. Sprints Modulares</div>
-                <p class="clean-list">
-                  Entregas incrementales por dominio: Auth ➔ Socios ➔ Espacios ➔
-                  Pagos ➔ Noticias. Cada módulo completo antes de avanzar.
-                </p>
-              </div>
-              <div class="card-clean accent-blue">
-                <div class="card-heading">3. Tablero en Notion</div>
-                <p class="clean-list">
-                  Seguimiento centralizado de más de 190 tareas y requerimientos
-                  documentados con trazabilidad de blockers.
-                </p>
+              <div class="photo-container">
+                <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
+                <img
+                  src="assets_presentacion/kanban_notion_club.jpg"
+                  alt="Tablero Kanban de Tareas en Notion — Proyecto Club Judicial"
+                  onclick="openLightbox(this.src)"
+                />
+                <div class="photo-caption">
+                  Tablero Kanban en Notion: tareas reales del proyecto, estados de avance y revisiones con tutor y supervisor
+                </div>
               </div>
             </div>
           </div>
@@ -3496,7 +3528,7 @@
         },
         6: {
           speaker: "Elenio García [Base de Datos]",
-          content: "<strong>Qué decir:</strong> 'Adoptamos una metodología iterativa e incremental. Desarrollamos por módulos funcionales (Auth ➔ Socios ➔ Espacios ➔ Pagos ➔ Noticias). Coordinamos más de 190 tareas en un tablero Kanban en Notion y mantuvimos reuniones quincenales de validación académica con el tutor y técnica con el supervisor.'",
+          content: "<strong>Qué decir:</strong> 'Adoptamos una metodología iterativa e incremental. Desarrollamos por módulos funcionales: primero Autenticación, luego Socios, Alquileres, Pagos y finalmente Noticias. Gestionamos más de 190 tareas en un tablero Kanban en Notion para coordinar el trabajo del equipo. Lo fundamental fue el ciclo de feedback continuo: el profesor tutor nos enviaba observaciones y correcciones por WhatsApp, y manteníamos reuniones periódicas con Fernando Rigoni. Seguíamos un ciclo claro: ellos nos solicitaban o definían los requerimientos de un módulo, lo implementábamos, ellos lo revisaban, y nosotros corregíamos o incorporábamos las nuevas necesidades que iban surgiendo sobre la marcha.'",
           handover: "Pase a Germán: Germán explicará el control de versiones y la integración continua."
         },
         7: {

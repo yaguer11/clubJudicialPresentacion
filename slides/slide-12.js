@@ -36,7 +36,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> En autenticación, desacoplamos la tabla Usuario de la tabla Socio...",
+  "content": "<strong>Qué decir:</strong> 'En autenticación, desacoplamos la tabla Usuario de la tabla Socio. Esto permite administradores que no son socios y desacopla identidades. Las contraseñas se almacenan únicamente como hashes Bcrypt de 60 caracteres y aplicamos restricciones UNIQUE en username y DNI para evitar duplicaciones.'",
   "handover": "Pase a Germán: Germán explicará la implementación de la API de autenticación."
 };
 export default slide;

@@ -28,7 +28,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> Desplegamos en la nube PaaS en Railway...",
-  "handover": "Pase a Matías: Pasamos a las conclusiones."
+  "content": "<strong>Qué decir:</strong> 'Desplegamos en la nube PaaS en Railway: el frontend se compila como bundle estático optimizado, el backend corre en un contenedor Node.js con certificados SSL automáticos y MySQL 8.0 se aloja en la misma red privada para garantizar latencias inferiores a 2 milisegundos.'",
+  "handover": "Pase a Matías: Pasamos a las conclusiones. Matías iniciará con el balance de Frontend."
 };
 export default slide;

@@ -32,7 +32,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Germán Muñoz [Backend]",
-  "content": "<strong>Qué decir:</strong> Implementamos GitFlow con la rama main protegida...",
+  "content": "<strong>Qué decir:</strong> 'Implementamos GitFlow con la rama main protegida. Todo cambio requirió Pull Request con revisión cruzada. En GitHub Actions configuramos un pipeline de CI que corre las pruebas E2E de Playwright ante cada PR. Si un test falla, el merge queda bloqueado para asegurar que no haya regresiones en producción.'",
   "handover": "Pase a Matías: Matías presentará la arquitectura general del sistema."
 };
 export default slide;

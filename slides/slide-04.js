@@ -40,7 +40,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Matías Giménez [Frontend]",
-  "content": "<strong>Qué decir:</strong> Nos organizamos con responsabilidades claras...",
+  "content": "<strong>Qué decir:</strong> 'Nos organizamos con responsabilidades claras: Elenio en el diseño y optimización de base de datos en MySQL; Germán en la API RESTful y seguridad en Node/Express; y yo en la interfaz React 19, Material UI y testing E2E automatizado con Playwright. Todas las tareas de relevamiento y pruebas fueron compartidas.'",
   "handover": "Pase a Germán: Germán presentará la institución receptora."
 };
 export default slide;

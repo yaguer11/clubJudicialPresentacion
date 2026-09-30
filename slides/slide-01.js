@@ -33,7 +33,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Matías Giménez (Apertura)",
-  "content": "<strong>Qué decir:</strong> 'Buenos días... presentamos la defensa de nuestra Práctica Profesional Supervisada: Sistema de Gestión Integral para el Club Social, Cultural y Deportivo Judicial de Villa Mercedes.'",
+  "content": "<strong>Qué decir:</strong> 'Buenos días al tribunal evaluador, profesor Altaba y presentes. Presentamos la defensa de nuestra Práctica Profesional Supervisada: Sistema de Gestión Integral para el Club Social, Cultural y Deportivo Judicial de Villa Mercedes. Nuestro equipo: Elenio García en Base de Datos, Germán Muñoz en Backend y quien les habla, Matías Giménez, en Frontend.'",
   "handover": "Pase a Germán: Mi compañero Germán explicará la problemática detectada en la institución."
 };
 export default slide;

@@ -32,7 +32,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Germán Muñoz [Backend]",
-  "content": "<strong>Qué decir:</strong> Logramos una API RESTful modular y escalable...",
-  "handover": "Pase a Elenio: Elenio brindará sus conclusiones de base de datos."
+  "content": "<strong>Qué decir:</strong> 'Logramos una API RESTful modular y escalable en Node/Express, implementando autenticación stateless con doble token JWT y orquestando servicios cloud de MercadoPago, Resend y Cloudinary. Destaco la resolución del Rollback en planillas de sueldos para proteger la contabilidad del club.'",
+  "handover": "Pase a Elenio: Elenio brindará sus conclusiones de Base de Datos."
 };
 export default slide;

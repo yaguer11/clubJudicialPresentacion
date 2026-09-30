@@ -28,7 +28,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Matías Giménez [Frontend]",
-  "content": "<strong>Qué decir:</strong> La arquitectura adopta el patrón MVC desacoplado...",
+  "content": "<strong>Qué decir:</strong> 'La arquitectura adopta el patrón MVC desacoplado: una SPA en React 19 como Vista, la API REST en Node.js/Express como Controlador y orquestador de negocio, y MySQL 8 como Modelo de datos. Comunicación asíncrona vía HTTPS/JSON con autenticación JWT stateless y servicios cloud MercadoPago, Cloudinary y Resend.'",
   "handover": "Pase a Germán: Germán resumirá el stack tecnológico del proyecto."
 };
 export default slide;

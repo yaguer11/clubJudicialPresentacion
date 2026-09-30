@@ -31,7 +31,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> Logramos un modelo relacional en 3FN...",
-  "handover": "Pase a Equipo: Los tres cerraremos con el impacto institucional."
+  "content": "<strong>Qué decir:</strong> 'Logramos un modelo relacional en 3FN que asegura la integridad de los datos. La optimización con índices B-Tree y FULLTEXT garantiza consultas en sub-milisegundos, y el Event Scheduler resolvió el histórico problema de turnos bloqueados sin pagar. Las migraciones versionadas aseguran la evolución del esquema.'",
+  "handover": "Pase a Equipo: Los tres cerraremos con el impacto institucional y el trabajo futuro."
 };
 export default slide;

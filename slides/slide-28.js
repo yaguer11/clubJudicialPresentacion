@@ -31,7 +31,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Germán Muñoz [Backend]",
-  "content": "<strong>Qué decir:</strong> Utilizamos una base de datos de testing réplica...",
+  "content": "<strong>Qué decir:</strong> 'Utilizamos una base de datos de testing réplica y generamos sufijos aleatorios en los DNI y usuarios para evitar colisiones de clave única. En GitHub Actions, si un test falla, el runner guarda grabaciones en video y capturas de pantalla durante 7 días para facilitar la depuración inmediata.'",
   "handover": "Pase a Elenio: Elenio explicará el despliegue en la nube."
 };
 export default slide;

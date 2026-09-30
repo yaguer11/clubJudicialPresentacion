@@ -36,7 +36,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Matías Giménez [Frontend]",
-  "content": "<strong>Qué decir:</strong> AdminSociosPage utiliza Material UI DataGrid...",
-  "handover": "Pase a Elenio: Entramos al módulo de alquileres."
+  "content": "<strong>Qué decir:</strong> 'AdminSociosPage utiliza Material UI DataGrid para ordenar, paginar y filtrar en milisegundos con modales de aprobación y rechazo. En ProfilePage, el socio visualiza su credencial digital, sube su foto a Cloudinary y gestiona familiares adjuntando la foto de su DNI.'",
+  "handover": "Pase a Elenio: Entramos al módulo de Alquileres. Elenio explicará la disponibilidad y el Event Scheduler."
 };
 export default slide;

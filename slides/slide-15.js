@@ -33,7 +33,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> El padrón de socios está normalizado en 3FN...",
+  "content": "<strong>Qué decir:</strong> 'El padrón de socios está normalizado en 3FN e incluye las tablas Socio, Miembro_Familiar y Parentesco. Modelamos Solicitud_Cambio_Datos para auditar cambios. Además, creamos un índice FULLTEXT sobre Nombre, Apellido y DNI para búsquedas instantáneas en secretaría sin escaneos completos de tabla.'",
   "handover": "Pase a Germán: Germán detallará las reglas de negocio de la API de socios."
 };
 export default slide;

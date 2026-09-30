@@ -33,7 +33,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Matías Giménez [Frontend]",
-  "content": "<strong>Qué decir:</strong> En PagosCuotasPage el socio consulta sus deudas...",
-  "handover": "Pase a Elenio: Avanzamos al módulo de noticias."
+  "content": "<strong>Qué decir:</strong> 'En PagosCuotasPage el socio consulta sus deudas y abona con el botón oficial de MercadoPago. Para Tesorería, creamos PagosSociosPage con drag & drop de planillas Excel, previsualización de inconsistencias y el botón de Rollback. Desarrollamos 6 páginas de retorno de pasarela.'",
+  "handover": "Pase a Elenio: Avanzamos al Módulo de Noticias. Elenio comentará el esquema editorial.'"
 };
 export default slide;

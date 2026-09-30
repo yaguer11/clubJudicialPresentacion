@@ -33,7 +33,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Matías Giménez [Frontend]",
-  "content": "<strong>Qué decir:</strong> Desarrollamos 18 archivos de pruebas E2E con Playwright...",
-  "handover": "Pase a Germán: Germán explicará cómo logramos aislar los datos en pruebas continuas."
+  "content": "<strong>Qué decir:</strong> 'Desarrollamos 18 archivos de pruebas E2E con Playwright simulando usuarios reales en Chromium y Firefox. La Suite Real con 17 archivos corre contra backend y base de datos real cubriendo registros, alquileres, pagos y CRUDs; y la Suite Mock valida estados visuales y manejo de errores aisladamente.'",
+  "handover": "Pase a Germán: Germán explicará cómo logramos aislar los datos en las pruebas continuas."
 };
 export default slide;

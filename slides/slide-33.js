@@ -31,7 +31,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Equipo Completo (Los Tres)",
-  "content": "<strong>Qué decir:</strong> El impacto en el Club Judicial es contundente...",
-  "handover": "Pase a Cierre: Cierre de la presentación y apertura de preguntas."
+  "content": "<strong>Qué decir:</strong> 'El impacto en el Club Judicial es contundente: cero solapamientos en reservas, los socios ganaron autogestión 24/7 para consultar y pagar cuotas, y secretaría redujo el trabajo manual repetitivo. Como líneas futuras proyectamos notificaciones push, analítica para la directiva y control de acceso físico QR.'",
+  "handover": "Pase a Cierre: Cierre de la presentación y apertura de preguntas del tribunal."
 };
 export default slide;

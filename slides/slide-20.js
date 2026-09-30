@@ -36,7 +36,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Matías Giménez [Frontend]",
-  "content": "<strong>Qué decir:</strong> ReservarEspacioPage funciona como un wizard de 3 pasos...",
-  "handover": "Pase a Elenio: Pasamos al módulo de pagos y cuotas."
+  "content": "<strong>Qué decir:</strong> 'ReservarEspacioPage funciona como un wizard de 3 pasos: el usuario elige la fecha, ve los turnos disponibles en tiempo real en verde y turnos ocupados deshabilitados, y selecciona accesorios con cálculo dinámico del total y de la seña mínima requerida antes de pagar con MercadoPago.'",
+  "handover": "Pase a Elenio: Pasamos al Módulo de Pagos y Cuotas. Elenio explicará la estructura de cuotas y cajas.'"
 };
 export default slide;
