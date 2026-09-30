@@ -33,7 +33,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> El modelo financiero soporta pagos parciales...",
+  "content": "<strong>Qué decir:</strong> 'El modelo financiero soporta pagos parciales con el campo PorcentajePagado y restricción CHECK. Creamos Deuda_Socio como desnormalización controlada para conocer las cuotas adeudadas sin recalcular todo el histórico, y las tablas Caja y Caja_Movimiento para registrar cada ingreso dinerario.'",
   "handover": "Pase a Germán: Germán explicará la integración de MercadoPago y las planillas de sueldos."
 };
 export default slide;

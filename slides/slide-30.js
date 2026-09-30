@@ -32,7 +32,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Matías Giménez [Frontend]",
-  "content": "<strong>Qué decir:</strong> La PPS me permitió consolidar competencias en React 19...",
-  "handover": "Pase a Germán: Germán compartirá sus conclusiones de backend."
+  "content": "<strong>Qué decir:</strong> 'La PPS me permitió consolidar competencias en React 19, Vite y diseño unificado en Material UI. Implementé seguridad RBAC en cliente con interceptores Axios para renovación silenciosa de tokens y adquirí experiencia formativa invaluable en testing automatizado con Playwright y CI/CD.'",
+  "handover": "Pase a Germán: Germán compartirá sus conclusiones de Backend."
 };
 export default slide;

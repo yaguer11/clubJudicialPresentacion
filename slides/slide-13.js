@@ -27,7 +27,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Germán Muñoz [Backend]",
-  "content": "<strong>Qué decir:</strong> La API de autenticación implementa un esquema de doble token JWT...",
+  "content": "<strong>Qué decir:</strong> 'La API de autenticación implementa un esquema de doble token JWT: Access Token de 15 minutos para peticiones seguras y Refresh Token de 7 días para renovación silenciosa. Las contraseñas se cifran con 10 rondas de salteo y middlewares requireRole() validan los permisos en cada endpoint protegido.'",
   "handover": "Pase a Matías: Matías mostrará cómo consume el frontend esta capa de autenticación."
 };
 export default slide;

@@ -33,7 +33,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> El módulo de alquileres modela Espacios, Horarios por día y Accesorios con stock...",
+  "content": "<strong>Qué decir:</strong> 'El módulo de alquileres modela Espacios, Horarios por día y Accesorios con stock. Para evitar el bloqueo de turnos impagos, programamos un Evento en MySQL (Event Scheduler) cada 60 segundos: si una reserva no abona la seña en 1 hora, se cancela y el turno se libera automáticamente.'",
   "handover": "Pase a Germán: Germán explicará la API de reservas y la cancelación con devolución."
 };
 export default slide;

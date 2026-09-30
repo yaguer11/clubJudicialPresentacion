@@ -36,7 +36,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Matías Giménez [Frontend]",
-  "content": "<strong>Qué decir:</strong> En el cliente desarrollamos LoginPage y AdminLoginPage...",
-  "handover": "Pase a Elenio: Pasamos al módulo de socios."
+  "content": "<strong>Qué decir:</strong> 'En el cliente desarrollamos LoginPage y AdminLoginPage. Las rutas están protegidas con ProtectedRoute según los roles del token. Mediante interceptores de Axios, cuando la API retorna un 401 por token expirado, el cliente solicita un nuevo Access Token de forma transparente sin interrumpir la navegación.'",
+  "handover": "Pase a Elenio: Pasamos al Módulo de Socios. Elenio explicará el modelo de datos de miembros y familias."
 };
 export default slide;

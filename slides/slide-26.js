@@ -32,7 +32,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Matías Giménez [Frontend]",
-  "content": "<strong>Qué decir:</strong> En AdminNoticiasPage construimos un editor con previsualización en vivo...",
-  "handover": "Pase a Matías: Entramos al bloque de testing y despliegue."
+  "content": "<strong>Qué decir:</strong> 'En AdminNoticiasPage construimos un editor con previsualización en vivo para prensa. En el portal público, las novedades se exhiben mediante componentes NewsList y NewsCard, y en NoticiaDetallePage brindamos una experiencia de lectura cuidada con tipografía Playfair Display.'",
+  "handover": "Pase a Matías: Entramos al Bloque 8 de Testing y Despliegue. Yo iniciaré con la suite de Playwright."
 };
 export default slide;

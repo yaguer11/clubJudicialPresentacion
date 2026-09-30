@@ -31,7 +31,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Germán Muñoz [Backend]",
-  "content": "<strong>Qué decir:</strong> Integramos MercadoPago Checkout Pro con webhooks IPN...",
+  "content": "<strong>Qué decir:</strong> 'Integramos MercadoPago Checkout Pro con webhooks IPN que confirman pagos de forma desatendida. Para retenciones de sueldo judicial, procesamos archivos Excel con la librería xlsx y desarrollamos un mecanismo de Rollback transaccional que permite revertir una planilla errónea restaurando deudas previas.'",
   "handover": "Pase a Matías: Matías mostrará la experiencia de usuario en pagos y planillas."
 };
 export default slide;

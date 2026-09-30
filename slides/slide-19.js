@@ -27,7 +27,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Germán Muñoz [Backend]",
-  "content": "<strong>Qué decir:</strong> La API asegura la disponibilidad atómica...",
+  "content": "<strong>Qué decir:</strong> 'La API asegura la disponibilidad atómica con transacciones SQL para evitar colisiones. Para invitados (no socios), generamos un TokenSeguimiento criptográfico que les permite gestionar su turno vía email sin crear cuenta. Cancelaciones con más de 48 hs registran el CBU para reintegro de seña.'",
   "handover": "Pase a Matías: Matías presentará el flujo interactivo de reserva en la web."
 };
 export default slide;

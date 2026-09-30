@@ -33,7 +33,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> La tabla Noticia modela atributos periodísticos formales...",
+  "content": "<strong>Qué decir:</strong> 'La tabla Noticia modela atributos periodísticos formales: volanta, título, copete, cuerpo LONGTEXT y embed para videos de YouTube. Mediante FechaPublicacion y el estado BORRADOR o PUBLICADA, permitimos programar noticias con publicación automática diferida.'",
   "handover": "Pase a Germán: Germán detallará la API editorial y la subida de imágenes."
 };
 export default slide;

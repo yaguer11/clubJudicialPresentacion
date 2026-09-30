@@ -33,7 +33,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Germán Muñoz [Backend]",
-  "content": "<strong>Qué decir:</strong> El relevamiento detectó que el club funcionaba 100% manual...",
+  "content": "<strong>Qué decir:</strong> 'El relevamiento detectó que el club funcionaba 100% manual con planillas Excel dispersas. Esto generaba inconsistencias contables, pérdida de datos por falta de concurrencia y solapamiento de reservas los fines de semana en canchas y quinchos. Además, el socio no podía consultar su deuda ni reservar de forma remota.'",
   "handover": "Pase a Elenio: Elenio comentará los objetivos fijados para resolver esta situación."
 };
 export default slide;

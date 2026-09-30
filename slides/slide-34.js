@@ -16,7 +16,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Equipo Completo (Cierre)",
-  "content": "<strong>Qué decir:</strong> Agradecemos profundamente ...",
+  "content": "<strong>Qué decir:</strong> 'Agradecemos profundamente a la Universidad Nacional de Villa Mercedes, a la Escuela de Ingeniería, a nuestro tutor Ing. Alejandro Marcelo Altaba y al supervisor Fernando Rigoni por su acompañamiento. Quedamos a total disposición del tribunal evaluador para responder sus preguntas. ¡Muchas gracias!'",
   "handover": "Fin de la exposición oral."
 };
 export default slide;

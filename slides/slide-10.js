@@ -34,7 +34,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> Modelamos cuatro tipos de actores sociales...",
+  "content": "<strong>Qué decir:</strong> 'Modelamos cuatro tipos de actores sociales: el particular sin registro, el socio común, el socio adherente y el vitalicio. Para el backoffice administrativo, diseñamos un esquema RBAC con 5 roles: SUPERADMIN, ADMIN_USUARIOS, ADMIN_ALQUILER, ADMIN_PLANILLAS y ADMIN_NOTICIAS para garantizar el principio de mínimo privilegio.'",
   "handover": "Pase a Matías: Matías presentará los casos de uso y diagramas UML."
 };
 export default slide;
