@@ -50,16 +50,12 @@ const slide = {
   ],
   "criteria": [
     {
-      "title": "Experiencia Previa en UNViM",
-      "text": "Stack consolidado previamente en la cátedra de Programación Web (React y Node.js), reduciendo la curva de aprendizaje."
+      "title": "Experiencia Previa en la Carrera (UNViM)",
+      "text": "Ya habíamos trabajado con React y Node.js en Programación Web, lo que nos permitió arrancar sin fricción y enfocarnos en los requerimientos del club."
     },
     {
-      "title": "Ecosistema Maduro y Estandarizado",
-      "text": "JavaScript/TypeScript de extremo a extremo, amplia comunidad activa y paquetes de seguridad estables."
-    },
-    {
-      "title": "Rendimiento y Transaccionalidad",
-      "text": "Arquitectura asíncrona no bloqueante (Node), SPA reactiva (React + Vite) y persistencia ACID estricta en MySQL 8 (InnoDB)."
+      "title": "¿Por qué elegimos MySQL?",
+      "text": "Es el motor relacional más confiable y ordenado. Al manejar cobros, socios y turnos que no pueden superponerse, las tablas y relaciones evitan inconsistencias y pérdida de datos."
     }
   ]
 };
