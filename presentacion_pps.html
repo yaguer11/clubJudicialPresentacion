@@ -2444,44 +2444,37 @@
                 style="
                   display: flex;
                   flex-direction: column;
-                  gap: 12px;
+                  gap: 10px;
                   justify-content: center;
                 "
               >
-                <div class="card-clean accent-blue">
-                  <div class="card-heading">Esquema Relacional</div>
-                  <ul class="clean-list">
-                    <li>
-                      <code>Espacio</code>: Precios socio / no socio, seña y
-                      seguro de garantía.
-                    </li>
-                    <li>
-                      <code>Horario_Espacio</code>: Franjas por día de semana.
-                    </li>
-                    <li>
-                      <code>Accesorio</code>: Control de stock disponible.
-                    </li>
+                <div class="card-clean accent-blue" style="padding: 12px 14px; gap: 6px;">
+                  <div class="card-heading" style="font-size: 0.92rem;">1. Modelado de Espacios, Horarios y Accesorios</div>
+                  <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
+                    <li><strong>Diferenciación arancelaria:</strong> Tarifas para socio vs. particular, seña mínima y seguro de garantía en <code>Espacio</code>.</li>
+                    <li><strong>Franjas horarias:</strong> <code>Horario_Espacio</code> con restricción <code>UNIQUE (ID_Espacio, DiaSemana, HoraInicio, HoraFin)</code> y <code>CHECK (HoraInicio &lt;&gt; HoraFin)</code>.</li>
+                    <li><strong>Control de inventario:</strong> Relación intermedia <code>Espacio_Accesorio</code> con stock disponible en tiempo real (paletas, redes, pelotas).</li>
                   </ul>
                 </div>
-                <div class="card-clean accent-gold">
-                  <div class="card-heading">MySQL Event Scheduler (1 Hora)</div>
-                  <p class="clean-list">
-                    Evento recurrente cada minuto: si una reserva no abona la
-                    seña en 60 minutos,
-                    <strong>expira y libera el turno automáticamente</strong>.
-                  </p>
+                <div class="card-clean accent-gold" style="padding: 12px 14px; gap: 6px;">
+                  <div class="card-heading" style="font-size: 0.92rem;">2. Control de Turnos y MySQL Event Scheduler</div>
+                  <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
+                    <li><strong>Bloqueo atómico:</strong> Tabla <code>Alquiler_Espacio</code> con índice único compuesto que erradica solapamientos de reservas.</li>
+                    <li><strong>Acceso de invitados:</strong> <code>TokenSeguimiento</code> criptográfico (64 chars) para pagar y gestionar sin crear usuario.</li>
+                    <li><strong>Liberación automática:</strong> Evento en MySQL ejecutado cada 60s: si no registra seña en 1 hora (<code>FechaExpiracion &lt; NOW()</code>), expira y libera el turno a la comunidad.</li>
+                  </ul>
                 </div>
               </div>
-              <div class="photo-container">
+              <div class="photo-container" style="padding: 4px; min-height: 0;">
                 <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
                 <img
-                  src="assets_presentacion/elenio_image6.png"
-                  alt="Diagrama EER Alquileres"
+                  src="assets_presentacion/diagrama_alquileres_espacios.svg"
+                  alt="Diagrama EER de Espacios, Horarios y Alquileres"
+                  style="max-height: 300px;"
                   onclick="openLightbox(this.src)"
                 />
-                <div class="photo-caption">
-                  Modelo Relacional EER — Espacios, Horarios, Accesorios y
-                  Alquileres
+                <div class="photo-caption" style="margin-top: 2px;">
+                  Esquema Relacional Focalizado — Tablas Espacio, Horario_Espacio, Alquiler y Event Scheduler (60 min)
                 </div>
               </div>
             </div>
@@ -3622,8 +3615,8 @@
         },
         18: {
           speaker: "Elenio García [Base de Datos]",
-          content: "<strong>Qué decir:</strong> 'El módulo de alquileres modela Espacios, Horarios por día y Accesorios con stock. Para evitar el bloqueo de turnos impagos, programamos un Evento en MySQL (Event Scheduler) cada 60 segundos: si una reserva no abona la seña en 1 hora, se cancela y el turno se libera automáticamente.'",
-          handover: "Pase a Germán: Germán explicará la API de reservas y la cancelación con devolución."
+          content: "<strong>Qué decir:</strong> 'El módulo de alquileres y espacios deportivos requirió un diseño relacional altamente riguroso para eliminar el solapamiento histórico de turnos. En la tabla Espacio modelamos tarifas diferenciadas para socios y particulares, seña mínima y seguro de garantía. La tabla Horario_Espacio estructura las franjas horarias por día con una clave UNIQUE compuesta y validación CHECK para evitar rangos nulos. Para el bloqueo efectivo de turnos diseñamos la intermedia Alquiler_Espacio, vinculada a Alquiler. Pero el aporte clave de ingeniería fue automatizar la liberación de reservas: configuramos un Evento Programado en MySQL (Event Scheduler) que se ejecuta cada 60 segundos. Si una reserva en estado PENDIENTE no abona la seña dentro del plazo de 60 minutos (FechaExpiracion &lt; NOW()), el evento actualiza el estado a CANCELADO y libera la franja horaria automáticamente para que vuelva a estar disponible en la plataforma sin intervención administrativa.'",
+          handover: "Pase a Germán: Germán explicará cómo la API gestiona la concurrencia atómica, el TokenSeguimiento para invitados y las devoluciones de seña."
         },
         19: {
           speaker: "Germán Muñoz [Backend]",
