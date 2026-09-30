@@ -25,7 +25,7 @@ const slide = {
     }
   ],
   "image": {
-    "src": "ClubJudicialFront/public/clubjudicial.webp",
+    "src": "assets_presentacion/clubjudicial.webp",
     "alt": "Complejo Polideportivo Club Judicial",
     "caption": "Predio Polideportivo del Club Judicial — Villa Mercedes, San Luis"
   }
