@@ -3470,12 +3470,184 @@
       </div>
     </div>
 
-    <script type="module">
-      import { slideDefinitions, speakerNotesData } from "./slides/index.js";
+    <script>
+      // Guión detallado para cada una de las 34 diapositivas
+      const speakerNotesData = {
+        1: {
+          speaker: "Matías Giménez (Apertura)",
+          content: "<strong>Qué decir:</strong> 'Buenos días al tribunal evaluador, profesor Altaba y presentes. Presentamos la defensa de nuestra Práctica Profesional Supervisada: Sistema de Gestión Integral para el Club Social, Cultural y Deportivo Judicial de Villa Mercedes. Nuestro equipo: Elenio García en Base de Datos, Germán Muñoz en Backend y quien les habla, Matías Giménez, en Frontend.'",
+          handover: "Pase a Germán: Mi compañero Germán explicará la problemática detectada en la institución."
+        },
+        2: {
+          speaker: "Germán Muñoz [Backend]",
+          content: "<strong>Qué decir:</strong> 'El relevamiento detectó que el club funcionaba 100% manual con planillas Excel dispersas. Esto generaba inconsistencias contables, pérdida de datos por falta de concurrencia y solapamiento de reservas los fines de semana en canchas y quinchos. Además, el socio no podía consultar su deuda ni reservar de forma remota.'",
+          handover: "Pase a Elenio: Elenio comentará los objetivos fijados para resolver esta situación."
+        },
+        3: {
+          speaker: "Elenio García [Base de Datos]",
+          content: "<strong>Qué decir:</strong> 'Fijamos como objetivo general desarrollar e implementar un sistema web integral que automatice la gestión social, deportiva y contable. Como metas específicas: autogestión 24/7, modelo relacional 3FN con integridad estricta, cobro online con MercadoPago y conciliación masiva de sueldos con rollback contable.'",
+          handover: "Pase a Matías: Matías expondrá la distribución de roles y responsabilidades."
+        },
+        4: {
+          speaker: "Matías Giménez [Frontend]",
+          content: "<strong>Qué decir:</strong> 'Nos organizamos con responsabilidades claras: Elenio en el diseño y optimización de base de datos en MySQL; Germán en la API RESTful y seguridad en Node/Express; y yo en la interfaz React 19, Material UI y testing E2E automatizado con Playwright. Todas las tareas de relevamiento y pruebas fueron compartidas.'",
+          handover: "Pase a Germán: Germán presentará la institución receptora."
+        },
+        5: {
+          speaker: "Germán Muñoz [Backend]",
+          content: "<strong>Qué decir:</strong> 'El Club Judicial es una asociación civil sin fines de lucro de Villa Mercedes, San Luis. Nuclea a los empleados del Poder Judicial de la 2da Circunscripción y a la comunidad. Cuenta con canchas de pádel, fútbol, quincho y salón. Entrevistamos a directivos, secretaría y tesorería para modelar cada circuito operativo.'",
+          handover: "Pase a Elenio: Elenio detallará la metodología de trabajo adoptada."
+        },
+        6: {
+          speaker: "Elenio García [Base de Datos]",
+          content: "<strong>Qué decir:</strong> 'Adoptamos una metodología iterativa e incremental. Desarrollamos por módulos funcionales (Auth ➔ Socios ➔ Espacios ➔ Pagos ➔ Noticias). Coordinamos más de 190 tareas en un tablero Kanban en Notion y mantuvimos reuniones quincenales de validación académica con el tutor y técnica con el supervisor.'",
+          handover: "Pase a Germán: Germán explicará el control de versiones y la integración continua."
+        },
+        7: {
+          speaker: "Germán Muñoz [Backend]",
+          content: "<strong>Qué decir:</strong> 'Implementamos GitFlow con la rama main protegida. Todo cambio requirió Pull Request con revisión cruzada. En GitHub Actions configuramos un pipeline de CI que corre las pruebas E2E de Playwright ante cada PR. Si un test falla, el merge queda bloqueado para asegurar que no haya regresiones en producción.'",
+          handover: "Pase a Matías: Matías presentará la arquitectura general del sistema."
+        },
+        8: {
+          speaker: "Matías Giménez [Frontend]",
+          content: "<strong>Qué decir:</strong> 'La arquitectura adopta el patrón MVC desacoplado: una SPA en React 19 como Vista, la API REST en Node.js/Express como Controlador y orquestador de negocio, y MySQL 8 como Modelo de datos. Comunicación asíncrona vía HTTPS/JSON con autenticación JWT stateless y servicios cloud MercadoPago, Cloudinary y Resend.'",
+          handover: "Pase a Germán: Germán resumirá el stack tecnológico del proyecto."
+        },
+        9: {
+          speaker: "Germán Muñoz [Backend]",
+          content: "<strong>Qué decir:</strong> 'El stack se compone de Node.js 20, Express, JWT y BcryptJS en el backend; MySQL 8 con motor InnoDB en persistencia; React 19, Vite y Material UI v6 en el frontend; y los SDK de MercadoPago, Cloudinary, Resend y Playwright para QA. Es un ecosistema moderno, maduro y de alto rendimiento.'",
+          handover: "Pase a Elenio: Elenio presentará los actores del sistema y el modelo de roles.'",
+        },
+        10: {
+          speaker: "Elenio García [Base de Datos]",
+          content: "<strong>Qué decir:</strong> 'Modelamos cuatro tipos de actores sociales: el particular sin registro, el socio común, el socio adherente y el vitalicio. Para el backoffice administrativo, diseñamos un esquema RBAC con 5 roles: SUPERADMIN, ADMIN_USUARIOS, ADMIN_ALQUILER, ADMIN_PLANILLAS y ADMIN_NOTICIAS para garantizar el principio de mínimo privilegio.'",
+          handover: "Pase a Matías: Matías presentará los casos de uso y diagramas UML."
+        },
+        11: {
+          speaker: "Matías Giménez [Frontend]",
+          content: "<strong>Qué decir:</strong> 'Especificamos 31 casos de uso en dos diagramas UML: el portal de autogestión pública y del socio con 14 casos de uso, y el backoffice administrativo con 17 casos de uso. Definimos relaciones de inclusión obligatoria para la pasarela de pagos y de extensión para el cálculo de devolución de señas.'",
+          handover: "Pase a Elenio: Comenzamos con los módulos funcionales. Elenio iniciará con la base de datos de Autenticación."
+        },
+        12: {
+          speaker: "Elenio García [Base de Datos]",
+          content: "<strong>Qué decir:</strong> 'En autenticación, desacoplamos la tabla Usuario de la tabla Socio. Esto permite administradores que no son socios y desacopla identidades. Las contraseñas se almacenan únicamente como hashes Bcrypt de 60 caracteres y aplicamos restricciones UNIQUE en username y DNI para evitar duplicaciones.'",
+          handover: "Pase a Germán: Germán explicará la implementación de la API de autenticación."
+        },
+        13: {
+          speaker: "Germán Muñoz [Backend]",
+          content: "<strong>Qué decir:</strong> 'La API de autenticación implementa un esquema de doble token JWT: Access Token de 15 minutos para peticiones seguras y Refresh Token de 7 días para renovación silenciosa. Las contraseñas se cifran con 10 rondas de salteo y middlewares requireRole() validan los permisos en cada endpoint protegido.'",
+          handover: "Pase a Matías: Matías mostrará cómo consume el frontend esta capa de autenticación."
+        },
+        14: {
+          speaker: "Matías Giménez [Frontend]",
+          content: "<strong>Qué decir:</strong> 'En el cliente desarrollamos LoginPage y AdminLoginPage. Las rutas están protegidas con ProtectedRoute según los roles del token. Mediante interceptores de Axios, cuando la API retorna un 401 por token expirado, el cliente solicita un nuevo Access Token de forma transparente sin interrumpir la navegación.'",
+          handover: "Pase a Elenio: Pasamos al Módulo de Socios. Elenio explicará el modelo de datos de miembros y familias."
+        },
+        15: {
+          speaker: "Elenio García [Base de Datos]",
+          content: "<strong>Qué decir:</strong> 'El padrón de socios está normalizado en 3FN e incluye las tablas Socio, Miembro_Familiar y Parentesco. Modelamos Solicitud_Cambio_Datos para auditar cambios. Además, creamos un índice FULLTEXT sobre Nombre, Apellido y DNI para búsquedas instantáneas en secretaría sin escaneos completos de tabla.'",
+          handover: "Pase a Germán: Germán detallará las reglas de negocio de la API de socios."
+        },
+        16: {
+          speaker: "Germán Muñoz [Backend]",
+          content: "<strong>Qué decir:</strong> 'En la API de socios, el registro inicial nace en estado Pendiente. El administrador revisa la documentación y aprueba o rechaza, momento en que el sistema despacha un email automático vía Resend. Ningún socio puede modificar su DNI directamente: debe generar una solicitud auditable.'",
+          handover: "Pase a Matías: Matías mostrará las pantallas del panel de socios y perfil."
+        },
+        17: {
+          speaker: "Matías Giménez [Frontend]",
+          content: "<strong>Qué decir:</strong> 'AdminSociosPage utiliza Material UI DataGrid para ordenar, paginar y filtrar en milisegundos con modales de aprobación y rechazo. En ProfilePage, el socio visualiza su credencial digital, sube su foto a Cloudinary y gestiona familiares adjuntando la foto de su DNI.'",
+          handover: "Pase a Elenio: Entramos al módulo de Alquileres. Elenio explicará la disponibilidad y el Event Scheduler."
+        },
+        18: {
+          speaker: "Elenio García [Base de Datos]",
+          content: "<strong>Qué decir:</strong> 'El módulo de alquileres modela Espacios, Horarios por día y Accesorios con stock. Para evitar el bloqueo de turnos impagos, programamos un Evento en MySQL (Event Scheduler) cada 60 segundos: si una reserva no abona la seña en 1 hora, se cancela y el turno se libera automáticamente.'",
+          handover: "Pase a Germán: Germán explicará la API de reservas y la cancelación con devolución."
+        },
+        19: {
+          speaker: "Germán Muñoz [Backend]",
+          content: "<strong>Qué decir:</strong> 'La API asegura la disponibilidad atómica con transacciones SQL para evitar colisiones. Para invitados (no socios), generamos un TokenSeguimiento criptográfico que les permite gestionar su turno vía email sin crear cuenta. Cancelaciones con más de 48 hs registran el CBU para reintegro de seña.'",
+          handover: "Pase a Matías: Matías presentará el flujo interactivo de reserva en la web."
+        },
+        20: {
+          speaker: "Matías Giménez [Frontend]",
+          content: "<strong>Qué decir:</strong> 'ReservarEspacioPage funciona como un wizard de 3 pasos: el usuario elige la fecha, ve los turnos disponibles en tiempo real en verde y turnos ocupados deshabilitados, y selecciona accesorios con cálculo dinámico del total y de la seña mínima requerida antes de pagar con MercadoPago.'",
+          handover: "Pase a Elenio: Pasamos al Módulo de Pagos y Cuotas. Elenio explicará la estructura de cuotas y cajas.'"
+        },
+        21: {
+          speaker: "Elenio García [Base de Datos]",
+          content: "<strong>Qué decir:</strong> 'El modelo financiero soporta pagos parciales con el campo PorcentajePagado y restricción CHECK. Creamos Deuda_Socio como desnormalización controlada para conocer las cuotas adeudadas sin recalcular todo el histórico, y las tablas Caja y Caja_Movimiento para registrar cada ingreso dinerario.'",
+          handover: "Pase a Germán: Germán explicará la integración de MercadoPago y las planillas de sueldos."
+        },
+        22: {
+          speaker: "Germán Muñoz [Backend]",
+          content: "<strong>Qué decir:</strong> 'Integramos MercadoPago Checkout Pro con webhooks IPN que confirman pagos de forma desatendida. Para retenciones de sueldo judicial, procesamos archivos Excel con la librería xlsx y desarrollamos un mecanismo de Rollback transaccional que permite revertir una planilla errónea restaurando deudas previas.'",
+          handover: "Pase a Matías: Matías mostrará la experiencia de usuario en pagos y planillas."
+        },
+        23: {
+          speaker: "Matías Giménez [Frontend]",
+          content: "<strong>Qué decir:</strong> 'En PagosCuotasPage el socio consulta sus deudas y abona con el botón oficial de MercadoPago. Para Tesorería, creamos PagosSociosPage con drag & drop de planillas Excel, previsualización de inconsistencias y el botón de Rollback. Desarrollamos 6 páginas de retorno de pasarela.'",
+          handover: "Pase a Elenio: Avanzamos al Módulo de Noticias. Elenio comentará el esquema editorial.'"
+        },
+        24: {
+          speaker: "Elenio García [Base de Datos]",
+          content: "<strong>Qué decir:</strong> 'La tabla Noticia modela atributos periodísticos formales: volanta, título, copete, cuerpo LONGTEXT y embed para videos de YouTube. Mediante FechaPublicacion y el estado BORRADOR o PUBLICADA, permitimos programar noticias con publicación automática diferida.'",
+          handover: "Pase a Germán: Germán detallará la API editorial y la subida de imágenes."
+        },
+        25: {
+          speaker: "Germán Muñoz [Backend]",
+          content: "<strong>Qué decir:</strong> 'Conectamos Multer en memoria con Cloudinary para optimizar imágenes en la nube en formato WebP sin saturar el servidor local. Aplicamos validaciones contra ataques XSS en el cuerpo y restringimos la publicación a los roles ADMIN_NOTICIAS y SUPERADMIN.'",
+          handover: "Pase a Matías: Matías mostrará la interfaz editorial y la presentación en el Home."
+        },
+        26: {
+          speaker: "Matías Giménez [Frontend]",
+          content: "<strong>Qué decir:</strong> 'En AdminNoticiasPage construimos un editor con previsualización en vivo para prensa. En el portal público, las novedades se exhiben mediante componentes NewsList y NewsCard, y en NoticiaDetallePage brindamos una experiencia de lectura cuidada con tipografía Playfair Display.'",
+          handover: "Pase a Matías: Entramos al Bloque 8 de Testing y Despliegue. Yo iniciaré con la suite de Playwright."
+        },
+        27: {
+          speaker: "Matías Giménez [Frontend]",
+          content: "<strong>Qué decir:</strong> 'Desarrollamos 18 archivos de pruebas E2E con Playwright simulando usuarios reales en Chromium y Firefox. La Suite Real con 17 archivos corre contra backend y base de datos real cubriendo registros, alquileres, pagos y CRUDs; y la Suite Mock valida estados visuales y manejo de errores aisladamente.'",
+          handover: "Pase a Germán: Germán explicará cómo logramos aislar los datos en las pruebas continuas."
+        },
+        28: {
+          speaker: "Germán Muñoz [Backend]",
+          content: "<strong>Qué decir:</strong> 'Utilizamos una base de datos de testing réplica y generamos sufijos aleatorios en los DNI y usuarios para evitar colisiones de clave única. En GitHub Actions, si un test falla, el runner guarda grabaciones en video y capturas de pantalla durante 7 días para facilitar la depuración inmediata.'",
+          handover: "Pase a Elenio: Elenio explicará el despliegue en la nube."
+        },
+        29: {
+          speaker: "Elenio García [Base de Datos]",
+          content: "<strong>Qué decir:</strong> 'Desplegamos en la nube PaaS en Railway: el frontend se compila como bundle estático optimizado, el backend corre en un contenedor Node.js con certificados SSL automáticos y MySQL 8.0 se aloja en la misma red privada para garantizar latencias inferiores a 2 milisegundos.'",
+          handover: "Pase a Matías: Pasamos a las conclusiones. Matías iniciará con el balance de Frontend."
+        },
+        30: {
+          speaker: "Matías Giménez [Frontend]",
+          content: "<strong>Qué decir:</strong> 'La PPS me permitió consolidar competencias en React 19, Vite y diseño unificado en Material UI. Implementé seguridad RBAC en cliente con interceptores Axios para renovación silenciosa de tokens y adquirí experiencia formativa invaluable en testing automatizado con Playwright y CI/CD.'",
+          handover: "Pase a Germán: Germán compartirá sus conclusiones de Backend."
+        },
+        31: {
+          speaker: "Germán Muñoz [Backend]",
+          content: "<strong>Qué decir:</strong> 'Logramos una API RESTful modular y escalable en Node/Express, implementando autenticación stateless con doble token JWT y orquestando servicios cloud de MercadoPago, Resend y Cloudinary. Destaco la resolución del Rollback en planillas de sueldos para proteger la contabilidad del club.'",
+          handover: "Pase a Elenio: Elenio brindará sus conclusiones de Base de Datos."
+        },
+        32: {
+          speaker: "Elenio García [Base de Datos]",
+          content: "<strong>Qué decir:</strong> 'Logramos un modelo relacional en 3FN que asegura la integridad de los datos. La optimización con índices B-Tree y FULLTEXT garantiza consultas en sub-milisegundos, y el Event Scheduler resolvió el histórico problema de turnos bloqueados sin pagar. Las migraciones versionadas aseguran la evolución del esquema.'",
+          handover: "Pase a Equipo: Los tres cerraremos con el impacto institucional y el trabajo futuro."
+        },
+        33: {
+          speaker: "Equipo Completo (Los Tres)",
+          content: "<strong>Qué decir:</strong> 'El impacto en el Club Judicial es contundente: cero solapamientos en reservas, los socios ganaron autogestión 24/7 para consultar y pagar cuotas, y secretaría redujo el trabajo manual repetitivo. Como líneas futuras proyectamos notificaciones push, analítica para la directiva y control de acceso físico QR.'",
+          handover: "Pase a Cierre: Cierre de la presentación y apertura de preguntas del tribunal."
+        },
+        34: {
+          speaker: "Equipo Completo (Cierre)",
+          content: "<strong>Qué decir:</strong> 'Agradecemos profundamente a la Universidad Nacional de Villa Mercedes, a la Escuela de Ingeniería, a nuestro tutor Ing. Alejandro Marcelo Altaba y al supervisor Fernando Rigoni por su acompañamiento. Quedamos a total disposición del tribunal evaluador para responder sus preguntas. ¡Muchas gracias!'",
+          handover: "Fin de la exposición oral."
+        }
+      };
 
       let currentSlide = 1;
-      const totalSlides = slideDefinitions.length;
-      let slides = [];
+      const slides = [...document.querySelectorAll(".slide")];
+      const totalSlides = slides.length || 34;
 
       const stage = document.getElementById("slide-stage");
       const progressBar = document.getElementById("progress-bar");
@@ -3495,29 +3667,30 @@
       const lightboxModal = document.getElementById("lightbox-modal");
       const lightboxImg = document.getElementById("lightbox-img");
 
-      function renderSlides() {
-        stage.innerHTML = slideDefinitions.map(renderSlide).join("");
-        slides = [...document.querySelectorAll(".slide")];
+      function initNav() {
+        if (!quickJump || !indexList) return;
         quickJump.innerHTML = "";
         indexList.innerHTML = "";
 
         slides.forEach((slide, idx) => {
           const num = idx + 1;
           const titleEl = slide.querySelector(".slide-title");
-          const title = titleEl ? titleEl.textContent : `Diapositiva ${num}`;
+          const title = titleEl ? titleEl.textContent.trim() : (num === 1 ? "Portada Oficial" : `Diapositiva ${num}`);
           const speaker = slide.getAttribute("data-speaker") || "equipo";
 
+          // Desplegable de salto rápido
           const option = document.createElement("option");
           option.value = String(num);
           option.textContent = `${num}. ${title.substring(0, 34)}${title.length > 34 ? "..." : ""}`;
           quickJump.appendChild(option);
 
+          // Elemento del modal de índice
           const item = document.createElement("div");
           item.className = "index-item";
           item.innerHTML = `<strong>#${num}</strong> ${title}<span style="float:right; font-size:0.7rem; color:var(--text-muted);">${speaker.toUpperCase()}</span>`;
           item.addEventListener("click", () => {
             goToSlide(num);
-            indexModal.classList.remove("open");
+            if (indexModal) indexModal.classList.remove("open");
           });
           indexList.appendChild(item);
         });
@@ -3526,21 +3699,25 @@
       function goToSlide(num) {
         if (num < 1 || num > totalSlides) return;
         currentSlide = num;
-        slides.forEach((s) => s.classList.remove("active"));
-        const target = document.querySelector(
-          `.slide[data-slide="${currentSlide}"]`,
-        );
-        if (target) target.classList.add("active");
 
-        currentNumEl.textContent = currentSlide;
-        quickJump.value = String(currentSlide);
-        progressBar.style.width = `${(currentSlide / totalSlides) * 100}%`;
-        btnPrev.disabled = currentSlide === 1;
-        btnNext.disabled = currentSlide === totalSlides;
+        slides.forEach((s) => s.classList.remove("active"));
+        const target = document.querySelector(`.slide[data-slide="${currentSlide}"]`);
+        if (target) {
+          target.classList.add("active");
+          target.scrollTop = 0;
+        }
+
+        if (currentNumEl) currentNumEl.textContent = currentSlide;
+        if (quickJump) quickJump.value = String(currentSlide);
+        if (progressBar) progressBar.style.width = `${(currentSlide / totalSlides) * 100}%`;
+        if (btnPrev) btnPrev.disabled = currentSlide === 1;
+        if (btnNext) btnNext.disabled = currentSlide === totalSlides;
+
         updateNotes(currentSlide);
       }
 
       function updateNotes(num) {
+        if (!notesContentBox) return;
         const data = speakerNotesData[num] || {
           speaker: "Expositor",
           content: "Defensa técnica del contenido.",
@@ -3555,45 +3732,68 @@
         `;
       }
 
+      // Lightbox Zoom de imágenes
       function openLightbox(src) {
-        lightboxImg.src = src;
-        lightboxModal.classList.add("open");
+        if (lightboxImg && lightboxModal) {
+          lightboxImg.src = src;
+          lightboxModal.classList.add("open");
+        }
       }
 
       function closeLightbox() {
-        lightboxModal.classList.remove("open");
+        if (lightboxModal) {
+          lightboxModal.classList.remove("open");
+        }
       }
 
-      btnPrev.addEventListener("click", () => goToSlide(currentSlide - 1));
-      btnNext.addEventListener("click", () => goToSlide(currentSlide + 1));
-      quickJump.addEventListener("change", (e) =>
-        goToSlide(parseInt(e.target.value, 10)),
-      );
-      btnNotes.addEventListener("click", () => {
-        notesPanel.classList.toggle("open");
-        btnNotes.classList.toggle("active");
-      });
-      btnCloseNotes.addEventListener("click", () => {
-        notesPanel.classList.remove("open");
-        btnNotes.classList.remove("active");
-      });
-      btnIndex.addEventListener("click", () =>
-        indexModal.classList.add("open"),
-      );
-      btnCloseIndex.addEventListener("click", () =>
-        indexModal.classList.remove("open"),
-      );
-      indexModal.addEventListener("click", (e) => {
-        if (e.target === indexModal) indexModal.classList.remove("open");
-      });
-      btnFullscreen.addEventListener("click", () => {
-        if (!document.fullscreenElement) {
-          document.documentElement.requestFullscreen().catch(() => {});
-        } else {
-          document.exitFullscreen().catch(() => {});
-        }
-      });
+      window.openLightbox = openLightbox;
+      window.closeLightbox = closeLightbox;
 
+      // Event Listeners de Botones de Navegación
+      if (btnPrev) btnPrev.addEventListener("click", () => goToSlide(currentSlide - 1));
+      if (btnNext) btnNext.addEventListener("click", () => goToSlide(currentSlide + 1));
+      if (quickJump) {
+        quickJump.addEventListener("change", (e) =>
+          goToSlide(parseInt(e.target.value, 10))
+        );
+      }
+
+      if (btnNotes && notesPanel) {
+        btnNotes.addEventListener("click", () => {
+          notesPanel.classList.toggle("open");
+          btnNotes.classList.toggle("active");
+        });
+      }
+      if (btnCloseNotes && notesPanel) {
+        btnCloseNotes.addEventListener("click", () => {
+          notesPanel.classList.remove("open");
+          if (btnNotes) btnNotes.classList.remove("active");
+        });
+      }
+
+      if (btnIndex && indexModal) {
+        btnIndex.addEventListener("click", () => indexModal.classList.add("open"));
+      }
+      if (btnCloseIndex && indexModal) {
+        btnCloseIndex.addEventListener("click", () => indexModal.classList.remove("open"));
+      }
+      if (indexModal) {
+        indexModal.addEventListener("click", (e) => {
+          if (e.target === indexModal) indexModal.classList.remove("open");
+        });
+      }
+
+      if (btnFullscreen) {
+        btnFullscreen.addEventListener("click", () => {
+          if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(() => {});
+          } else {
+            document.exitFullscreen().catch(() => {});
+          }
+        });
+      }
+
+      // Atajos de teclado
       document.addEventListener("keydown", (e) => {
         if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") {
           e.preventDefault();
@@ -3614,18 +3814,21 @@
             document.exitFullscreen().catch(() => {});
           }
         } else if (e.key === "g" || e.key === "G") {
-          notesPanel.classList.toggle("open");
-          btnNotes.classList.toggle("active");
+          if (notesPanel && btnNotes) {
+            notesPanel.classList.toggle("open");
+            btnNotes.classList.toggle("active");
+          }
         } else if (e.key === "i" || e.key === "I") {
-          indexModal.classList.toggle("open");
+          if (indexModal) indexModal.classList.toggle("open");
         } else if (e.key === "Escape") {
-          indexModal.classList.remove("open");
-          notesPanel.classList.remove("open");
-          btnNotes.classList.remove("active");
+          if (indexModal) indexModal.classList.remove("open");
+          if (notesPanel) notesPanel.classList.remove("open");
+          if (btnNotes) btnNotes.classList.remove("active");
           closeLightbox();
         }
       });
 
+      // Gestos táctiles
       let touchStartX = 0;
       document.addEventListener("touchstart", (e) => {
         touchStartX = e.changedTouches[0].screenX;
@@ -3636,8 +3839,21 @@
         if (diff > 50) goToSlide(currentSlide - 1);
       });
 
-      renderSlides();
+      // Inicialización de la presentación
+      initNav();
       goToSlide(1);
+
+      // Carga dinámica opcional desde slides/index.js si se sirve por HTTP/HTTPS
+      if (location.protocol.startsWith("http")) {
+        import("./slides/index.js")
+          .then((mod) => {
+            if (mod && mod.speakerNotesData) {
+              Object.assign(speakerNotesData, mod.speakerNotesData);
+              updateNotes(currentSlide);
+            }
+          })
+          .catch(() => {});
+      }
     </script>
   </body>
 </html>
