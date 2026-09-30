@@ -328,13 +328,14 @@
   <g transform="translate(460, 465)" filter="url(#shadow)">
     <rect class="callout-box" width="435" height="135" fill="#FFFDF5" stroke="#C29A1D" stroke-width="1.4" />
     <rect x="0" y="0" width="435" height="30" rx="8" fill="#C29A1D" />
-    <text x="12" y="20" class="callout-title" fill="#FFFFFF">Decisión 2: Desnormalización en Deuda_Socio y Cajas</text>
+    <text x="12" y="20" class="callout-title" fill="#FFFFFF">Decisión 2: ¿Por qué desnormalizamos Deuda_Socio?</text>
     
-    <text x="12" y="48" class="callout-desc" font-weight="700" fill="#8C6D07">Rendimiento en Login y Trazabilidad Financiera</text>
-    <text x="12" y="66" class="callout-desc">✔ Deuda_Socio mantiene Cant_Cuotas al día: respuesta inmediata sin escanear</text>
-    <text x="24" y="82" class="callout-desc">años de histórico de cuotas cada vez que un socio inicia sesión o alquila.</text>
-    <text x="12" y="98" class="callout-desc">✔ Libro Diario con Caja_Movimiento: uq_caja_pago vincula cada peso ingresado</text>
-    <text x="24" y="114" class="callout-desc">con su origen (MercadoPago, Planilla judicial, Transferencia o Efectivo).</text>
+    <text x="12" y="48" class="callout-desc" font-weight="700" fill="#8C6D07">Justificación: Eliminar recálculos O(N) de alta frecuencia</text>
+    <text x="12" y="66" class="callout-desc">✔ ¿Por qué? Cada login, vista de perfil y reserva deportiva debe verificar si</text>
+    <text x="24" y="80" class="callout-desc">el socio debe cuotas. Sin esto, la DB ejecutaría SUM() y JOIN sobre años</text>
+    <text x="24" y="94" class="callout-desc">de historial contable de miles de socios en cada petición concurrente.</text>
+    <text x="12" y="110" class="callout-desc">✔ Solución: Cant_Cuotas da lectura O(1) inmediata; la integridad se garantiza</text>
+    <text x="24" y="124" class="callout-desc">actualizando la deuda bajo transacciones SQL en cada pago o planilla.</text>
   </g>
 
   <!-- ====================================================================== -->
