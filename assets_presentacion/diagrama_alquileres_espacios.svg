@@ -1,0 +1,349 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 620" width="100%" height="100%">
+  <defs>
+    <!-- Filtros de sombra -->
+    <filter id="shadow" x="-8%" y="-8%" width="120%" height="124%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#1b211b" flood-opacity="0.08" />
+    </filter>
+    <filter id="shadow-primary" x="-8%" y="-8%" width="120%" height="124%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#1e3a5f" flood-opacity="0.14" />
+    </filter>
+    <filter id="shadow-gold" x="-8%" y="-8%" width="120%" height="124%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#c29a1d" flood-opacity="0.18" />
+    </filter>
+
+    <!-- Marcadores de flechas -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#1E3A5F" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#273B27" />
+    </marker>
+    <marker id="arrow-gold" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#C29A1D" />
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#C2410C" />
+    </marker>
+  </defs>
+
+  <style>
+    .bg-canvas { fill: #FAF8F5; }
+    .table-card { fill: #FFFFFF; rx: 12px; stroke-width: 1.5px; }
+    .table-title { font-family: 'Outfit', sans-serif; font-size: 14.5px; font-weight: 700; fill: #FFFFFF; letter-spacing: 0.5px; }
+    .table-sub { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 400; fill: rgba(255,255,255,0.88); }
+    
+    .col-pk { font-family: 'Fira Code', monospace; font-size: 11.5px; font-weight: 700; fill: #C29A1D; }
+    .col-fk { font-family: 'Fira Code', monospace; font-size: 11.5px; font-weight: 700; fill: #1976D2; }
+    .col-uq { font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 700; fill: #059669; }
+    .col-name { font-family: 'Fira Code', monospace; font-size: 11.5px; font-weight: 600; fill: #1B211B; }
+    .col-type { font-family: 'Outfit', sans-serif; font-size: 11px; fill: #7A877A; }
+    .col-badge { font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 700; }
+    
+    .divider { stroke: #ECE7DF; stroke-width: 1; }
+    .rel-line { fill: none; stroke-width: 2.2; stroke-linecap: round; }
+    .callout-box { fill: #FFFFFF; stroke-width: 1.2px; rx: 8px; }
+    .callout-title { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 700; }
+    .callout-desc { font-family: 'Outfit', sans-serif; font-size: 11px; fill: #4A564A; }
+    .pulse-dot { animation: pulse 2s infinite; }
+  </style>
+
+  <!-- Fondo Canvas -->
+  <rect width="100%" height="100%" class="bg-canvas" rx="14" />
+  <rect x="1" y="1" width="918" height="618" rx="14" fill="none" stroke="#E3DDD1" stroke-width="2" />
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 1: ESPACIO (Arriba Izquierda) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(25, 35)" filter="url(#shadow)">
+    <rect class="table-card" width="265" height="235" stroke="#1E3A5F" />
+    <path d="M 0,0 L 265,0 L 265,44 L 0,44 Z" fill="#1E3A5F" rx="12" />
+    <rect x="0" y="32" width="265" height="12" fill="#1E3A5F" />
+    <text x="14" y="24" class="table-title">Espacio</text>
+    <text x="14" y="38" class="table-sub">Canchas, quinchos, salones deportivos</text>
+
+    <!-- Campos -->
+    <g transform="translate(14, 64)">
+      <text class="col-pk">PK</text>
+      <text x="28" y="0" class="col-name">ID_Espacio</text>
+      <text x="175" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="14" y1="72" x2="251" y2="72" class="divider" />
+
+    <g transform="translate(14, 88)">
+      <text class="col-name">Nombre</text>
+      <text x="175" y="0" class="col-type">VARCHAR(100)</text>
+    </g>
+    <line x1="14" y1="96" x2="251" y2="96" class="divider" />
+
+    <g transform="translate(14, 112)">
+      <text class="col-name">Precio / PrecioNoSocio</text>
+      <text x="175" y="0" class="col-type">DECIMAL</text>
+      <text x="0" y="14" class="col-badge" fill="#1E3A5F">● Tarifas diferenciadas por categoría</text>
+    </g>
+    <line x1="14" y1="134" x2="251" y2="134" class="divider" />
+
+    <g transform="translate(14, 150)">
+      <text class="col-name">MontoSeniaMinima</text>
+      <text x="175" y="0" class="col-type">DECIMAL</text>
+    </g>
+    <line x1="14" y1="158" x2="251" y2="158" class="divider" />
+
+    <g transform="translate(14, 174)">
+      <text class="col-name">SeguroTipo / SeguroValor</text>
+      <text x="175" y="0" class="col-type">DECIMAL</text>
+      <text x="0" y="14" class="col-badge" fill="#C29A1D">● Garantía para salones/quinchos</text>
+    </g>
+    <line x1="14" y1="196" x2="251" y2="196" class="divider" />
+
+    <g transform="translate(14, 212)">
+      <text class="col-name">MesesAnticipacion / Activo</text>
+      <text x="175" y="0" class="col-type">TINYINT(1)</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 2: HORARIO_ESPACIO (Abajo Izquierda) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(25, 335)" filter="url(#shadow)">
+    <rect class="table-card" width="265" height="235" stroke="#273B27" />
+    <path d="M 0,0 L 265,0 L 265,44 L 0,44 Z" fill="#273B27" rx="12" />
+    <rect x="0" y="32" width="265" height="12" fill="#273B27" />
+    <text x="14" y="24" class="table-title">Horario_Espacio</text>
+    <text x="14" y="38" class="table-sub">Franjas horarias configuradas por día</text>
+
+    <!-- Campos -->
+    <g transform="translate(14, 64)">
+      <text class="col-pk">PK</text>
+      <text x="28" y="0" class="col-name">ID_Horario</text>
+      <text x="175" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="14" y1="72" x2="251" y2="72" class="divider" />
+
+    <g transform="translate(14, 88)">
+      <text class="col-fk">FK</text>
+      <text x="28" y="0" class="col-name">ID_Espacio</text>
+      <text x="175" y="0" class="col-type">INT (CASCADE)</text>
+    </g>
+    <line x1="14" y1="96" x2="251" y2="96" class="divider" />
+
+    <g transform="translate(14, 112)">
+      <text class="col-name">DiaSemana</text>
+      <text x="175" y="0" class="col-type">ENUM (LUN..DOM)</text>
+    </g>
+    <line x1="14" y1="120" x2="251" y2="120" class="divider" />
+
+    <g transform="translate(14, 136)">
+      <text class="col-name">HoraInicio / HoraFin</text>
+      <text x="175" y="0" class="col-type">TIME</text>
+    </g>
+    <line x1="14" y1="144" x2="251" y2="144" class="divider" />
+
+    <g transform="translate(14, 160)">
+      <text class="col-uq">UQ</text>
+      <text x="28" y="0" class="col-name">UNIQUE KEY Compuesto</text>
+      <text x="0" y="14" class="col-badge" fill="#059669">● (ID_Espacio, DiaSemana, Ini, Fin)</text>
+    </g>
+    <line x1="14" y1="182" x2="251" y2="182" class="divider" />
+
+    <g transform="translate(14, 200)">
+      <text class="col-badge" fill="#273B27">CHECK: HoraInicio &lt;&gt; HoraFin</text>
+      <text x="0" y="14" class="col-type">Valida integridad de franja</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 3: ALQUILER_ESPACIO (Intermedia / Turno Bloqueado) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(340, 245)" filter="url(#shadow-primary)">
+    <rect class="table-card" width="245" height="195" stroke="#1E3A5F" />
+    <path d="M 0,0 L 245,0 L 245,44 L 0,44 Z" fill="#1E3A5F" rx="12" />
+    <rect x="0" y="32" width="245" height="12" fill="#1E3A5F" />
+    <text x="14" y="24" class="table-title">Alquiler_Espacio</text>
+    <text x="14" y="38" class="table-sub">Bloqueo de turno en la fecha</text>
+
+    <!-- Campos -->
+    <g transform="translate(14, 64)">
+      <text class="col-pk">PK</text>
+      <text x="28" y="0" class="col-name">ID_AlquilerEspacio</text>
+      <text x="160" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="14" y1="72" x2="231" y2="72" class="divider" />
+
+    <g transform="translate(14, 88)">
+      <text class="col-fk">FK</text>
+      <text x="28" y="0" class="col-name">ID_Alquiler</text>
+      <text x="160" y="0" class="col-type">INT (CASCADE)</text>
+    </g>
+    <line x1="14" y1="96" x2="231" y2="96" class="divider" />
+
+    <g transform="translate(14, 112)">
+      <text class="col-fk">FK</text>
+      <text x="28" y="0" class="col-name">ID_Horario</text>
+      <text x="160" y="0" class="col-type">INT (RESTRICT)</text>
+    </g>
+    <line x1="14" y1="120" x2="231" y2="120" class="divider" />
+
+    <g transform="translate(14, 138)">
+      <text class="col-uq">UQ</text>
+      <text x="28" y="0" class="col-name">UNIQUE (Alquiler, Horario)</text>
+      <text x="0" y="15" class="col-badge" fill="#059669">● Previene doble turno en reserva</text>
+      <text x="0" y="28" class="col-badge" fill="#C2410C">● Vincula fecha de Alquiler</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 4: ALQUILER (Derecha Principal) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(625, 35)" filter="url(#shadow-primary)">
+    <rect class="table-card" width="270" height="340" stroke="#C2410C" />
+    <path d="M 0,0 L 270,0 L 270,44 L 0,44 Z" fill="#C2410C" rx="12" />
+    <rect x="0" y="32" width="270" height="12" fill="#C2410C" />
+    <text x="14" y="24" class="table-title">Alquiler</text>
+    <text x="14" y="38" class="table-sub">Reserva de turno socio / invitado</text>
+
+    <!-- Campos -->
+    <g transform="translate(14, 64)">
+      <text class="col-pk">PK</text>
+      <text x="28" y="0" class="col-name">ID_Alquiler</text>
+      <text x="175" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="14" y1="72" x2="256" y2="72" class="divider" />
+
+    <g transform="translate(14, 88)">
+      <text class="col-fk">FK</text>
+      <text x="28" y="0" class="col-name">ID_Socio</text>
+      <text x="175" y="0" class="col-type">INT (NULL=Invitado)</text>
+    </g>
+    <line x1="14" y1="96" x2="256" y2="96" class="divider" />
+
+    <g transform="translate(14, 112)">
+      <text class="col-name">Fecha</text>
+      <text x="175" y="0" class="col-type">DATE (Día reserva)</text>
+    </g>
+    <line x1="14" y1="120" x2="256" y2="120" class="divider" />
+
+    <g transform="translate(14, 136)">
+      <text class="col-name">Total, Saldo, MontoSeguro</text>
+      <text x="175" y="0" class="col-type">DECIMAL</text>
+    </g>
+    <line x1="14" y1="144" x2="256" y2="144" class="divider" />
+
+    <g transform="translate(14, 160)">
+      <circle cx="8" cy="-4" r="4" fill="#C2410C" />
+      <text x="24" y="0" class="col-name">Estado</text>
+      <text x="175" y="0" class="col-type">ENUM</text>
+      <text x="0" y="14" class="col-badge" fill="#C2410C">● PENDIENTE | SEÑADO | PAGADO</text>
+      <text x="0" y="27" class="col-badge" fill="#7A877A">● CANCELADO | FINALIZADO</text>
+    </g>
+    <line x1="14" y1="194" x2="256" y2="194" class="divider" />
+
+    <g transform="translate(14, 210)">
+      <circle cx="8" cy="-4" r="4" fill="#C29A1D" />
+      <text x="24" y="0" class="col-name">FechaExpiracion</text>
+      <text x="175" y="0" class="col-type">DATETIME</text>
+      <text x="0" y="14" class="col-badge" fill="#C29A1D">● Plazo 60 min para abonar seña</text>
+    </g>
+    <line x1="14" y1="232" x2="256" y2="232" class="divider" />
+
+    <g transform="translate(14, 248)">
+      <text class="col-name">TokenSeguimiento</text>
+      <text x="175" y="0" class="col-type">VARCHAR(64)</text>
+      <text x="0" y="14" class="col-badge" fill="#1976D2">● Acceso sin login a no socios</text>
+    </g>
+    <line x1="14" y1="270" x2="256" y2="270" class="divider" />
+
+    <g transform="translate(14, 286)">
+      <text class="col-name">Contacto (Nombre, DNI, Email)</text>
+      <text x="0" y="14" class="col-type">Datos particulares no socios</text>
+    </g>
+    <line x1="14" y1="308" x2="256" y2="308" class="divider" />
+
+    <g transform="translate(14, 324)">
+      <text class="col-name">AliasDevolucion, MotivoBaja</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 5: ACCESORIO Y ESPACIO_ACCESORIO (Abajo Centro) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(340, 465)" filter="url(#shadow)">
+    <rect class="table-card" width="245" height="125" stroke="#C29A1D" />
+    <path d="M 0,0 L 245,0 L 245,36 L 0,36 Z" fill="#C29A1D" rx="12" />
+    <rect x="0" y="26" width="245" height="10" fill="#C29A1D" />
+    <text x="12" y="22" class="table-title" style="font-size:13.5px;">Accesorio &amp; Inventario</text>
+
+    <!-- Campos -->
+    <g transform="translate(12, 54)">
+      <text class="col-pk">PK</text>
+      <text x="26" y="0" class="col-name">ID_Accesorio</text>
+      <text x="160" y="0" class="col-type">INT</text>
+    </g>
+    <line x1="12" y1="62" x2="233" y2="62" class="divider" />
+
+    <g transform="translate(12, 78)">
+      <text class="col-name">Stock / StockDisponible</text>
+      <text x="160" y="0" class="col-type">INT</text>
+      <text x="0" y="14" class="col-badge" fill="#C29A1D">● Paletas, redes, pelotas de pádel</text>
+    </g>
+    <line x1="12" y1="100" x2="233" y2="100" class="divider" />
+
+    <g transform="translate(12, 114)">
+      <text class="col-name">Precio / PrecioNoSocio</text>
+      <text x="160" y="0" class="col-type">DECIMAL</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- CAJA DESTACADA: MYSQL EVENT SCHEDULER (Liberación Automática 60 min) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(625, 400)" filter="url(#shadow-gold)">
+    <rect class="callout-box" width="270" height="190" fill="#FFFDF5" stroke="#C29A1D" stroke-width="1.8" />
+    <rect x="0" y="0" width="270" height="34" rx="8" fill="#C29A1D" />
+    <text x="12" y="22" class="callout-title" fill="#FFFFFF" style="font-size:12.5px;">⚡ MySQL Event Scheduler (1 Hora)</text>
+    
+    <text x="12" y="52" class="callout-desc" font-weight="700" fill="#8C6D07">Liberación automática de turnos</text>
+    <text x="12" y="70" class="callout-desc">1. Tarea interna en motor MySQL cada 60s:</text>
+    
+    <!-- Code snippet simulado -->
+    <rect x="12" y="78" width="246" height="52" rx="6" fill="#1E293B" />
+    <text x="20" y="93" font-family="'Fira Code', monospace" font-size="10px" fill="#38BDF8">UPDATE Alquiler SET Estado='CANCELADO'</text>
+    <text x="20" y="107" font-family="'Fira Code', monospace" font-size="10px" fill="#FDE047">WHERE Estado='PENDIENTE'</text>
+    <text x="20" y="121" font-family="'Fira Code', monospace" font-size="10px" fill="#F87171">  AND FechaExpiracion &lt; NOW();</text>
+
+    <text x="12" y="146" class="callout-desc">2. Evita reservas 'fantasma' sin seña.</text>
+    <text x="12" y="162" class="callout-desc">3. Sin intervención humana: la cancha</text>
+    <text x="22" y="176" class="callout-desc" font-weight="700" fill="#059669">vuelve a figurar disponible online.</text>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- LÍNEAS DE RELACIÓN CONECTADAS -->
+  <!-- ====================================================================== -->
+
+  <!-- Relación 1: Espacio a Horario_Espacio (1 a N, CASCADE) -->
+  <path d="M 155,270 L 155,335" class="rel-line" stroke="#1E3A5F" marker-end="url(#arrow-blue)" />
+  <g transform="translate(162, 305)">
+    <text font-family="'Fira Code', monospace" font-size="10.5px" font-weight="700" fill="#1E3A5F">1 : N</text>
+  </g>
+
+  <!-- Relación 2: Horario_Espacio a Alquiler_Espacio (1 a N) -->
+  <path d="M 290,430 L 315,430 L 315,350 L 340,350" class="rel-line" stroke="#273B27" marker-end="url(#arrow-green)" />
+  <g transform="translate(295, 375)">
+    <text font-family="'Fira Code', monospace" font-size="10.5px" font-weight="700" fill="#273B27">1 : N</text>
+  </g>
+
+  <!-- Relación 3: Alquiler a Alquiler_Espacio (1 a N, CASCADE) -->
+  <path d="M 625,230 L 605,230 L 605,290 L 585,290" class="rel-line" stroke="#C2410C" marker-end="url(#arrow-orange)" />
+  <g transform="translate(595, 255)">
+    <text font-family="'Fira Code', monospace" font-size="10.5px" font-weight="700" fill="#C2410C">1 : N</text>
+  </g>
+
+  <!-- Relación 4: Espacio a Accesorio (N a M intermedia) -->
+  <path d="M 210,270 L 210,310 L 360,310 L 360,465" class="rel-line" stroke="#C29A1D" stroke-dasharray="4 3" marker-end="url(#arrow-gold)" />
+  <g transform="translate(260, 318)">
+    <text font-family="'Outfit', sans-serif" font-size="10.5px" font-weight="700" fill="#A17D12">N : M (Espacio_Accesorio)</text>
+  </g>
+
+  <!-- Vinculación Event Scheduler con Alquiler -->
+  <path d="M 760,375 L 760,400" class="rel-line" stroke="#C29A1D" stroke-dasharray="3 3" marker-end="url(#arrow-gold)" />
+
+</svg>
