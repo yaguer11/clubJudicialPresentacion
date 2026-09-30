@@ -2641,46 +2641,37 @@
                 style="
                   display: flex;
                   flex-direction: column;
-                  gap: 12px;
+                  gap: 10px;
                   justify-content: center;
                 "
               >
-                <div class="card-clean accent-blue">
-                  <div class="card-heading">Cuotas y Pagos Parciales</div>
-                  <ul class="clean-list">
-                    <li>
-                      <code>Cuota</code> con
-                      <code>PorcentajePagado (0.00 a 1.00)</code> y
-                      <code>CHECK</code> constraint.
-                    </li>
-                    <li>
-                      Desnormalización controlada en
-                      <code>Deuda_Socio</code> para consultas veloces.
-                    </li>
-                    <li>
-                      <code>Caja</code> y <code>Caja_Movimiento</code> para
-                      libro diario de ingresos.
-                    </li>
+                <div class="card-clean accent-blue" style="padding: 12px 14px; gap: 6px;">
+                  <div class="card-heading" style="font-size: 0.92rem;">1. Cuotas y Pagos Parciales Nativos</div>
+                  <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
+                    <li><strong>Control matemático:</strong> <code>Cuota.PorcentajePagado DECIMAL(3,2)</code> con restricción <code>CHECK (0.00 &lt;= valor &lt;= 1.00)</code>.</li>
+                    <li><strong>Flexibilidad contable:</strong> Soporta saldar cuotas al 50% o adelantos sin descalces en centavos ni redondeos erróneos.</li>
+                    <li><strong>Imputación atómica:</strong> <code>Pago_Cuota</code> vincula cada cobro a su cuota con clave única compuesta.</li>
                   </ul>
                 </div>
-                <div class="card-clean accent-gold">
-                  <div class="card-heading">Conciliación de Pasarelas</div>
-                  <p class="clean-list">
-                    Almacenamiento de <code>PreferenceID</code> y
-                    <code>PaymentID</code> de MercadoPago.
-                  </p>
+                <div class="card-clean accent-gold" style="padding: 12px 14px; gap: 6px;">
+                  <div class="card-heading" style="font-size: 0.92rem;">2. Desnormalización y Libro Diario de Cajas</div>
+                  <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
+                    <li><strong>Rendimiento en login:</strong> <code>Deuda_Socio.Cant_Cuotas</code> almacena el saldo acumulado en tiempo real sin escaneos lentos de años previos.</li>
+                    <li><strong>Libro Diario en <code>Caja_Movimiento</code>:</strong> Restricción <code>UNIQUE (ID_Pago)</code> y <code>CHECK (Monto &gt; 0)</code>: cada ingreso registra medio de cobro (MercadoPago, Planilla, Efvo).</li>
+                    <li><strong>Auditoría externa:</strong> Tablas dedicadas para guardar <code>PreferenceID</code> y <code>PaymentID</code> garantizando idempotencia en Webhooks.</li>
+                  </ul>
                 </div>
               </div>
-              <div class="photo-container">
+              <div class="photo-container" style="padding: 4px; min-height: 0;">
                 <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
                 <img
-                  src="assets_presentacion/elenio_image5.png"
-                  alt="Diagrama EER Cuotas y Pagos"
+                  src="assets_presentacion/diagrama_cuotas_pagos.svg"
+                  alt="Diagrama EER de Cuotas, Pagos, Deudas y Cajas"
+                  style="max-height: 300px;"
                   onclick="openLightbox(this.src)"
                 />
-                <div class="photo-caption">
-                  Modelo Relacional EER — Cuotas, Pagos, Deudas y Descuentos por
-                  Planilla
+                <div class="photo-caption" style="margin-top: 2px;">
+                  Esquema Relacional Focalizado — Cuota, Deuda_Socio, Pago, Caja_Movimiento y Conciliación
                 </div>
               </div>
             </div>
@@ -3630,8 +3621,8 @@
         },
         21: {
           speaker: "Elenio García [Base de Datos]",
-          content: "<strong>Qué decir:</strong> 'El modelo financiero soporta pagos parciales con el campo PorcentajePagado y restricción CHECK. Creamos Deuda_Socio como desnormalización controlada para conocer las cuotas adeudadas sin recalcular todo el histórico, y las tablas Caja y Caja_Movimiento para registrar cada ingreso dinerario.'",
-          handover: "Pase a Germán: Germán explicará la integración de MercadoPago y las planillas de sueldos."
+          content: "<strong>Qué decir:</strong> 'El módulo contable requería máxima rigurosidad en el modelado relacional: en la tabla Cuota implementamos el atributo PorcentajePagado DECIMAL(3,2) junto a una restricción de dominio CHECK (PorcentajePagado &gt;= 0.00 AND PorcentajePagado &lt;= 1.00). Esto permite que el sistema soporte pagos parciales de cuotas mensuales de forma nativa y matemáticamente exacta, evitando descalces en centavos. Para optimizar el tiempo de respuesta en el login y en la reserva de turnos, aplicamos una desnormalización controlada en la tabla Deuda_Socio, que mantiene actualizado el saldo acumulado en Cant_Cuotas sin escanear años de histórico. Asimismo, para asegurar la conciliación bancaria y la idempotencia de los webhooks de MercadoPago, creamos tablas dedicadas para registrar PreferenceID y PaymentID. Finalmente, modelamos el libro diario contable con Caja y Caja_Movimiento, garantizando que cada peso ingresado tenga trazabilidad según su medio de pago.'",
+          handover: "Pase a Germán: Germán explicará la integración de MercadoPago y el procesador de planillas con Rollback."
         },
         22: {
           speaker: "Germán Muñoz [Backend]",
