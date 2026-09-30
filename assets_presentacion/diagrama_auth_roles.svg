@@ -1,0 +1,274 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 620" width="100%" height="100%">
+  <defs>
+    <!-- Filtros de sombra suave -->
+    <filter id="shadow" x="-8%" y="-8%" width="120%" height="124%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#1b211b" flood-opacity="0.08" />
+    </filter>
+    <filter id="shadow-primary" x="-8%" y="-8%" width="120%" height="124%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#273b27" flood-opacity="0.14" />
+    </filter>
+
+    <!-- Flechas y conectores -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#273b27" />
+    </marker>
+    <marker id="arrow-gold" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#c29a1d" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#1976d2" />
+    </marker>
+  </defs>
+
+  <style>
+    .bg-canvas { fill: #FAF8F5; }
+    .table-card { fill: #FFFFFF; rx: 12px; stroke-width: 1.5px; }
+    .header-usuario { fill: #273B27; rx: 10px; }
+    .header-socio { fill: #1E3A5F; rx: 10px; }
+    .header-rol { fill: #8A6D14; rx: 10px; }
+    .header-pivot { fill: #4A564A; rx: 10px; }
+    
+    .table-title { font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 700; fill: #FFFFFF; letter-spacing: 0.5px; }
+    .table-sub { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 400; fill: rgba(255,255,255,0.85); }
+    
+    .col-pk { font-family: 'Fira Code', monospace; font-size: 12.5px; font-weight: 700; fill: #C29A1D; }
+    .col-fk { font-family: 'Fira Code', monospace; font-size: 12.5px; font-weight: 700; fill: #1976D2; }
+    .col-name { font-family: 'Fira Code', monospace; font-size: 12.5px; font-weight: 600; fill: #1B211B; }
+    .col-type { font-family: 'Outfit', sans-serif; font-size: 12px; fill: #7A877A; }
+    .col-badge { font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 700; }
+    
+    .divider { stroke: #ECE7DF; stroke-width: 1; }
+    .rel-line { fill: none; stroke-width: 2.2; stroke-linecap: round; }
+    .callout-box { fill: #FFFFFF; stroke-width: 1.2px; rx: 8px; }
+    .callout-title { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 700; }
+    .callout-desc { font-family: 'Outfit', sans-serif; font-size: 11px; fill: #4A564A; }
+  </style>
+
+  <!-- Fondo de canvas -->
+  <rect width="100%" height="100%" class="bg-canvas" rx="14" />
+  <rect x="1" y="1" width="918" height="618" rx="14" fill="none" stroke="#E3DDD1" stroke-width="2" />
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 1: USUARIO (Centro - Núcleo de Autenticación) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(305, 45)" filter="url(#shadow-primary)">
+    <rect class="table-card" width="310" height="235" stroke="#273B27" />
+    <path d="M 0,0 L 310,0 Q 310,0 310,0 L 310,48 L 0,48 Z" fill="#273B27" rx="12" />
+    <rect x="0" y="36" width="310" height="12" fill="#273B27" /> <!-- Tapar esquinas inferiores header -->
+    <text x="16" y="27" class="table-title">Usuario</text>
+    <text x="16" y="42" class="table-sub">Credenciales puras de acceso</text>
+
+    <!-- Campos -->
+    <g transform="translate(16, 70)">
+      <text class="col-pk">PK</text>
+      <text x="32" y="0" class="col-name">ID_Usuario</text>
+      <text x="210" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="16" y1="80" x2="294" y2="80" class="divider" />
+
+    <g transform="translate(16, 102)">
+      <circle cx="10" cy="-4" r="5" fill="#E65100" />
+      <text x="32" y="0" class="col-name">Username</text>
+      <text x="210" y="0" class="col-type">VARCHAR(50)</text>
+      <text x="32" y="14" class="col-badge" fill="#E65100">● UNIQUE (Sin duplicados)</text>
+    </g>
+    <line x1="16" y1="124" x2="294" y2="124" class="divider" />
+
+    <g transform="translate(16, 146)">
+      <circle cx="10" cy="-4" r="5" fill="#2E7D32" />
+      <text x="32" y="0" class="col-name">PasswordHash</text>
+      <text x="210" y="0" class="col-type">VARCHAR(255)</text>
+      <text x="32" y="14" class="col-badge" fill="#2E7D32">● Bcrypt (60 chars / 0 texto plano)</text>
+    </g>
+    <line x1="16" y1="168" x2="294" y2="168" class="divider" />
+
+    <g transform="translate(16, 190)">
+      <text x="32" y="0" class="col-name">Estado</text>
+      <text x="210" y="0" class="col-type">TINYINT(1)</text>
+    </g>
+    <g transform="translate(16, 212)">
+      <text x="32" y="0" class="col-name">FechaRegistro</text>
+      <text x="210" y="0" class="col-type">DATETIME</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 2: SOCIO (Izquierda Abajo - Ficha Personal y Social) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(30, 310)" filter="url(#shadow)">
+    <rect class="table-card" width="320" height="275" stroke="#1E3A5F" />
+    <path d="M 0,0 L 320,0 L 320,48 L 0,48 Z" fill="#1E3A5F" rx="12" />
+    <rect x="0" y="36" width="320" height="12" fill="#1E3A5F" />
+    <text x="16" y="27" class="table-title">Socio</text>
+    <text x="16" y="42" class="table-sub">Datos de legajo civil y padrón</text>
+
+    <!-- Campos -->
+    <g transform="translate(16, 70)">
+      <text class="col-pk">PK</text>
+      <text x="32" y="0" class="col-name">ID_Socio</text>
+      <text x="210" y="0" class="col-type">INT AUTO_INC</text>
+    </g>
+    <line x1="16" y1="80" x2="304" y2="80" class="divider" />
+
+    <g transform="translate(16, 102)">
+      <text class="col-fk">FK</text>
+      <text x="32" y="0" class="col-name">ID_Usuario</text>
+      <text x="210" y="0" class="col-type">INT (1 a 1)</text>
+      <text x="32" y="14" class="col-badge" fill="#1976D2">● Vinculación externa opcional</text>
+    </g>
+    <line x1="16" y1="124" x2="304" y2="124" class="divider" />
+
+    <g transform="translate(16, 146)">
+      <text class="col-name" style="fill:#E65100;">DNI</text>
+      <text x="210" y="0" class="col-type">VARCHAR(15)</text>
+      <text x="32" y="14" class="col-badge" fill="#E65100">● UNIQUE</text>
+    </g>
+    <line x1="16" y1="168" x2="304" y2="168" class="divider" />
+
+    <g transform="translate(16, 190)">
+      <text class="col-name">Nombre, Apellido</text>
+      <text x="210" y="0" class="col-type">VARCHAR(100)</text>
+    </g>
+    <g transform="translate(16, 212)">
+      <text class="col-name">Email</text>
+      <text x="210" y="0" class="col-type">VARCHAR(100)</text>
+    </g>
+    <g transform="translate(16, 234)">
+      <text class="col-name">Tipo</text>
+      <text x="210" y="0" class="col-type">ENUM('COMUN','..')</text>
+    </g>
+    <g transform="translate(16, 256)">
+      <text class="col-name">Aprobado</text>
+      <text x="210" y="0" class="col-type">TINYINT(1)</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 3: USUARIO_ROL (Centro Abajo - Tabla Intermedia RBAC) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(400, 345)" filter="url(#shadow)">
+    <rect class="table-card" width="245" height="150" stroke="#4A564A" />
+    <path d="M 0,0 L 245,0 L 245,46 L 0,46 Z" fill="#4A564A" rx="12" />
+    <rect x="0" y="34" width="245" height="12" fill="#4A564A" />
+    <text x="14" y="26" class="table-title" style="font-size:14px;">Usuario_Rol</text>
+    <text x="14" y="40" class="table-sub">Asociación N:M de permisos</text>
+
+    <!-- Campos -->
+    <g transform="translate(14, 70)">
+      <text class="col-pk">PK</text>
+      <text x="26" y="0" class="col-fk">FK</text>
+      <text x="50" y="0" class="col-name">ID_Usuario</text>
+      <text x="165" y="0" class="col-type">INT</text>
+    </g>
+    <line x1="14" y1="80" x2="231" y2="80" class="divider" />
+
+    <g transform="translate(14, 102)">
+      <text class="col-pk">PK</text>
+      <text x="26" y="0" class="col-fk">FK</text>
+      <text x="50" y="0" class="col-name">ID_Rol</text>
+      <text x="165" y="0" class="col-type">INT</text>
+    </g>
+    <line x1="14" y1="112" x2="231" y2="112" class="divider" />
+
+    <g transform="translate(14, 132)">
+      <text x="10" y="0" class="col-badge" fill="#4A564A">CASCADE al eliminar usuario o rol</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- TABLA 4: ROL (Derecha Abajo - Catálogo RBAC) -->
+  <!-- ====================================================================== -->
+  <g transform="translate(685, 310)" filter="url(#shadow)">
+    <rect class="table-card" width="210" height="275" stroke="#C29A1D" />
+    <path d="M 0,0 L 210,0 L 210,48 L 0,48 Z" fill="#C29A1D" rx="12" />
+    <rect x="0" y="36" width="210" height="12" fill="#C29A1D" />
+    <text x="16" y="27" class="table-title">Rol</text>
+    <text x="16" y="42" class="table-sub">Perfiles de seguridad RBAC</text>
+
+    <!-- Campos -->
+    <g transform="translate(16, 70)">
+      <text class="col-pk">PK</text>
+      <text x="32" y="0" class="col-name">ID_Rol</text>
+      <text x="135" y="0" class="col-type">INT</text>
+    </g>
+    <line x1="16" y1="80" x2="194" y2="80" class="divider" />
+
+    <g transform="translate(16, 102)">
+      <text class="col-name">Nombre</text>
+      <text x="135" y="0" class="col-type">ENUM</text>
+    </g>
+    <line x1="16" y1="112" x2="194" y2="112" class="divider" />
+
+    <!-- Roles disponibles -->
+    <g transform="translate(16, 130)">
+      <text x="0" y="0" font-family="'Outfit', sans-serif" font-size="10.5px" font-weight="700" fill="#A17D12">ROLES DEFINIDOS:</text>
+      
+      <rect x="0" y="10" width="178" height="20" rx="4" fill="#F4F1EA" />
+      <text x="8" y="24" font-family="'Fira Code', monospace" font-size="10px" font-weight="600" fill="#273B27">● SUPERADMIN</text>
+      
+      <rect x="0" y="34" width="178" height="20" rx="4" fill="#F4F1EA" />
+      <text x="8" y="48" font-family="'Fira Code', monospace" font-size="10px" font-weight="600" fill="#273B27">● ADMIN_USUARIOS</text>
+      
+      <rect x="0" y="58" width="178" height="20" rx="4" fill="#F4F1EA" />
+      <text x="8" y="72" font-family="'Fira Code', monospace" font-size="10px" font-weight="600" fill="#273B27">● ADMIN_ALQUILER</text>
+
+      <rect x="0" y="82" width="178" height="20" rx="4" fill="#F4F1EA" />
+      <text x="8" y="96" font-family="'Fira Code', monospace" font-size="10px" font-weight="600" fill="#273B27">● ADMIN_PLANILLAS</text>
+
+      <rect x="0" y="106" width="178" height="20" rx="4" fill="#F4F1EA" />
+      <text x="8" y="120" font-family="'Fira Code', monospace" font-size="10px" font-weight="600" fill="#273B27">● ADMIN_NOTICIAS</text>
+    </g>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- LÍNEAS DE RELACIÓN CONECTADAS -->
+  <!-- ====================================================================== -->
+  
+  <!-- Relación 1: Usuario a Socio (Desacoplamiento 1 a 0..1) -->
+  <path d="M 330,280 L 330,300 L 210,300 L 210,310" class="rel-line" stroke="#1E3A5F" marker-end="url(#arrow-blue)" />
+  <g transform="translate(130, 268)">
+    <rect class="callout-box" width="170" height="28" fill="#E8F1F8" stroke="#1E3A5F" />
+    <text x="8" y="18" font-family="'Outfit', sans-serif" font-size="10.5px" font-weight="700" fill="#1565C0">FK: ID_Usuario (1 a 0..1)</text>
+  </g>
+
+  <!-- Relación 2: Usuario a Usuario_Rol (1 a N) -->
+  <path d="M 490,280 L 490,345" class="rel-line" stroke="#273B27" marker-end="url(#arrow)" />
+  <g transform="translate(500, 295)">
+    <text font-family="'Fira Code', monospace" font-size="11px" font-weight="700" fill="#273B27">1 : N</text>
+  </g>
+
+  <!-- Relación 3: Rol a Usuario_Rol (1 a N) -->
+  <path d="M 685,410 L 645,410" class="rel-line" stroke="#C29A1D" marker-end="url(#arrow-gold)" />
+  <g transform="translate(650, 400)">
+    <text font-family="'Fira Code', monospace" font-size="11px" font-weight="700" fill="#A17D12">N : 1</text>
+  </g>
+
+  <!-- ====================================================================== -->
+  <!-- CALLOUT EXPLICATIVO ARRIBA A LA IZQUIERDA: DECISIÓN CLAVE -->
+  <!-- ====================================================================== -->
+  <g transform="translate(30, 45)" filter="url(#shadow)">
+    <rect class="callout-box" width="250" height="150" fill="#FFFFFF" stroke="#273B27" />
+    <rect x="0" y="0" width="250" height="32" rx="8" fill="#273B27" />
+    <text x="14" y="21" class="callout-title" fill="#FFFFFF">Decisión de Diseño Central</text>
+    <text x="14" y="52" class="callout-desc" font-weight="700" fill="#273B27">¿Por qué separar Usuario de Socio?</text>
+    <text x="14" y="70" class="callout-desc">1. Permite administradores que no son</text>
+    <text x="24" y="86" class="callout-desc">socios (ej: contadores, prensa).</text>
+    <text x="14" y="104" class="callout-desc">2. La cuenta de login es liviana y</text>
+    <text x="24" y="120" class="callout-desc">protege los datos personales.</text>
+    <text x="14" y="138" class="callout-desc" font-weight="600" fill="#C29A1D">✦ Arquitectura de Mínimo Privilegio</text>
+  </g>
+
+  <!-- CALLOUT DERECHA ARRIBA: SEGURIDAD DE CONTRASEÑAS -->
+  <g transform="translate(645, 45)" filter="url(#shadow)">
+    <rect class="callout-box" width="250" height="150" fill="#FFFFFF" stroke="#C29A1D" />
+    <rect x="0" y="0" width="250" height="32" rx="8" fill="#C29A1D" />
+    <text x="14" y="21" class="callout-title" fill="#FFFFFF">Criterios de Seguridad</text>
+    <text x="14" y="52" class="callout-desc" font-weight="700" fill="#A17D12">Reglas de Integridad Inquebrantables</text>
+    <text x="14" y="70" class="callout-desc">✔ 0 texto plano: Hashing Bcrypt de</text>
+    <text x="26" y="86" class="callout-desc">60 caracteres con 10 rondas de salt.</text>
+    <text x="14" y="104" class="callout-desc">✔ Restricción UNIQUE en Username,</text>
+    <text x="26" y="120" class="callout-desc">DNI y Email para evitar suplantación.</text>
+    <text x="14" y="138" class="callout-desc" font-weight="600" fill="#1565C0">✔ Eliminación en CASCADA segura</text>
+  </g>
+
+</svg>

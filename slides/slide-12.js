@@ -10,33 +10,34 @@ const slide = {
   "cards": [
     {
       "accent": "accent-blue",
-      "heading": "Desacoplamiento Usuario / Socio",
+      "heading": "1. Desacoplamiento Usuario vs Socio",
       "list": [
-        "Usuario: credenciales",
-        "Socio: ficha personal",
-        "Rol y Usuario_Rol"
+        "Usuario almacena solo credenciales (Username y PasswordHash)",
+        "Socio es una entidad satélite vinculada por clave foránea opcional",
+        "Permite administradores del sistema que no son socios del club",
+        "Protección de datos: el login no expone información sensible"
       ]
     },
     {
       "accent": "accent-gold",
-      "heading": "Reglas de Integridad",
+      "heading": "2. Modelo RBAC y Reglas de Integridad",
       "list": [
-        "Hash Bcrypt",
-        "Unique en DNI y email",
-        "Credenciales nunca en texto plano"
+        "Tabla intermedia Usuario_Rol para asignación N:M de roles con CASCADE",
+        "0 contraseñas en texto plano: Hash Bcrypt de 60 caracteres (10 salts)",
+        "Restricciones UNIQUE en Username, DNI y Email contra duplicidades"
       ]
     }
   ],
   "image": {
-    "src": "assets_presentacion/elenio_image4.png",
-    "alt": "Diagrama EER Módulo Autenticación",
-    "caption": "Modelo relacional de autenticación y roles"
+    "src": "assets_presentacion/diagrama_auth_roles.svg",
+    "alt": "Diagrama EER de Autenticación y Roles RBAC",
+    "caption": "Esquema relacional focalizado — Tablas Usuario, Rol, Usuario_Rol y Socio"
   }
 };
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> 'En autenticación, desacoplamos la tabla Usuario de la tabla Socio. Esto permite administradores que no son socios y desacopla identidades. Las contraseñas se almacenan únicamente como hashes Bcrypt de 60 caracteres y aplicamos restricciones UNIQUE en username y DNI para evitar duplicaciones.'",
-  "handover": "Pase a Germán: Germán explicará la implementación de la API de autenticación."
+  "content": "<strong>Qué decir:</strong> 'Una de las decisiones centrales de diseño fue desacoplar la identidad de login de la ficha social: creamos la tabla Usuario para credenciales puras y vinculamos Socio como entidad satélite. Esto nos da la flexibilidad de tener administradores que no son socios del club y protege la privacidad. Los permisos se modelan con la tabla intermedia Usuario_Rol para asignar múltiples roles RBAC, y a nivel motor garantizamos cero texto plano persistiendo solo hashes Bcrypt de 60 caracteres, junto a restricciones UNIQUE en username, DNI y email.'",
+  "handover": "Pase a Germán: Germán explicará cómo la API gestiona este acceso mediante doble token JWT."
 };
 export default slide;
