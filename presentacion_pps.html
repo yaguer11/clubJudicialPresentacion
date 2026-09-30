@@ -2009,7 +2009,7 @@
           data-speaker="elenio"
           data-block="BLOQUE 3 — AUTENTICACIÓN Y REGISTRO"
         >
-          <div class="slide-header">
+          <div class="slide-header" style="margin-bottom: 12px; padding-bottom: 10px;">
             <div class="slide-meta">
               <span class="slide-block-tag">Bloque 3 · Autenticación</span>
               <h2 class="slide-title">Base de Datos: Autenticación y Roles</h2>
@@ -2032,36 +2032,36 @@
                   justify-content: center;
                 "
               >
-                <div class="card-clean accent-blue" style="padding: 14px 16px;">
-                  <div class="card-heading" style="font-size: 0.95rem;">
+                <div class="card-clean accent-blue" style="padding: 12px 14px; gap: 6px;">
+                  <div class="card-heading" style="font-size: 0.92rem;">
                     1. Desacoplamiento Usuario vs Socio
                   </div>
-                  <p style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.4; margin: 0 0 6px 0;">
+                  <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.35; margin: 0;">
                     Separamos la cuenta de acceso (<code>Usuario</code>) de los datos civiles del padrón (<code>Socio</code>).
                   </p>
-                  <ul class="clean-list" style="font-size: 0.8rem; gap: 6px;">
-                    <li><strong>Administradores no socios:</strong> Permite que personal administrativo opere el sistema sin figurar forzosamente como socios.</li>
+                  <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
+                    <li><strong>Administradores no socios:</strong> Permite que personal administrativo opere sin figurar como socios.</li>
                     <li><strong>Privacidad y seguridad:</strong> El login solo lee credenciales livianas, sin exponer datos personales ni bancarios en el token.</li>
                   </ul>
                 </div>
-                <div class="card-clean accent-gold" style="padding: 14px 16px;">
-                  <div class="card-heading" style="font-size: 0.95rem;">2. Modelo RBAC y Reglas de Integridad</div>
-                  <ul class="clean-list" style="font-size: 0.8rem; gap: 6px;">
-                    <li><strong>Tabla intermedia <code>Usuario_Rol</code>:</strong> Relación N:M que otorga permisos granulares (Superadmin, Secretaría, Alquileres, Tesorería, Noticias) con eliminación en cascada.</li>
-                    <li><strong>Zero contraseñas planas:</strong> Hashing criptográfico irreversible Bcrypt (60 caracteres con 10 rondas de salt).</li>
-                    <li><strong>Unicidad estricta:</strong> Claves <code>UNIQUE</code> a nivel motor en <code>Username</code>, <code>DNI</code> y <code>Email</code> que previenen duplicidades o suplantación.</li>
+                <div class="card-clean accent-gold" style="padding: 12px 14px; gap: 6px;">
+                  <div class="card-heading" style="font-size: 0.92rem;">2. Modelo RBAC y Reglas de Integridad</div>
+                  <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
+                    <li><strong>Tabla intermedia <code>Usuario_Rol</code>:</strong> Permisos granulares N:M (Superadmin, Secretaría, Alquileres, Tesorería, Noticias) con CASCADE.</li>
+                    <li><strong>Zero contraseñas planas:</strong> Hashing criptográfico irreversible Bcrypt (60 caracteres con 10 salts).</li>
+                    <li><strong>Unicidad estricta:</strong> Claves <code>UNIQUE</code> a nivel motor en <code>Username</code>, <code>DNI</code> y <code>Email</code> contra duplicidades.</li>
                   </ul>
                 </div>
               </div>
-              <div class="photo-container" style="padding: 6px;">
+              <div class="photo-container" style="padding: 4px; min-height: 0;">
                 <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
                 <img
                   src="assets_presentacion/diagrama_auth_roles.svg"
                   alt="Diagrama EER de Autenticación y Roles RBAC"
-                  style="max-height: 335px;"
+                  style="max-height: 300px;"
                   onclick="openLightbox(this.src)"
                 />
-                <div class="photo-caption" style="margin-top: 4px;">
+                <div class="photo-caption" style="margin-top: 2px;">
                   Esquema Relacional Focalizado — Tablas Usuario, Rol, Usuario_Rol y Socio
                 </div>
               </div>
