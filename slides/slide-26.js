@@ -1,38 +1,37 @@
 const slide = {
   "id": 26,
   "type": "split",
-  "speaker": "matias",
-  "speakerLabel": "MG · Frontend",
-  "block": "BLOQUE 7 — NOTICIAS Y PRENSA",
-  "blockTag": "Bloque 7 · Prensa & Noticias",
-  "title": "Frontend: Portal Editorial y Portada",
-  "subtitle": "Editor visual, previsualización en vivo y lectura cuidada",
+  "speaker": "german",
+  "speakerLabel": "GM · Backend",
+  "block": "BLOQUE 6 — PAGOS Y CUOTAS",
+  "blockTag": "Bloque 6 · Finanzas & Cuotas",
+  "title": "Backend: MercadoPago y Planillas con Rollback",
+  "subtitle": "Checkout Pro, webhooks y procesamiento XLSX",
   "cards": [
     {
-      "accent": "accent-gold",
-      "heading": "AdminNoticiasPage",
+      "accent": "accent-green",
+      "heading": "MercadoPago Checkout Pro",
       "list": [
-        "Editor con vista en vivo",
-        "Programación diferida",
-        "Carga de imágenes"
+        "Preferencias seguras",
+        "Webhooks IPN",
+        "Actualización asíncrona"
       ]
     },
     {
-      "accent": "accent-green",
-      "heading": "Home y detalle",
+      "accent": "accent-gold",
+      "heading": "Planillas y Rollback",
       "list": [
-        "NewsList",
-        "NewsCard",
-        "NoticiaDetallePage",
-        "tipografía editorial"
+        "Procesamiento xlsx",
+        "Retenciones judiciales",
+        "Rollback transaccional"
       ]
     }
   ]
 };
 
 export const notes = {
-  "speaker": "Matías Giménez [Frontend]",
-  "content": "<strong>Qué decir:</strong> 'En AdminNoticiasPage construimos un editor con previsualización en vivo para prensa. En el portal público, las novedades se exhiben mediante componentes NewsList y NewsCard, y en NoticiaDetallePage brindamos una experiencia de lectura cuidada con tipografía Playfair Display.'",
-  "handover": "Pase a Matías: Entramos al Bloque 8 de Testing y Despliegue. Yo iniciaré con la suite de Playwright."
+  "speaker": "Germán Muñoz [Backend]",
+  "content": "<strong>Qué decir:</strong> 'Integramos MercadoPago Checkout Pro con webhooks IPN que confirman pagos de forma desatendida. Para retenciones de sueldo judicial, procesamos archivos Excel con la librería xlsx y desarrollamos un mecanismo de Rollback transaccional que permite revertir una planilla errónea restaurando deudas previas.'",
+  "handover": "Pase a Matías: Matías mostrará la experiencia de usuario en pagos y planillas."
 };
 export default slide;

@@ -1,43 +1,50 @@
 const slide = {
   "id": 12,
-  "type": "split-visual",
-  "speaker": "elenio",
-  "speakerLabel": "EG · Base de Datos",
-  "block": "BLOQUE 3 — AUTENTICACIÓN Y REGISTRO",
-  "blockTag": "Bloque 3 · Autenticación",
-  "title": "Base de Datos: Autenticación y Roles",
-  "subtitle": "Desacoplamiento de cuentas, integridad y hashing seguro",
-  "cards": [
-    {
-      "accent": "accent-blue",
-      "heading": "1. Desacoplamiento Usuario vs Socio",
-      "list": [
-        "Usuario almacena solo credenciales (Username y PasswordHash)",
-        "Socio es una entidad satélite vinculada por clave foránea opcional",
-        "Permite administradores del sistema que no son socios del club",
-        "Protección de datos: el login no expone información sensible"
-      ]
-    },
-    {
-      "accent": "accent-gold",
-      "heading": "2. Modelo RBAC y Reglas de Integridad",
-      "list": [
-        "Tabla intermedia Usuario_Rol para asignación N:M de roles con CASCADE",
-        "0 contraseñas en texto plano: Hash Bcrypt de 60 caracteres (10 salts)",
-        "Restricciones UNIQUE en Username, DNI y Email contra duplicidades"
-      ]
-    }
+  "type": "frontend-custom",
+  "speaker": "matias",
+  "speakerLabel": "MG · Frontend",
+  "block": "BLOQUE 2 — METODOLOGÍA Y ARQUITECTURA",
+  "blockTag": "Bloque 2 · Arquitectura Frontend",
+  "title": "Frontend: SPA y Mapa de Rutas",
+  "subtitle": "35 rutas en React Router 7, separadas por tipo de usuario y protegidas por rol",
+  "routes": [
+    "/",
+    "/pagos-cuotas",
+    "/perfil",
+    "/unauthorized",
+    "/home",
+    "/espacios",
+    "/espacios/:id/reservar",
+    "/alquiler-guest/:token",
+    "/noticias/:id",
+    "/pagos-alquileres/…",
+    "/login",
+    "/register",
+    "/admin/login",
+    "/admin",
+    "/validar-email/:token",
+    "/reset-password",
+    "/mis-alquileres",
+    "/pagos/…",
+    "/admin/socios",
+    "/admin/usuarios",
+    "/admin/alquileres",
+    "/admin/espacios",
+    "/admin/espacios/:id/editar",
+    "/admin/noticias",
+    "/admin/pagos",
+    "/cajas",
+    "/mi-caja",
+    "/gasto · /reposicion",
+    "/gastos/:id · /reposiciones/:id",
+    "/admin/tesoreria/*"
   ],
-  "image": {
-    "src": "assets_presentacion/diagrama_auth_roles.svg",
-    "alt": "Diagrama EER de Autenticación y Roles RBAC",
-    "caption": "Esquema relacional focalizado — Tablas Usuario, Rol, Usuario_Rol y Socio"
-  }
+  "html": "Contenido maquetado directamente en presentacion_pps.html (estilos en presentacion_frontend.css)."
 };
 
 export const notes = {
-  "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> 'Una de las decisiones centrales de diseño fue desacoplar la identidad de login de la ficha social: creamos la tabla Usuario para credenciales puras y vinculamos Socio como entidad satélite. Esto nos da la flexibilidad de tener administradores que no son socios del club y protege la privacidad. Los permisos se modelan con la tabla intermedia Usuario_Rol para asignar múltiples roles RBAC, y a nivel motor garantizamos cero texto plano persistiendo solo hashes Bcrypt de 60 caracteres, junto a restricciones UNIQUE en username, DNI y email.'",
-  "handover": "Pase a Germán: Germán explicará cómo la API gestiona este acceso mediante doble token JWT."
+  "speaker": "Matías Giménez [Frontend]",
+  "content": "<strong>Qué decir:</strong> 'Antes de entrar en los módulos, les muestro cómo está armado el frontend. Es una SPA en React 19 con Vite y React Router 7: 35 rutas y 33 páginas. Las organicé en cinco zonas según quién entra: públicas, acceso, socio, backoffice y caja chica. Hay dos guards: ProtectedRoute para el socio, que además manda a pagar al que debe más de 6 meses y al que entra por primera vez a completar su perfil; y ProtectedRouteAdmin, que lee los roles del JWT y, si no alcanzan, redirige a /unauthorized. Todas las llamadas pasan por apiFetch, que ante un 401 renueva el token y encola las peticiones que quedaron pendientes.'",
+  "handover": "Sigo yo: cómo definimos el diseño visual del sistema."
 };
 export default slide;

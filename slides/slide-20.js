@@ -1,42 +1,34 @@
 const slide = {
   "id": 20,
-  "type": "split-visual",
-  "speaker": "matias",
-  "speakerLabel": "MG · Frontend",
-  "block": "BLOQUE 5 — ESPACIOS Y ALQUILERES",
-  "blockTag": "Bloque 5 · Deportes & Alquileres",
-  "title": "Frontend: Catálogo y Wizard de Reserva",
-  "subtitle": "Selección en tiempo real, desglose de seña y autogestión",
+  "type": "split",
+  "speaker": "german",
+  "speakerLabel": "GM · Backend",
+  "block": "BLOQUE 4 — GESTIÓN DE SOCIOS",
+  "blockTag": "Bloque 4 · Padrón Social",
+  "title": "Backend: API de Gestión de Socios",
+  "subtitle": "Reglas de negocio, aprobación, notificaciones y validación",
   "cards": [
     {
-      "accent": "accent-gold",
-      "heading": "Wizard Interactivo (3 Pasos)",
+      "accent": "accent-green",
+      "heading": "Reglas de Negocio",
       "list": [
-        "Fecha",
-        "Turnos disponibles",
-        "Accesorios y seña"
+        "Estado pendiente",
+        "Aprobación o rechazo",
+        "Solicitud de cambio",
+        "Email con Resend"
       ]
     },
     {
-      "accent": "accent-green",
-      "heading": "Seguimiento",
-      "list": [
-        "MisAlquileresPage",
-        "AlquilerGuestPage",
-        "Historial y cancelación"
-      ]
+      "accent": "accent-gold",
+      "heading": "Endpoints",
+      "code": "<span class=\"method m-get\">GET</span> /api/socios<br><span class=\"method m-patch\">PATCH</span> /api/socios/:id/aprobar<br><span class=\"method m-post\">POST</span> /api/socios/solicitud-cambio"
     }
-  ],
-  "image": {
-    "src": "assets_presentacion/matias_image7.png",
-    "alt": "Captura ReservarEspacioPage",
-    "caption": "Wizard de reserva de espacios deportivos"
-  }
+  ]
 };
 
 export const notes = {
-  "speaker": "Matías Giménez [Frontend]",
-  "content": "<strong>Qué decir:</strong> 'ReservarEspacioPage funciona como un wizard de 3 pasos: el usuario elige la fecha, ve los turnos disponibles en tiempo real en verde y turnos ocupados deshabilitados, y selecciona accesorios con cálculo dinámico del total y de la seña mínima requerida antes de pagar con MercadoPago.'",
-  "handover": "Pase a Elenio: Pasamos al Módulo de Pagos y Cuotas. Elenio explicará la estructura de cuotas y cajas.'"
+  "speaker": "Germán Muñoz [Backend]",
+  "content": "<strong>Qué decir:</strong> 'En la API de socios, el registro inicial nace en estado Pendiente. El administrador revisa la documentación y aprueba o rechaza, momento en que el sistema despacha un email automático vía Resend. Ningún socio puede modificar su DNI directamente: debe generar una solicitud auditable.'",
+  "handover": "Pase a Matías: Matías mostrará las pantallas del panel de socios y perfil."
 };
 export default slide;

@@ -16,6 +16,10 @@ Presentacion web de la PPS del Club Judicial.
 
 - `slides/index.js`: archivo central que importa todas las diapositivas y exporta `slideDefinitions` y `speakerNotesData`.
 
+- `presentacion_frontend.css`: estilos de las diapositivas de Frontend (prefijo `fe-`), separados del CSS general.
+
+- `assets_presentacion/frontend/`: capturas reales del front (escritorio y celular) usadas en esas diapositivas.
+
 
 
 ## Como editar

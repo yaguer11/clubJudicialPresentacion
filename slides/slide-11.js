@@ -29,6 +29,6 @@ const slide = {
 export const notes = {
   "speaker": "Matías Giménez [Frontend]",
   "content": "<strong>Qué decir:</strong> 'Especificamos 31 casos de uso en dos diagramas UML: el portal de autogestión pública y del socio con 14 casos de uso, y el backoffice administrativo con 17 casos de uso. Definimos relaciones de inclusión obligatoria para la pasarela de pagos y de extensión para el cálculo de devolución de señas.'",
-  "handover": "Pase a Elenio: Comenzamos con los módulos funcionales. Elenio iniciará con la base de datos de Autenticación."
+  "handover": "Sigo yo: antes de entrar en los módulos, muestro cómo está armado el frontend."
 };
 export default slide;

@@ -1,39 +1,40 @@
 const slide = {
   "id": 27,
-  "type": "split",
+  "type": "frontend-custom",
   "speaker": "matias",
   "speakerLabel": "MG · Frontend",
-  "block": "BLOQUE 8 — TESTING, CALIDAD Y DESPLIEGUE",
-  "blockTag": "Bloque 8 · Calidad de Software",
-  "title": "Testing E2E Automatizado (Playwright)",
-  "subtitle": "18 archivos de especificación en suite real y mock",
-  "cards": [
+  "block": "BLOQUE 6 — PAGOS Y CUOTAS",
+  "blockTag": "Bloque 6 · Finanzas & Cuotas",
+  "title": "Frontend: Cuotas, Cobranzas y Caja Chica",
+  "subtitle": "Autogestión de la deuda, retornos de MercadoPago, importación de planillas y tesorería",
+  "routes": [
+    "/pagos-cuotas",
+    "/pagos/…",
+    "/pagos-alquileres/…",
+    "/admin/pagos",
+    "/cajas",
+    "/mi-caja"
+  ],
+  "images": [
     {
-      "accent": "accent-gold",
-      "heading": "Suite Real",
-      "list": [
-        "Registro",
-        "Login",
-        "Reservas",
-        "Pagos",
-        "CRUDs"
-      ]
+      "src": "assets_presentacion/frontend/fe_admin_pagos.png",
+      "alt": "Gestión de cobranzas"
     },
     {
-      "accent": "accent-green",
-      "heading": "Suite Mock",
-      "list": [
-        "page.route()",
-        "Estados visuales",
-        "Errores 401/403/500"
-      ]
+      "src": "assets_presentacion/frontend/fe_pagos_cuotas.png",
+      "alt": "Pago de cuotas del socio"
+    },
+    {
+      "src": "assets_presentacion/frontend/fe_caja_movs.png",
+      "alt": "Movimientos de caja chica"
     }
-  ]
+  ],
+  "html": "Contenido maquetado directamente en presentacion_pps.html (estilos en presentacion_frontend.css)."
 };
 
 export const notes = {
   "speaker": "Matías Giménez [Frontend]",
-  "content": "<strong>Qué decir:</strong> 'Desarrollamos 18 archivos de pruebas E2E con Playwright simulando usuarios reales en Chromium y Firefox. La Suite Real con 17 archivos corre contra backend y base de datos real cubriendo registros, alquileres, pagos y CRUDs; y la Suite Mock valida estados visuales y manejo de errores aisladamente.'",
-  "handover": "Pase a Germán: Germán explicará cómo logramos aislar los datos en las pruebas continuas."
+  "content": "<strong>Qué decir:</strong> 'En /pagos-cuotas el socio ve cuántas cuotas debe, el valor vigente, y paga con MercadoPago. Las seis páginas de retorno leen el payment_id y le explican qué pasó con el pago. Para tesorería, /admin/pagos muestra la deuda de cada socio con los mismos chips de estado, importa planillas de Excel identificando al socio por CUIT o CUIL, exporta la planilla y permite deshacer una importación. Y en caja chica el tesorero abre y cierra cajas y aprueba reposiciones, mientras el encargado registra los gastos.'",
+  "handover": "Pase a Elenio: Avanzamos al Módulo de Noticias. Elenio comentará el esquema editorial."
 };
 export default slide;

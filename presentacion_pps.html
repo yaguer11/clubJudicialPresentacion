@@ -12,11 +12,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Fira+Code:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Fira+Code:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
     <link rel="stylesheet" href="presentacion_pps.css" />
+    <link rel="stylesheet" href="presentacion_frontend.css" />
   </head>
   <body>
     <div id="app-container">
@@ -49,7 +50,7 @@
                 d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"
               />
             </svg>
-            Índice (34)
+            Índice (38)
           </button>
           <button
             id="btn-notes"
@@ -874,10 +875,398 @@
           </div>
         </section>
 
-        <!-- SLIDE 12: DB AUTENTICACIÓN -->
+        <!-- SLIDE 12: FRONTEND ARQUITECTURA SPA Y MAPA DE RUTAS -->
         <section
           class="slide"
           data-slide="12"
+          data-speaker="matias"
+          data-block="BLOQUE 2 — METODOLOGÍA Y ARQUITECTURA"
+        >
+          <div class="slide-header">
+            <div class="slide-meta">
+              <span class="slide-block-tag">Bloque 2 · Arquitectura Frontend</span>
+              <h2 class="slide-title">Frontend: SPA y Mapa de Rutas</h2>
+              <p class="slide-subtitle">
+                35 rutas en React Router 7, separadas por tipo de usuario y protegidas por rol
+              </p>
+            </div>
+            <div class="speaker-subtle-badge speaker-matias">
+              <span class="dot"></span>
+              <span>MG · Frontend</span>
+            </div>
+          </div>
+          <div class="slide-body">
+            <div class="fe-map">
+              <div class="fe-col">
+                <div class="fe-stats">
+                  <div class="fe-stat"><b>35</b><span>Rutas</span></div>
+                  <div class="fe-stat"><b>33</b><span>Páginas</span></div>
+                  <div class="fe-stat"><b>8</b><span>Roles</span></div>
+                </div>
+                <div class="fe-card gold">
+                  <h4>Dos guards de ruta</h4>
+                  <ul>
+                    <li><code>ProtectedRoute</code>: sesión de socio. Si tiene deuda de más de 6 meses lo manda a <code>/pagos-cuotas</code>; en su primer ingreso, a <code>/perfil</code>.</li>
+                    <li><code>ProtectedRouteAdmin</code>: lee los <code>roles</code> del JWT y, si no alcanzan, redirige a <code>/unauthorized</code>.</li>
+                  </ul>
+                </div>
+                <div class="fe-card green">
+                  <h4>Capa de datos</h4>
+                  <ul>
+                    <li><code>apiFetch</code> centraliza las llamadas: ante un <strong>401</strong> pide un token nuevo y <strong>encola</strong> las peticiones pendientes hasta tenerlo.</li>
+                    <li>Sesiones separadas: <code>authToken</code> (socio) y <code>adminToken</code> (panel).</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="fe-zones-wrap">
+                <div class="fe-zones">
+                  <div class="fe-zone" style="--zone: #c29a1d">
+                    <div class="fe-zone-head">
+                      <h4>Públicas <em>9</em></h4>
+                      <p>sin sesión</p>
+                    </div>
+                    <ul>
+                      <li><code>/home</code>Portada, noticias y cumpleaños</li>
+                      <li><code>/espacios</code>Catálogo de espacios</li>
+                      <li><code>/espacios/:id/reservar</code>Socio o invitado</li>
+                      <li><code>/alquiler-guest/:token</code>Seguimiento del invitado</li>
+                      <li><code>/noticias/:id</code>Nota completa</li>
+                      <li><code>/pagos-alquileres/…</code>success · failure · pending</li>
+                      <li><code>/unauthorized</code>Acceso denegado</li>
+                    </ul>
+                  </div>
+                  <div class="fe-zone" style="--zone: #8a948a">
+                    <div class="fe-zone-head">
+                      <h4>Acceso <em>5</em></h4>
+                      <p>autenticación</p>
+                    </div>
+                    <ul>
+                      <li><code>/login</code>Socios (DNI)</li>
+                      <li><code>/register</code>Alta de socio y familiares</li>
+                      <li><code>/admin/login</code>Personal del club</li>
+                      <li><code>/validar-email/:token</code>Confirmación de correo</li>
+                      <li><code>/reset-password</code>Recuperar contraseña</li>
+                    </ul>
+                  </div>
+                  <div class="fe-zone" style="--zone: #476946">
+                    <div class="fe-zone-head">
+                      <h4>Socio <em>6</em></h4>
+                      <p>ProtectedRoute</p>
+                    </div>
+                    <ul>
+                      <li><code>/perfil</code>Datos, familia y seguridad</li>
+                      <li><code>/mis-alquileres</code>Reservas y cancelación</li>
+                      <li><code>/pagos-cuotas</code>Deuda y pago online</li>
+                      <li><code>/pagos/…</code>success · failure · pending</li>
+                    </ul>
+                  </div>
+                  <div class="fe-zone" style="--zone: #273b27">
+                    <div class="fe-zone-head">
+                      <h4>Backoffice <em>8</em></h4>
+                      <p>ProtectedRouteAdmin</p>
+                    </div>
+                    <ul>
+                      <li><code>/admin</code><span class="fe-role muted">cualquier admin</span></li>
+                      <li><code>/admin/socios</code><span class="fe-role">Usuarios</span><span class="fe-role">Consulta</span></li>
+                      <li><code>/admin/usuarios</code><span class="fe-role">Superadmin</span></li>
+                      <li><code>/admin/alquileres</code><span class="fe-role">Alquiler</span></li>
+                      <li><code>/admin/espacios</code><span class="fe-role">Alquiler</span></li>
+                      <li><code>/admin/espacios/:id/editar</code><span class="fe-role">Alquiler</span></li>
+                      <li><code>/admin/noticias</code><span class="fe-role">Noticias</span></li>
+                      <li><code>/admin/pagos</code><span class="fe-role">Planillas</span></li>
+                    </ul>
+                  </div>
+                  <div class="fe-zone" style="--zone: #a17d12">
+                    <div class="fe-zone-head">
+                      <h4>Caja chica <em>7</em></h4>
+                      <p>ProtectedRouteAdmin</p>
+                    </div>
+                    <ul>
+                      <li><code>/cajas</code><span class="fe-role">Tesorero</span></li>
+                      <li><code>/mi-caja</code><span class="fe-role green">Encargado</span></li>
+                      <li class="fe-zone-sub">/cajas/:cajaId/movement-list</li>
+                      <li><code>/</code><span class="fe-role">Tesorero</span><span class="fe-role green">Encargado</span></li>
+                      <li><code>/gasto · /reposicion</code><span class="fe-role green">Encargado</span></li>
+                      <li><code>/gastos/:id · /reposiciones/:id</code><span class="fe-role">Tesorero</span><span class="fe-role green">Encargado</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="fe-redirects">
+                  <span>Redirecciones:</span>
+                  <span><code>/</code> → <code>/home</code></span>
+                  <span><code>*</code> → <code>/home</code></span>
+                  <span><code>/admin/tesoreria/*</code> → <code>/admin/usuarios</code></span>
+                  <span><code>SUPERADMIN</code> entra a todo el backoffice</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 13: FRONTEND SISTEMA DE DISEÑO CON TOKENS -->
+        <section
+          class="slide"
+          data-slide="13"
+          data-speaker="matias"
+          data-block="BLOQUE 2 — METODOLOGÍA Y ARQUITECTURA"
+        >
+          <div class="slide-header">
+            <div class="slide-meta">
+              <span class="slide-block-tag">Bloque 2 · Sistema de Diseño</span>
+              <h2 class="slide-title">Sistema de Diseño Basado en Tokens</h2>
+              <p class="slide-subtitle">
+                Un único origen para colores, tipografía, espaciado, radios y sombras en <code class="fe-mono">src/config/</code>
+              </p>
+            </div>
+            <div class="speaker-subtle-badge speaker-matias">
+              <span class="dot"></span>
+              <span>MG · Frontend</span>
+            </div>
+          </div>
+          <div class="slide-body" style="gap: 12px">
+            <div class="fe-pipeline">
+              <div class="fe-step"><b>colors.js + theme.js</b><span>Definen los tokens con nombre semántico</span></div>
+              <div class="fe-arrow">→</div>
+              <div class="fe-step"><b>config/index.js</b><span>Punto de entrada único para importar</span></div>
+              <div class="fe-arrow">→</div>
+              <div class="fe-step hl"><b>createTheme() · App.jsx</b><span>Mapea los tokens a la paleta, h1–h6 y overrides de MUI (Button, Card, Input)</span></div>
+              <div class="fe-arrow">→</div>
+              <div class="fe-step"><b>sx={{ … }}</b><span>Cada pantalla consume tokens, nunca valores sueltos</span></div>
+            </div>
+            <div class="fe-tokens">
+              <div class="fe-token">
+                <div class="fe-token-title"><h4>Tipografía</h4><code>typography.size · weight · lineHeight</code></div>
+                <div class="fe-type-row" style="font-size: 2.5rem; font-weight: 700; letter-spacing: -0.5px"><span>h1</span>Club Judicial<span>40px · 700</span></div>
+                <div class="fe-type-row" style="font-size: 2rem; font-weight: 700; letter-spacing: -0.5px"><span>h2</span>Gestión de socios<span>32px</span></div>
+                <div class="fe-type-row" style="font-size: 1.5rem; font-weight: 700"><span>h3</span>Próximos alquileres<span>24px</span></div>
+                <div class="fe-type-row" style="font-size: 1rem"><span>body</span>Texto de lectura estándar<span>16px · 1.6</span></div>
+                <div class="fe-type-row" style="font-size: 0.875rem"><span>small</span>Metadatos, captions y tablas<span>14px</span></div>
+                <div class="fe-type-row" style="font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase"><span>xs</span>Overline · etiquetas<span>12px</span></div>
+                <div class="fe-families">
+                  <span><b>Plus Jakarta Sans</b> · interfaz (<code class="fe-mono">family.primary</code>)</span>
+                  <span><b>Outfit</b> · logo y hero (<code class="fe-mono">family.brand</code>)</span>
+                </div>
+              </div>
+              <div class="fe-token-col">
+                <div class="fe-token">
+                  <div class="fe-token-title"><h4>Espaciado</h4><code>escala base 4px</code></div>
+                  <div class="fe-space-row"><span>xs</span><i style="width: 6.25%"></i><span>4</span></div>
+                  <div class="fe-space-row"><span>sm</span><i style="width: 12.5%"></i><span>8</span></div>
+                  <div class="fe-space-row"><span>md</span><i style="width: 18.75%"></i><span>12</span></div>
+                  <div class="fe-space-row"><span>base</span><i style="width: 25%"></i><span>16</span></div>
+                  <div class="fe-space-row"><span>lg</span><i style="width: 37.5%"></i><span>24</span></div>
+                  <div class="fe-space-row"><span>xl</span><i style="width: 50%"></i><span>32</span></div>
+                  <div class="fe-space-row"><span>2xl</span><i style="width: 75%"></i><span>48</span></div>
+                  <div class="fe-space-row"><span>3xl</span><i style="width: 100%"></i><span>64</span></div>
+                </div>
+                <div class="fe-token">
+                  <div class="fe-token-title"><h4>Radios</h4><code>borderRadius</code></div>
+                  <div class="fe-radius-grid">
+                    <div><i style="border-radius: 6px"></i>8<br />botón</div>
+                    <div><i style="border-radius: 9px"></i>12<br />chip</div>
+                    <div><i style="border-radius: 12px"></i>16<br />card</div>
+                    <div><i style="border-radius: 16px"></i>24<br />destacado</div>
+                    <div><i style="border-radius: 999px"></i>999<br />pill</div>
+                  </div>
+                </div>
+              </div>
+              <div class="fe-token-col">
+                <div class="fe-token">
+                  <div class="fe-token-title"><h4>Sombras</h4><code>shadows</code></div>
+                  <div class="fe-shadow-grid">
+                    <div style="box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05)">sm</div>
+                    <div style="box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1)">lg</div>
+                    <div style="box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15)">3xl</div>
+                    <div style="box-shadow: 0 12px 30px rgba(194, 154, 29, 0.35)">accent</div>
+                  </div>
+                  <div class="fe-mini-list">Además: <code>transitions</code>, <code>breakpoints</code> (600 · 900 · 1200), <code>zIndex</code> y <code>opacity</code>.</div>
+                </div>
+                <div class="fe-token">
+                  <div class="fe-token-title"><h4>Regla de uso</h4><code>README de config</code></div>
+                  <div class="fe-code"><span class="cm">// ❌ valor suelto</span>
+<span class="bad">sx={{ fontSize: "1.5rem", color: "#2d2d2d" }}</span>
+<span class="cm">// ✅ token del sistema</span>
+<span class="good">sx={{ fontSize: typography.size.h3,
+      color: colors.text.primary }}</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 14: FRONTEND PALETA DERIVADA DEL LOGO -->
+        <section
+          class="slide"
+          data-slide="14"
+          data-speaker="matias"
+          data-block="BLOQUE 2 — METODOLOGÍA Y ARQUITECTURA"
+        >
+          <div class="slide-header">
+            <div class="slide-meta">
+              <span class="slide-block-tag">Bloque 2 · Identidad Visual</span>
+              <h2 class="slide-title">Paleta Institucional a partir del Logo</h2>
+              <p class="slide-subtitle">
+                Los colores del escudo, llevados a tokens con contraste accesible para pantalla
+              </p>
+            </div>
+            <div class="speaker-subtle-badge speaker-matias">
+              <span class="dot"></span>
+              <span>MG · Frontend</span>
+            </div>
+          </div>
+          <div class="slide-body">
+            <div class="fe-palette">
+              <div class="fe-col">
+                <div class="fe-logo-box">
+                  <img src="assets_presentacion/logo.svg" alt="Logo del Club Judicial" onclick="openLightbox(this.src)" />
+                  <div class="fe-logo-chips">
+                    <div class="fe-logo-chip"><i style="background: #eaac00"></i><code>#EAAC00</code>Sol</div>
+                    <div class="fe-logo-chip"><i style="background: #ffef59"></i><code>#FFEF59</code>Brillo</div>
+                    <div class="fe-logo-chip"><i style="background: #9a6d0f"></i><code>#9A6D0F</code>Rayos</div>
+                    <div class="fe-logo-chip"><i style="background: #fdfbf4"></i><code>#FDFBF4</code>Fondo</div>
+                    <div class="fe-logo-chip"><i style="background: #1d6313"></i><code>#1D6313</code>Pinos</div>
+                    <div class="fe-logo-chip"><i style="background: #56b03a"></i><code>#56B03A</code>Follaje</div>
+                    <div class="fe-logo-chip"><i style="background: #604f38"></i><code>#604F38</code>Anillo</div>
+                    <div class="fe-logo-chip"><i style="background: #000000"></i><code>#000000</code>Letras</div>
+                  </div>
+                </div>
+                <div class="fe-card gold">
+                  <h4>Criterio</h4>
+                  <ul>
+                    <li>El <strong>dorado del sol</strong> se volvió el color de acción: <code>primary</code>.</li>
+                    <li>El <strong>verde de los pinos</strong>, oscurecido casi a negro, reemplaza al negro de las letras para textos, header y marca: <code>secondary</code>.</li>
+                    <li>El <strong>marfil del fondo</strong> se usa como fondo neutro de página.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="fe-col" style="gap: 11px">
+                <div class="fe-swatch-group">
+                  <div class="fe-swatch-label">colors.primary · Dorado institucional <span>acción principal y destacados</span></div>
+                  <div class="fe-swatches">
+                    <div class="fe-swatch big" style="background: #d4af37; color: #1f261f"><b>#D4AF37</b>main</div>
+                    <div class="fe-swatch big" style="background: #b89630; color: #1f261f"><b>#B89630</b>dark · hover</div>
+                    <div class="fe-swatch big" style="background: #f4cf7d; color: #1f261f"><b>#F4CF7D</b>light · logo en header</div>
+                  </div>
+                </div>
+                <div class="fe-swatch-group">
+                  <div class="fe-swatch-label">colors.secondary · Verde del club <span>títulos, header y texto principal</span></div>
+                  <div class="fe-swatches">
+                    <div class="fe-swatch big" style="background: #1f261f; color: #f4cf7d"><b>#1F261F</b>main</div>
+                    <div class="fe-swatch big" style="background: #141a14; color: #f4cf7d"><b>#141A14</b>dark</div>
+                    <div class="fe-swatch big" style="background: #2e3b2e; color: #f4cf7d"><b>#2E3B2E</b>light</div>
+                  </div>
+                </div>
+                <div class="fe-swatch-group">
+                  <div class="fe-swatch-label">Neutros <span>fondo, superficies, texto secundario y bordes</span></div>
+                  <div class="fe-swatches">
+                    <div class="fe-swatch" style="background: #eeedea; color: #1f261f"><b>#EEEDEA</b>background</div>
+                    <div class="fe-swatch" style="background: #ffffff; color: #1f261f"><b>#FFFFFF</b>surface</div>
+                    <div class="fe-swatch" style="background: #667066; color: #ffffff"><b>#667066</b>text.secondary</div>
+                    <div class="fe-swatch" style="background: #e5e5e5; color: #1f261f"><b>#E5E5E5</b>border</div>
+                  </div>
+                </div>
+                <div class="fe-swatch-group">
+                  <div class="fe-swatch-label">colors.status <span>solo para comunicar estados, nunca decoración</span></div>
+                  <div class="fe-swatches">
+                    <div class="fe-swatch" style="background: #2e7d32; color: #fff; min-height: 40px"><b>#2E7D32</b>success</div>
+                    <div class="fe-swatch" style="background: #ff9800; color: #1f261f; min-height: 40px"><b>#FF9800</b>warning</div>
+                    <div class="fe-swatch" style="background: #d32f2f; color: #fff; min-height: 40px"><b>#D32F2F</b>error</div>
+                    <div class="fe-swatch" style="background: #2196f3; color: #1f261f; min-height: 40px"><b>#2196F3</b>info</div>
+                  </div>
+                </div>
+                <div class="fe-contrast">
+                  <div style="background: #ffffff; color: #1f261f; border: 1px solid #e5e5e5">Texto sobre blanco <em>15.5:1 AAA</em></div>
+                  <div style="background: #d4af37; color: #1f261f">Botón dorado, texto verde <em>7.4:1 AAA</em></div>
+                  <div class="fail" style="background: #d4af37; color: #ffffff">Blanco sobre dorado <em>2.1:1 ✗</em></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 15: FRONTEND REGLAS DE DISEÑO Y COMPONENTES BASE -->
+        <section
+          class="slide"
+          data-slide="15"
+          data-speaker="matias"
+          data-block="BLOQUE 2 — METODOLOGÍA Y ARQUITECTURA"
+        >
+          <div class="slide-header">
+            <div class="slide-meta">
+              <span class="slide-block-tag">Bloque 2 · Reglas de Diseño</span>
+              <h2 class="slide-title">Reglas de Diseño y Componentes Base</h2>
+              <p class="slide-subtitle">
+                Convenciones escritas en <code class="fe-mono">config/README.md</code> para que todos los módulos se vean iguales
+              </p>
+            </div>
+            <div class="speaker-subtle-badge speaker-matias">
+              <span class="dot"></span>
+              <span>MG · Frontend</span>
+            </div>
+          </div>
+          <div class="slide-body">
+            <div class="fe-rules">
+              <div class="fe-col">
+                <div class="fe-rule-grid">
+                  <div class="fe-rule">
+                    <h5><span>01</span>Una acción principal</h5>
+                    <p>Una sola acción dorada por pantalla. El resto, secundarias con borde neutro.</p>
+                    <div class="fe-demo"><span class="fe-btn primary">Importar pagos</span><span class="fe-btn secondary">Exportar</span></div>
+                  </div>
+                  <div class="fe-rule">
+                    <h5><span>02</span>Color con propósito</h5>
+                    <p>Verde, rojo y naranja solo significan estado. El mismo estado tiene el mismo color en todos los módulos.</p>
+                    <div class="fe-demo"><span class="fe-chip success">Pagado</span><span class="fe-chip warning">Pendiente</span><span class="fe-chip error">Cancelado</span><span class="fe-chip default">Finalizado</span></div>
+                  </div>
+                  <div class="fe-rule">
+                    <h5><span>03</span>Sin valores sueltos</h5>
+                    <p>Ni hex, ni <code>rgba()</code>, ni <code>fontWeight: 700</code>. Transparencias con <code>alpha(colors.x, 0.08)</code>.</p>
+                  </div>
+                  <div class="fe-rule">
+                    <h5><span>04</span>Tablas legibles</h5>
+                    <p>Máximo 6–7 columnas: dato principal arriba y secundario abajo. Montos a la derecha con <code>formatCurrency</code> y dígitos tabulares.</p>
+                  </div>
+                  <div class="fe-rule">
+                    <h5><span>05</span>Modales consistentes</h5>
+                    <p>Cabecera blanca con ícono en tile dorado; las confirmaciones destructivas usan <code>tone="danger"</code>.</p>
+                  </div>
+                  <div class="fe-rule">
+                    <h5><span>06</span>Mobile primero</h5>
+                    <p>Cada pantalla se revisa a 375px: las tablas pasan a tarjetas y las acciones extra van al menú “Más”.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="fe-col">
+                <div class="fe-card green" style="flex: 1; gap: 8px">
+                  <h4>Componentes compartidos del panel · <code>components/Admin/</code></h4>
+                  <table class="fe-comp-table">
+                    <thead>
+                      <tr><th>Componente</th><th>Resuelve</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>AdminPageLayout</td><td>Encabezado, título “Gestión de …”, volver y acciones (con menú “Más” en mobile)</td></tr>
+                      <tr><td>adminSx</td><td>Estilos de tarjeta, botones, tabla y montos</td></tr>
+                      <tr><td>StatusChip</td><td>Estado con fondo tenue y texto del color del estado</td></tr>
+                      <tr><td>AdminRowActions</td><td>Acciones de fila: íconos grises + menú ⋮; las destructivas al final, en rojo</td></tr>
+                      <tr><td>AdminDialog</td><td>Todos los modales del backoffice</td></tr>
+                      <tr><td>AdminStatCard</td><td>Métricas arriba de cada listado</td></tr>
+                      <tr><td>ROLE_LABELS</td><td><code>ENCARGADO</code> → “Encargado de caja”</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="fe-card gold">
+                  <h4>Checklist antes de cerrar una pantalla</h4>
+                  <p>Layout compartido · una acción dorada · tabla con <code>adminSx</code> · estados con <code>StatusChip</code> · modales con <code>AdminDialog</code> · sin hex sueltos · revisada en escritorio y a 375px.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SLIDE 16: DB AUTENTICACIÓN -->
+        <section
+          class="slide"
+          data-slide="16"
           data-speaker="elenio"
           data-block="BLOQUE 3 — AUTENTICACIÓN Y REGISTRO"
         >
@@ -941,10 +1330,10 @@
           </div>
         </section>
 
-        <!-- SLIDE 13: BACKEND API DE AUTENTICACIÓN -->
+        <!-- SLIDE 17: BACKEND API DE AUTENTICACIÓN -->
         <section
           class="slide"
-          data-slide="13"
+          data-slide="17"
           data-speaker="german"
           data-block="BLOQUE 3 — AUTENTICACIÓN Y REGISTRO"
         >
@@ -1009,20 +1398,19 @@
           </div>
         </section>
 
-        <!-- SLIDE 14: FRONTEND PANTALLAS DE ACCESO -->
+        <!-- SLIDE 18: FRONTEND ACCESO, REGISTRO Y SESIONES -->
         <section
           class="slide"
-          data-slide="14"
+          data-slide="18"
           data-speaker="matias"
           data-block="BLOQUE 3 — AUTENTICACIÓN Y REGISTRO"
         >
           <div class="slide-header">
             <div class="slide-meta">
               <span class="slide-block-tag">Bloque 3 · Autenticación</span>
-              <h2 class="slide-title">Frontend: Pantallas de Acceso y Rutas</h2>
+              <h2 class="slide-title">Frontend: Acceso, Registro y Sesiones</h2>
               <p class="slide-subtitle">
-                Interfaces diferenciadas, carga con Cloudinary y enrutamiento
-                protegido
+                Ingresos separados para socios y personal, alta guiada y sesiones que se renuevan solas
               </p>
             </div>
             <div class="speaker-subtle-badge speaker-matias">
@@ -1031,62 +1419,60 @@
             </div>
           </div>
           <div class="slide-body">
-            <div class="grid-2col-visual">
-              <div
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  gap: 12px;
-                  justify-content: center;
-                "
-              >
-                <div class="card-clean accent-gold">
-                  <div class="card-heading">Vistas de Acceso</div>
-                  <ul class="clean-list">
-                    <li>
-                      <code>LoginPage</code> (socios) y
-                      <code>AdminLoginPage</code> (decodifica roles).
-                    </li>
-                    <li>
-                      <code>RegisterPage</code> con foto de perfil directa a
-                      Cloudinary.
-                    </li>
-                    <li>Validación interactiva con react-hook-form / MUI.</li>
+            <div class="fe-module">
+              <div class="fe-col">
+                <div class="fe-card">
+                  <h4>Rutas del módulo</h4>
+                  <div class="fe-routes">
+                    <div class="fe-route"><code>/login</code>Socios, con DNI y contraseña</div>
+                    <div class="fe-route"><code>/register</code>Alta de socio en pasos</div>
+                    <div class="fe-route"><code>/admin/login</code>Personal del club</div>
+                    <div class="fe-route"><code>/validar-email/:token</code>Confirmación de correo</div>
+                    <div class="fe-route"><code>/reset-password</code>Recuperación de clave</div>
+                    <div class="fe-route"><code>/unauthorized</code>Rol insuficiente</div>
+                  </div>
+                </div>
+                <div class="fe-card gold">
+                  <h4>Registro guiado</h4>
+                  <ul>
+                    <li>El formulario se adapta al <strong>tipo de socio</strong> elegido en el primer paso.</li>
+                    <li>Carga opcional del grupo familiar con foto del DNI subida a <strong>Cloudinary</strong>.</li>
+                    <li>La cuenta queda <strong>pendiente</strong> hasta que la aprueba un administrador.</li>
                   </ul>
                 </div>
-                <div class="card-clean accent-green">
-                  <div class="card-heading">Seguridad en Cliente</div>
-                  <ul class="clean-list">
-                    <li>
-                      Componentes <code>ProtectedRoute</code> y
-                      <code>ProtectedRouteAdmin</code>.
-                    </li>
-                    <li>
-                      Interceptor Axios: captura 401 y solicita nuevo token con
-                      Refresh Token de forma transparente.
-                    </li>
+                <div class="fe-card green">
+                  <h4>Sesión en el cliente</h4>
+                  <ul>
+                    <li>Socio y personal guardan tokens distintos: <code>authToken</code> / <code>adminToken</code>, cada uno con su refresh token.</li>
+                    <li>Con un 401, <code>apiFetch</code> renueva el token sin cortar la navegación; si falla, cierra la sesión.</li>
+                    <li>El header del panel muestra solo los módulos que permiten los roles del JWT.</li>
                   </ul>
                 </div>
               </div>
-              <div class="photo-container">
-                <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
-                <img
-                  src="assets_presentacion/matias_image4.png"
-                  alt="Captura de Pantalla Login / Register"
-                  onclick="openLightbox(this.src)"
-                />
-                <div class="photo-caption">
-                  Interfaz de Inicio de Sesión y Acceso Seguro de Socios
+              <div class="fe-shots main-side">
+                <div class="fe-shot">
+                  <div class="fe-shot-bar"><i></i><i></i><i></i><span class="fe-shot-url">clubjudicialvm.com.ar<b>/login</b></span></div>
+                  <div class="fe-shot-media"><img src="assets_presentacion/frontend/fe_login.png" alt="Pantalla de inicio de sesión de socios" onclick="openLightbox(this.src)" /></div>
+                </div>
+                <div class="fe-side">
+                  <div class="fe-shot">
+                    <div class="fe-shot-bar"><i></i><i></i><i></i><span class="fe-shot-url">…<b>/register</b></span></div>
+                    <div class="fe-shot-media"><img src="assets_presentacion/frontend/fe_register.png" alt="Registro de socios" onclick="openLightbox(this.src)" /></div>
+                  </div>
+                  <div class="fe-shot">
+                    <div class="fe-shot-bar"><i></i><i></i><i></i><span class="fe-shot-url">…<b>/admin/login</b></span></div>
+                    <div class="fe-shot-media"><img src="assets_presentacion/frontend/fe_admin_login.png" alt="Ingreso del personal" onclick="openLightbox(this.src)" /></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- SLIDE 15: DB SOCIOS -->
+        <!-- SLIDE 19: DB SOCIOS -->
         <section
           class="slide"
-          data-slide="15"
+          data-slide="19"
           data-speaker="elenio"
           data-block="BLOQUE 4 — GESTIÓN DE SOCIOS"
         >
@@ -1150,10 +1536,10 @@
           </div>
         </section>
 
-        <!-- SLIDE 16: BACKEND API DE SOCIOS -->
+        <!-- SLIDE 20: BACKEND API DE SOCIOS -->
         <section
           class="slide"
-          data-slide="16"
+          data-slide="20"
           data-speaker="german"
           data-block="BLOQUE 4 — GESTIÓN DE SOCIOS"
         >
@@ -1211,19 +1597,19 @@
           </div>
         </section>
 
-        <!-- SLIDE 17: FRONTEND PANEL DE SOCIOS -->
+        <!-- SLIDE 21: FRONTEND PERFIL DEL SOCIO Y BACKOFFICE -->
         <section
           class="slide"
-          data-slide="17"
+          data-slide="21"
           data-speaker="matias"
           data-block="BLOQUE 4 — GESTIÓN DE SOCIOS"
         >
           <div class="slide-header">
             <div class="slide-meta">
               <span class="slide-block-tag">Bloque 4 · Padrón Social</span>
-              <h2 class="slide-title">Frontend: Panel de Socios y Perfil</h2>
+              <h2 class="slide-title">Frontend: Perfil del Socio y Backoffice</h2>
               <p class="slide-subtitle">
-                DataGrid administrativo y autogestión de credencial y familia
+                El socio pide cambios desde su perfil; secretaría los aprueba desde el panel
               </p>
             </div>
             <div class="speaker-subtle-badge speaker-matias">
@@ -1232,65 +1618,58 @@
             </div>
           </div>
           <div class="slide-body">
-            <div class="grid-2col-visual">
-              <div
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  gap: 12px;
-                  justify-content: center;
-                "
-              >
-                <div class="card-clean accent-gold">
-                  <div class="card-heading">AdminSociosPage (Backoffice)</div>
-                  <ul class="clean-list">
-                    <li>
-                      DataGrid con ordenamiento, filtrado por estado y búsqueda
-                      reactiva.
-                    </li>
-                    <li>
-                      Modales contextuales: <code>AprobarSocioModal</code> y
-                      <code>EditarSocioModal</code>.
-                    </li>
-                    <li>
-                      Pestaña de auditoría para solicitudes de cambio
-                      pendientes.
-                    </li>
+            <div class="fe-module">
+              <div class="fe-col">
+                <div class="fe-card">
+                  <h4>Rutas del módulo</h4>
+                  <div class="fe-routes">
+                    <div class="fe-route"><code>/perfil</code>Datos, familia, foto y seguridad</div>
+                    <div class="fe-route"><code>/admin</code>Dashboard con módulos según rol</div>
+                    <div class="fe-route"><code>/admin/socios</code>Solicitudes y consulta del padrón</div>
+                    <div class="fe-route"><code>/admin/usuarios</code>Personal y permisos <span class="fe-role">Superadmin</span></div>
+                  </div>
+                </div>
+                <div class="fe-card gold">
+                  <h4>Perfil del socio</h4>
+                  <ul>
+                    <li>Secciones en acordeón: datos personales, contacto, familiares y seguridad.</li>
+                    <li>Los cambios de datos y de familiares no se guardan directo: generan una <strong>solicitud</strong> que se marca “Requiere aprobación”.</li>
+                    <li>Foto de perfil subida a Cloudinary.</li>
                   </ul>
                 </div>
-                <div class="card-clean accent-green">
-                  <div class="card-heading">ProfilePage (Socio)</div>
-                  <ul class="clean-list">
-                    <li>
-                      Credencial digital, estado de cuenta y foto de perfil en
-                      Cloudinary.
-                    </li>
-                    <li>
-                      Gestión de miembros familiares adjuntando foto del DNI.
-                    </li>
+                <div class="fe-card green">
+                  <h4>Panel de socios y personal</h4>
+                  <ul>
+                    <li>Una bandeja con altas, cambios de datos y altas o bajas de familiares, cada una con Aprobar / Rechazar.</li>
+                    <li>Al aprobar, el modal pregunta si es <strong>socio nuevo o existente</strong> para calcular su deuda inicial.</li>
+                    <li>Buscador del padrón, exportación a Excel y una <strong>matriz de permisos</strong> por rol para el personal.</li>
                   </ul>
                 </div>
               </div>
-              <div class="photo-container">
-                <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
-                <img
-                  src="assets_presentacion/matias_image5.png"
-                  alt="Captura AdminSociosPage"
-                  onclick="openLightbox(this.src)"
-                />
-                <div class="photo-caption">
-                  Panel Administrativo de Socios — Aprobación y Gestión de
-                  Solicitudes
+              <div class="fe-shots main-side">
+                <div class="fe-shot">
+                  <div class="fe-shot-bar"><i></i><i></i><i></i><span class="fe-shot-url">clubjudicialvm.com.ar<b>/admin/socios</b></span></div>
+                  <div class="fe-shot-media"><img src="assets_presentacion/frontend/fe_dlg_aprobar.png" alt="Modal de aprobación de socio" onclick="openLightbox(this.src)" /></div>
+                </div>
+                <div class="fe-side">
+                  <div class="fe-shot">
+                    <div class="fe-shot-bar"><i></i><i></i><i></i><span class="fe-shot-url">…<b>/perfil</b></span></div>
+                    <div class="fe-shot-media"><img src="assets_presentacion/frontend/fe_perfil.png" alt="Perfil del socio" onclick="openLightbox(this.src)" /></div>
+                  </div>
+                  <div class="fe-shot">
+                    <div class="fe-shot-bar"><i></i><i></i><i></i><span class="fe-shot-url">…<b>/admin/usuarios</b></span></div>
+                    <div class="fe-shot-media"><img src="assets_presentacion/frontend/fe_admin_usuarios.png" alt="Matriz de permisos del personal" onclick="openLightbox(this.src)" /></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- SLIDE 18: DB ESPACIOS Y ALQUILERES -->
+        <!-- SLIDE 22: DB ESPACIOS Y ALQUILERES -->
         <section
           class="slide"
-          data-slide="18"
+          data-slide="22"
           data-speaker="elenio"
           data-block="BLOQUE 5 — ESPACIOS Y ALQUILERES"
         >
@@ -1353,10 +1732,10 @@
           </div>
         </section>
 
-        <!-- SLIDE 19: BACKEND API DE ALQUILERES -->
+        <!-- SLIDE 23: BACKEND API DE ALQUILERES -->
         <section
           class="slide"
-          data-slide="19"
+          data-slide="23"
           data-speaker="german"
           data-block="BLOQUE 5 — ESPACIOS Y ALQUILERES"
         >
@@ -1412,23 +1791,19 @@
           </div>
         </section>
 
-        <!-- SLIDE 20: FRONTEND RESERVA DE ESPACIOS -->
+        <!-- SLIDE 24: FRONTEND ESPACIOS Y RESERVAS -->
         <section
           class="slide"
-          data-slide="20"
+          data-slide="24"
           data-speaker="matias"
           data-block="BLOQUE 5 — ESPACIOS Y ALQUILERES"
         >
           <div class="slide-header">
             <div class="slide-meta">
-              <span class="slide-block-tag"
-                >Bloque 5 · Deportes & Alquileres</span
-              >
-              <h2 class="slide-title">
-                Frontend: Catálogo y Wizard de Reserva
-              </h2>
+              <span class="slide-block-tag">Bloque 5 · Deportes &amp; Alquileres</span>
+              <h2 class="slide-title">Frontend: Espacios y Reservas</h2>
               <p class="slide-subtitle">
-                Selección en tiempo real, desglose de seña y autogestión
+                Catálogo público, wizard de reserva para socios e invitados y gestión desde el panel
               </p>
             </div>
             <div class="speaker-subtle-badge speaker-matias">
@@ -1437,60 +1812,57 @@
             </div>
           </div>
           <div class="slide-body">
-            <div class="grid-2col-visual">
-              <div
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  gap: 12px;
-                  justify-content: center;
-                "
-              >
-                <div class="card-clean accent-gold">
-                  <div class="card-heading">Wizard Interactivo (3 Pasos)</div>
-                  <ul class="clean-list">
-                    <li>1. Selección de fecha en calendario dinámico.</li>
-                    <li>
-                      2. Grilla de turnos: verde disponibles, ocupados
-                      bloqueados.
-                    </li>
-                    <li>3. Accesorios con cálculo en vivo de seña y seguro.</li>
+            <div class="fe-module">
+              <div class="fe-col">
+                <div class="fe-card">
+                  <h4>Rutas del módulo</h4>
+                  <div class="fe-routes">
+                    <div class="fe-route"><code>/espacios</code><code>/espacios/:id/reservar</code></div>
+                    <div class="fe-route"><code>/mis-alquileres</code><code>/alquiler-guest/:token</code></div>
+                    <div class="fe-route"><code>/admin/alquileres</code><code>/admin/espacios</code></div>
+                    <div class="fe-route"><code>/admin/espacios/:id/editar</code><span class="fe-role">Admin Alquiler</span></div>
+                  </div>
+                </div>
+                <div class="fe-card gold">
+                  <h4>Wizard de reserva</h4>
+                  <ul>
+                    <li>Pasos dinámicos: <strong>Fecha y horario → Adicionales → Tus datos → Confirmación</strong>. Si no hay accesorios o no hace falta el CBU de devolución, el paso no aparece.</li>
+                    <li>El calendario deshabilita días sin turnos y fechas completas; solo ofrece turnos libres.</li>
+                    <li>Tarifa de socio o de invitado según la sesión. Con 3 cuotas impagas, la reserva se bloquea y lo manda a pagar.</li>
                   </ul>
                 </div>
-                <div class="card-clean accent-green">
-                  <div class="card-heading">Seguimiento y Cancelaciones</div>
-                  <ul class="clean-list">
-                    <li>
-                      <code>MisAlquileresPage</code>: Historial, botón pagar
-                      saldo o cancelar.
-                    </li>
-                    <li>
-                      <code>AlquilerGuestPage</code>: Vista directa para
-                      invitados tokenizados.
-                    </li>
+                <div class="fe-card green">
+                  <h4>Seguimiento y panel</h4>
+                  <ul>
+                    <li>“Mis reservas” muestra la <strong>cuenta regresiva</strong> para pagar la seña, el pago en revisión y el cambio de fecha (con más de 10 días).</li>
+                    <li>El panel filtra por estado y fecha, alterna tabla y tarjetas, exporta a Excel y permite cargar reservas manuales.</li>
                   </ul>
                 </div>
               </div>
-              <div class="photo-container">
-                <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
-                <img
-                  src="assets_presentacion/matias_image7.png"
-                  alt="Captura ReservarEspacioPage"
-                  onclick="openLightbox(this.src)"
-                />
-                <div class="photo-caption">
-                  Wizard de Reserva de Espacios Deportivos con Disponibilidad en
-                  Tiempo Real
+              <div class="fe-shots main-side">
+                <div class="fe-shot">
+                  <div class="fe-shot-bar"><i></i><i></i><i></i><span class="fe-shot-url">clubjudicialvm.com.ar<b>/espacios/1/reservar</b></span></div>
+                  <div class="fe-shot-media"><img src="assets_presentacion/frontend/fe_reservar.jpg" alt="Wizard de reserva con turnos" onclick="openLightbox(this.src)" /></div>
+                </div>
+                <div class="fe-side">
+                  <div class="fe-shot">
+                    <div class="fe-shot-bar"><i></i><i></i><i></i><span class="fe-shot-url">…<b>/mis-alquileres</b></span></div>
+                    <div class="fe-shot-media"><img src="assets_presentacion/frontend/fe_mis_alquileres.png" alt="Mis reservas del socio" onclick="openLightbox(this.src)" /></div>
+                  </div>
+                  <div class="fe-shot">
+                    <div class="fe-shot-bar"><i></i><i></i><i></i><span class="fe-shot-url">…<b>/admin/alquileres</b></span></div>
+                    <div class="fe-shot-media"><img src="assets_presentacion/frontend/fe_admin_alquileres.png" alt="Gestión de alquileres" onclick="openLightbox(this.src)" /></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- SLIDE 21: DB CUOTAS Y PAGOS -->
+        <!-- SLIDE 25: DB CUOTAS Y PAGOS -->
         <section
           class="slide"
-          data-slide="21"
+          data-slide="25"
           data-speaker="elenio"
           data-block="BLOQUE 6 — PAGOS Y CUOTAS"
         >
@@ -1550,10 +1922,10 @@
           </div>
         </section>
 
-        <!-- SLIDE 22: BACKEND INTEGRACIÓN PAGOS -->
+        <!-- SLIDE 26: BACKEND INTEGRACIÓN PAGOS -->
         <section
           class="slide"
-          data-slide="22"
+          data-slide="26"
           data-speaker="german"
           data-block="BLOQUE 6 — PAGOS Y CUOTAS"
         >
@@ -1606,20 +1978,19 @@
           </div>
         </section>
 
-        <!-- SLIDE 23: FRONTEND PAGO DE CUOTAS -->
+        <!-- SLIDE 27: FRONTEND CUOTAS, COBRANZAS Y CAJA CHICA -->
         <section
           class="slide"
-          data-slide="23"
+          data-slide="27"
           data-speaker="matias"
           data-block="BLOQUE 6 — PAGOS Y CUOTAS"
         >
           <div class="slide-header">
             <div class="slide-meta">
-              <span class="slide-block-tag">Bloque 6 · Finanzas & Cuotas</span>
-              <h2 class="slide-title">Frontend: Pago de Cuotas y Tesorería</h2>
+              <span class="slide-block-tag">Bloque 6 · Finanzas &amp; Cuotas</span>
+              <h2 class="slide-title">Frontend: Cuotas, Cobranzas y Caja Chica</h2>
               <p class="slide-subtitle">
-                Autogestión de deuda, importador drag & drop y 6 páginas de
-                retorno
+                Autogestión de la deuda, retornos de MercadoPago, importación de planillas y tesorería
               </p>
             </div>
             <div class="speaker-subtle-badge speaker-matias">
@@ -1628,56 +1999,58 @@
             </div>
           </div>
           <div class="slide-body">
-            <div class="grid-2col-visual">
-              <div
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  gap: 12px;
-                  justify-content: center;
-                "
-              >
-                <div class="card-clean accent-gold">
-                  <div class="card-heading">PagosCuotasPage (Socio)</div>
-                  <p class="clean-list">
-                    Resumen mensualizado, selección de cuotas y botón oficial
-                    MercadoPago.
-                  </p>
+            <div class="fe-module">
+              <div class="fe-col">
+                <div class="fe-card">
+                  <h4>Rutas del módulo</h4>
+                  <div class="fe-routes">
+                    <div class="fe-route"><code>/pagos-cuotas</code>Deuda y pago online del socio</div>
+                    <div class="fe-route"><code>/pagos/…</code><code>/pagos-alquileres/…</code>6 retornos</div>
+                    <div class="fe-route"><code>/admin/pagos</code>Cobranzas <span class="fe-role">Planillas</span></div>
+                    <div class="fe-route"><code>/cajas</code><code>/mi-caja</code><code>…/movement-list</code></div>
+                  </div>
                 </div>
-                <div class="card-clean accent-green">
-                  <div class="card-heading">PagosSociosPage (Tesorería)</div>
-                  <p class="clean-list">
-                    Drag & drop de archivos <code>.xlsx</code>, previsualización
-                    de errores y botón de <strong>Rollback</strong>.
-                  </p>
+                <div class="fe-card gold">
+                  <h4>Lado del socio</h4>
+                  <ul>
+                    <li>Resumen de cuotas adeudadas, valor vigente y total, con pago por <strong>MercadoPago</strong>.</li>
+                    <li>Las páginas de retorno (éxito, pendiente, error) leen el <code>payment_id</code> y explican qué pasa con el pago.</li>
+                    <li>Con más de 6 meses de deuda, el guard solo le deja ver esta pantalla.</li>
+                  </ul>
                 </div>
-                <div class="card-clean accent-blue">
-                  <div class="card-heading">6 Páginas de Retorno</div>
-                  <p class="clean-list">
-                    Vistas de Éxito, Pendiente y Fallo para cuotas y alquileres.
-                  </p>
+                <div class="fe-card green">
+                  <h4>Cobranzas y caja chica</h4>
+                  <ul>
+                    <li>Tabla de deuda con estados “Al día / Pendiente / Impago”, valor de cuota, sancionados e historial.</li>
+                    <li>Importación de Excel (columnas CUIT/CUIL + IMPORTE), exportación de la planilla y <strong>rollback</strong> de una importación (superadmin).</li>
+                    <li>Caja chica: el tesorero abre y cierra cajas y aprueba reposiciones; el encargado carga gastos con recibo.</li>
+                  </ul>
                 </div>
               </div>
-              <div class="photo-container">
-                <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
-                <img
-                  src="assets_presentacion/Admin_Payment_Import-2026-05-10-154528.png"
-                  alt="Captura Importación Planillas"
-                  onclick="openLightbox(this.src)"
-                />
-                <div class="photo-caption">
-                  Panel de Tesorería — Carga Masiva de Planillas y
-                  Previsualización de Imputaciones
+              <div class="fe-shots main-side">
+                <div class="fe-shot">
+                  <div class="fe-shot-bar"><i></i><i></i><i></i><span class="fe-shot-url">clubjudicialvm.com.ar<b>/admin/pagos</b></span></div>
+                  <div class="fe-shot-media"><img src="assets_presentacion/frontend/fe_admin_pagos.png" alt="Gestión de cobranzas" onclick="openLightbox(this.src)" /></div>
+                </div>
+                <div class="fe-side">
+                  <div class="fe-shot">
+                    <div class="fe-shot-bar"><i></i><i></i><i></i><span class="fe-shot-url">…<b>/pagos-cuotas</b></span></div>
+                    <div class="fe-shot-media"><img src="assets_presentacion/frontend/fe_pagos_cuotas.png" alt="Pago de cuotas del socio" onclick="openLightbox(this.src)" /></div>
+                  </div>
+                  <div class="fe-shot">
+                    <div class="fe-shot-bar"><i></i><i></i><i></i><span class="fe-shot-url">…<b>/cajas/1/movement-list</b></span></div>
+                    <div class="fe-shot-media"><img src="assets_presentacion/frontend/fe_caja_movs.png" alt="Movimientos de caja chica" onclick="openLightbox(this.src)" /></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- SLIDE 24: DB NOTICIAS -->
+        <!-- SLIDE 28: DB NOTICIAS -->
         <section
           class="slide"
-          data-slide="24"
+          data-slide="28"
           data-speaker="elenio"
           data-block="BLOQUE 7 — NOTICIAS Y PRENSA"
         >
@@ -1737,10 +2110,10 @@
           </div>
         </section>
 
-        <!-- SLIDE 25: BACKEND API DE NOTICIAS -->
+        <!-- SLIDE 29: BACKEND API DE NOTICIAS -->
         <section
           class="slide"
-          data-slide="25"
+          data-slide="29"
           data-speaker="german"
           data-block="BLOQUE 7 — NOTICIAS Y PRENSA"
         >
@@ -1791,19 +2164,19 @@
           </div>
         </section>
 
-        <!-- SLIDE 26: FRONTEND NOTICIAS -->
+        <!-- SLIDE 30: FRONTEND PORTADA Y NOTICIAS -->
         <section
           class="slide"
-          data-slide="26"
+          data-slide="30"
           data-speaker="matias"
           data-block="BLOQUE 7 — NOTICIAS Y PRENSA"
         >
           <div class="slide-header">
             <div class="slide-meta">
-              <span class="slide-block-tag">Bloque 7 · Prensa & Noticias</span>
-              <h2 class="slide-title">Frontend: Portal Editorial y Portada</h2>
+              <span class="slide-block-tag">Bloque 7 · Prensa &amp; Noticias</span>
+              <h2 class="slide-title">Frontend: Portada y Portal de Noticias</h2>
               <p class="slide-subtitle">
-                Editor visual con previsualización en vivo y lectura cuidada
+                La cara pública del club y el editor que usa la subcomisión de prensa
               </p>
             </div>
             <div class="speaker-subtle-badge speaker-matias">
@@ -1812,38 +2185,56 @@
             </div>
           </div>
           <div class="slide-body">
-            <div class="grid-2col">
-              <div class="card-clean accent-gold">
-                <div class="card-heading">AdminNoticiasPage (Prensa)</div>
-                <ul class="clean-list">
-                  <li>Editor con previsualización simultánea.</li>
-                  <li>Programación diferida con selector de fecha/hora.</li>
-                  <li>
-                    Subida de fotografía Cloudinary con indicador de progreso.
-                  </li>
-                </ul>
+            <div class="fe-module">
+              <div class="fe-col">
+                <div class="fe-card">
+                  <h4>Rutas del módulo</h4>
+                  <div class="fe-routes">
+                    <div class="fe-route"><code>/home</code>Portada pública</div>
+                    <div class="fe-route"><code>/noticias/:id</code>Nota completa</div>
+                    <div class="fe-route"><code>/admin/noticias</code>Editor <span class="fe-role">Admin Noticias</span></div>
+                  </div>
+                </div>
+                <div class="fe-card gold">
+                  <h4>Portada</h4>
+                  <ul>
+                    <li>Hero con la identidad del club y accesos a noticias y espacios.</li>
+                    <li>Cumpleaños del día y bienvenida a los socios aprobados en los últimos 10 días.</li>
+                    <li>Últimas noticias: solo las que están en estado <code>PUBLICADO</code>.</li>
+                  </ul>
+                </div>
+                <div class="fe-card green">
+                  <h4>Nota y editor</h4>
+                  <ul>
+                    <li>La nota respeta la estructura periodística: volanta, título, copete, cuerpo, galería y video de YouTube embebido.</li>
+                    <li>El editor maneja <strong>Borrador / Programado / Publicado</strong> con <code>StatusChip</code>, categorías, imágenes en Cloudinary y vista previa del video.</li>
+                  </ul>
+                </div>
               </div>
-              <div class="card-clean accent-green">
-                <div class="card-heading">Componentes Públicos (Home)</div>
-                <ul class="clean-list">
-                  <li>
-                    Componentes <code>NewsList</code> y
-                    <code>NewsCard</code> con hover animado.
-                  </li>
-                  <li>
-                    <code>NoticiaDetallePage</code>: Tipografía editorial
-                    Playfair Display y reproductor de video responsivo.
-                  </li>
-                </ul>
+              <div class="fe-shots main-side">
+                <div class="fe-shot">
+                  <div class="fe-shot-bar"><i></i><i></i><i></i><span class="fe-shot-url">clubjudicialvm.com.ar<b>/home</b></span></div>
+                  <div class="fe-shot-media"><img src="assets_presentacion/frontend/fe_home.jpg" alt="Portada del sitio" onclick="openLightbox(this.src)" /></div>
+                </div>
+                <div class="fe-side">
+                  <div class="fe-shot">
+                    <div class="fe-shot-bar"><i></i><i></i><i></i><span class="fe-shot-url">…<b>/noticias/5</b></span></div>
+                    <div class="fe-shot-media"><img src="assets_presentacion/frontend/fe_noticia.jpg" alt="Detalle de noticia" onclick="openLightbox(this.src)" /></div>
+                  </div>
+                  <div class="fe-shot">
+                    <div class="fe-shot-bar"><i></i><i></i><i></i><span class="fe-shot-url">…<b>/admin/noticias</b></span></div>
+                    <div class="fe-shot-media"><img src="assets_presentacion/frontend/fe_admin_noticias.jpg" alt="Gestión de noticias" onclick="openLightbox(this.src)" /></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- SLIDE 27: ESTRATEGIA DE TESTING E2E -->
+        <!-- SLIDE 31: ESTRATEGIA DE TESTING E2E -->
         <section
           class="slide"
-          data-slide="27"
+          data-slide="31"
           data-speaker="matias"
           data-block="BLOQUE 8 — TESTING, CALIDAD Y DESPLIEGUE"
         >
@@ -1898,10 +2289,10 @@
           </div>
         </section>
 
-        <!-- SLIDE 28: INTEGRACIÓN CONTINUA Y AISLAMIENTO -->
+        <!-- SLIDE 32: INTEGRACIÓN CONTINUA Y AISLAMIENTO -->
         <section
           class="slide"
-          data-slide="28"
+          data-slide="32"
           data-speaker="german"
           data-block="BLOQUE 8 — TESTING, CALIDAD Y DESPLIEGUE"
         >
@@ -1950,10 +2341,10 @@
           </div>
         </section>
 
-        <!-- SLIDE 29: DESPLIEGUE EN PRODUCCIÓN -->
+        <!-- SLIDE 33: DESPLIEGUE EN PRODUCCIÓN -->
         <section
           class="slide"
-          data-slide="29"
+          data-slide="33"
           data-speaker="elenio"
           data-block="BLOQUE 8 — TESTING, CALIDAD Y DESPLIEGUE"
         >
@@ -2073,19 +2464,19 @@
       </div>
         </section>
 
-        <!-- SLIDE 30: CONCLUSIÓN MATÍAS -->
+        <!-- SLIDE 34: CONCLUSIÓN MATÍAS -->
         <section
           class="slide"
-          data-slide="30"
+          data-slide="34"
           data-speaker="matias"
           data-block="BLOQUE 9 — CONCLUSIONES"
         >
           <div class="slide-header">
             <div class="slide-meta">
               <span class="slide-block-tag">Bloque 9 · Balance de Rol</span>
-              <h2 class="slide-title">Conclusiones: Frontend & QA</h2>
+              <h2 class="slide-title">Conclusiones: Frontend &amp; QA</h2>
               <p class="slide-subtitle">
-                Balance individual del Desarrollador Frontend
+                Balance individual del desarrollo de la interfaz
               </p>
             </div>
             <div class="speaker-subtle-badge speaker-matias">
@@ -2093,45 +2484,54 @@
               <span>MG · Frontend</span>
             </div>
           </div>
-          <div class="slide-body">
-            <div class="grid-2col">
-              <div class="card-clean accent-gold">
-                <div class="card-heading">Competencias Técnicas</div>
-                <ul class="clean-list">
-                  <li>
-                    Consolidación en React 19, Vite y sistema de diseño
-                    unificado en Material UI.
-                  </li>
-                  <li>
-                    Seguridad en cliente con RBAC y renovación silenciosa con
-                    interceptores Axios.
-                  </li>
-                  <li>
-                    Integración exitosa de pasarela MercadoPago y Cloudinary.
-                  </li>
-                </ul>
+          <div class="slide-body" style="gap: 14px">
+            <div class="fe-kpis">
+              <div class="fe-kpi"><b>35</b><span>rutas en 5 zonas de acceso</span></div>
+              <div class="fe-kpi"><b>33</b><span>páginas en React 19</span></div>
+              <div class="fe-kpi"><b>8</b><span>roles resueltos en el cliente</span></div>
+              <div class="fe-kpi"><b>1</b><span>sistema de tokens para toda la app</span></div>
+              <div class="fe-kpi"><b>375px</b><span>ancho mínimo revisado</span></div>
+            </div>
+            <div class="fe-module" style="grid-template-columns: minmax(0, 58fr) minmax(0, 42fr)">
+              <div class="fe-col">
+                <div class="fe-card gold">
+                  <h4>Lo que me llevo</h4>
+                  <ul>
+                    <li><strong>Diseñar antes de maquetar:</strong> definir paleta, tipografía y espaciado como tokens evitó rehacer pantallas y dio una identidad única.</li>
+                    <li><strong>Reglas escritas:</strong> el README de <code>config/</code> y los componentes del panel hicieron que todos los módulos se vean iguales, aunque los armemos en momentos distintos.</li>
+                    <li><strong>Seguridad también en el cliente:</strong> guards por rol y renovación de sesión sin interrumpir al usuario.</li>
+                  </ul>
+                </div>
+                <div class="fe-card green">
+                  <h4>Calidad</h4>
+                  <ul>
+                    <li>Suites E2E con Playwright: una contra la API real y otra con la API mockeada para probar estados de la interfaz.</li>
+                    <li>Las capturas de esta presentación salieron de la app real, con datos de prueba.</li>
+                  </ul>
+                </div>
               </div>
-              <div class="card-clean accent-green">
-                <div class="card-heading">Cultura de Calidad</div>
-                <ul class="clean-list">
-                  <li>
-                    Adopción de pruebas automatizadas con Playwright cubriendo
-                    flujos reales.
-                  </li>
-                  <li>
-                    Garantía de cero regresiones en producción gracias a CI en
-                    GitHub Actions.
-                  </li>
-                </ul>
+              <div class="fe-shots" style="grid-template-columns: repeat(3, 1fr)">
+                <div class="fe-shot">
+                  <div class="fe-shot-bar"><span class="fe-shot-url"><b>/home</b></span></div>
+                  <div class="fe-shot-media"><img src="assets_presentacion/frontend/fe_m_home.jpg" alt="Portada en celular" onclick="openLightbox(this.src)" /></div>
+                </div>
+                <div class="fe-shot">
+                  <div class="fe-shot-bar"><span class="fe-shot-url"><b>/mis-alquileres</b></span></div>
+                  <div class="fe-shot-media"><img src="assets_presentacion/frontend/fe_m_mis_alquileres.png" alt="Mis reservas en celular" onclick="openLightbox(this.src)" /></div>
+                </div>
+                <div class="fe-shot">
+                  <div class="fe-shot-bar"><span class="fe-shot-url"><b>/admin/pagos</b></span></div>
+                  <div class="fe-shot-media"><img src="assets_presentacion/frontend/fe_m_admin_pagos.png" alt="Cobranzas en celular" onclick="openLightbox(this.src)" /></div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- SLIDE 31: CONCLUSIÓN GERMÁN -->
+        <!-- SLIDE 35: CONCLUSIÓN GERMÁN -->
         <section
           class="slide"
-          data-slide="31"
+          data-slide="35"
           data-speaker="german"
           data-block="BLOQUE 9 — CONCLUSIONES"
         >
@@ -2183,10 +2583,10 @@
           </div>
         </section>
 
-        <!-- SLIDE 32: CONCLUSIÓN ELENIO -->
+        <!-- SLIDE 36: CONCLUSIÓN ELENIO -->
         <section
           class="slide"
-          data-slide="32"
+          data-slide="36"
           data-speaker="elenio"
           data-block="BLOQUE 9 — CONCLUSIONES"
         >
@@ -2311,10 +2711,10 @@
           </div>
         </section>
 
-        <!-- SLIDE 33: IMPACTO ORGANIZACIONAL Y FUTURO -->
+        <!-- SLIDE 37: IMPACTO ORGANIZACIONAL Y FUTURO -->
         <section
           class="slide"
-          data-slide="33"
+          data-slide="37"
           data-speaker="equipo"
           data-block="BLOQUE 9 — CONCLUSIONES"
         >
@@ -2372,10 +2772,10 @@
           </div>
         </section>
 
-        <!-- SLIDE 34: CIERRE Y PREGUNTAS -->
+        <!-- SLIDE 38: CIERRE Y PREGUNTAS -->
         <section
           class="slide"
-          data-slide="34"
+          data-slide="38"
           data-speaker="equipo"
           data-block="BLOQUE 9 — CONCLUSIONES"
         >
@@ -2466,7 +2866,7 @@
       <footer class="bottom-bar">
         <div class="slide-counter">
           <span class="current" id="current-slide-num">1</span>
-          <span>/ 34</span>
+          <span>/ 38</span>
           <select id="quick-jump" class="quick-jump-select">
             <!-- Opciones generadas dinámicamente -->
           </select>
@@ -2533,7 +2933,7 @@
     </div>
 
     <script>
-      // Guión detallado para cada una de las 34 diapositivas
+      // Guión detallado para cada una de las 38 diapositivas
       const speakerNotesData = {
         1: {
           speaker: "Matías Giménez (Apertura)",
@@ -2578,7 +2978,7 @@
         9: {
           speaker: "Germán Muñoz [Backend]",
           content: "<strong>Qué decir:</strong> 'El stack se compone de Node.js 20, Express, JWT y BcryptJS en el backend; MySQL 8 con motor InnoDB en persistencia; React 19, Vite y Material UI v6 en el frontend; y los SDK de MercadoPago, Cloudinary, Resend y Playwright para QA. La elección no fue casual: es un stack que ya habíamos utilizado y consolidado previamente en la cátedra de Programación Web de la UNViM, lo que nos dio una base sólida para arrancar sin fricción, aprovechando el ecosistema de JavaScript de punta a punta, su alta concurrencia asíncrona y la seguridad transaccional de MySQL.'",
-          handover: "Pase a Elenio: Elenio presentará los actores del sistema y el modelo de roles.'",
+          handover: "Pase a Elenio: Elenio presentará los actores del sistema y el modelo de roles.'"
         },
         10: {
           speaker: "Elenio García [Base de Datos]",
@@ -2588,119 +2988,139 @@
         11: {
           speaker: "Matías Giménez [Frontend]",
           content: "<strong>Qué decir:</strong> 'Especificamos 31 casos de uso en dos diagramas UML: el portal de autogestión pública y del socio con 14 casos de uso, y el backoffice administrativo con 17 casos de uso. Definimos relaciones de inclusión obligatoria para la pasarela de pagos y de extensión para el cálculo de devolución de señas.'",
-          handover: "Pase a Elenio: Comenzamos con los módulos funcionales. Elenio iniciará con la base de datos de Autenticación."
+          handover: "Sigo yo: antes de entrar en los módulos, muestro cómo está armado el frontend."
         },
         12: {
-          speaker: "Elenio García [Base de Datos]",
-          content: "<strong>Qué decir:</strong> 'Una de las decisiones centrales de diseño fue desacoplar la identidad de login de la ficha social: creamos la tabla Usuario para credenciales puras y vinculamos Socio como entidad satélite. Esto nos otorga la flexibilidad de tener administradores que no son socios del club y protege la privacidad. Los permisos se modelan con la tabla intermedia Usuario_Rol para asignar múltiples roles RBAC, y a nivel motor garantizamos cero texto plano persistiendo solo hashes Bcrypt de 60 caracteres, junto a restricciones UNIQUE en username, DNI y email.'",
-          handover: "Pase a Germán: Germán explicará cómo la API gestiona este acceso mediante doble token JWT.",
+          speaker: "Matías Giménez [Frontend]",
+          content: "<strong>Qué decir:</strong> 'Antes de entrar en los módulos, les muestro cómo está armado el frontend. Es una SPA en React 19 con Vite y React Router 7: 35 rutas y 33 páginas. Las organicé en cinco zonas según quién entra: públicas, acceso, socio, backoffice y caja chica. Hay dos guards: ProtectedRoute para el socio, que además manda a pagar al que debe más de 6 meses y al que entra por primera vez a completar su perfil; y ProtectedRouteAdmin, que lee los roles del JWT y, si no alcanzan, redirige a /unauthorized. Todas las llamadas pasan por apiFetch, que ante un 401 renueva el token y encola las peticiones que quedaron pendientes.'",
+          handover: "Sigo yo: cómo definimos el diseño visual del sistema."
         },
         13: {
+          speaker: "Matías Giménez [Frontend]",
+          content: "<strong>Qué decir:</strong> 'Para que 33 páginas se vean como un solo producto, armé un sistema de diseño basado en tokens dentro de src/config. colors.js y theme.js definen cada valor con un nombre semántico: una escala tipográfica que va de H1 de 40px a xs de 12px, espaciado en base 4, radios según el tipo de elemento, sombras, transiciones y breakpoints. index.js los exporta y en App.jsx los paso a createTheme de Material UI, así un botón o una card ya salen con el radio y la tipografía correctos. La regla es simple: en las pantallas no se escriben valores sueltos, solo tokens. Si mañana cambia el dorado, se cambia en un único lugar.'",
+          handover: "Sigo yo: de dónde sale la paleta de colores."
+        },
+        14: {
+          speaker: "Matías Giménez [Frontend]",
+          content: "<strong>Qué decir:</strong> 'La paleta sale del logo actual del club. El dorado del sol pasó a ser el color primario, el de la acción principal de cada pantalla. El verde de los pinos lo oscurecí casi a negro y reemplaza al negro de las letras: es el color de títulos, header y texto. El marfil del fondo del escudo es el fondo neutro de la página. Verde, naranja, rojo y azul quedan reservados para comunicar estados. Además verifiqué el contraste: el texto principal sobre blanco da 15,5 a 1, y por eso el texto de los botones dorados es verde oscuro y no blanco, porque blanco sobre dorado da 2,1 a 1 y no se lee bien.'",
+          handover: "Sigo yo: las reglas que fijamos para aplicar este sistema."
+        },
+        15: {
+          speaker: "Matías Giménez [Frontend]",
+          content: "<strong>Qué decir:</strong> 'Además de los tokens, dejé escritas las reglas de diseño en el README de config, con un checklist para cerrar cada pantalla del panel. Una sola acción principal dorada por pantalla; los colores de estado solo para estados y siempre iguales en todos los módulos; nada de valores hardcodeados; tablas de pocas columnas con los montos a la derecha; todos los modales con el mismo formato; y cada pantalla revisada en celular a 375 píxeles. Para que se cumplan sin pensarlo, armé componentes compartidos: AdminPageLayout, StatusChip, AdminRowActions, AdminDialog y AdminStatCard.'",
+          handover: "Pase a Elenio: Comenzamos con los módulos funcionales. Elenio iniciará con la base de datos de Autenticación."
+        },
+        16: {
+          speaker: "Elenio García [Base de Datos]",
+          content: "<strong>Qué decir:</strong> 'Una de las decisiones centrales de diseño fue desacoplar la identidad de login de la ficha social: creamos la tabla Usuario para credenciales puras y vinculamos Socio como entidad satélite. Esto nos otorga la flexibilidad de tener administradores que no son socios del club y protege la privacidad. Los permisos se modelan con la tabla intermedia Usuario_Rol para asignar múltiples roles RBAC, y a nivel motor garantizamos cero texto plano persistiendo solo hashes Bcrypt de 60 caracteres, junto a restricciones UNIQUE en username, DNI y email.'",
+          handover: "Pase a Germán: Germán explicará cómo la API gestiona este acceso mediante doble token JWT."
+        },
+        17: {
           speaker: "Germán Muñoz [Backend]",
           content: "<strong>Qué decir:</strong> 'La API de autenticación implementa un esquema de doble token JWT: Access Token de 15 minutos para peticiones seguras y Refresh Token de 7 días para renovación silenciosa. Las contraseñas se cifran con 10 rondas de salteo y middlewares requireRole() validan los permisos en cada endpoint protegido.'",
           handover: "Pase a Matías: Matías mostrará cómo consume el frontend esta capa de autenticación."
         },
-        14: {
+        18: {
           speaker: "Matías Giménez [Frontend]",
-          content: "<strong>Qué decir:</strong> 'En el cliente desarrollamos LoginPage y AdminLoginPage. Las rutas están protegidas con ProtectedRoute según los roles del token. Mediante interceptores de Axios, cuando la API retorna un 401 por token expirado, el cliente solicita un nuevo Access Token de forma transparente sin interrumpir la navegación.'",
+          content: "<strong>Qué decir:</strong> 'En el cliente hay dos ingresos: /login para socios, con DNI, y /admin/login para el personal. Cada uno guarda su propio token y refresh token, así una sesión no pisa a la otra. El registro es guiado: primero se elige el tipo de socio y el formulario se adapta; se puede cargar el grupo familiar con la foto del DNI, que va a Cloudinary, y la cuenta queda pendiente hasta que la aprueba secretaría. Cuando el token vence, apiFetch lo renueva sin que el usuario lo note.'",
           handover: "Pase a Elenio: Pasamos al Módulo de Socios. Elenio explicará el modelo de datos de miembros y familias."
         },
-        15: {
+        19: {
           speaker: "Elenio García [Base de Datos]",
           content: "<strong>Qué decir:</strong> 'El modelo del padrón social fue concebido para garantizar administración transparente y auditable: la tabla Socio almacena los datos civiles y el estado de membresía. Para el grupo familiar diseñamos la tabla Miembro_Familiar vinculada al titular, normalizando los tipos de vínculos en el catálogo Parentesco en 3FN para erradicar columnas repetitivas. Un requerimiento crítico del club era la trazabilidad: ningún socio altera unilateralmente su DNI, CUIL o datos sensibles en la base de datos; para ello modelamos Solicitud_Cambio_Datos y Solicitud_Cambio_Familiar, que registran propuestas sujetas a resolución de secretaría. Finalmente, creamos un índice FULLTEXT sobre Nombre, Apellido y Email para búsquedas instantáneas en milisegundos sin escaneos lentos de tabla.'",
-          handover: "Pase a Germán: Germán detallará las reglas de negocio de la API de socios.",
+          handover: "Pase a Germán: Germán detallará las reglas de negocio de la API de socios."
         },
-        16: {
+        20: {
           speaker: "Germán Muñoz [Backend]",
           content: "<strong>Qué decir:</strong> 'En la API de socios, el registro inicial nace en estado Pendiente. El administrador revisa la documentación y aprueba o rechaza, momento en que el sistema despacha un email automático vía Resend. Ningún socio puede modificar su DNI directamente: debe generar una solicitud auditable.'",
           handover: "Pase a Matías: Matías mostrará las pantallas del panel de socios y perfil."
         },
-        17: {
+        21: {
           speaker: "Matías Giménez [Frontend]",
-          content: "<strong>Qué decir:</strong> 'AdminSociosPage utiliza Material UI DataGrid para ordenar, paginar y filtrar en milisegundos con modales de aprobación y rechazo. En ProfilePage, el socio visualiza su credencial digital, sube su foto a Cloudinary y gestiona familiares adjuntando la foto de su DNI.'",
+          content: "<strong>Qué decir:</strong> 'En /perfil el socio ve sus datos organizados en secciones. Lo importante es que los cambios no se guardan directo: generan una solicitud que secretaría revisa. Del otro lado, /admin/socios es una bandeja con altas, cambios de datos y cambios de familiares. Al aprobar un alta, el modal pregunta si es un socio nuevo o uno que ya existía, porque eso define su deuda inicial. Y en /admin/usuarios el superadmin gestiona al personal con una matriz de permisos por rol.'",
           handover: "Pase a Elenio: Entramos al módulo de Alquileres. Elenio explicará la disponibilidad y el Event Scheduler."
         },
-        18: {
+        22: {
           speaker: "Elenio García [Base de Datos]",
           content: "<strong>Qué decir:</strong> 'El módulo de alquileres y espacios deportivos requirió un diseño relacional altamente riguroso para eliminar el solapamiento histórico de turnos. En la tabla Espacio modelamos tarifas diferenciadas para socios y particulares, seña mínima y seguro de garantía. La tabla Horario_Espacio estructura las franjas horarias por día con una clave UNIQUE compuesta y validación CHECK para evitar rangos nulos. Para el bloqueo efectivo de turnos diseñamos la intermedia Alquiler_Espacio, vinculada a Alquiler. Pero el aporte clave de ingeniería fue automatizar la liberación de reservas: configuramos un Evento Programado en MySQL (Event Scheduler) que se ejecuta cada 60 segundos. Si una reserva en estado PENDIENTE no abona la seña dentro del plazo de 60 minutos (FechaExpiracion &lt; NOW()), el evento actualiza el estado a CANCELADO y libera la franja horaria automáticamente para que vuelva a estar disponible en la plataforma sin intervención administrativa.'",
           handover: "Pase a Germán: Germán explicará cómo la API gestiona la concurrencia atómica, el TokenSeguimiento para invitados y las devoluciones de seña."
         },
-        19: {
+        23: {
           speaker: "Germán Muñoz [Backend]",
           content: "<strong>Qué decir:</strong> 'La API asegura la disponibilidad atómica con transacciones SQL para evitar colisiones. Para invitados (no socios), generamos un TokenSeguimiento criptográfico que les permite gestionar su turno vía email sin crear cuenta. Cancelaciones con más de 48 hs registran el CBU para reintegro de seña.'",
           handover: "Pase a Matías: Matías presentará el flujo interactivo de reserva en la web."
         },
-        20: {
+        24: {
           speaker: "Matías Giménez [Frontend]",
-          content: "<strong>Qué decir:</strong> 'ReservarEspacioPage funciona como un wizard de 3 pasos: el usuario elige la fecha, ve los turnos disponibles en tiempo real en verde y turnos ocupados deshabilitados, y selecciona accesorios con cálculo dinámico del total y de la seña mínima requerida antes de pagar con MercadoPago.'",
-          handover: "Pase a Elenio: Pasamos al Módulo de Pagos y Cuotas. Elenio explicará la estructura de cuotas y cajas.'"
+          content: "<strong>Qué decir:</strong> 'La reserva es un wizard cuyos pasos se arman según el caso: si el espacio no tiene accesorios no aparece Adicionales, y Tus Datos solo aparece para invitados o cuando hace falta un CBU para devolver el seguro. El calendario deshabilita los días sin turnos y las fechas completas. Si el socio tiene 3 cuotas impagas no puede reservar y lo derivo a pagar. En Mis reservas hay una cuenta regresiva para pagar la seña y se puede cambiar la fecha con más de 10 días de anticipación. En el panel, los alquileres se filtran, se exportan a Excel y se pueden cargar reservas manuales.'",
+          handover: "Pase a Elenio: Pasamos al Módulo de Pagos y Cuotas. Elenio explicará la estructura de cuotas y cajas."
         },
-        21: {
+        25: {
           speaker: "Elenio García [Base de Datos]",
           content: "<strong>Qué decir:</strong> 'El módulo contable requería máxima rigurosidad en el modelado relacional: en la tabla Cuota implementamos el atributo PorcentajePagado DECIMAL(3,2) junto a una restricción de dominio CHECK (PorcentajePagado &gt;= 0.00 AND PorcentajePagado &lt;= 1.00). Esto permite que el sistema soporte pagos parciales de cuotas mensuales de forma nativa y matemáticamente exacta, evitando descalces en centavos. Una decisión clave de arquitectura fue aplicar una desnormalización controlada en la tabla Deuda_Socio: ¿por qué lo hicimos? Porque cada vez que un socio inicia sesión, entra a su perfil o intenta reservar una cancha deportiva, el sistema necesita conocer si tiene cuotas adeudadas. Si mantuviéramos una 3FN pura sin desnormalizar, la base de datos tendría que ejecutar consultas con SUM() y JOIN sobre años de historial para miles de socios concurrentemente. Al almacenar Cant_Cuotas en Deuda_Socio logramos una lectura instantánea O(1), asegurando la consistencia mediante transacciones SQL atómicas cada vez que se registra un pago o se importa una planilla judicial. Asimismo, para asegurar la conciliación bancaria y la idempotencia de los webhooks de MercadoPago, registramos PreferenceID y PaymentID, y modelamos el libro diario contable con Caja y Caja_Movimiento.'",
           handover: "Pase a Germán: Germán explicará la integración de MercadoPago y el procesador de planillas con Rollback."
         },
-        22: {
+        26: {
           speaker: "Germán Muñoz [Backend]",
           content: "<strong>Qué decir:</strong> 'Integramos MercadoPago Checkout Pro con webhooks IPN que confirman pagos de forma desatendida. Para retenciones de sueldo judicial, procesamos archivos Excel con la librería xlsx y desarrollamos un mecanismo de Rollback transaccional que permite revertir una planilla errónea restaurando deudas previas.'",
           handover: "Pase a Matías: Matías mostrará la experiencia de usuario en pagos y planillas."
         },
-        23: {
+        27: {
           speaker: "Matías Giménez [Frontend]",
-          content: "<strong>Qué decir:</strong> 'En PagosCuotasPage el socio consulta sus deudas y abona con el botón oficial de MercadoPago. Para Tesorería, creamos PagosSociosPage con drag & drop de planillas Excel, previsualización de inconsistencias y el botón de Rollback. Desarrollamos 6 páginas de retorno de pasarela.'",
-          handover: "Pase a Elenio: Avanzamos al Módulo de Noticias. Elenio comentará el esquema editorial.'"
+          content: "<strong>Qué decir:</strong> 'En /pagos-cuotas el socio ve cuántas cuotas debe, el valor vigente, y paga con MercadoPago. Las seis páginas de retorno leen el payment_id y le explican qué pasó con el pago. Para tesorería, /admin/pagos muestra la deuda de cada socio con los mismos chips de estado, importa planillas de Excel identificando al socio por CUIT o CUIL, exporta la planilla y permite deshacer una importación. Y en caja chica el tesorero abre y cierra cajas y aprueba reposiciones, mientras el encargado registra los gastos.'",
+          handover: "Pase a Elenio: Avanzamos al Módulo de Noticias. Elenio comentará el esquema editorial."
         },
-        24: {
+        28: {
           speaker: "Elenio García [Base de Datos]",
           content: "<strong>Qué decir:</strong> 'El canal de comunicación institucional del club requirió modelar la tabla Noticia con estricto rigor periodístico: incorporamos atributos formales de prensa como Volanta para orientar la sección, Titulo, Copete o bajada como resumen para las tarjetas de portada, Cuerpo de tipo LONGTEXT para artículos extensos con formato enriquecido, ImagenDestacada para la portada y EmbedLink para videos de YouTube incrustados. Normalizamos las etiquetas temáticas en la tabla catálogo Categoria en 3FN (Torneos, Obras, Sociales, Beneficios) para evitar redundancia textual. Asimismo, soportamos la publicación diferida: mediante el atributo FechaPublicacion y el estado BORRADOR o PUBLICADO, la subcomisión de prensa puede redactar comunicados con días de antelación, garantizando que el portal público solo proyecte aquellas notas donde FechaPublicacion sea menor o igual a NOW(), sin requerir tareas programadas adicionales.'",
           handover: "Pase a Germán: Germán detallará la API editorial, el procesamiento de imágenes con Multer y Cloudinary, y la seguridad con sanitización contra XSS."
         },
-        25: {
+        29: {
           speaker: "Germán Muñoz [Backend]",
           content: "<strong>Qué decir:</strong> 'Conectamos Multer en memoria con Cloudinary para optimizar imágenes en la nube en formato WebP sin saturar el servidor local. Aplicamos validaciones contra ataques XSS en el cuerpo y restringimos la publicación a los roles ADMIN_NOTICIAS y SUPERADMIN.'",
           handover: "Pase a Matías: Matías mostrará la interfaz editorial y la presentación en el Home."
         },
-        26: {
+        30: {
           speaker: "Matías Giménez [Frontend]",
-          content: "<strong>Qué decir:</strong> 'En AdminNoticiasPage construimos un editor con previsualización en vivo para prensa. En el portal público, las novedades se exhiben mediante componentes NewsList y NewsCard, y en NoticiaDetallePage brindamos una experiencia de lectura cuidada con tipografía Playfair Display.'",
+          content: "<strong>Qué decir:</strong> 'La portada es la cara pública del club: el hero, los cumpleaños del día, la bienvenida a los socios recién aprobados y las últimas noticias publicadas. La nota respeta la estructura periodística, con volanta, copete, galería y video. Y el editor del panel maneja los estados borrador, programado y publicado, con categorías e imágenes en Cloudinary.'",
           handover: "Pase a Matías: Entramos al Bloque 8 de Testing y Despliegue. Yo iniciaré con la suite de Playwright."
         },
-        27: {
+        31: {
           speaker: "Matías Giménez [Frontend]",
           content: "<strong>Qué decir:</strong> 'Desarrollamos 18 archivos de pruebas E2E con Playwright simulando usuarios reales en Chromium y Firefox. La Suite Real con 17 archivos corre contra backend y base de datos real cubriendo registros, alquileres, pagos y CRUDs; y la Suite Mock valida estados visuales y manejo de errores aisladamente.'",
           handover: "Pase a Germán: Germán explicará cómo logramos aislar los datos en las pruebas continuas."
         },
-        28: {
+        32: {
           speaker: "Germán Muñoz [Backend]",
           content: "<strong>Qué decir:</strong> 'Utilizamos una base de datos de testing réplica y generamos sufijos aleatorios en los DNI y usuarios para evitar colisiones de clave única. En GitHub Actions, si un test falla, el runner guarda grabaciones en video y capturas de pantalla durante 7 días para facilitar la depuración inmediata.'",
           handover: "Pase a Elenio: Elenio explicará el despliegue en la nube."
         },
-        29: {
+        33: {
           speaker: "Elenio García [Base de Datos]",
           content: "<strong>Qué decir:</strong> 'Desplegamos la solución completa en la nube PaaS de Railway con una arquitectura moderna de 3 niveles: 1) El frontend es una SPA en React 19 empaquetada con Vite 6 que se distribuye a través de una Edge CDN con compresión Brotli y certificados SSL/TLS automáticos; 2) La API REST en Node.js y Express corre dentro de un contenedor Docker/Nixpacks con auto-reinicio y healthchecks continuos, protegiendo todas las claves y tokens de MercadoPago, Cloudinary y Resend en variables de entorno cifradas; y 3) Nuestra base de datos MySQL 8.0 gestionada se comunica con la API dentro de la misma red privada virtual (VPC) sin transitar por el internet público, asegurando tiempos de respuesta de consulta de base de datos menores a 2 milisegundos y aislamiento total contra accesos no autorizados.'",
           handover: "Pase a Matías: Pasamos a las conclusiones finales. Matías iniciará con el balance de Frontend."
         },
-        30: {
+        34: {
           speaker: "Matías Giménez [Frontend]",
-          content: "<strong>Qué decir:</strong> 'La PPS me permitió consolidar competencias en React 19, Vite y diseño unificado en Material UI. Implementé seguridad RBAC en cliente con interceptores Axios para renovación silenciosa de tokens y adquirí experiencia formativa invaluable en testing automatizado con Playwright y CI/CD.'",
+          content: "<strong>Qué decir:</strong> 'Como balance me llevo tres cosas: diseñar antes de maquetar, con tokens, nos ahorró rehacer pantallas; dejar las reglas por escrito hizo que todo el sistema se vea uniforme; y la seguridad también se resuelve en el cliente. Sumamos testing E2E con Playwright, contra la API real y con la API mockeada. Y todo se revisó en celular: estas tres capturas son la app a 375 píxeles.'",
           handover: "Pase a Germán: Germán compartirá sus conclusiones de Backend."
         },
-        31: {
+        35: {
           speaker: "Germán Muñoz [Backend]",
           content: "<strong>Qué decir:</strong> 'Logramos una API RESTful modular y escalable en Node/Express, implementando autenticación stateless con doble token JWT y orquestando servicios cloud de MercadoPago, Resend y Cloudinary. Destaco la resolución del Rollback en planillas de sueldos para proteger la contabilidad del club.'",
           handover: "Pase a Elenio: Elenio brindará sus conclusiones de Base de Datos."
         },
-        32: {
+        36: {
           speaker: "Elenio García [Base de Datos]",
           content: "<strong>Qué decir:</strong> 'Como balance del área de base de datos, el objetivo principal fue construir un motor seguro, rápido y capaz de evolucionar junto a las necesidades del club sin romper nunca el sistema en producción. Por un lado, normalizamos en 3FN asegurando integridad total, y aplicamos una desnormalización inteligente en Deuda_Socio para que las consultas de saldo no demoren nada. Por otro lado, enfrentamos requerimientos reales que resolvimos mediante migraciones SQL controladas: 1) Permitir horarios nocturnos que cruzan la medianoche para quinchos; 2) Crear el módulo de depósito en garantía y devolución de seguro de alquiler; 3) Habilitar tarifas diferenciadas según el día de la semana; y 4) Corregir la precisión a dos decimales en deudas para que el cobro por planilla coincida al centavo. Todo esto se implementó con scripts seguros y sin caída del servicio.'",
           handover: "Pase a Equipo: Los tres cerraremos con el impacto institucional y las líneas a futuro."
         },
-        33: {
+        37: {
           speaker: "Equipo Completo (Los Tres)",
           content: "<strong>Qué decir:</strong> 'El impacto en el Club Judicial es contundente: cero solapamientos en reservas, los socios ganaron autogestión 24/7 para consultar y pagar cuotas, y secretaría redujo el trabajo manual repetitivo. Como líneas futuras proyectamos notificaciones push, analítica para la directiva y control de acceso físico QR.'",
           handover: "Pase a Cierre: Cierre de la presentación y apertura de preguntas del tribunal."
         },
-        34: {
+        38: {
           speaker: "Equipo Completo (Cierre)",
           content: "<strong>Qué decir:</strong> 'Agradecemos profundamente a la Universidad Nacional de Villa Mercedes, a la Escuela de Ingeniería, a nuestro tutor Ing. Alejandro Marcelo Altaba y al supervisor Fernando Rigoni por su acompañamiento. Quedamos a total disposición del tribunal evaluador para responder sus preguntas. ¡Muchas gracias!'",
           handover: "Fin de la exposición oral."
@@ -2709,7 +3129,7 @@
 
       let currentSlide = 1;
       const slides = [...document.querySelectorAll(".slide")];
-      const totalSlides = slides.length || 34;
+      const totalSlides = slides.length || 38;
 
       const stage = document.getElementById("slide-stage");
       const progressBar = document.getElementById("progress-bar");

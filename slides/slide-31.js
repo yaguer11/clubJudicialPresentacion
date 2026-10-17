@@ -1,38 +1,39 @@
 const slide = {
   "id": 31,
   "type": "split",
-  "speaker": "german",
-  "speakerLabel": "GM · Backend",
-  "block": "BLOQUE 9 — CONCLUSIONES",
-  "blockTag": "Bloque 9 · Balance de Rol",
-  "title": "Conclusiones: Backend & API REST",
-  "subtitle": "Balance individual del desarrollador backend",
+  "speaker": "matias",
+  "speakerLabel": "MG · Frontend",
+  "block": "BLOQUE 8 — TESTING, CALIDAD Y DESPLIEGUE",
+  "blockTag": "Bloque 8 · Calidad de Software",
+  "title": "Testing E2E Automatizado (Playwright)",
+  "subtitle": "18 archivos de especificación en suite real y mock",
   "cards": [
     {
-      "accent": "accent-green",
-      "heading": "Arquitectura y Seguridad",
+      "accent": "accent-gold",
+      "heading": "Suite Real",
       "list": [
-        "API modular",
-        "JWT",
-        "RBAC",
-        "Servicios cloud"
+        "Registro",
+        "Login",
+        "Reservas",
+        "Pagos",
+        "CRUDs"
       ]
     },
     {
-      "accent": "accent-gold",
-      "heading": "Procesos Críticos",
+      "accent": "accent-green",
+      "heading": "Suite Mock",
       "list": [
-        "Planillas",
-        "Rollback",
-        "Transacciones atómicas"
+        "page.route()",
+        "Estados visuales",
+        "Errores 401/403/500"
       ]
     }
   ]
 };
 
 export const notes = {
-  "speaker": "Germán Muñoz [Backend]",
-  "content": "<strong>Qué decir:</strong> 'Logramos una API RESTful modular y escalable en Node/Express, implementando autenticación stateless con doble token JWT y orquestando servicios cloud de MercadoPago, Resend y Cloudinary. Destaco la resolución del Rollback en planillas de sueldos para proteger la contabilidad del club.'",
-  "handover": "Pase a Elenio: Elenio brindará sus conclusiones de Base de Datos."
+  "speaker": "Matías Giménez [Frontend]",
+  "content": "<strong>Qué decir:</strong> 'Desarrollamos 18 archivos de pruebas E2E con Playwright simulando usuarios reales en Chromium y Firefox. La Suite Real con 17 archivos corre contra backend y base de datos real cubriendo registros, alquileres, pagos y CRUDs; y la Suite Mock valida estados visuales y manejo de errores aisladamente.'",
+  "handover": "Pase a Germán: Germán explicará cómo logramos aislar los datos en las pruebas continuas."
 };
 export default slide;
