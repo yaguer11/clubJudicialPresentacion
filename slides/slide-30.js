@@ -1,37 +1,34 @@
 const slide = {
   "id": 30,
-  "type": "frontend-custom",
-  "speaker": "matias",
-  "speakerLabel": "MG · Frontend",
+  "type": "split",
+  "speaker": "german",
+  "speakerLabel": "GM · Backend",
   "block": "BLOQUE 7 — NOTICIAS Y PRENSA",
   "blockTag": "Bloque 7 · Prensa & Noticias",
-  "title": "Frontend: Portada y Portal de Noticias",
-  "subtitle": "La cara pública del club y el editor que usa la subcomisión de prensa",
-  "routes": [
-    "/home",
-    "/noticias/:id",
-    "/admin/noticias"
-  ],
-  "images": [
+  "title": "Backend: API de Prensa y Cloudinary",
+  "subtitle": "Subida en memoria, optimización en la nube y sanitización XSS",
+  "cards": [
     {
-      "src": "assets_presentacion/frontend/fe_home.jpg",
-      "alt": "Portada del sitio"
+      "accent": "accent-green",
+      "heading": "Gestión Multimedia",
+      "list": [
+        "Multer en memoria",
+        "Cloudinary",
+        "Transformación a WebP",
+        "Sanitización XSS"
+      ]
     },
     {
-      "src": "assets_presentacion/frontend/fe_noticia.jpg",
-      "alt": "Detalle de noticia"
-    },
-    {
-      "src": "assets_presentacion/frontend/fe_admin_noticias.jpg",
-      "alt": "Gestión de noticias"
+      "accent": "accent-gold",
+      "heading": "Endpoints",
+      "code": "<span class=\"method m-get\">GET</span> /api/noticias<br><span class=\"method m-post\">POST</span> /api/noticias<br><span class=\"method m-patch\">PATCH</span> /api/noticias/:id"
     }
-  ],
-  "html": "Contenido maquetado directamente en presentacion_pps.html (estilos en presentacion_frontend.css)."
+  ]
 };
 
 export const notes = {
-  "speaker": "Matías Giménez [Frontend]",
-  "content": "<strong>Qué decir:</strong> 'La portada es la cara pública del club: el hero, los cumpleaños del día, la bienvenida a los socios recién aprobados y las últimas noticias publicadas. La nota respeta la estructura periodística, con volanta, copete, galería y video. Y el editor del panel maneja los estados borrador, programado y publicado, con categorías e imágenes en Cloudinary.'",
-  "handover": "Pase a Matías: Entramos al Bloque 8 de Testing y Despliegue. Yo iniciaré con la suite de Playwright."
+  "speaker": "Germán Muñoz [Backend]",
+  "content": "<strong>Qué decir:</strong> 'Conectamos Multer en memoria con Cloudinary para optimizar imágenes en la nube en formato WebP sin saturar el servidor local. Aplicamos validaciones contra ataques XSS en el cuerpo y restringimos la publicación a los roles ADMIN_NOTICIAS y SUPERADMIN.'",
+  "handover": "Pase a Matías: Matías mostrará la portada y la interfaz editorial."
 };
 export default slide;

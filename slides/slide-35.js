@@ -1,38 +1,32 @@
 const slide = {
   "id": 35,
-  "type": "split",
-  "speaker": "german",
-  "speakerLabel": "GM · Backend",
+  "type": "frontend-custom",
+  "speaker": "matias",
+  "speakerLabel": "MG · Frontend",
   "block": "BLOQUE 9 — CONCLUSIONES",
   "blockTag": "Bloque 9 · Balance de Rol",
-  "title": "Conclusiones: Backend & API REST",
-  "subtitle": "Balance individual del desarrollador backend",
-  "cards": [
+  "title": "Conclusiones: Frontend & QA",
+  "subtitle": "Balance individual del desarrollo de la interfaz",
+  "images": [
     {
-      "accent": "accent-green",
-      "heading": "Arquitectura y Seguridad",
-      "list": [
-        "API modular",
-        "JWT",
-        "RBAC",
-        "Servicios cloud"
-      ]
+      "src": "assets_presentacion/frontend/fe_m_home.jpg",
+      "alt": "Portada en celular"
     },
     {
-      "accent": "accent-gold",
-      "heading": "Procesos Críticos",
-      "list": [
-        "Planillas",
-        "Rollback",
-        "Transacciones atómicas"
-      ]
+      "src": "assets_presentacion/frontend/fe_m_mis_alquileres.png",
+      "alt": "Mis reservas en celular"
+    },
+    {
+      "src": "assets_presentacion/frontend/fe_m_admin_alquileres.png",
+      "alt": "Gestión de alquileres en celular"
     }
-  ]
+  ],
+  "html": "Contenido maquetado directamente en presentacion_pps.html (estilos en presentacion_frontend.css)."
 };
 
 export const notes = {
-  "speaker": "Germán Muñoz [Backend]",
-  "content": "<strong>Qué decir:</strong> 'Logramos una API RESTful modular y escalable en Node/Express, implementando autenticación stateless con doble token JWT y orquestando servicios cloud de MercadoPago, Resend y Cloudinary. Destaco la resolución del Rollback en planillas de sueldos para proteger la contabilidad del club.'",
-  "handover": "Pase a Elenio: Elenio brindará sus conclusiones de Base de Datos."
+  "speaker": "Matías Giménez [Frontend]",
+  "content": "<strong>Qué decir:</strong> 'Como balance me llevo tres cosas: diseñar antes de maquetar, con tokens, nos ahorró rehacer pantallas; dejar las reglas por escrito hizo que todo el sistema se vea uniforme; y la seguridad también se resuelve en el cliente. Sumamos testing E2E con Playwright, contra la API real y mockeada, incluyendo emulación de celulares, y GitHub Actions bloquea el merge si una prueba falla. Y todo se revisó en celular: estas tres capturas son la app a 375 píxeles.'",
+  "handover": "Pase a Germán: Germán compartirá sus conclusiones de Backend."
 };
 export default slide;

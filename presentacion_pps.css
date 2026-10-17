@@ -1125,3 +1125,63 @@ footer.bottom-bar {
     bottom: 68px;
   }
 }
+
+/* ====================================================================
+ PANTALLA COMPLETA — la diapositiva ocupa todo el monitor/proyector.
+ Las barras superior e inferior quedan ocultas y aparecen solo al
+ acercar el mouse al borde de arriba o de abajo (los atajos de
+ teclado I, G, F y las flechas siguen funcionando siempre).
+ ==================================================================== */
+@media (min-width: 901px) {
+  header.top-bar,
+  footer.bottom-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 300;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      transform 0.25s ease,
+      opacity 0.25s ease;
+  }
+
+  header.top-bar {
+    top: 0;
+    transform: translateY(-100%);
+  }
+
+  footer.bottom-bar {
+    bottom: 0;
+    transform: translateY(100%);
+  }
+
+  body.show-top header.top-bar,
+  body.show-bottom footer.bottom-bar {
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .progress-track {
+    display: none;
+  }
+
+  main#slide-stage {
+    padding: 0;
+  }
+
+  .slide {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 34px 52px;
+  }
+
+  #speaker-notes-panel {
+    bottom: 16px;
+  }
+}

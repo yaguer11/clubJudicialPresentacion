@@ -36,6 +36,7 @@ import slide35 from "./slide-35.js";
 import slide36 from "./slide-36.js";
 import slide37 from "./slide-37.js";
 import slide38 from "./slide-38.js";
+import slide39 from "./slide-39.js";
 import { notes as notes01 } from "./slide-01.js";
 import { notes as notes02 } from "./slide-02.js";
 import { notes as notes03 } from "./slide-03.js";
@@ -74,6 +75,7 @@ import { notes as notes35 } from "./slide-35.js";
 import { notes as notes36 } from "./slide-36.js";
 import { notes as notes37 } from "./slide-37.js";
 import { notes as notes38 } from "./slide-38.js";
+import { notes as notes39 } from "./slide-39.js";
 
 export const slideDefinitions = [
   slide01,
@@ -114,6 +116,7 @@ export const slideDefinitions = [
   slide36,
   slide37,
   slide38,
+  slide39,
 ];
 
 export const speakerNotesData = {
@@ -155,6 +158,7 @@ export const speakerNotesData = {
   36: notes36,
   37: notes37,
   38: notes38,
+  39: notes39,
 };
 
 export default slideDefinitions;

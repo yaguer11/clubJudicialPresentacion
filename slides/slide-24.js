@@ -5,16 +5,13 @@ const slide = {
   "speakerLabel": "MG · Frontend",
   "block": "BLOQUE 5 — ESPACIOS Y ALQUILERES",
   "blockTag": "Bloque 5 · Deportes & Alquileres",
-  "title": "Frontend: Espacios y Reservas",
-  "subtitle": "Catálogo público, wizard de reserva para socios e invitados y gestión desde el panel",
+  "title": "Frontend: Catálogo y Reserva de Espacios",
+  "subtitle": "Socios e invitados reservan y pagan online",
   "routes": [
     "/espacios",
     "/espacios/:id/reservar",
-    "/mis-alquileres",
     "/alquiler-guest/:token",
-    "/admin/alquileres",
-    "/admin/espacios",
-    "/admin/espacios/:id/editar"
+    "/pagos-alquileres/…"
   ],
   "images": [
     {
@@ -22,12 +19,12 @@ const slide = {
       "alt": "Wizard de reserva con turnos"
     },
     {
-      "src": "assets_presentacion/frontend/fe_mis_alquileres.png",
-      "alt": "Mis reservas del socio"
+      "src": "assets_presentacion/frontend/fe_espacios.jpg",
+      "alt": "Catálogo de espacios"
     },
     {
-      "src": "assets_presentacion/frontend/fe_admin_alquileres.png",
-      "alt": "Gestión de alquileres"
+      "src": "assets_presentacion/frontend/fe_pago_alq_pending.png",
+      "alt": "Retorno de pago pendiente de alquiler"
     }
   ],
   "html": "Contenido maquetado directamente en presentacion_pps.html (estilos en presentacion_frontend.css)."
@@ -35,7 +32,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Matías Giménez [Frontend]",
-  "content": "<strong>Qué decir:</strong> 'La reserva es un wizard cuyos pasos se arman según el caso: si el espacio no tiene accesorios no aparece Adicionales, y Tus Datos solo aparece para invitados o cuando hace falta un CBU para devolver el seguro. El calendario deshabilita los días sin turnos y las fechas completas. Si el socio tiene 3 cuotas impagas no puede reservar y lo derivo a pagar. En Mis reservas hay una cuenta regresiva para pagar la seña y se puede cambiar la fecha con más de 10 días de anticipación. En el panel, los alquileres se filtran, se exportan a Excel y se pueden cargar reservas manuales.'",
-  "handover": "Pase a Elenio: Pasamos al Módulo de Pagos y Cuotas. Elenio explicará la estructura de cuotas y cajas."
+  "content": "<strong>Qué decir:</strong> 'Desde el catálogo cualquiera puede reservar. La reserva es un wizard cuyos pasos se arman según el caso: si el espacio no tiene accesorios no aparece Adicionales, y Tus Datos solo aparece para invitados o cuando hace falta un CBU para devolver el seguro. El calendario deshabilita los días sin turnos y las fechas completas, y el total se calcula con la tarifa de socio o de invitado. Un invitado sin cuenta sigue su alquiler con un link con token y paga por MercadoPago; por eso esas páginas de retorno son públicas.'",
+  "handover": "Sigo yo: qué pasa con la reserva una vez hecha, del lado del socio y del panel."
 };
 export default slide;

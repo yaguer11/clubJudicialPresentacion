@@ -5,8 +5,8 @@ const slide = {
   "speakerLabel": "MG · Frontend",
   "block": "BLOQUE 4 — GESTIÓN DE SOCIOS",
   "blockTag": "Bloque 4 · Padrón Social",
-  "title": "Frontend: Perfil del Socio y Backoffice",
-  "subtitle": "El socio pide cambios desde su perfil; secretaría los aprueba desde el panel",
+  "title": "Frontend: Perfil del Socio y Panel de Socios",
+  "subtitle": "El socio pide cambios; secretaría los aprueba",
   "routes": [
     "/perfil",
     "/admin",

@@ -6,45 +6,38 @@ const slide = {
   "block": "BLOQUE 2 — METODOLOGÍA Y ARQUITECTURA",
   "blockTag": "Bloque 2 · Arquitectura Frontend",
   "title": "Frontend: SPA y Mapa de Rutas",
-  "subtitle": "35 rutas en React Router 7, separadas por tipo de usuario y protegidas por rol",
+  "subtitle": "27 rutas en React Router 7, protegidas por dos guards",
   "routes": [
-    "/",
-    "/pagos-cuotas",
-    "/perfil",
-    "/unauthorized",
     "/home",
     "/espacios",
     "/espacios/:id/reservar",
     "/alquiler-guest/:token",
     "/noticias/:id",
     "/pagos-alquileres/…",
+    "/unauthorized",
     "/login",
     "/register",
     "/admin/login",
-    "/admin",
     "/validar-email/:token",
     "/reset-password",
+    "/perfil",
     "/mis-alquileres",
+    "/pagos-cuotas",
     "/pagos/…",
+    "/admin",
     "/admin/socios",
     "/admin/usuarios",
     "/admin/alquileres",
-    "/admin/espacios",
-    "/admin/espacios/:id/editar",
-    "/admin/noticias",
-    "/admin/pagos",
-    "/cajas",
-    "/mi-caja",
-    "/gasto · /reposicion",
-    "/gastos/:id · /reposiciones/:id",
-    "/admin/tesoreria/*"
+    "/admin/espacios/…",
+    "/admin/noticias"
   ],
+  "images": [],
   "html": "Contenido maquetado directamente en presentacion_pps.html (estilos en presentacion_frontend.css)."
 };
 
 export const notes = {
   "speaker": "Matías Giménez [Frontend]",
-  "content": "<strong>Qué decir:</strong> 'Antes de entrar en los módulos, les muestro cómo está armado el frontend. Es una SPA en React 19 con Vite y React Router 7: 35 rutas y 33 páginas. Las organicé en cinco zonas según quién entra: públicas, acceso, socio, backoffice y caja chica. Hay dos guards: ProtectedRoute para el socio, que además manda a pagar al que debe más de 6 meses y al que entra por primera vez a completar su perfil; y ProtectedRouteAdmin, que lee los roles del JWT y, si no alcanzan, redirige a /unauthorized. Todas las llamadas pasan por apiFetch, que ante un 401 renueva el token y encola las peticiones que quedaron pendientes.'",
+  "content": "<strong>Qué decir:</strong> 'Antes de entrar en los módulos, les muestro cómo está armado el frontend. Es una SPA en React 19 con Vite y React Router 7: 27 rutas en cuatro zonas según quién entra, públicas, acceso, socio y backoffice. Abajo está lo que pasa cuando alguien entra a una ruta protegida: primero se valida la sesión; si es socio y debe más de 6 meses, lo mando a pagar; si es su primer ingreso, a completar el perfil; y si es personal, se comparan los roles del JWT con los que pide la ruta, y si no alcanzan va a /unauthorized. A la derecha, la sesión sin cortes: si la API responde 401, apiFetch pide un token nuevo, deja en cola las demás peticiones y las reintenta; si el refresh falla, cierra la sesión.'",
   "handover": "Sigo yo: cómo definimos el diseño visual del sistema."
 };
 export default slide;

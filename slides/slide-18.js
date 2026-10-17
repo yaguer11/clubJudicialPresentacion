@@ -6,14 +6,13 @@ const slide = {
   "block": "BLOQUE 3 — AUTENTICACIÓN Y REGISTRO",
   "blockTag": "Bloque 3 · Autenticación",
   "title": "Frontend: Acceso, Registro y Sesiones",
-  "subtitle": "Ingresos separados para socios y personal, alta guiada y sesiones que se renuevan solas",
+  "subtitle": "Ingresos separados para socios y personal",
   "routes": [
     "/login",
     "/register",
     "/admin/login",
     "/validar-email/:token",
-    "/reset-password",
-    "/unauthorized"
+    "/reset-password"
   ],
   "images": [
     {

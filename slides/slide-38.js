@@ -1,22 +1,37 @@
 const slide = {
   "id": 38,
-  "type": "hero",
+  "type": "split",
   "speaker": "equipo",
   "speakerLabel": "Equipo PPS",
   "block": "BLOQUE 9 — CONCLUSIONES",
-  "blockTag": "Universidad Nacional de Villa Mercedes",
-  "title": "¡Muchas Gracias!",
-  "subtitle": "Quedamos a disposición del Tribunal Evaluador para la ronda de preguntas.",
-  "hero": {
-    "titleHighlight": "¡Muchas Gracias!",
-    "subtitle": "Quedamos a disposición del Tribunal Evaluador para la ronda de preguntas.",
-    "meta": "<p style=\"font-size: 0.95rem; color: var(--primary-dark); font-weight: 700; margin-bottom: 6px;\">Sistema de Gestión Integral — Club Social, Cultural y Deportivo Judicial</p><p style=\"font-size: 0.85rem; color: var(--text-secondary);\">Elenio García · Germán Muñoz · Matías Giménez<br>Tutor: Ing. Alejandro Marcelo Altaba · Supervisor: Fernando Rigoni · 2026</p>"
-  }
+  "blockTag": "Bloque 9 · Impacto",
+  "title": "Impacto Organizacional y Trabajo Futuro",
+  "subtitle": "Transformación del Club Judicial y líneas evolutivas",
+  "cards": [
+    {
+      "accent": "accent-green",
+      "heading": "Impacto real",
+      "list": [
+        "Cero solapamientos",
+        "Autogestión 24/7",
+        "Menor carga administrativa"
+      ]
+    },
+    {
+      "accent": "accent-gold",
+      "heading": "Futuro",
+      "list": [
+        "Push notifications",
+        "BI para la directiva",
+        "Control QR"
+      ]
+    }
+  ]
 };
 
 export const notes = {
-  "speaker": "Equipo Completo (Cierre)",
-  "content": "<strong>Qué decir:</strong> 'Agradecemos profundamente a la Universidad Nacional de Villa Mercedes, a la Escuela de Ingeniería, a nuestro tutor Ing. Alejandro Marcelo Altaba y al supervisor Fernando Rigoni por su acompañamiento. Quedamos a total disposición del tribunal evaluador para responder sus preguntas. ¡Muchas gracias!'",
-  "handover": "Fin de la exposición oral."
+  "speaker": "Equipo Completo (Los Tres)",
+  "content": "<strong>Qué decir:</strong> 'El impacto en el Club Judicial es contundente: cero solapamientos en reservas, los socios ganaron autogestión 24/7 para consultar y pagar cuotas, y secretaría redujo el trabajo manual repetitivo. Como líneas futuras proyectamos notificaciones push, analítica para la directiva y control de acceso físico QR.'",
+  "handover": "Pase a Cierre: Cierre de la presentación y apertura de preguntas del tribunal."
 };
 export default slide;

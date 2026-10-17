@@ -1,40 +1,37 @@
 const slide = {
   "id": 27,
-  "type": "frontend-custom",
-  "speaker": "matias",
-  "speakerLabel": "MG · Frontend",
+  "type": "split",
+  "speaker": "german",
+  "speakerLabel": "GM · Backend",
   "block": "BLOQUE 6 — PAGOS Y CUOTAS",
   "blockTag": "Bloque 6 · Finanzas & Cuotas",
-  "title": "Frontend: Cuotas, Cobranzas y Caja Chica",
-  "subtitle": "Autogestión de la deuda, retornos de MercadoPago, importación de planillas y tesorería",
-  "routes": [
-    "/pagos-cuotas",
-    "/pagos/…",
-    "/pagos-alquileres/…",
-    "/admin/pagos",
-    "/cajas",
-    "/mi-caja"
-  ],
-  "images": [
+  "title": "Backend: MercadoPago y Planillas con Rollback",
+  "subtitle": "Checkout Pro, webhooks y procesamiento XLSX",
+  "cards": [
     {
-      "src": "assets_presentacion/frontend/fe_admin_pagos.png",
-      "alt": "Gestión de cobranzas"
+      "accent": "accent-green",
+      "heading": "MercadoPago Checkout Pro",
+      "list": [
+        "Preferencias seguras",
+        "Webhooks IPN",
+        "Actualización asíncrona"
+      ]
     },
     {
-      "src": "assets_presentacion/frontend/fe_pagos_cuotas.png",
-      "alt": "Pago de cuotas del socio"
-    },
-    {
-      "src": "assets_presentacion/frontend/fe_caja_movs.png",
-      "alt": "Movimientos de caja chica"
+      "accent": "accent-gold",
+      "heading": "Planillas y Rollback",
+      "list": [
+        "Procesamiento xlsx",
+        "Retenciones judiciales",
+        "Rollback transaccional"
+      ]
     }
-  ],
-  "html": "Contenido maquetado directamente en presentacion_pps.html (estilos en presentacion_frontend.css)."
+  ]
 };
 
 export const notes = {
-  "speaker": "Matías Giménez [Frontend]",
-  "content": "<strong>Qué decir:</strong> 'En /pagos-cuotas el socio ve cuántas cuotas debe, el valor vigente, y paga con MercadoPago. Las seis páginas de retorno leen el payment_id y le explican qué pasó con el pago. Para tesorería, /admin/pagos muestra la deuda de cada socio con los mismos chips de estado, importa planillas de Excel identificando al socio por CUIT o CUIL, exporta la planilla y permite deshacer una importación. Y en caja chica el tesorero abre y cierra cajas y aprueba reposiciones, mientras el encargado registra los gastos.'",
-  "handover": "Pase a Elenio: Avanzamos al Módulo de Noticias. Elenio comentará el esquema editorial."
+  "speaker": "Germán Muñoz [Backend]",
+  "content": "<strong>Qué decir:</strong> 'Integramos MercadoPago Checkout Pro con webhooks IPN que confirman pagos de forma desatendida. Para retenciones de sueldo judicial, procesamos archivos Excel con la librería xlsx y desarrollamos un mecanismo de Rollback transaccional que permite revertir una planilla errónea restaurando deudas previas.'",
+  "handover": "Pase a Matías: Matías mostrará cómo el socio paga sus cuotas desde el portal."
 };
 export default slide;

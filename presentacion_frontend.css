@@ -844,3 +844,706 @@
     min-height: 240px;
   }
 }
+
+/* ---------- Diapositiva 12: mapa de rutas + flujos ---------- */
+.fe-routemap {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+}
+.fe-zone-count {
+  font-family: var(--font-primary);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--brand-gold-dark);
+}
+.fe-flows {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 12px;
+}
+.fe-flow {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 9px 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.fe-flow-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--brand-green);
+}
+.fe-flow-title code {
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.fe-steps {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+.fe-steps > .fe-step-arrow {
+  color: var(--brand-gold);
+  font-weight: 700;
+  padding-top: 6px;
+  flex-shrink: 0;
+}
+.fe-node {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+}
+.fe-node b {
+  width: 100%;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--primary-dark);
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 6px 4px;
+}
+.fe-node.ok b {
+  background: var(--brand-green);
+  border-color: var(--brand-green);
+  color: #ffffff;
+}
+.fe-node.gold b {
+  background: var(--brand-gold-pale);
+  border-color: var(--border-gold);
+}
+.fe-node span {
+  font-family: var(--font-code);
+  font-size: 0.6rem;
+  line-height: 1.3;
+  color: #a92626;
+}
+.fe-node span.muted {
+  color: var(--text-muted);
+}
+.fe-stats.vertical {
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+.fe-stats.vertical .fe-stat {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 7px 12px;
+  text-align: left;
+}
+.fe-stats.vertical .fe-stat b {
+  font-size: 1.35rem;
+}
+
+/* ---------- Diapositiva 15: reglas sobre una captura anotada ---------- */
+.fe-rules2 {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) minmax(0, 0.32fr);
+  gap: 16px;
+  flex: 1;
+  min-height: 0;
+}
+.fe-rule-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-height: 0;
+}
+.fe-rule-list li {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 8px 11px;
+}
+.fe-rule-list h5 {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--brand-green);
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: baseline;
+}
+.fe-rule-list h5 code {
+  font-family: var(--font-code);
+  font-size: 0.66rem;
+  font-weight: 500;
+  color: var(--brand-gold-dark);
+  white-space: nowrap;
+}
+.fe-rule-list p {
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+.fe-pin {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--brand-gold);
+  color: #1f261f;
+  font-family: var(--font-primary);
+  font-size: 0.72rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9), 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+.fe-anno-box {
+  container-type: size;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.fe-anno {
+  position: relative;
+  width: min(100cqw, calc(100cqh * var(--ar)));
+  aspect-ratio: var(--ar);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  background: #eeedea;
+}
+.fe-anno img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: zoom-in;
+}
+.fe-anno .fe-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.fe-anno-caption {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 4px;
+}
+.fe-rules-foot {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  padding-top: 2px;
+}
+.fe-rules-foot code {
+  font-family: var(--font-code);
+  font-size: 0.66rem;
+  color: var(--brand-green);
+}
+
+@media (max-width: 900px) {
+  .fe-flows,
+  .fe-rules2 {
+    grid-template-columns: 1fr;
+  }
+  .fe-steps {
+    flex-wrap: wrap;
+  }
+  .fe-anno-box {
+    container-type: normal;
+  }
+  .fe-anno {
+    width: 100%;
+  }
+}
+
+.fe-routemap .fe-zone ul {
+  gap: 6px;
+  padding: 8px 10px;
+}
+.fe-routemap .fe-zone-head {
+  padding: 7px 10px 6px;
+}
+
+/* Diapositiva 13: radios con elementos reales de la interfaz (valores exactos de borderRadius) */
+.fe-radius-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 6px;
+  min-height: 0;
+}
+.fe-radius-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 46px 112px;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(71, 105, 70, 0.08);
+}
+.fe-radius-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.fe-radius-row code {
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  color: var(--brand-green);
+}
+.fe-radius-row > span {
+  font-family: var(--font-code);
+  font-size: 0.66rem;
+  color: var(--text-muted);
+  text-align: right;
+}
+.fe-radius-demo {
+  display: flex;
+  justify-content: center;
+}
+.fe-radius-demo b {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Plus Jakarta Sans", var(--font-primary);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.fe-r-button {
+  border-radius: 8px;
+  background: #d4af37;
+  color: #1f261f;
+  font-size: 0.7rem;
+  padding: 6px 14px;
+}
+.fe-r-chip {
+  border-radius: 12px;
+  background: rgba(33, 150, 243, 0.14);
+  color: #1a78c2;
+  font-size: 0.68rem;
+  font-weight: 600 !important;
+  padding: 3px 10px;
+}
+.fe-r-card {
+  border-radius: 16px;
+  width: 96px;
+  height: 46px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  align-items: flex-start !important;
+  gap: 5px;
+  padding: 0 12px;
+}
+.fe-r-card i {
+  display: block;
+  height: 5px;
+  width: 60%;
+  border-radius: 3px;
+  background: #e5e5e5;
+}
+.fe-r-card i:first-child {
+  width: 80%;
+  background: #1f261f;
+  opacity: 0.75;
+}
+.fe-r-featured {
+  border-radius: 24px;
+  width: 104px;
+  height: 52px;
+  background: linear-gradient(135deg, #1f261f 0%, #141a14 100%);
+  color: #f4cf7d;
+  font-family: "Outfit", var(--font-primary) !important;
+  font-size: 0.9rem;
+  font-weight: 800 !important;
+}
+.fe-r-pill {
+  border-radius: 999px;
+  background: #d4af37;
+  color: #1f261f;
+  font-size: 0.66rem;
+  padding: 4px 12px;
+}
+.fe-token-col > .fe-token:first-child {
+  flex: 0 0 auto;
+}
+.fe-token-col > .fe-token:last-child {
+  justify-content: flex-start;
+}
+.fe-radius-row {
+  padding-bottom: 4px;
+}
+.fe-r-card {
+  width: 84px;
+  height: 34px;
+  gap: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.fe-r-featured {
+  width: 92px;
+  height: 38px;
+  font-size: 0.82rem;
+}
+.fe-r-button {
+  padding: 5px 13px;
+}
+.fe-radius-list {
+  justify-content: center;
+  gap: 0;
+}
+.fe-radius-row {
+  flex: 1 1 0;
+  max-height: 58px;
+  padding: 3px 0;
+}
+.fe-token-col > .fe-token:last-child .fe-code {
+  margin-block: auto;
+}
+
+/* ====================================================================
+ TAMAÑOS PARA PROYECTOR — letra más grande en todas las diapositivas de Frontend
+ ==================================================================== */
+.fe-module {
+  grid-template-columns: minmax(0, 40fr) minmax(0, 60fr);
+}
+.fe-col {
+  gap: 12px;
+}
+.fe-card {
+  padding: 13px 17px;
+  gap: 9px;
+}
+.fe-card h4 {
+  font-size: 1.12rem;
+}
+.fe-card p,
+.fe-card li {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.fe-card ul {
+  gap: 7px;
+}
+.fe-card li::before {
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+}
+.fe-card code {
+  font-size: 0.88rem;
+}
+.fe-routes {
+  gap: 7px;
+}
+.fe-route {
+  font-size: 0.95rem;
+}
+.fe-route code {
+  font-size: 0.86rem;
+  padding: 2px 7px;
+}
+.fe-role {
+  font-size: 0.68rem;
+  padding: 2px 6px;
+}
+.fe-shot-url {
+  font-size: 0.8rem;
+}
+
+/* 12 */
+.fe-zone-head h4 {
+  font-size: 1.05rem;
+}
+.fe-zone-head p {
+  font-size: 0.76rem;
+}
+.fe-zone-count {
+  font-size: 1.35rem;
+}
+.fe-routemap .fe-zone ul {
+  gap: 9px;
+  padding: 11px 12px;
+}
+.fe-zone li code {
+  font-size: 0.9rem;
+}
+.fe-zone li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+}
+.fe-flow-title {
+  font-size: 1rem;
+}
+.fe-flow-title code {
+  font-size: 0.85rem;
+}
+.fe-node b {
+  font-size: 0.9rem;
+  padding: 8px 6px;
+}
+.fe-node span {
+  font-size: 0.78rem;
+}
+.fe-steps > .fe-step-arrow {
+  font-size: 1.1rem;
+  padding-top: 8px;
+}
+
+/* 13 */
+.fe-step b {
+  font-size: 0.9rem;
+}
+.fe-step span {
+  font-size: 0.85rem;
+}
+.fe-token-title h4 {
+  font-size: 1.05rem;
+}
+.fe-token-title code {
+  font-size: 0.76rem;
+}
+.fe-type-row span:first-child,
+.fe-type-row span:last-child {
+  font-size: 0.76rem;
+}
+.fe-families {
+  font-size: 0.88rem;
+}
+.fe-space-row {
+  font-size: 0.8rem;
+  grid-template-columns: 40px 1fr 34px;
+}
+.fe-radius-row code {
+  font-size: 0.82rem;
+}
+.fe-radius-row > span {
+  font-size: 0.8rem;
+}
+.fe-shadow-grid div {
+  font-size: 0.78rem;
+}
+.fe-mini-list {
+  font-size: 0.9rem;
+}
+.fe-code {
+  font-size: 0.86rem;
+}
+
+/* 14 */
+.fe-swatch-label {
+  font-size: 0.95rem;
+}
+.fe-swatch-label span {
+  font-size: 0.85rem;
+}
+.fe-swatch {
+  font-size: 0.78rem;
+}
+.fe-swatch b {
+  font-size: 0.85rem;
+}
+.fe-logo-chip {
+  font-size: 0.74rem;
+}
+.fe-logo-chip code {
+  font-size: 0.72rem;
+}
+.fe-contrast div {
+  font-size: 0.9rem;
+}
+.fe-contrast em {
+  font-size: 0.78rem;
+}
+
+/* 15 */
+.fe-rule-list {
+  gap: 8px;
+}
+.fe-rule-list li {
+  grid-template-columns: 28px minmax(0, 1fr);
+  padding: 9px 12px;
+}
+.fe-rule-list h5 {
+  font-size: 1rem;
+}
+.fe-rule-list h5 code {
+  font-size: 0.76rem;
+}
+.fe-rule-list p {
+  font-size: 0.9rem;
+}
+.fe-pin {
+  width: 26px;
+  height: 26px;
+  font-size: 0.85rem;
+}
+.fe-anno-caption {
+  font-size: 0.8rem;
+}
+.fe-rules-foot {
+  font-size: 0.9rem;
+}
+
+/* Conclusiones */
+.fe-kpi b {
+  font-size: 2.3rem;
+}
+.fe-kpi span {
+  font-size: 0.9rem;
+}
+
+/* 15: una línea por regla */
+.fe-rule-list li {
+  align-items: center;
+}
+.fe-rule-list h5 {
+  flex-wrap: wrap;
+}
+/* 14: muestras más bajas para dejar lugar a la letra */
+.fe-logo-box img {
+  height: 140px;
+}
+.fe-swatch {
+  min-height: 46px;
+  padding: 6px 10px;
+}
+.fe-swatch.big {
+  min-height: 58px;
+}
+.fe-logo-chip i {
+  height: 20px;
+}
+.fe-contrast div {
+  padding: 8px 11px;
+}
+
+/* Pantallas bajas (1280×720, 1366×768): se ajustan espacios, no la letra */
+@media (min-width: 901px) and (max-height: 800px) {
+  .fe-col {
+    gap: 8px;
+  }
+  .fe-card {
+    padding: 9px 14px;
+    gap: 6px;
+  }
+  .fe-card ul,
+  .fe-routes {
+    gap: 4px;
+  }
+  .fe-routemap .fe-zone ul {
+    gap: 5px;
+    padding: 8px 10px;
+  }
+  .fe-routemap {
+    gap: 8px;
+  }
+  .fe-flow {
+    padding: 7px 10px;
+    gap: 5px;
+  }
+  .fe-node b {
+    padding: 5px 4px;
+  }
+  .fe-tokens,
+  .fe-token-col {
+    gap: 8px;
+  }
+  .fe-token {
+    padding: 8px 12px;
+    gap: 5px;
+  }
+  .fe-rule-list {
+    gap: 5px;
+  }
+  .fe-rule-list li {
+    padding: 6px 10px;
+  }
+  .fe-swatch.big {
+    min-height: 46px;
+  }
+  .fe-swatch {
+    min-height: 38px;
+  }
+  .fe-logo-box {
+    padding: 8px;
+    gap: 8px;
+  }
+  .fe-logo-box img {
+    height: 100px;
+  }
+  .fe-palette > .fe-col:last-child {
+    gap: 6px !important;
+  }
+}
+@media (min-width: 901px) and (max-height: 800px) {
+  .fe-pipeline .fe-step {
+    padding: 5px 9px;
+  }
+  .fe-radius-row {
+    padding: 1px 0;
+  }
+  .fe-r-card {
+    height: 28px;
+  }
+  .fe-r-featured {
+    height: 30px;
+  }
+  .fe-r-button {
+    padding: 3px 12px;
+  }
+  .fe-code {
+    padding: 5px 9px;
+    line-height: 1.4;
+  }
+  .fe-shadow-grid div {
+    height: 34px;
+  }
+  .fe-type-row:nth-of-type(2) {
+    font-size: 2.1rem !important;
+  }
+}
+@media (min-width: 901px) and (max-height: 800px) {
+  .fe-tokens,
+  .fe-token-col {
+    gap: 6px;
+  }
+}
+
+/* Pantallas grandes (1920×1080 en el proyector): todo el contenido de estas diapositivas se agranda */
+@media (min-width: 1600px) and (min-height: 950px) {
+  .slide-body:has(.fe-module, .fe-routemap, .fe-tokens, .fe-palette, .fe-rules2, .fe-kpis) {
+    zoom: 1.32;
+  }
+}
+.fe-rule-list li {
+  flex: 1 1 0;
+  max-height: 64px;
+}
+@media (min-width: 1600px) and (min-height: 950px) {
+  .slide:has(.fe-module, .fe-routemap, .fe-tokens, .fe-palette, .fe-rules2, .fe-kpis) .slide-header {
+    zoom: 1.25;
+  }
+}

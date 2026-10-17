@@ -1,37 +1,39 @@
 const slide = {
   "id": 32,
   "type": "split",
-  "speaker": "german",
-  "speakerLabel": "GM · Backend",
+  "speaker": "matias",
+  "speakerLabel": "MG · Frontend",
   "block": "BLOQUE 8 — TESTING, CALIDAD Y DESPLIEGUE",
-  "blockTag": "Bloque 8 · DevOps & Calidad",
-  "title": "CI y Aislamiento de Datos de Prueba",
-  "subtitle": "Idempotencia, artefactos y paralelismo",
+  "blockTag": "Bloque 8 · Calidad de Software",
+  "title": "Testing E2E Automatizado (Playwright)",
+  "subtitle": "18 archivos de especificación en suite real y mock",
   "cards": [
     {
-      "accent": "accent-green",
-      "heading": "Aislamiento de Datos",
+      "accent": "accent-gold",
+      "heading": "Suite Real",
       "list": [
-        "Base replica",
-        "Sufijos aleatorios",
-        "Preparación de estados"
+        "Registro",
+        "Login",
+        "Reservas",
+        "Pagos",
+        "CRUDs"
       ]
     },
     {
-      "accent": "accent-gold",
-      "heading": "GitHub Actions",
+      "accent": "accent-green",
+      "heading": "Suite Mock",
       "list": [
-        "merge bloqueado",
-        "grabaciones y capturas",
-        "depuración inmediata"
+        "page.route()",
+        "Estados visuales",
+        "Errores 401/403/500"
       ]
     }
   ]
 };
 
 export const notes = {
-  "speaker": "Germán Muñoz [Backend]",
-  "content": "<strong>Qué decir:</strong> 'Utilizamos una base de datos de testing réplica y generamos sufijos aleatorios en los DNI y usuarios para evitar colisiones de clave única. En GitHub Actions, si un test falla, el runner guarda grabaciones en video y capturas de pantalla durante 7 días para facilitar la depuración inmediata.'",
-  "handover": "Pase a Elenio: Elenio explicará el despliegue en la nube."
+  "speaker": "Matías Giménez [Frontend]",
+  "content": "<strong>Qué decir:</strong> 'Desarrollamos 18 archivos de pruebas E2E con Playwright simulando usuarios reales en Chromium y Firefox. La Suite Real con 17 archivos corre contra backend y base de datos real cubriendo registros, alquileres, pagos y CRUDs; y la Suite Mock valida estados visuales y manejo de errores aisladamente.'",
+  "handover": "Pase a Germán: Germán explicará cómo logramos aislar los datos en las pruebas continuas."
 };
 export default slide;

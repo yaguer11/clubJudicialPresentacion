@@ -1,39 +1,37 @@
 const slide = {
   "id": 31,
-  "type": "split",
+  "type": "frontend-custom",
   "speaker": "matias",
   "speakerLabel": "MG · Frontend",
-  "block": "BLOQUE 8 — TESTING, CALIDAD Y DESPLIEGUE",
-  "blockTag": "Bloque 8 · Calidad de Software",
-  "title": "Testing E2E Automatizado (Playwright)",
-  "subtitle": "18 archivos de especificación en suite real y mock",
-  "cards": [
+  "block": "BLOQUE 7 — NOTICIAS Y PRENSA",
+  "blockTag": "Bloque 7 · Prensa & Noticias",
+  "title": "Frontend: Portada y Portal de Noticias",
+  "subtitle": "La cara pública del club y el editor de prensa",
+  "routes": [
+    "/home",
+    "/noticias/:id",
+    "/admin/noticias"
+  ],
+  "images": [
     {
-      "accent": "accent-gold",
-      "heading": "Suite Real",
-      "list": [
-        "Registro",
-        "Login",
-        "Reservas",
-        "Pagos",
-        "CRUDs"
-      ]
+      "src": "assets_presentacion/frontend/fe_home.jpg",
+      "alt": "Portada del sitio"
     },
     {
-      "accent": "accent-green",
-      "heading": "Suite Mock",
-      "list": [
-        "page.route()",
-        "Estados visuales",
-        "Errores 401/403/500"
-      ]
+      "src": "assets_presentacion/frontend/fe_noticia.jpg",
+      "alt": "Detalle de noticia"
+    },
+    {
+      "src": "assets_presentacion/frontend/fe_admin_noticias.jpg",
+      "alt": "Gestión de noticias"
     }
-  ]
+  ],
+  "html": "Contenido maquetado directamente en presentacion_pps.html (estilos en presentacion_frontend.css)."
 };
 
 export const notes = {
   "speaker": "Matías Giménez [Frontend]",
-  "content": "<strong>Qué decir:</strong> 'Desarrollamos 18 archivos de pruebas E2E con Playwright simulando usuarios reales en Chromium y Firefox. La Suite Real con 17 archivos corre contra backend y base de datos real cubriendo registros, alquileres, pagos y CRUDs; y la Suite Mock valida estados visuales y manejo de errores aisladamente.'",
-  "handover": "Pase a Germán: Germán explicará cómo logramos aislar los datos en las pruebas continuas."
+  "content": "<strong>Qué decir:</strong> 'La portada es la cara pública del club: el hero, los cumpleaños del día, la bienvenida a los socios recién aprobados y las últimas noticias publicadas. La nota respeta la estructura periodística, con volanta, copete, galería y video. Y el editor del panel maneja los estados borrador, programado y publicado, con categorías e imágenes en Cloudinary.'",
+  "handover": "Pase a Matías: Entramos al Bloque 8 de Testing y Despliegue. Yo iniciaré con la suite de Playwright."
 };
 export default slide;
