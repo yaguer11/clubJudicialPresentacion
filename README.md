@@ -55,7 +55,9 @@ Luego abri en el navegador:
 
 
 ```text
-http://localhost:8000/presentacion\_pps.html
+http://localhost:8000
+# o directamente:
+http://localhost:8000/presentacion_pps.html
 ```
 
 

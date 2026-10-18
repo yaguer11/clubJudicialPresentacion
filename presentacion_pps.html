@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="presentacion_pps.css" />
     <link rel="stylesheet" href="presentacion_frontend.css" />
     <link rel="stylesheet" href="presentacion_intro.css" />
+    <link rel="stylesheet" href="presentacion_backend.css" />
   </head>
   <body>
     <div id="app-container">
@@ -1139,52 +1140,68 @@
               <span>GM · Backend</span>
             </div>
           </div>
-          <div class="slide-body">
-            <div class="grid-2col">
-              <div class="card-clean accent-green">
-                <div class="card-heading">Esquema de Doble Token</div>
-                <ul class="clean-list">
-                  <li>
-                    <strong>Access Token:</strong> Corta duración (15-60 min).
-                    En header <code>Authorization: Bearer</code>.
-                  </li>
-                  <li>
-                    <strong>Refresh Token:</strong> 7 días de vigencia para
-                    renovación silenciosa sin re-login.
-                  </li>
-                  <li>
-                    <strong>BcryptJS:</strong> Cifrado de contraseñas con 10
-                    rondas de salteo.
-                  </li>
-                </ul>
-              </div>
-              <div class="card-clean accent-gold">
-                <div class="card-heading">Endpoints Implementados</div>
-                <div class="code-snippet">
-                  <span class="method m-post">POST</span>
-                  /api/auth/login-socio<br />
-                  <span class="method m-post">POST</span>
-                  /api/auth/login-admin<br />
-                  <span class="method m-post">POST</span>
-                  /api/auth/refresh-token<br />
-                  <span class="method m-post">POST</span>
-                  /api/auth/validate-email<br />
-                  <span class="method m-post">POST</span>
-                  /api/auth/reset-password
-                </div>
-                <p
-                  style="
-                    font-size: 0.8rem;
-                    color: var(--text-muted);
-                    margin-top: 6px;
-                  "
-                >
-                  Middleware <code>requireRole()</code> valida firma y roles en
-                  cada request protegido.
-                </p>
-              </div>
-            </div>
-          </div>
+          <div class="slide-body be-body">
+<div class="be-wrap be-stepper" data-dur="5600">
+<ol class="be-src"><li><b>Login</b> El socio ingresa con DNI y contraseña; el personal usa su propio endpoint /login-admin.</li><li><b>Verificación con Bcrypt</b> La API busca el hash del usuario y lo compara con bcrypt.compare(): nunca se guarda ni se compara texto plano.</li><li><b>Doble token JWT</b> Si coincide, emite un access token de 15 minutos y un refresh token de 7 días.</li><li><b>Request protegido</b> Cada pedido viaja con Authorization: Bearer. El middleware requireRole() valida la firma y los roles del JWT.</li><li><b>Renovación silenciosa</b> Cuando el access token vence, la API responde 401 y el cliente usa el refresh token para obtener uno nuevo, sin volver a loguearse.</li></ol>
+<aside class="be-panel">
+  <div class="be-kicker">Recorrido · Autenticación</div>
+  <div class="be-stepnum">Paso <b class="be-n">1</b> de <span class="be-total"></span></div>
+  <h3 class="be-title"></h3>
+  <p class="be-text"></p>
+  <div class="be-progress"><i></i></div>
+  <div class="be-dots"></div>
+  <button class="be-play" type="button">❚❚ Pausar</button>
+  <div class="be-eps"><div class="be-eps-h">Endpoints</div><div class="be-ep" data-on="1 2 3"><span class="be-m post">POST</span><code>/<wbr>api/<wbr>auth/<wbr>login-socio</code></div><div class="be-ep" data-on="1"><span class="be-m post">POST</span><code>/<wbr>api/<wbr>auth/<wbr>login-admin</code></div><div class="be-ep" data-on="5"><span class="be-m post">POST</span><code>/<wbr>api/<wbr>auth/<wbr>refresh-token</code></div><div class="be-ep"><span class="be-m post">POST</span><code>/<wbr>api/<wbr>auth/<wbr>validate-email</code></div><div class="be-ep"><span class="be-m post">POST</span><code>/<wbr>api/<wbr>auth/<wbr>reset-password</code></div></div>
+</aside>
+<div class="be-stage be-grid-17">
+  <div class="be-seq">
+    <div class="be-lifelines"><i></i><i></i><i></i></div>
+    <div class="be-seq-head">
+      <div class="be-actor" data-on="1 4 5"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span><b>Cliente</b><small>React SPA</small></div>
+      <div class="be-actor be-api" data-on="2 3 4 5"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="7" rx="1.5"/><rect x="4" y="14" width="16" height="7" rx="1.5"/><path d="M8 6.5h.01M8 17.5h.01"/></svg></span><b>API REST</b><small>Node · Express</small></div>
+      <div class="be-actor" data-on="2"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><b>MySQL</b><small>Usuario · Usuario_Rol</small></div>
+    </div>
+    <div class="be-msgs">
+      <div class="be-msg " style="--l:16.667%;--w:33.333%" data-from="1" data-on="1"><div class="be-arrow"><i></i></div><div class="be-lbl"><span class="be-m post">POST</span> /auth/login-socio<em>{ dni, password }</em></div></div>
+      <div class="be-msg " style="--l:50%;--w:33.333%" data-from="2" data-on="2"><div class="be-arrow"><i></i></div><div class="be-lbl">SELECT hash, roles</div></div>
+      <div class="be-msg rev" style="--l:50%;--w:33.333%" data-from="2" data-on="2"><div class="be-arrow"><i></i></div><div class="be-lbl">hash Bcrypt (60 car.)</div></div>
+      <div class="be-msg self" style="--l:50%;--w:14%" data-from="2" data-on="2"><div class="be-arrow"><i></i></div><div class="be-lbl">bcrypt.compare() ✓</div></div>
+      <div class="be-msg rev ok" style="--l:16.667%;--w:33.333%" data-from="3" data-on="3"><div class="be-arrow"><i></i></div><div class="be-lbl">200 · access + refresh</div></div>
+      <div class="be-msg " style="--l:16.667%;--w:33.333%" data-from="4" data-on="4"><div class="be-arrow"><i></i></div><div class="be-lbl"><span class="be-m get">GET</span> /api/… · Bearer<em>requireRole() ✓</em></div></div>
+      <div class="be-msg rev err" style="--l:16.667%;--w:33.333%" data-from="5" data-on="5"><div class="be-arrow"><i></i></div><div class="be-lbl">401 · access vencido</div></div>
+      <div class="be-msg " style="--l:16.667%;--w:33.333%" data-from="5" data-on="5"><div class="be-arrow"><i></i></div><div class="be-lbl"><span class="be-m post">POST</span> /auth/refresh-token</div></div>
+      <div class="be-msg rev ok" style="--l:16.667%;--w:33.333%" data-from="5" data-on="5"><div class="be-arrow"><i></i></div><div class="be-lbl">nuevo access → reintenta</div></div>
+    </div>
+  </div>
+  <div class="be-side">
+    <div class="be-card be-hash" data-on="2">
+      <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>Contraseña cifrada</div>
+      <div class="be-hash-row"><code class="plain">club2026</code><span class="be-to">→</span><code class="hashed">$2b$10$N9qo8uLOickgx2ZMRZoMy…</code></div>
+      <small>BcryptJS · 10 rondas de salteo</small>
+    </div>
+    <div class="be-tokens">
+      <div class="be-card be-token" data-from="3" data-on="3 4">
+        <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M17 6l3 3M15 8l2 2"/></svg></span>Access token</div>
+        <div class="be-big">15 <span>min</span></div>
+        <div class="be-life-bar"><i></i></div>
+        <small>Header <code>Authorization: Bearer</code></small>
+      </div>
+      <div class="be-card be-token refresh" data-from="3" data-on="3 5">
+        <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>Refresh token</div>
+        <div class="be-big">7 <span>días</span></div>
+        <div class="be-life-bar long"><i></i></div>
+        <small>Renueva sin re-login</small>
+      </div>
+    </div>
+    <div class="be-card be-guard" data-on="4">
+      <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><code>requireRole("ADMIN_ALQUILER")</code></div>
+      <div class="be-guard-row ok"><code>roles: ["ADMIN_ALQUILER"]</code><span>✓ next()</span></div>
+      <div class="be-guard-row ko"><code>roles: ["ADMIN_NOTICIAS"]</code><span>✗ 403</span></div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
         </section>
 
         <!-- SLIDE 18: FRONTEND ACCESO, REGISTRO Y SESIONES -->
@@ -1340,44 +1357,66 @@
               <span>GM · Backend</span>
             </div>
           </div>
-          <div class="slide-body">
-            <div class="grid-2col">
-              <div class="card-clean accent-green">
-                <div class="card-heading">Reglas de Negocio</div>
-                <ul class="clean-list">
-                  <li>
-                    El socio nace en estado <code>Pendiente</code> (sin acceso
-                    operativo).
-                  </li>
-                  <li>
-                    Aprobación o rechazo administrativo con registro obligatorio
-                    de motivo.
-                  </li>
-                  <li>
-                    Despacho de correo transaccional automático mediante
-                    <strong>Resend</strong>.
-                  </li>
-                  <li>
-                    Modificaciones de datos sensibles requieren aprobación de
-                    secretaría.
-                  </li>
-                </ul>
-              </div>
-              <div class="card-clean accent-gold">
-                <div class="card-heading">Endpoints Principales</div>
-                <div class="code-snippet">
-                  <span class="method m-get">GET</span> /api/socios (Paginado +
-                  Filtros)<br />
-                  <span class="method m-patch">PATCH</span>
-                  /api/socios/:id/aprobar<br />
-                  <span class="method m-patch">PATCH</span>
-                  /api/socios/:id/rechazar<br />
-                  <span class="method m-post">POST</span>
-                  /api/socios/solicitud-cambio
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="slide-body be-body">
+<div class="be-wrap be-stepper" data-dur="5400">
+<ol class="be-src"><li><b>Alta pendiente</b> El socio se registra desde la web y nace en estado Pendiente: todavía no tiene acceso operativo.</li><li><b>Revisión de secretaría</b> Secretaría consulta el padrón paginado y con filtros, y revisa la documentación de cada alta.</li><li><b>Aprobación</b> Al aprobar, el socio pasa a Activo y Resend le despacha automáticamente un correo transaccional.</li><li><b>Rechazo con motivo</b> Rechazar exige registrar un motivo; el socio también recibe el aviso por correo.</li><li><b>Cambio de datos sensibles</b> El socio no puede modificar su DNI directo: genera una solicitud auditable que secretaría aprueba antes de impactar en el padrón.</li></ol>
+<aside class="be-panel">
+  <div class="be-kicker">Recorrido · Padrón social</div>
+  <div class="be-stepnum">Paso <b class="be-n">1</b> de <span class="be-total"></span></div>
+  <h3 class="be-title"></h3>
+  <p class="be-text"></p>
+  <div class="be-progress"><i></i></div>
+  <div class="be-dots"></div>
+  <button class="be-play" type="button">❚❚ Pausar</button>
+  <div class="be-eps"><div class="be-eps-h">Endpoints</div><div class="be-ep" data-on="2"><span class="be-m get">GET</span><code>/<wbr>api/<wbr>socios <i>paginado + filtros</i></code></div><div class="be-ep" data-on="3"><span class="be-m patch">PATCH</span><code>/<wbr>api/<wbr>socios/<wbr>:id/<wbr>aprobar</code></div><div class="be-ep" data-on="4"><span class="be-m patch">PATCH</span><code>/<wbr>api/<wbr>socios/<wbr>:id/<wbr>rechazar</code></div><div class="be-ep" data-on="5"><span class="be-m post">POST</span><code>/<wbr>api/<wbr>socios/<wbr>solicitud-cambio</code></div></div>
+</aside>
+<div class="be-stage be-grid-20">
+  <div class="be-lane">
+    <div class="be-lane-h">Circuito de alta</div>
+    <div class="be-flow20">
+      <div class="be-node" data-from="1" data-on="1"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><b>Registro web</b><small>datos + fotos DNI</small></div>
+      <div class="be-link" data-from="1"><i></i></div>
+      <div class="be-node be-state pend" data-from="1" data-on="1 2"><span class="be-pill">Pendiente</span><small>sin acceso operativo</small></div>
+      <div class="be-link" data-from="2"><i></i></div>
+      <div class="be-node be-inbox" data-from="2" data-on="2">
+        <b>Bandeja de secretaría</b>
+        <div class="be-mini-t">
+          <div class="h"><span>Socio</span><span>Estado</span></div>
+          <div><span>López, María</span><span class="be-pill sm pend">Pendiente</span></div>
+          <div><span>Sosa, Diego</span><span class="be-pill sm pend">Pendiente</span></div>
+          <div><span>Pérez, Juan</span><span class="be-pill sm act">Activo</span></div>
+        </div>
+      </div>
+      <div class="be-branch">
+        <div class="be-branch-row" data-from="3" data-on="3">
+          <div class="be-link ok"><i></i></div>
+          <div class="be-node be-state act"><span class="be-pill act">Activo ✓</span><small>accede al portal</small></div>
+          <div class="be-mailfx"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span></div>
+        </div>
+        <div class="be-branch-row" data-from="4" data-on="4">
+          <div class="be-link ko"><i></i></div>
+          <div class="be-node be-state rech"><span class="be-pill rech">Rechazado ✗</span><small>motivo: <em>DNI ilegible</em></small></div>
+          <div class="be-mailfx"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span></div>
+        </div>
+      </div>
+      <div class="be-node be-resend" data-from="3" data-on="3 4"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5 5h14l2 8v6H3v-6z"/></svg></span><b>Resend</b><small>correo automático</small></div>
+    </div>
+  </div>
+  <div class="be-lane" data-from="5" data-on="5">
+    <div class="be-lane-h">Cambio de datos sensibles</div>
+    <div class="be-flow20b">
+      <div class="be-node"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><b>Socio</b><small>quiere cambiar su DNI</small></div>
+      <div class="be-blocked"><span>PATCH directo</span><b>✗ bloqueado</b></div>
+      <div class="be-node be-req"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4"/></svg></span><b>Solicitud de cambio</b><small>queda registrada y auditable</small></div>
+      <div class="be-link"><i></i></div>
+      <div class="be-node"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><b>Secretaría</b><small>aprueba o rechaza</small></div>
+      <div class="be-link ok"><i></i></div>
+      <div class="be-node"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><b>Padrón</b><small>se actualiza</small></div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
         </section>
 
         <!-- SLIDE 21: FRONTEND PERFIL DEL SOCIO Y PANEL DE SOCIOS -->
@@ -1533,41 +1572,64 @@
               <span>GM · Backend</span>
             </div>
           </div>
-          <div class="slide-body">
-            <div class="grid-2col">
-              <div class="card-clean accent-green">
-                <div class="card-heading">Motor de Reservas</div>
-                <ul class="clean-list">
-                  <li>
-                    Verificación atómica en transacción SQL para impedir
-                    solapamientos.
-                  </li>
-                  <li>
-                    <strong>Token de Invitado:</strong>
-                    <code>TokenSeguimiento</code> único para no socios,
-                    permitiendo consultar y pagar vía email sin registrarse.
-                  </li>
-                  <li>
-                    Cancelación con &gt;48 hs calcula devolución de seña y
-                    registra Alias/CBU.
-                  </li>
-                </ul>
-              </div>
-              <div class="card-clean accent-gold">
-                <div class="card-heading">Endpoints Principales</div>
-                <div class="code-snippet">
-                  <span class="method m-get">GET</span>
-                  /api/espacios/:id/horarios-disponibles<br />
-                  <span class="method m-post">POST</span> /api/alquileres (Crear
-                  reserva)<br />
-                  <span class="method m-get">GET</span>
-                  /api/alquileres/guest/:token (Invitado)<br />
-                  <span class="method m-patch">PATCH</span>
-                  /api/alquileres/:id/cancelar
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="slide-body be-body">
+<div class="be-wrap be-stepper" data-dur="5400">
+<ol class="be-src"><li><b>Disponibilidad</b> El cliente consulta los horarios libres de un espacio antes de reservar.</li><li><b>Dos pedidos al mismo turno</b> Un socio y un invitado confirman la cancha de pádel del sábado 20:00 casi en el mismo instante.</li><li><b>Transacción atómica</b> La verificación del solapamiento y el alta de la reserva ocurren dentro de una sola transacción SQL: nadie puede colarse en el medio.</li><li><b>Cero solapamientos</b> El primero queda confirmado; el segundo recibe «horario ocupado» y su transacción se revierte.</li><li><b>Reserva como invitado</b> Un no socio reserva sin crear cuenta: recibe por email un TokenSeguimiento único para consultar y pagar su turno.</li><li><b>Cancelación y reintegro</b> Si cancela con más de 48 hs de anticipación, se calcula la devolución de la seña y se registra su Alias/CBU.</li></ol>
+<aside class="be-panel">
+  <div class="be-kicker">Recorrido · Motor de reservas</div>
+  <div class="be-stepnum">Paso <b class="be-n">1</b> de <span class="be-total"></span></div>
+  <h3 class="be-title"></h3>
+  <p class="be-text"></p>
+  <div class="be-progress"><i></i></div>
+  <div class="be-dots"></div>
+  <button class="be-play" type="button">❚❚ Pausar</button>
+  <div class="be-eps"><div class="be-eps-h">Endpoints</div><div class="be-ep" data-on="1"><span class="be-m get">GET</span><code>/<wbr>api/<wbr>espacios/<wbr>:id/<wbr>horarios-disponibles</code></div><div class="be-ep" data-on="2 3 4"><span class="be-m post">POST</span><code>/<wbr>api/<wbr>alquileres</code></div><div class="be-ep" data-on="5"><span class="be-m get">GET</span><code>/<wbr>api/<wbr>alquileres/<wbr>guest/<wbr>:token</code></div><div class="be-ep" data-on="6"><span class="be-m patch">PATCH</span><code>/<wbr>api/<wbr>alquileres/<wbr>:id/<wbr>cancelar</code></div></div>
+</aside>
+<div class="be-stage be-grid-23">
+  <div class="be-race">
+    <div class="be-clients">
+      <div class="be-client a" data-from="2" data-on="2 3 4"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><div><b>Socio A</b><small>12:00:00.031</small></div><span class="be-res ok">✓ Confirmada</span></div>
+      <div class="be-client b" data-from="2" data-on="2 3 4"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><div><b>Invitado B</b><small>12:00:00.034</small></div><span class="be-res ko">✗ Horario ocupado</span></div>
+    </div>
+    <div class="be-tx" data-from="2" data-on="3 4">
+      <div class="be-tx-h"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>Transacción SQL</div>
+      <div class="be-tx-l a" data-from="3">A · BEGIN</div>
+      <div class="be-tx-l a" data-from="3">A · verifica solapamiento → libre</div>
+      <div class="be-tx-l b wait" data-from="3">B · BEGIN … espera</div>
+      <div class="be-tx-l a" data-from="3">A · INSERT Alquiler</div>
+      <div class="be-tx-l a ok" data-from="3">A · COMMIT ✓</div>
+      <div class="be-tx-l b ko" data-from="4">B · verifica → ocupado · ROLLBACK</div>
+    </div>
+    <div class="be-space" data-on="1 2 3 4">
+      <div class="be-space-h"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><div><b>Cancha de pádel</b><small>Sábado</small></div></div>
+      <div class="be-slots"><div class="be-slot taken"><b>18:00</b><span>ocupado</span></div><div class="be-slot"><b>19:00</b><span>libre</span></div><div class="be-slot target"><b>20:00</b><span>libre</span></div><div class="be-slot taken"><b>21:00</b><span>ocupado</span></div></div>
+      <div class="be-owner" data-from="4">Reservado por <b>Socio A</b></div>
+    </div>
+  </div>
+  <div class="be-row2">
+    <div class="be-card be-guest" data-on="5">
+      <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>Token de invitado</div>
+      <div class="be-email">
+        <small>Para: invitado@mail.com</small>
+        <b>Tu reserva en el Club Judicial</b>
+        <code>…/alquiler-guest/<span class="be-tok">7f3c9a1e-b42d…</span></code>
+      </div>
+      <small>Consulta y paga sin registrarse · <code>TokenSeguimiento</code> único</small>
+    </div>
+    <div class="be-card be-cancel" data-on="6">
+      <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg></span>Cancelación con más de 48 hs</div>
+      <div class="be-ruler">
+        <div class="be-zone ok">&gt; 48 hs · devolución de seña</div>
+        <div class="be-zone no">&lt; 48 hs</div>
+        <div class="be-mark">turno</div>
+        <div class="be-cursor"></div>
+      </div>
+      <div class="be-cbu"><span>Alias/CBU registrado</span><code>club.socio.mp</code></div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
         </section>
 
         <!-- SLIDE 24: FRONTEND CATÁLOGO Y RESERVA DE ESPACIOS -->
@@ -1784,38 +1846,69 @@
               <span>GM · Backend</span>
             </div>
           </div>
-          <div class="slide-body">
-            <div class="grid-2col">
-              <div class="card-clean accent-green">
-                <div class="card-heading">MercadoPago Checkout Pro</div>
-                <ul class="clean-list">
-                  <li>
-                    Generación de preferencias seguras con
-                    <code>back_urls</code> dinámicas.
-                  </li>
-                  <li>
-                    <strong>Webhooks IPN asíncronos:</strong> Actualización
-                    desatendida e idempotente de cuotas y alquileres
-                    confirmados.
-                  </li>
-                </ul>
-              </div>
-              <div class="card-clean accent-gold">
-                <div class="card-heading">Planillas Excel y Rollback</div>
-                <ul class="clean-list">
-                  <li>
-                    Librería <code>xlsx</code>: Procesa retenciones de sueldos
-                    judiciales por DNI.
-                  </li>
-                  <li>
-                    <strong>Rollback Transaccional:</strong> Capacidad de
-                    deshacer una planilla errónea restaurando deudas anteriores
-                    en un clic.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <div class="slide-body be-body">
+<div class="be-wrap be-stepper" data-dur="5400">
+<ol class="be-src"><li data-tab="mp"><b>Crear preferencia</b> El socio elige pagar una cuota o un alquiler; la API genera una preferencia de pago con back_urls dinámicas.</li><li data-tab="mp"><b>Checkout Pro</b> El socio paga dentro de MercadoPago; nunca ingresa datos de tarjeta en nuestro sistema.</li><li data-tab="mp"><b>Webhook IPN</b> MercadoPago notifica a la API de forma asíncrona; la API confirma el pago y actualiza la cuota sin intervención humana.</li><li data-tab="mp"><b>Idempotencia</b> Si la misma notificación llega dos veces, el PaymentID ya registrado hace que se ignore: nunca se cobra ni imputa dos veces.</li><li data-tab="xl"><b>Importar planilla</b> Tesorería sube el Excel de retenciones de sueldos judiciales; la librería xlsx lo lee fila por fila.</li><li data-tab="xl"><b>Imputar por DNI</b> Cada fila se cruza por DNI y descuenta cuotas de la deuda del socio dentro de una transacción.</li><li data-tab="xl"><b>Se detecta un error</b> Un importe cargado mal en la planilla deja deudas incorrectas.</li><li data-tab="xl"><b>Rollback en un clic</b> La importación se deshace de forma transaccional y se restauran las deudas anteriores.</li></ol>
+<aside class="be-panel">
+  <div class="be-kicker">Recorrido · Finanzas</div><div class="be-tabs"><span data-tab="mp">MercadoPago Checkout Pro</span><span data-tab="xl">Planillas Excel + Rollback</span></div>
+  <div class="be-stepnum">Paso <b class="be-n">1</b> de <span class="be-total"></span></div>
+  <h3 class="be-title"></h3>
+  <p class="be-text"></p>
+  <div class="be-progress"><i></i></div>
+  <div class="be-dots"></div>
+  <button class="be-play" type="button">❚❚ Pausar</button>
+  <div class="be-eps"><div class="be-eps-h">Claves técnicas</div>
+<div class="be-ep" data-on="1 2"><span class="be-m tag">MP</span><code>back_urls dinámicas</code></div>
+<div class="be-ep" data-on="3 4"><span class="be-m tag">MP</span><code>PreferenceID + PaymentID</code></div>
+<div class="be-ep" data-on="5 6"><span class="be-m tag">XLSX</span><code>cruce por DNI</code></div>
+<div class="be-ep" data-on="6 8"><span class="be-m tag">SQL</span><code>transacción + rollback</code></div></div>
+</aside>
+<div class="be-stage be-scenes">
+  <div class="be-scene" data-tab="mp">
+    <div class="be-mpflow">
+      <div class="be-node" data-from="1" data-on="1"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><b>Socio</b><small>Pagar cuota</small></div>
+      <div class="be-link" data-from="1" data-on="1"><i></i><span>pide pagar</span></div>
+      <div class="be-node be-api" data-from="1" data-on="1 3 4"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="7" rx="1.5"/><rect x="4" y="14" width="16" height="7" rx="1.5"/><path d="M8 6.5h.01M8 17.5h.01"/></svg></span><b>API</b><small>preferencia + back_urls</small></div>
+      <div class="be-link" data-from="2" data-on="2"><i></i><span>redirige</span></div>
+      <div class="be-node be-mp" data-from="2" data-on="2 3 4"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span><b>MercadoPago</b><small>Checkout Pro</small></div>
+    </div>
+    <div class="be-webhook" data-from="3" data-on="3 4">
+      <div class="be-wh-line"><i></i><span><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span> Webhook IPN · PaymentID 1324…</span></div>
+      <div class="be-wh-line dup" data-from="4"><i></i><span><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span> Mismo webhook otra vez · PaymentID 1324…</span></div>
+    </div>
+    <div class="be-mp-bottom">
+      <div class="be-card be-receipt" data-from="3" data-on="3">
+        <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>Cuota · Octubre</div>
+        <div class="be-receipt-row"><span>Estado</span><b class="be-pill sm pend s-a">Pendiente</b><b class="be-pill sm act s-b">Pagada ✓</b></div>
+        <div class="be-receipt-row"><span>PreferenceID</span><code>pref_8841…</code></div>
+        <div class="be-receipt-row"><span>PaymentID</span><code>1324…</code></div>
+      </div>
+      <div class="be-card be-idem" data-on="4">
+        <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span>Idempotencia</div>
+        <code>PaymentID ya registrado → se ignora</code>
+        <small>Un pago = una sola imputación</small>
+      </div>
+    </div>
+  </div>
+  <div class="be-scene" data-tab="xl">
+    <div class="be-xl-top">
+      <div class="be-upfile" data-from="5" data-on="5"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></span><div><b>retenciones_octubre.xlsx</b><small>Planilla judicial · librería xlsx</small></div></div>
+      <div class="be-banner err" data-on="7"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Importe mal cargado en la fila 3</div>
+      <div class="be-banner ok" data-on="8"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg></span>Importación revertida · deudas restauradas</div>
+    </div>
+    <div class="be-xl" data-from="5">
+      <div class="be-xr h"><span>DNI</span><span>Socio</span><span>Importe</span><span>Cuotas adeudadas</span><span></span></div>
+      <div class="be-xr" data-from="6"><span>32.145.678</span><span>Pérez, Juan</span><span>$ 8.500</span>
+ <span class="be-deu"><b class="v0">3</b><b class="v1">2</b></span><span class="be-st"></span></div><div class="be-xr" data-from="6"><span>30.111.222</span><span>López, María</span><span>$ 8.500</span>
+ <span class="be-deu"><b class="v0">1</b><b class="v1">0</b></span><span class="be-st"></span></div><div class="be-xr bad" data-from="6"><span>35.444.555</span><span>Sosa, Diego</span><span>$ 85.000</span>
+ <span class="be-deu"><b class="v0">2</b><b class="v1">0</b></span><span class="be-st"></span></div><div class="be-xr" data-from="6"><span>37.555.666</span><span>Herrera, Sofía</span><span>$ 8.500</span>
+ <span class="be-deu"><b class="v0">4</b><b class="v1">3</b></span><span class="be-st"></span></div>
+    </div>
+    <button class="be-rollback" type="button" data-on="7 8" tabindex="-1"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg></span>Rollback</button>
+  </div>
+</div>
+</div>
+</div>
         </section>
 
         <!-- SLIDE 28: FRONTEND PAGO DE CUOTAS CON MERCADOPAGO -->
@@ -1964,38 +2057,56 @@
               <span>GM · Backend</span>
             </div>
           </div>
-          <div class="slide-body">
-            <div class="grid-2col">
-              <div class="card-clean accent-green">
-                <div class="card-heading">Gestión Multimedia Cloud</div>
-                <ul class="clean-list">
-                  <li>
-                    Multer en memoria y SDK de <strong>Cloudinary</strong>:
-                    transformación a WebP y CDN rápido.
-                  </li>
-                  <li>
-                    Sanitización de HTML enriquecido contra inyecciones XSS.
-                  </li>
-                  <li>
-                    Control estricto restringido al rol
-                    <code>ADMIN_NOTICIAS</code>.
-                  </li>
-                </ul>
-              </div>
-              <div class="card-clean accent-gold">
-                <div class="card-heading">Endpoints Implementados</div>
-                <div class="code-snippet">
-                  <span class="method m-get">GET</span> /api/noticias
-                  (Publicadas)<br />
-                  <span class="method m-post">POST</span> /api/noticias (Admin
-                  prensa)<br />
-                  <span class="method m-patch">PATCH</span>
-                  /api/noticias/:id<br />
-                  <span class="method m-get">GET</span> /api/categorias
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="slide-body be-body">
+<div class="be-wrap be-stepper" data-dur="5200">
+<ol class="be-src"><li><b>Control de rol</b> Solo ADMIN_NOTICIAS y SUPERADMIN pueden crear o editar noticias; cualquier otro rol es rechazado.</li><li><b>Multer en memoria</b> La imagen llega como buffer en memoria: nunca se escribe en el disco del servidor.</li><li><b>Cloudinary</b> El SDK la sube a Cloudinary, que la transforma a WebP y la sirve desde su CDN.</li><li><b>Sanitización XSS</b> El HTML enriquecido del cuerpo se limpia: se eliminan scripts y atributos peligrosos antes de guardar.</li><li><b>Publicación</b> Se guarda la noticia con la URL de la imagen y la portada solo lista las publicadas.</li></ol>
+<aside class="be-panel">
+  <div class="be-kicker">Recorrido · Prensa institucional</div>
+  <div class="be-stepnum">Paso <b class="be-n">1</b> de <span class="be-total"></span></div>
+  <h3 class="be-title"></h3>
+  <p class="be-text"></p>
+  <div class="be-progress"><i></i></div>
+  <div class="be-dots"></div>
+  <button class="be-play" type="button">❚❚ Pausar</button>
+  <div class="be-eps"><div class="be-eps-h">Endpoints</div><div class="be-ep" data-on="1 2 3 4"><span class="be-m post">POST</span><code>/<wbr>api/<wbr>noticias</code></div><div class="be-ep"><span class="be-m patch">PATCH</span><code>/<wbr>api/<wbr>noticias/<wbr>:id</code></div><div class="be-ep" data-on="5"><span class="be-m get">GET</span><code>/<wbr>api/<wbr>noticias <i>publicadas</i></code></div><div class="be-ep"><span class="be-m get">GET</span><code>/<wbr>api/<wbr>categorias</code></div></div>
+</aside>
+<div class="be-stage be-grid-30">
+  <div class="be-pipe" data-step-track>
+    <div class="be-pst" data-from="1" data-on="1"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></span><b>Editor de prensa</b><small>título · cuerpo · foto.jpg</small></div>
+    <div class="be-pst" data-from="1" data-on="1"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><b>requireRole</b><small>ADMIN_NOTICIAS</small></div>
+    <div class="be-pst" data-from="2" data-on="2"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></span><b>Multer</b><small>buffer en memoria</small></div>
+    <div class="be-pst" data-from="3" data-on="3"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 .5-8A6 6 0 0 0 6 9a4.5 4.5 0 0 0 1 9z"/></svg></span><b>Cloudinary</b><small>WebP + CDN</small></div>
+    <div class="be-pst" data-from="5" data-on="5"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><b>MySQL</b><small>noticia + URL</small></div>
+    <div class="be-pipe-track"><i class="be-file"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 17-5-5-9 8"/></svg></span><b class="f0">.jpg</b><b class="f1">.webp</b></i></div>
+  </div>
+  <div class="be-row3">
+    <div class="be-card be-roles" data-on="1">
+      <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span>¿Quién puede publicar?</div>
+      <div class="be-guard-row ok"><code>ADMIN_NOTICIAS</code><span>✓</span></div>
+      <div class="be-guard-row ok"><code>SUPERADMIN</code><span>✓</span></div>
+      <div class="be-guard-row ko"><code>ADMIN_ALQUILER</code><span>✗ 403</span></div>
+    </div>
+    <div class="be-card be-img" data-on="2 3">
+      <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 17-5-5-9 8"/></svg></span>La imagen</div>
+      <div class="be-imgbar"><span>foto.jpg</span><div><i class="orig"></i></div></div>
+      <div class="be-imgbar webp"><span>foto.webp</span><div><i></i></div></div>
+      <small><span class="t2">Multer: sin tocar el disco del servidor</span><span class="t3">Cloudinary: formato liviano + CDN</span></small>
+    </div>
+    <div class="be-card be-xss" data-on="4">
+      <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span>Sanitización XSS</div>
+      <code class="in">&lt;p&gt;Torneo de pádel&lt;/p&gt;<s>&lt;script&gt;robar()&lt;/script&gt;</s><br>&lt;img src="a.jpg" <s>onerror="…"</s>&gt;</code>
+      <code class="out">&lt;p&gt;Torneo de pádel&lt;/p&gt;<br>&lt;img src="a.jpg"&gt;</code>
+    </div>
+    <div class="be-card be-newsprev" data-on="5">
+      <div class="be-np-img"></div>
+      <span class="be-pill sm act">Publicada</span>
+      <b>Torneo de pádel de primavera</b>
+      <small>res.cloudinary.com/…/torneo.webp</small>
+    </div>
+  </div>
+</div>
+</div>
+</div>
         </section>
 
         <!-- SLIDE 31: FRONTEND PORTADA Y NOTICIAS -->
@@ -2140,36 +2251,41 @@
               <span>GM · Backend</span>
             </div>
           </div>
-          <div class="slide-body">
-            <div class="grid-2col">
-              <div class="card-clean accent-green">
-                <div class="card-heading">Aislamiento de Datos</div>
-                <ul class="clean-list">
-                  <li>
-                    Base de datos efímera réplica para testing independiente.
-                  </li>
-                  <li>
-                    Sufijos aleatorios únicos en DNI y usuarios para evitar
-                    colisiones.
-                  </li>
-                  <li>
-                    Helpers compartidos para login y preparación de estados por
-                    API.
-                  </li>
-                </ul>
-              </div>
-              <div class="card-clean accent-gold">
-                <div class="card-heading">GitHub Actions Artifacts</div>
-                <ul class="clean-list">
-                  <li>Bloqueo estricto del merge si un solo test falla.</li>
-                  <li>
-                    Retención de grabaciones en video, capturas y trazas durante
-                    7 días para depuración inmediata.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <div class="slide-body be-body">
+<div class="be-ci" id="be-ci">
+  <div class="be-ci-top">
+    <div class="be-ci-pipe"><div class="be-ci-st"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="8" r="2.5"/><path d="M6 8.5v7M18 10.5c0 4-6 3-11 5.5"/></svg></span><b>Pull Request</b><small>hacia main</small></div><div class="be-ci-link"><i></i></div><div class="be-ci-st"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><b>GitHub Actions</b><small>runner de CI</small></div><div class="be-ci-link"><i></i></div><div class="be-ci-st"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><b>BD de testing</b><small>réplica aislada</small></div><div class="be-ci-link"><i></i></div><div class="be-ci-st"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z"/></svg></span><b>Playwright E2E</b><small>pruebas</small></div><div class="be-ci-link"><i></i></div><div class="be-ci-st"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="6" cy="5" r="2.5"/><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M6 7.5v9M6 8c0 4 5 4 9.5 4"/></svg></span><b>Merge</b><small>a main</small></div></div>
+    <div class="be-ci-mode"><span>Simular:</span><button type="button" data-mode="ok">✓ Todo pasa</button><button type="button" data-mode="fail">✗ Falla un test</button></div>
+  </div>
+  <div class="be-ci-status">Esperando Pull Request…</div>
+  <div class="be-ci-grid">
+    <div class="be-card be-iso">
+      <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>Aislamiento de datos de prueba</div>
+      <ul class="be-ul">
+        <li>Base de datos <b>efímera y réplica</b>, independiente de producción.</li>
+        <li><b>Sufijos aleatorios únicos</b> en DNI y usuarios: ninguna corrida choca con otra.</li>
+        <li><b>Helpers compartidos</b> para login y para preparar estados por API.</li>
+      </ul>
+      <div class="be-gen">
+        <div><span>usuario</span><code>socio_e2e_<b data-rand="txt">k3x9q</b></code></div>
+        <div><span>dni</span><code>99<b data-rand="num">482615</b></code></div>
+      </div>
+    </div>
+    <div class="be-card be-runner">
+      <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z"/></svg></span>Corrida de Playwright</div>
+      <div class="be-tests"><div class="be-test"><span class="be-tst"></span><code>auth · login de socio y de personal</code></div><div class="be-test"><span class="be-tst"></span><code>socios · aprobar un alta pendiente</code></div><div class="be-test"><span class="be-tst"></span><code>alquileres · reservar un turno libre</code></div><div class="be-test"><span class="be-tst"></span><code>pagos · iniciar pago de cuota</code></div><div class="be-test"><span class="be-tst"></span><code>noticias · publicar con imagen</code></div></div>
+      <div class="be-verdict"><span class="v-ok"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg></span>Merge habilitado</span><span class="v-ko"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>Merge bloqueado</span></div>
+    </div>
+    <div class="be-card be-arts">
+      <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4"/></svg></span>Artefactos de GitHub Actions</div>
+      <div class="be-art"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3z"/></svg></span><div><b>Video</b><small>grabación de la prueba fallida</small></div></div>
+      <div class="be-art"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M4 7h3l2-3h6l2 3h3v13H4z"/><circle cx="12" cy="13" r="4"/></svg></span><div><b>Capturas</b><small>pantalla al momento del error</small></div></div>
+      <div class="be-art"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span><div><b>Trazas</b><small>paso a paso para depurar</small></div></div>
+      <div class="be-keep"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>Retención: <b>7 días</b></div>
+    </div>
+  </div>
+</div>
+</div>
         </section>
 
         <!-- SLIDE 34: DESPLIEGUE EN PRODUCCIÓN -->
@@ -2379,39 +2495,42 @@
               <span>GM · Backend</span>
             </div>
           </div>
-          <div class="slide-body">
-            <div class="grid-2col">
-              <div class="card-clean accent-green">
-                <div class="card-heading">Arquitectura y Seguridad</div>
-                <ul class="clean-list">
-                  <li>
-                    Diseño de API RESTful desacoplada, modular y escalable.
-                  </li>
-                  <li>
-                    Seguridad robusta con esquema de doble token JWT y control
-                    granular de roles.
-                  </li>
-                  <li>
-                    Orquestación confiable de servicios en la nube (MercadoPago,
-                    Resend, Cloudinary).
-                  </li>
-                </ul>
-              </div>
-              <div class="card-clean accent-gold">
-                <div class="card-heading">Procesos Críticos</div>
-                <ul class="clean-list">
-                  <li>
-                    Módulo de liquidación de sueldos por planilla Excel con
-                    capacidad de Rollback contable.
-                  </li>
-                  <li>
-                    Manejo de transacciones atómicas para reservas deportivas
-                    sin solapamiento.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <div class="slide-body be-body">
+<div class="be-concl">
+  <div class="be-concl-left">
+    <div class="be-stats">
+      <div class="be-stat" style="--i:0"><b data-count="5">5</b><span>módulos de API REST</span></div>
+      <div class="be-stat" style="--i:1"><b data-count="5" data-delay="120">5</b><span>roles RBAC con mínimo privilegio</span></div>
+      <div class="be-stat" style="--i:2"><b data-count="3" data-delay="240">3</b><span>servicios cloud orquestados</span></div>
+      <div class="be-stat" style="--i:3"><b data-count="2" data-delay="360">2</b><span>tokens JWT por sesión</span></div>
+    </div>
+    <div class="be-lessons">
+      <div class="be-lesson" style="--i:4"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span>Arquitectura y seguridad</div>
+        <p>API RESTful <b>desacoplada y modular</b>, autenticación stateless con doble token y <b>control granular de roles</b>.</p></div>
+      <div class="be-lesson gold" style="--i:5"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg></span>Procesos críticos</div>
+        <p>Liquidación por planilla Excel con <b>Rollback contable</b> y reservas con <b>transacciones atómicas</b> sin solapamiento.</p></div>
+    </div>
+  </div>
+  <div class="be-arch">
+    <div class="be-arch-h">Cómo viaja cada request</div>
+    <div class="be-arch-body">
+      <div class="be-layers">
+        <div class="be-layer" style="--i:0"><span>01</span><b>Rutas Express</b><small>/api/auth · socios · alquileres · pagos · noticias</small></div>
+        <div class="be-layer" style="--i:1"><span>02</span><b>Middlewares</b><small>verificación JWT · requireRole()</small></div>
+        <div class="be-layer" style="--i:2"><span>03</span><b>Lógica de negocio</b><small>reglas, validaciones y sanitización</small></div>
+        <div class="be-layer" style="--i:3"><span>04</span><b>Transacciones MySQL</b><small>atómicas e idempotentes</small></div>
+        <i class="be-req-dot"></i>
+      </div>
+      <div class="be-svcs">
+        <div class="be-svc" style="--i:0"><b>MercadoPago</b><small>pagos + webhooks</small></div>
+        <div class="be-svc" style="--i:1"><b>Cloudinary</b><small>imágenes WebP</small></div>
+        <div class="be-svc" style="--i:2"><b>Resend</b><small>correos</small></div>
+      </div>
+    </div>
+    <div class="be-mods"><div class="be-mod" style="--i:0"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><div><b>Autenticación</b><small>Doble token JWT + requireRole()</small></div></div><div class="be-mod" style="--i:1"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><div><b>Socios</b><small>Circuito de aprobación + Resend</small></div></div><div class="be-mod" style="--i:2"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><div><b>Alquileres</b><small>Transacciones sin solapamiento</small></div></div><div class="be-mod" style="--i:3"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span><div><b>Pagos</b><small>MercadoPago + rollback de planillas</small></div></div><div class="be-mod" style="--i:4"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></span><div><b>Prensa</b><small>Cloudinary + sanitización XSS</small></div></div></div>
+  </div>
+</div>
+</div>
         </section>
 
         <!-- SLIDE 37: CONCLUSIÓN ELENIO -->
@@ -2564,97 +2683,53 @@
               <span>Equipo PPS</span>
             </div>
           </div>
-          <div class="slide-body">
-            <div class="grid-2col">
-              <div class="card-clean accent-green">
-                <div class="card-heading">Impacto Real en la Organización</div>
-                <ul class="clean-list">
-                  <li>
-                    <strong>Cero solapamientos</strong> en reservas de canchas y
-                    salones.
-                  </li>
-                  <li>
-                    <strong>Transparencia total:</strong> el socio consulta y
-                    paga cuotas 24/7.
-                  </li>
-                  <li>
-                    <strong>Reducción de carga administrativa</strong> y
-                    erradicación del papel disperso.
-                  </li>
-                </ul>
-              </div>
-              <div class="card-clean accent-gold">
-                <div class="card-heading">Líneas de Trabajo Futuro</div>
-                <ul class="clean-list">
-                  <li>
-                    Notificaciones Push en tiempo real para avisos de reservas.
-                  </li>
-                  <li>
-                    Módulo de Business Intelligence y métricas para la Comisión
-                    Directiva.
-                  </li>
-                  <li>
-                    Aplicación móvil nativa en React Native y control de acceso
-                    QR en molinete.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <div class="slide-body be-body">
+<div class="be-impact" id="be-impact" data-state="antes">
+  <div class="be-imp-left">
+    <div class="be-imp-h"><h3>Impacto real en la organización</h3>
+      <div class="be-switch"><button type="button" data-state="antes">Antes</button><button type="button" data-state="ahora">Con el sistema</button><i></i></div>
+    </div>
+    <div class="be-cmps"><div class="be-cmp" style="--i:0"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><div class="be-cmp-b"><small>Reservas</small>
+ <p class="a0">Turnos superpuestos los fines de semana en canchas y quinchos.</p><p class="a1"><b>Cero solapamientos</b> en reservas de canchas y salones.</p></div></div><div class="be-cmp" style="--i:1"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span><div class="be-cmp-b"><small>Cuotas</small>
+ <p class="a0">El socio no podía consultar su deuda ni pagar a distancia.</p><p class="a1"><b>Transparencia total:</b> consulta y paga cuotas 24/7.</p></div></div><div class="be-cmp" style="--i:2"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></span><div class="be-cmp-b"><small>Administración</small>
+ <p class="a0">Planillas Excel dispersas, papel e inconsistencias contables.</p><p class="a1"><b>Menos carga administrativa</b> y datos centralizados.</p></div></div></div>
+  </div>
+  <div class="be-imp-right">
+    <h3>Líneas de trabajo futuro</h3>
+    <div class="be-road"><div class="be-fut" style="--i:0"><span class="be-fut-dot"></span><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/></svg></span><div><b>Notificaciones push</b><small>Avisos de reservas en tiempo real.</small></div></div><div class="be-fut" style="--i:1"><span class="be-fut-dot"></span><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><div><b>Business Intelligence</b><small>Métricas para la Comisión Directiva.</small></div></div><div class="be-fut" style="--i:2"><span class="be-fut-dot"></span><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM18 18h3v3"/></svg></span><div><b>App nativa + QR</b><small>React Native y control de acceso QR en molinete.</small></div></div></div>
+  </div>
+</div>
+</div>
         </section>
 
         <!-- SLIDE 39: CIERRE Y PREGUNTAS -->
         <section
-          class="slide"
+          class="slide be-endslide"
           data-slide="39"
           data-speaker="equipo"
           data-block="BLOQUE 9 — CONCLUSIONES"
         >
-          <div class="hero-clean">
-            <div class="unvim-tag">Universidad Nacional de Villa Mercedes</div>
-            <h1 class="hero-heading">¡Muchas Gracias!</h1>
-            <p
-              style="
-                font-size: 1.25rem;
-                color: var(--brand-green);
-                font-weight: 600;
-              "
-            >
-              Quedamos a disposición del Tribunal Evaluador para la ronda de
-              preguntas.
-            </p>
-
-            <div
-              style="
-                background: #ffffff;
-                border: 1px solid var(--border-gold);
-                border-radius: var(--radius-md);
-                padding: 20px 36px;
-                max-width: 650px;
-                text-align: center;
-                margin-top: 10px;
-                box-shadow: var(--shadow-soft);
-              "
-            >
-              <p
-                style="
-                  font-size: 0.95rem;
-                  color: var(--primary-dark);
-                  font-weight: 700;
-                  margin-bottom: 6px;
-                "
-              >
-                Sistema de Gestión Integral — Club Social, Cultural y Deportivo
-                Judicial
-              </p>
-              <p style="font-size: 0.85rem; color: var(--text-secondary)">
-                Elenio García (Base de Datos) · Germán Muñoz (Backend) · Matías
-                Giménez (Frontend)<br />
-                Tutor: Ing. Alejandro Marcelo Altaba · Supervisor: Fernando
-                Rigoni · 2026
-              </p>
-            </div>
-          </div>
+<div class="be-end-bg"></div>
+<div class="be-end">
+  <div class="be-end-top">
+    <img class="unvim" src="assets_presentacion/matias_image1.png" alt="Universidad Nacional de Villa Mercedes" />
+    <img class="club" src="assets_presentacion/logo.svg" alt="Logo del Club Judicial" />
+  </div>
+  <div class="be-end-main">
+    <div class="be-end-kicker">Universidad Nacional de Villa Mercedes · Defensa de PPS 2026</div>
+    <h1 class="be-end-title"><span style="--i:0">¡Muchas</span> <span style="--i:1">gracias!</span></h1>
+    <p class="be-end-sub">Quedamos a disposición del Tribunal Evaluador para la <b>ronda de preguntas</b>.</p>
+    <div class="be-end-q"><span>¿Preguntas?</span></div>
+  </div>
+  <div class="be-end-foot">
+    <div class="be-end-team">
+      <div class="be-end-p" style="--i:0;--c:#5c9ce6"><b>Elenio García</b><span>Base de Datos</span></div>
+      <div class="be-end-p" style="--i:1;--c:#6cc070"><b>Germán Muñoz</b><span>Backend &amp; API REST</span></div>
+      <div class="be-end-p" style="--i:2;--c:#e0b84a"><b>Matías Giménez</b><span>Frontend &amp; QA</span></div>
+    </div>
+    <div class="be-end-meta">Sistema de Gestión Integral — Club Social, Cultural y Deportivo Judicial · Tutor: Ing. Alejandro Marcelo Altaba · Supervisor: Fernando Rigoni</div>
+  </div>
+</div>
         </section>
       </main>
 
@@ -3409,5 +3484,6 @@
         document.body.classList.remove("show-top", "show-bottom");
       });
     </script>
+    <script src="presentacion_backend.js"></script>
   </body>
 </html>
