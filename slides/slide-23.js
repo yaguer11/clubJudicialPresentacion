@@ -27,7 +27,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Germán Muñoz [Backend]",
-  "content": "<strong>Qué decir:</strong> 'La API asegura la disponibilidad atómica con transacciones SQL para evitar colisiones. Para invitados (no socios), generamos un TokenSeguimiento criptográfico que les permite gestionar su turno vía email sin crear cuenta. Cancelaciones con más de 48 hs registran el CBU para reintegro de seña.'",
+  "content": "<strong>Qué decir:</strong> 'La API asegura la disponibilidad con una transacción SQL: si dos pedidos llegan al mismo turno, el primero se confirma y el segundo hace rollback, así no hay solapamientos. La seña vence en 1 hora, o 24 horas para un invitado aprobado; si no se paga, el cron expireAlquileres cancela la reserva y libera el horario. Para invitados generamos un TokenSeguimiento único que les permite gestionar su turno sin crear cuenta. Al cancelar, el turno se libera al instante. No hay reembolsos automáticos: con menos de 48 horas la seña queda retenida, y el único reintegro sistematizado es el seguro de depósito, que el administrador devuelve tras revisar las instalaciones.'",
   "handover": "Pase a Matías: Matías presentará el flujo interactivo de reserva en la web."
 };
 export default slide;

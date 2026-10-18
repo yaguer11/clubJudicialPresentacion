@@ -1142,7 +1142,7 @@
           </div>
           <div class="slide-body be-body">
 <div class="be-wrap be-stepper" data-dur="5600">
-<ol class="be-src"><li><b>Login</b> El socio ingresa con DNI y contraseña; el personal usa su propio endpoint /login-admin.</li><li><b>Verificación con Bcrypt</b> La API busca el hash del usuario y lo compara con bcrypt.compare(): nunca se guarda ni se compara texto plano.</li><li><b>Doble token JWT</b> Si coincide, emite un access token de 15 minutos y un refresh token de 7 días.</li><li><b>Request protegido</b> Cada pedido viaja con Authorization: Bearer. El middleware requireRole() valida la firma y los roles del JWT.</li><li><b>Renovación silenciosa</b> Cuando el access token vence, la API responde 401 y el cliente usa el refresh token para obtener uno nuevo, sin volver a loguearse.</li></ol>
+<ol class="be-src"><li><b>Login</b> El socio ingresa con DNI y contraseña; el personal usa su propio endpoint /login-admin.</li><li><b>Verificación con Bcrypt</b> La API busca el hash del usuario y lo compara con bcrypt.compare(): nunca se guarda ni se compara texto plano.</li><li><b>Doble token JWT</b> Si coincide, emite un access token de 15 minutos y un refresh token de 7 días.</li><li><b>Request protegido</b> Cada pedido viaja con Authorization: Bearer. Se verifica el JWT y los middlewares de rol (isAdmin, canManageAlquileres…) responden 403 si el rol no alcanza.</li><li><b>Renovación silenciosa</b> Cuando el access token vence, la API responde 401 (falla de autenticación, no de rol) y el cliente usa el refresh token para obtener uno nuevo, sin volver a loguearse.</li></ol>
 <aside class="be-panel">
   <div class="be-kicker">Recorrido · Autenticación</div>
   <div class="be-stepnum">Paso <b class="be-n">1</b> de <span class="be-total"></span></div>
@@ -1167,7 +1167,7 @@
       <div class="be-msg rev" style="--l:50%;--w:33.333%" data-from="2" data-on="2"><div class="be-arrow"><i></i></div><div class="be-lbl">hash Bcrypt (60 car.)</div></div>
       <div class="be-msg self" style="--l:50%;--w:14%" data-from="2" data-on="2"><div class="be-arrow"><i></i></div><div class="be-lbl">bcrypt.compare() ✓</div></div>
       <div class="be-msg rev ok" style="--l:16.667%;--w:33.333%" data-from="3" data-on="3"><div class="be-arrow"><i></i></div><div class="be-lbl">200 · access + refresh</div></div>
-      <div class="be-msg " style="--l:16.667%;--w:33.333%" data-from="4" data-on="4"><div class="be-arrow"><i></i></div><div class="be-lbl"><span class="be-m get">GET</span> /api/… · Bearer<em>requireRole() ✓</em></div></div>
+      <div class="be-msg " style="--l:16.667%;--w:33.333%" data-from="4" data-on="4"><div class="be-arrow"><i></i></div><div class="be-lbl"><span class="be-m get">GET</span> /api/… · Bearer<em>middleware de rol ✓</em></div></div>
       <div class="be-msg rev err" style="--l:16.667%;--w:33.333%" data-from="5" data-on="5"><div class="be-arrow"><i></i></div><div class="be-lbl">401 · access vencido</div></div>
       <div class="be-msg " style="--l:16.667%;--w:33.333%" data-from="5" data-on="5"><div class="be-arrow"><i></i></div><div class="be-lbl"><span class="be-m post">POST</span> /auth/refresh-token</div></div>
       <div class="be-msg rev ok" style="--l:16.667%;--w:33.333%" data-from="5" data-on="5"><div class="be-arrow"><i></i></div><div class="be-lbl">nuevo access → reintenta</div></div>
@@ -1176,8 +1176,8 @@
   <div class="be-side">
     <div class="be-card be-hash" data-on="2">
       <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>Contraseña cifrada</div>
-      <div class="be-hash-row"><code class="plain">club2026</code><span class="be-to">→</span><code class="hashed">$2b$10$N9qo8uLOickgx2ZMRZoMy…</code></div>
-      <small>BcryptJS · 10 rondas de salteo</small>
+      <div class="be-hash-row"><code class="plain">texto plano</code><span class="be-to">→</span><code class="hashed">$2a$10$uOtftMXSvhkYeEUTFSx6x…</code></div>
+      <small><code>bcrypt.hash(pass, 10)</code> · hash de 60 caracteres</small>
     </div>
     <div class="be-tokens">
       <div class="be-card be-token" data-from="3" data-on="3 4">
@@ -1194,7 +1194,7 @@
       </div>
     </div>
     <div class="be-card be-guard" data-on="4">
-      <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><code>requireRole("ADMIN_ALQUILER")</code></div>
+      <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><code>canManageAlquileres</code></div>
       <div class="be-guard-row ok"><code>roles: ["ADMIN_ALQUILER"]</code><span>✓ next()</span></div>
       <div class="be-guard-row ko"><code>roles: ["ADMIN_NOTICIAS"]</code><span>✗ 403</span></div>
     </div>
@@ -1564,7 +1564,7 @@
               >
               <h2 class="slide-title">Backend: API de Alquileres y Turnos</h2>
               <p class="slide-subtitle">
-                Concurrencia atómica, token de invitado y reintegros
+                Concurrencia atómica, token de invitado y cancelaciones
               </p>
             </div>
             <div class="speaker-subtle-badge speaker-german">
@@ -1574,7 +1574,7 @@
           </div>
           <div class="slide-body be-body">
 <div class="be-wrap be-stepper" data-dur="5400">
-<ol class="be-src"><li><b>Disponibilidad</b> El cliente consulta los horarios libres de un espacio antes de reservar.</li><li><b>Dos pedidos al mismo turno</b> Un socio y un invitado confirman la cancha de pádel del sábado 20:00 casi en el mismo instante.</li><li><b>Transacción atómica</b> La verificación del solapamiento y el alta de la reserva ocurren dentro de una sola transacción SQL: nadie puede colarse en el medio.</li><li><b>Cero solapamientos</b> El primero queda confirmado; el segundo recibe «horario ocupado» y su transacción se revierte.</li><li><b>Reserva como invitado</b> Un no socio reserva sin crear cuenta: recibe por email un TokenSeguimiento único para consultar y pagar su turno.</li><li><b>Cancelación y reintegro</b> Si cancela con más de 48 hs de anticipación, se calcula la devolución de la seña y se registra su Alias/CBU.</li></ol>
+<ol class="be-src"><li><b>Disponibilidad</b> El cliente consulta los horarios libres de un espacio antes de reservar.</li><li><b>Dos pedidos al mismo turno</b> Un socio y un invitado confirman la cancha de pádel del sábado 20:00 casi en el mismo instante.</li><li><b>Transacción atómica</b> La verificación del solapamiento y el alta de la reserva ocurren dentro de una misma transacción (connection.beginTransaction()): nadie puede colarse en el medio.</li><li><b>Cero solapamientos</b> El primero queda confirmado; el segundo recibe «horario ocupado» y su transacción se revierte.</li><li><b>Seña con vencimiento</b> El socio tiene 1 hora para pagar la seña (24 hs un invitado aprobado). Si no paga, el cron expireAlquileres cancela la reserva y libera el horario.</li><li><b>Reserva como invitado</b> Un no socio reserva sin crear cuenta: recibe por email un TokenSeguimiento único para consultar y pagar su turno en /alquiler-guest/:token.</li><li><b>Cancelación</b> La reserva pasa a CANCELADO y el horario se libera al instante. No hay reembolsos automáticos: con menos de 48 hs la seña queda retenida; el seguro de depósito sí se devuelve tras el evento.</li></ol>
 <aside class="be-panel">
   <div class="be-kicker">Recorrido · Motor de reservas</div>
   <div class="be-stepnum">Paso <b class="be-n">1</b> de <span class="be-total"></span></div>
@@ -1583,22 +1583,22 @@
   <div class="be-progress"><i></i></div>
   <div class="be-dots"></div>
   <button class="be-play" type="button">❚❚ Pausar</button>
-  <div class="be-eps"><div class="be-eps-h">Endpoints</div><div class="be-ep" data-on="1"><span class="be-m get">GET</span><code>/<wbr>api/<wbr>espacios/<wbr>:id/<wbr>horarios-disponibles</code></div><div class="be-ep" data-on="2 3 4"><span class="be-m post">POST</span><code>/<wbr>api/<wbr>alquileres</code></div><div class="be-ep" data-on="5"><span class="be-m get">GET</span><code>/<wbr>api/<wbr>alquileres/<wbr>guest/<wbr>:token</code></div><div class="be-ep" data-on="6"><span class="be-m patch">PATCH</span><code>/<wbr>api/<wbr>alquileres/<wbr>:id/<wbr>cancelar</code></div></div>
+  <div class="be-eps"><div class="be-eps-h">Endpoints</div><div class="be-ep" data-on="1"><span class="be-m get">GET</span><code>/<wbr>api/<wbr>espacios/<wbr>:id/<wbr>horarios-disponibles</code></div><div class="be-ep" data-on="2 3 4"><span class="be-m post">POST</span><code>/<wbr>api/<wbr>alquileres</code></div><div class="be-ep" data-on="6"><span class="be-m get">GET</span><code>/<wbr>api/<wbr>alquileres/<wbr>guest/<wbr>:token</code></div><div class="be-ep" data-on="7"><span class="be-m patch">PATCH</span><code>/<wbr>api/<wbr>alquileres/<wbr>:id/<wbr>cancelar</code></div></div>
 </aside>
 <div class="be-stage be-grid-23">
   <div class="be-race">
     <div class="be-clients">
-      <div class="be-client a" data-from="2" data-on="2 3 4"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><div><b>Socio A</b><small>12:00:00.031</small></div><span class="be-res ok">✓ Confirmada</span></div>
-      <div class="be-client b" data-from="2" data-on="2 3 4"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><div><b>Invitado B</b><small>12:00:00.034</small></div><span class="be-res ko">✗ Horario ocupado</span></div>
+      <div class="be-client a" data-from="2" data-on="2 3 4"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><div><b>Socio A</b><small>pide el sábado 20:00</small></div><span class="be-res ok">✓ Confirmada</span></div>
+      <div class="be-client b" data-from="2" data-on="2 3 4"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><div><b>Invitado B</b><small>pide el mismo turno</small></div><span class="be-res ko">✗ Horario ocupado</span></div>
     </div>
     <div class="be-tx" data-from="2" data-on="3 4">
       <div class="be-tx-h"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>Transacción SQL</div>
-      <div class="be-tx-l a" data-from="3">A · BEGIN</div>
+      <div class="be-tx-l a" data-from="3">A · beginTransaction()</div>
       <div class="be-tx-l a" data-from="3">A · verifica solapamiento → libre</div>
-      <div class="be-tx-l b wait" data-from="3">B · BEGIN … espera</div>
+      <div class="be-tx-l b wait" data-from="3">B · beginTransaction() … espera</div>
       <div class="be-tx-l a" data-from="3">A · INSERT Alquiler</div>
-      <div class="be-tx-l a ok" data-from="3">A · COMMIT ✓</div>
-      <div class="be-tx-l b ko" data-from="4">B · verifica → ocupado · ROLLBACK</div>
+      <div class="be-tx-l a ok" data-from="3">A · commit() ✓</div>
+      <div class="be-tx-l b ko" data-from="4">B · verifica → ocupado · rollback()</div>
     </div>
     <div class="be-space" data-on="1 2 3 4">
       <div class="be-space-h"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><div><b>Cancha de pádel</b><small>Sábado</small></div></div>
@@ -1606,8 +1606,14 @@
       <div class="be-owner" data-from="4">Reservado por <b>Socio A</b></div>
     </div>
   </div>
-  <div class="be-row2">
-    <div class="be-card be-guest" data-on="5">
+  <div class="be-row2 be-row2-3">
+    <div class="be-card be-expire" data-on="5">
+      <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>Seña con vencimiento</div>
+      <div class="be-timer"><span class="be-timer-bar"><i></i></span><b>1 h</b></div>
+      <div class="be-guard-row ko"><code>sin pago</code><span>cron expireAlquileres</span></div>
+      <small>Cancela la reserva y libera el horario · 24 hs si es invitado aprobado</small>
+    </div>
+    <div class="be-card be-guest" data-on="6">
       <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>Token de invitado</div>
       <div class="be-email">
         <small>Para: invitado@mail.com</small>
@@ -1616,15 +1622,12 @@
       </div>
       <small>Consulta y paga sin registrarse · <code>TokenSeguimiento</code> único</small>
     </div>
-    <div class="be-card be-cancel" data-on="6">
-      <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg></span>Cancelación con más de 48 hs</div>
-      <div class="be-ruler">
-        <div class="be-zone ok">&gt; 48 hs · devolución de seña</div>
-        <div class="be-zone no">&lt; 48 hs</div>
-        <div class="be-mark">turno</div>
-        <div class="be-cursor"></div>
-      </div>
-      <div class="be-cbu"><span>Alias/CBU registrado</span><code>club.socio.mp</code></div>
+    <div class="be-card be-cancel" data-on="7">
+      <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg></span>Cancelación</div>
+      <div class="be-guard-row ok"><code>Turno</code><span>CANCELADO · se libera</span></div>
+      <div class="be-guard-row ko"><code>Seña &lt; 48 hs</code><span>retenida · sin reembolso</span></div>
+      <div class="be-guard-row warn"><code>Seguro de depósito</code><span>PENDIENTE_DEVOLUCION</span></div>
+      <small>Reintegros siempre manuales, con revisión de la administración</small>
     </div>
   </div>
 </div>
@@ -1848,7 +1851,7 @@
           </div>
           <div class="slide-body be-body">
 <div class="be-wrap be-stepper" data-dur="5400">
-<ol class="be-src"><li data-tab="mp"><b>Crear preferencia</b> El socio elige pagar una cuota o un alquiler; la API genera una preferencia de pago con back_urls dinámicas.</li><li data-tab="mp"><b>Checkout Pro</b> El socio paga dentro de MercadoPago; nunca ingresa datos de tarjeta en nuestro sistema.</li><li data-tab="mp"><b>Webhook IPN</b> MercadoPago notifica a la API de forma asíncrona; la API confirma el pago y actualiza la cuota sin intervención humana.</li><li data-tab="mp"><b>Idempotencia</b> Si la misma notificación llega dos veces, el PaymentID ya registrado hace que se ignore: nunca se cobra ni imputa dos veces.</li><li data-tab="xl"><b>Importar planilla</b> Tesorería sube el Excel de retenciones de sueldos judiciales; la librería xlsx lo lee fila por fila.</li><li data-tab="xl"><b>Imputar por DNI</b> Cada fila se cruza por DNI y descuenta cuotas de la deuda del socio dentro de una transacción.</li><li data-tab="xl"><b>Se detecta un error</b> Un importe cargado mal en la planilla deja deudas incorrectas.</li><li data-tab="xl"><b>Rollback en un clic</b> La importación se deshace de forma transaccional y se restauran las deudas anteriores.</li></ol>
+<ol class="be-src"><li data-tab="mp"><b>Crear preferencia</b> La API calcula cuántas cuotas cubre el monto según el valor vigente, crea la preferencia con el SDK de MercadoPago y registra el Pago en PENDIENTE con su preferenceId.</li><li data-tab="mp"><b>Checkout Pro</b> El socio paga dentro de MercadoPago, sin ingresar datos de tarjeta en nuestro sistema, y vuelve por las back_urls: /pagos/success, /failure o /pending.</li><li data-tab="mp"><b>Webhook IPN</b> MercadoPago notifica a la API; se valida el paymentId contra MP y, en una transacción con rollback, se descuentan cuotas en Deuda_Socio, se registra el Pago y el ingreso en Caja_Movimiento.</li><li data-tab="mp"><b>Idempotencia</b> Si la misma notificación llega dos veces, el PaymentID ya registrado hace que se ignore: nunca se cobra ni imputa dos veces.</li><li data-tab="xl"><b>Importar planilla</b> Tesorería sube el Excel de retenciones de haberes; la librería xlsx lee las columnas obligatorias CUIT/CUIL e IMPORTE.</li><li data-tab="xl"><b>Imputar por CUIL</b> Cada fila se cruza por CUIL, el identificador con el que liquida el Poder Judicial, y descuenta cuotas solo a socios de tipo COMUN dentro de una transacción.</li><li data-tab="xl"><b>Se detecta un error</b> Un importe cargado mal en la planilla deja deudas incorrectas.</li><li data-tab="xl"><b>Rollback en un clic</b> La importación se deshace de forma transaccional y se restauran las deudas anteriores.</li></ol>
 <aside class="be-panel">
   <div class="be-kicker">Recorrido · Finanzas</div><div class="be-tabs"><span data-tab="mp">MercadoPago Checkout Pro</span><span data-tab="xl">Planillas Excel + Rollback</span></div>
   <div class="be-stepnum">Paso <b class="be-n">1</b> de <span class="be-total"></span></div>
@@ -1857,20 +1860,16 @@
   <div class="be-progress"><i></i></div>
   <div class="be-dots"></div>
   <button class="be-play" type="button">❚❚ Pausar</button>
-  <div class="be-eps"><div class="be-eps-h">Claves técnicas</div>
-<div class="be-ep" data-on="1 2"><span class="be-m tag">MP</span><code>back_urls dinámicas</code></div>
-<div class="be-ep" data-on="3 4"><span class="be-m tag">MP</span><code>PreferenceID + PaymentID</code></div>
-<div class="be-ep" data-on="5 6"><span class="be-m tag">XLSX</span><code>cruce por DNI</code></div>
-<div class="be-ep" data-on="6 8"><span class="be-m tag">SQL</span><code>transacción + rollback</code></div></div>
+  <div class="be-eps"><div class="be-eps-h">Endpoints</div><div class="be-ep" data-on="1"><span class="be-m post">POST</span><code>/<wbr>api/<wbr>pagos/<wbr>preference</code></div><div class="be-ep" data-on="3 4"><span class="be-m post">POST</span><code>/<wbr>api/<wbr>pagos/<wbr>webhook</code></div><div class="be-ep" data-on="1"><span class="be-m post">POST</span><code>/<wbr>api/<wbr>pagos-alquileres/<wbr>crear-preferencia</code></div><div class="be-ep" data-on="3 4"><span class="be-m post">POST</span><code>/<wbr>api/<wbr>pagos-alquileres/<wbr>webhook</code></div></div>
 </aside>
 <div class="be-stage be-scenes">
   <div class="be-scene" data-tab="mp">
     <div class="be-mpflow">
       <div class="be-node" data-from="1" data-on="1"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><b>Socio</b><small>Pagar cuota</small></div>
       <div class="be-link" data-from="1" data-on="1"><i></i><span>pide pagar</span></div>
-      <div class="be-node be-api" data-from="1" data-on="1 3 4"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="7" rx="1.5"/><rect x="4" y="14" width="16" height="7" rx="1.5"/><path d="M8 6.5h.01M8 17.5h.01"/></svg></span><b>API</b><small>preferencia + back_urls</small></div>
+      <div class="be-node be-api" data-from="1" data-on="1 3 4"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="7" rx="1.5"/><rect x="4" y="14" width="16" height="7" rx="1.5"/><path d="M8 6.5h.01M8 17.5h.01"/></svg></span><b>API</b><small>preference · Pago PENDIENTE</small></div>
       <div class="be-link" data-from="2" data-on="2"><i></i><span>redirige</span></div>
-      <div class="be-node be-mp" data-from="2" data-on="2 3 4"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span><b>MercadoPago</b><small>Checkout Pro</small></div>
+      <div class="be-node be-mp" data-from="2" data-on="2 3 4"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span><b>MercadoPago</b><small>Checkout Pro</small><span class="be-burls" data-from="2"><code>/pagos/success</code><code>/failure</code><code>/pending</code></span></div>
     </div>
     <div class="be-webhook" data-from="3" data-on="3 4">
       <div class="be-wh-line"><i></i><span><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span> Webhook IPN · PaymentID 1324…</span></div>
@@ -1878,10 +1877,11 @@
     </div>
     <div class="be-mp-bottom">
       <div class="be-card be-receipt" data-from="3" data-on="3">
-        <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>Cuota · Octubre</div>
+        <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>Deuda_Socio · Pago</div>
         <div class="be-receipt-row"><span>Estado</span><b class="be-pill sm pend s-a">Pendiente</b><b class="be-pill sm act s-b">Pagada ✓</b></div>
         <div class="be-receipt-row"><span>PreferenceID</span><code>pref_8841…</code></div>
         <div class="be-receipt-row"><span>PaymentID</span><code>1324…</code></div>
+        <div class="be-receipt-row"><span>Caja_Movimiento</span><b class="s-b be-in">+ ingreso</b><code class="s-a">—</code></div>
       </div>
       <div class="be-card be-idem" data-on="4">
         <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span>Idempotencia</div>
@@ -1892,16 +1892,16 @@
   </div>
   <div class="be-scene" data-tab="xl">
     <div class="be-xl-top">
-      <div class="be-upfile" data-from="5" data-on="5"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></span><div><b>retenciones_octubre.xlsx</b><small>Planilla judicial · librería xlsx</small></div></div>
+      <div class="be-upfile" data-from="5" data-on="5"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></span><div><b>retenciones_octubre.xlsx</b><small>Columnas: CUIT/CUIL · IMPORTE · solo socios COMUN</small></div></div>
       <div class="be-banner err" data-on="7"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></span>Importe mal cargado en la fila 3</div>
       <div class="be-banner ok" data-on="8"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg></span>Importación revertida · deudas restauradas</div>
     </div>
     <div class="be-xl" data-from="5">
-      <div class="be-xr h"><span>DNI</span><span>Socio</span><span>Importe</span><span>Cuotas adeudadas</span><span></span></div>
-      <div class="be-xr" data-from="6"><span>32.145.678</span><span>Pérez, Juan</span><span>$ 8.500</span>
- <span class="be-deu"><b class="v0">3</b><b class="v1">2</b></span><span class="be-st"></span></div><div class="be-xr" data-from="6"><span>30.111.222</span><span>López, María</span><span>$ 8.500</span>
- <span class="be-deu"><b class="v0">1</b><b class="v1">0</b></span><span class="be-st"></span></div><div class="be-xr bad" data-from="6"><span>35.444.555</span><span>Sosa, Diego</span><span>$ 85.000</span>
- <span class="be-deu"><b class="v0">2</b><b class="v1">0</b></span><span class="be-st"></span></div><div class="be-xr" data-from="6"><span>37.555.666</span><span>Herrera, Sofía</span><span>$ 8.500</span>
+      <div class="be-xr h"><span>CUIL</span><span>Socio</span><span>Importe</span><span>Cuotas adeudadas</span><span></span></div>
+      <div class="be-xr" data-from="6"><span>20321456789</span><span>Pérez, Juan</span><span>$ 5.000</span>
+ <span class="be-deu"><b class="v0">3</b><b class="v1">2</b></span><span class="be-st"></span></div><div class="be-xr" data-from="6"><span>27301112223</span><span>López, María</span><span>$ 5.000</span>
+ <span class="be-deu"><b class="v0">1</b><b class="v1">0</b></span><span class="be-st"></span></div><div class="be-xr bad" data-from="6"><span>20354445556</span><span>Sosa, Diego</span><span>$ 50.000</span>
+ <span class="be-deu"><b class="v0">2</b><b class="v1">0</b></span><span class="be-st"></span></div><div class="be-xr" data-from="6"><span>27375556664</span><span>Herrera, Sofía</span><span>$ 5.000</span>
  <span class="be-deu"><b class="v0">4</b><b class="v1">3</b></span><span class="be-st"></span></div>
     </div>
     <button class="be-rollback" type="button" data-on="7 8" tabindex="-1"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg></span>Rollback</button>
@@ -2059,7 +2059,7 @@
           </div>
           <div class="slide-body be-body">
 <div class="be-wrap be-stepper" data-dur="5200">
-<ol class="be-src"><li><b>Control de rol</b> Solo ADMIN_NOTICIAS y SUPERADMIN pueden crear o editar noticias; cualquier otro rol es rechazado.</li><li><b>Multer en memoria</b> La imagen llega como buffer en memoria: nunca se escribe en el disco del servidor.</li><li><b>Cloudinary</b> El SDK la sube a Cloudinary, que la transforma a WebP y la sirve desde su CDN.</li><li><b>Sanitización XSS</b> El HTML enriquecido del cuerpo se limpia: se eliminan scripts y atributos peligrosos antes de guardar.</li><li><b>Publicación</b> Se guarda la noticia con la URL de la imagen y la portada solo lista las publicadas.</li></ol>
+<ol class="be-src"><li><b>Control de rol</b> El middleware canManageNoticias solo deja pasar a ADMIN_NOTICIAS y SUPERADMIN; cualquier otro rol recibe 403 Forbidden.</li><li><b>Multer en memoria</b> La imagen llega como buffer en memoria: nunca se escribe en el disco del servidor.</li><li><b>Cloudinary</b> El SDK la sube a Cloudinary, que la transforma a WebP y la sirve desde su CDN.</li><li><b>Sanitización XSS</b> El HTML enriquecido del cuerpo se limpia: se eliminan scripts y atributos peligrosos antes de guardar.</li><li><b>Publicación</b> Se guarda la noticia con la URL de la imagen y la portada solo lista las publicadas.</li></ol>
 <aside class="be-panel">
   <div class="be-kicker">Recorrido · Prensa institucional</div>
   <div class="be-stepnum">Paso <b class="be-n">1</b> de <span class="be-total"></span></div>
@@ -2073,7 +2073,7 @@
 <div class="be-stage be-grid-30">
   <div class="be-pipe" data-step-track>
     <div class="be-pst" data-from="1" data-on="1"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></span><b>Editor de prensa</b><small>título · cuerpo · foto.jpg</small></div>
-    <div class="be-pst" data-from="1" data-on="1"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><b>requireRole</b><small>ADMIN_NOTICIAS</small></div>
+    <div class="be-pst" data-from="1" data-on="1"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><b>canManageNoticias</b><small>middleware de rol</small></div>
     <div class="be-pst" data-from="2" data-on="2"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></span><b>Multer</b><small>buffer en memoria</small></div>
     <div class="be-pst" data-from="3" data-on="3"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 .5-8A6 6 0 0 0 6 9a4.5 4.5 0 0 0 1 9z"/></svg></span><b>Cloudinary</b><small>WebP + CDN</small></div>
     <div class="be-pst" data-from="5" data-on="5"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><b>MySQL</b><small>noticia + URL</small></div>
@@ -2272,8 +2272,8 @@
       </div>
     </div>
     <div class="be-card be-runner">
-      <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z"/></svg></span>Corrida de Playwright</div>
-      <div class="be-tests"><div class="be-test"><span class="be-tst"></span><code>auth · login de socio y de personal</code></div><div class="be-test"><span class="be-tst"></span><code>socios · aprobar un alta pendiente</code></div><div class="be-test"><span class="be-tst"></span><code>alquileres · reservar un turno libre</code></div><div class="be-test"><span class="be-tst"></span><code>pagos · iniciar pago de cuota</code></div><div class="be-test"><span class="be-tst"></span><code>noticias · publicar con imagen</code></div></div>
+      <div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z"/></svg></span>Corrida de Playwright <small class="be-path">tests/e2e/real/</small></div>
+      <div class="be-tests"><div class="be-test"><span class="be-tst"></span><code>reserva-espacio.spec.js</code></div><div class="be-test"><span class="be-tst"></span><code>pagos-deuda-y-planilla.spec.js</code></div><div class="be-test"><span class="be-tst"></span><code>alquileres-cancelar.spec.js</code></div><div class="be-test"><span class="be-tst"></span><code>caja-chica-happy-path.spec.js</code></div><div class="be-test"><span class="be-tst"></span><code>admin-espacios-accesorios-crud.spec.js</code></div></div>
       <div class="be-verdict"><span class="v-ok"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg></span>Merge habilitado</span><span class="v-ko"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>Merge bloqueado</span></div>
     </div>
     <div class="be-card be-arts">
@@ -2516,7 +2516,7 @@
     <div class="be-arch-body">
       <div class="be-layers">
         <div class="be-layer" style="--i:0"><span>01</span><b>Rutas Express</b><small>/api/auth · socios · alquileres · pagos · noticias</small></div>
-        <div class="be-layer" style="--i:1"><span>02</span><b>Middlewares</b><small>verificación JWT · requireRole()</small></div>
+        <div class="be-layer" style="--i:1"><span>02</span><b>Middlewares</b><small>verificación JWT · isAdmin · canManage… (403)</small></div>
         <div class="be-layer" style="--i:2"><span>03</span><b>Lógica de negocio</b><small>reglas, validaciones y sanitización</small></div>
         <div class="be-layer" style="--i:3"><span>04</span><b>Transacciones MySQL</b><small>atómicas e idempotentes</small></div>
         <i class="be-req-dot"></i>
@@ -2527,7 +2527,7 @@
         <div class="be-svc" style="--i:2"><b>Resend</b><small>correos</small></div>
       </div>
     </div>
-    <div class="be-mods"><div class="be-mod" style="--i:0"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><div><b>Autenticación</b><small>Doble token JWT + requireRole()</small></div></div><div class="be-mod" style="--i:1"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><div><b>Socios</b><small>Circuito de aprobación + Resend</small></div></div><div class="be-mod" style="--i:2"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><div><b>Alquileres</b><small>Transacciones sin solapamiento</small></div></div><div class="be-mod" style="--i:3"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span><div><b>Pagos</b><small>MercadoPago + rollback de planillas</small></div></div><div class="be-mod" style="--i:4"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></span><div><b>Prensa</b><small>Cloudinary + sanitización XSS</small></div></div></div>
+    <div class="be-mods"><div class="be-mod" style="--i:0"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><div><b>Autenticación</b><small>Doble token JWT + middlewares de rol</small></div></div><div class="be-mod" style="--i:1"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span><div><b>Socios</b><small>Circuito de aprobación + Resend</small></div></div><div class="be-mod" style="--i:2"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><div><b>Alquileres</b><small>Transacciones sin solapamiento</small></div></div><div class="be-mod" style="--i:3"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span><div><b>Pagos</b><small>MercadoPago + rollback de planillas</small></div></div><div class="be-mod" style="--i:4"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></span><div><b>Prensa</b><small>Cloudinary + sanitización XSS</small></div></div></div>
   </div>
 </div>
 </div>
@@ -2923,7 +2923,7 @@
         },
         17: {
           speaker: "Germán Muñoz [Backend]",
-          content: "<strong>Qué decir:</strong> 'La API de autenticación implementa un esquema de doble token JWT: Access Token de 15 minutos para peticiones seguras y Refresh Token de 7 días para renovación silenciosa. Las contraseñas se cifran con 10 rondas de salteo y middlewares requireRole() validan los permisos en cada endpoint protegido.'",
+          content: "<strong>Qué decir:</strong> 'La API de autenticación implementa un esquema de doble token JWT: Access Token de 15 minutos para peticiones seguras y Refresh Token de 7 días para renovación silenciosa. Las contraseñas se guardan como hash bcrypt con 10 rondas de salt. En cada endpoint protegido primero se verifica el JWT: si falta o venció, la API responde 401. Después, los middlewares de rol como isAdmin o canManageAlquileres validan los permisos: si el rol no alcanza, responde 403 Forbidden.'",
           handover: "Pase a Matías: Matías mostrará cómo consume el frontend esta capa de autenticación."
         },
         18: {
@@ -2953,7 +2953,7 @@
         },
         23: {
           speaker: "Germán Muñoz [Backend]",
-          content: "<strong>Qué decir:</strong> 'La API asegura la disponibilidad atómica con transacciones SQL para evitar colisiones. Para invitados (no socios), generamos un TokenSeguimiento criptográfico que les permite gestionar su turno vía email sin crear cuenta. Cancelaciones con más de 48 hs registran el CBU para reintegro de seña.'",
+          content: "<strong>Qué decir:</strong> 'La API asegura la disponibilidad con una transacción SQL: si dos pedidos llegan al mismo turno, el primero se confirma y el segundo hace rollback, así no hay solapamientos. La seña vence en 1 hora, o 24 horas para un invitado aprobado; si no se paga, el cron expireAlquileres cancela la reserva y libera el horario. Para invitados generamos un TokenSeguimiento único que les permite gestionar su turno sin crear cuenta. Al cancelar, el turno se libera al instante. No hay reembolsos automáticos: con menos de 48 horas la seña queda retenida, y el único reintegro sistematizado es el seguro de depósito, que el administrador devuelve tras revisar las instalaciones.'",
           handover: "Pase a Matías: Matías presentará el flujo interactivo de reserva en la web."
         },
         24: {
@@ -2973,7 +2973,7 @@
         },
         27: {
           speaker: "Germán Muñoz [Backend]",
-          content: "<strong>Qué decir:</strong> 'Integramos MercadoPago Checkout Pro con webhooks IPN que confirman pagos de forma desatendida. Para retenciones de sueldo judicial, procesamos archivos Excel con la librería xlsx y desarrollamos un mecanismo de Rollback transaccional que permite revertir una planilla errónea restaurando deudas previas.'",
+          content: "<strong>Qué decir:</strong> 'Integramos MercadoPago Checkout Pro en dos circuitos: cuotas, en /api/pagos, y alquileres, en /api/pagos-alquileres. La API crea la preferencia y registra el pago en estado PENDIENTE. Cuando MercadoPago notifica por webhook, validamos el paymentId contra su API y, en una transacción atómica, descontamos cuotas en Deuda_Socio, registramos el Pago y el ingreso en Caja_Movimiento; una notificación repetida se ignora. Para las retenciones de haberes procesamos el Excel con la librería xlsx cruzando por CUIL, solo para socios de tipo COMÚN, y desarrollamos un Rollback transaccional que revierte una planilla errónea restaurando las deudas previas.'",
           handover: "Pase a Matías: Matías mostrará cómo el socio paga sus cuotas desde el portal."
         },
         28: {
@@ -2988,7 +2988,7 @@
         },
         30: {
           speaker: "Germán Muñoz [Backend]",
-          content: "<strong>Qué decir:</strong> 'Conectamos Multer en memoria con Cloudinary para optimizar imágenes en la nube en formato WebP sin saturar el servidor local. Aplicamos validaciones contra ataques XSS en el cuerpo y restringimos la publicación a los roles ADMIN_NOTICIAS y SUPERADMIN.'",
+          content: "<strong>Qué decir:</strong> 'Conectamos Multer en memoria con Cloudinary para optimizar imágenes en la nube en formato WebP sin saturar el servidor local. Aplicamos validaciones contra ataques XSS en el cuerpo y, con el middleware canManageNoticias, restringimos la publicación a los roles ADMIN_NOTICIAS y SUPERADMIN: cualquier otro rol recibe 403.'",
           handover: "Pase a Matías: Matías mostrará la portada y la interfaz editorial."
         },
         31: {

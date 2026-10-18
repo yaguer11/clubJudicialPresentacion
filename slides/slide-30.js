@@ -28,7 +28,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Germán Muñoz [Backend]",
-  "content": "<strong>Qué decir:</strong> 'Conectamos Multer en memoria con Cloudinary para optimizar imágenes en la nube en formato WebP sin saturar el servidor local. Aplicamos validaciones contra ataques XSS en el cuerpo y restringimos la publicación a los roles ADMIN_NOTICIAS y SUPERADMIN.'",
+  "content": "<strong>Qué decir:</strong> 'Conectamos Multer en memoria con Cloudinary para optimizar imágenes en la nube en formato WebP sin saturar el servidor local. Aplicamos validaciones contra ataques XSS en el cuerpo y, con el middleware canManageNoticias, restringimos la publicación a los roles ADMIN_NOTICIAS y SUPERADMIN: cualquier otro rol recibe 403.'",
   "handover": "Pase a Matías: Matías mostrará la portada y la interfaz editorial."
 };
 export default slide;
