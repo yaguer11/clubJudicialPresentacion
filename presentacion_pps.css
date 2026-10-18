@@ -1185,3 +1185,191 @@ footer.bottom-bar {
     bottom: 16px;
   }
 }
+
+/* ====================================================================
+ DIAPOSITIVA 2 — Animación: carga manual de socios del papel al Excel
+ ==================================================================== */
+.anim-planilla {
+  width: 100%;
+  align-self: center;
+  background: #f6f3ec; /* mismo tono que la pared de la escena */
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  padding: 0 0 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+}
+.anim-planilla svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.anim-planilla-caption {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.anim-planilla-caption strong {
+  color: var(--brand-gold-dark);
+}
+.anim-planilla .ap-ui {
+  font-family: "Plus Jakarta Sans", "Segoe UI", Arial, sans-serif;
+}
+.anim-planilla .ap-hand {
+  font-family: "Caveat", "Segoe Print", cursive;
+}
+.anim-planilla .ap-body,
+.anim-planilla .ap-head,
+.anim-planilla .ap-torso,
+.anim-planilla .ap-arm,
+.anim-planilla .ap-clock-m,
+.anim-planilla .ap-clock-h {
+  transform-box: view-box;
+}
+
+/* Postura: se inclina hacia el papel y vuelve a la pantalla */
+.anim-planilla .ap-body {
+  transform-origin: 140px 384px;
+  transition: transform 0.45s ease;
+}
+.anim-planilla.look-paper .ap-body {
+  transform: rotate(4deg);
+}
+.anim-planilla .ap-head {
+  transform-origin: 140px 244px;
+  transform: rotate(-4deg);
+  transition: transform 0.45s ease;
+}
+.anim-planilla.look-paper .ap-head {
+  transform: rotate(13deg);
+}
+.anim-planilla .ap-eye-g {
+  transition: transform 0.3s ease;
+}
+.anim-planilla.look-paper .ap-eye-g {
+  transform: translate(1px, 3px);
+}
+
+/* Parpadeo y respiración */
+.anim-planilla .ap-eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ap-blink 4.2s infinite;
+}
+@keyframes ap-blink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+.anim-planilla .ap-torso {
+  transform-origin: 140px 384px;
+  animation: ap-breathe 3.6s ease-in-out infinite;
+}
+@keyframes ap-breathe {
+  50% {
+    transform: scale(1.012, 1.018);
+  }
+}
+
+/* Tipeo con las dos manos */
+.anim-planilla .ap-arm-near {
+  transform-origin: 156px 286px;
+}
+.anim-planilla .ap-arm-far {
+  transform-origin: 134px 286px;
+}
+.anim-planilla.typing .ap-arm {
+  animation: ap-type 0.2s ease-in-out infinite alternate;
+}
+.anim-planilla.typing .ap-arm-far {
+  animation-delay: -0.1s;
+}
+@keyframes ap-type {
+  to {
+    transform: rotate(-2.4deg);
+  }
+}
+
+/* Error: cejas arriba y globo */
+.anim-planilla .ap-brow {
+  transition: transform 0.2s ease;
+}
+.anim-planilla.oops .ap-brow {
+  transform: translateY(-5px);
+}
+.anim-planilla .ap-bubble {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+.anim-planilla.show-bubble .ap-bubble {
+  opacity: 1;
+  transform: none;
+}
+.anim-planilla .ap-sweat {
+  opacity: 0;
+}
+.anim-planilla.tired .ap-sweat {
+  animation: ap-drip 1.3s ease-in infinite;
+}
+@keyframes ap-drip {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* Papel y Excel */
+.anim-planilla .ap-hl {
+  fill: #ffe066;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.anim-planilla .ap-hl.on {
+  opacity: 0.6;
+}
+.anim-planilla .ap-tick {
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  transition: stroke-dashoffset 0.35s ease;
+}
+.anim-planilla .ap-tick.on {
+  stroke-dashoffset: 0;
+}
+.anim-planilla .ap-cursor {
+  transition:
+    x 0.15s ease,
+    y 0.15s ease,
+    width 0.15s ease;
+}
+
+/* Reloj que corre */
+.anim-planilla .ap-clock-m,
+.anim-planilla .ap-clock-h {
+  transform-origin: 290px 70px;
+}
+.anim-planilla .ap-clock-m {
+  animation: ap-spin 3s linear infinite;
+}
+.anim-planilla .ap-clock-h {
+  animation: ap-spin 36s linear infinite;
+}
+@keyframes ap-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -7,22 +7,9 @@ const slide = {
   "blockTag": "Bloque 2 · Modelado Funcional",
   "title": "Modelado de Casos de Uso",
   "subtitle": "Diagramas UML formales para portal de autogestión y backoffice",
-  "cards": [
-    {
-      "accent": "accent-gold",
-      "heading": "Portal Público",
-      "text": "14 casos: registro, login, reserva, cuotas y perfil."
-    },
-    {
-      "accent": "accent-green",
-      "heading": "Backoffice",
-      "text": "17 casos: aprobación de socios, alquileres, noticias y planillas."
-    }
-  ],
-  "image": {
-    "src": "assets_presentacion/matias_image2.png",
-    "alt": "Diagrama de Casos de Uso",
-    "caption": "Diagramas UML del portal y del backoffice"
+  "animation": {
+    "id": "uc-tour",
+    "description": "Recorrido animado por los diagramas de casos de uso (portal y backoffice) reconstruidos en SVG: 11 pasos que arman el diagrama mientras se explica."
   }
 };
 

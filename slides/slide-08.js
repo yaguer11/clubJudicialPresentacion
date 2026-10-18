@@ -11,7 +11,7 @@ const slide = {
     {
       "accent": "accent-gold",
       "heading": "Frontend (Vista)",
-      "text": "React 19 + Vite, enrutamiento cliente, Material UI y Axios."
+      "text": "React 19 + Vite, enrutamiento cliente, Material UI y fetch centralizado en apiFetch."
     },
     {
       "accent": "accent-green",
