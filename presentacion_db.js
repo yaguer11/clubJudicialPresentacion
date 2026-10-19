@@ -92,7 +92,7 @@
   }
 
   function ensure(svg, tag, cls) {
-    let el = svg.querySelector("." + cls);
+    let el = svg.querySelector("." + cls.trim().split(/\s+/).join("."));
     if (!el) {
       el = document.createElementNS(NS, tag);
       el.setAttribute("class", cls);
