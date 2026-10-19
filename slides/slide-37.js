@@ -6,7 +6,7 @@ const slide = {
   "block": "BLOQUE 9 — CONCLUSIONES",
   "blockTag": "Bloque 9 · Balance de Rol",
   "title": "Conclusiones: Base de Datos",
-  "subtitle": "Evolución del modelo relacional, optimización y resolución de problemas reales mediante migraciones",
+  "subtitle": "Un modelo pensado para las reglas del club y que creció sin romper nada",
   "cards": [
     {
       "accent": "accent-blue",
@@ -47,7 +47,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> 'Como balance del área de base de datos, el objetivo principal fue construir un motor seguro, rápido y capaz de evolucionar junto a las necesidades del club sin romper nunca el sistema en producción. Por un lado, normalizamos en 3FN asegurando integridad total, y aplicamos una desnormalización inteligente en Deuda_Socio para que las consultas de saldo no demoren nada. Por otro lado, enfrentamos requerimientos reales que resolvimos mediante migraciones SQL controladas: 1) Permitir horarios nocturnos que cruzan la medianoche para quinchos; 2) Crear el módulo de depósito en garantía y devolución de seguro de alquiler; 3) Habilitar tarifas diferenciadas según el día de la semana; y 4) Corregir la precisión a dos decimales en deudas para que el cobro por planilla coincida al centavo. Todo esto se implementó con scripts seguros y sin caída del servicio.'",
+  "content": "<strong>Qué decir:</strong> 'Como balance de la base de datos: llegamos a 40 tablas, con 55 claves foráneas y 21 restricciones UNIQUE que protegen la integridad. Cada tabla salió de una necesidad real del club. Normalizamos para no duplicar datos y desnormalizamos solo donde hacía falta velocidad, como en Deuda_Socio. Lo más importante fue que el modelo pudo crecer con el sistema en uso: aplicamos 9 migraciones SQL, primero en la base de test y después en producción. Así sumamos el seguro de alquiler, los precios por día, los horarios que cruzan la medianoche, la precisión exacta de la deuda y la optimización con índices y el resumen diario, sin perder datos.'",
   "handover": "Pase a Equipo: Los tres cerraremos con el impacto institucional y las líneas a futuro."
 };
 export default slide;

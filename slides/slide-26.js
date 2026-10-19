@@ -6,7 +6,7 @@ const slide = {
   "block": "BLOQUE 6 — PAGOS Y CUOTAS",
   "blockTag": "Bloque 6 · Finanzas & Cuotas",
   "title": "Base de Datos: Cuotas, Pagos y Cajas",
-  "subtitle": "Soporte de pagos parciales y trazabilidad de ingresos",
+  "subtitle": "Cuotas mensuales, pagos parciales y una caja que no se descuadra",
   "cards": [
     {
       "accent": "accent-blue",
@@ -38,7 +38,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> 'El módulo contable requería máxima rigurosidad en el modelado relacional: en la tabla Cuota implementamos el atributo PorcentajePagado DECIMAL(3,2) junto a una restricción de dominio CHECK (PorcentajePagado >= 0.00 AND PorcentajePagado <= 1.00). Esto permite que el sistema soporte pagos parciales de cuotas mensuales de forma nativa y matemáticamente exacta, evitando descalces en centavos. Una decisión clave de arquitectura fue aplicar una desnormalización controlada en la tabla Deuda_Socio: ¿por qué lo hicimos? Porque cada vez que un socio inicia sesión, entra a su perfil o intenta reservar una cancha deportiva, el sistema necesita conocer si tiene cuotas adeudadas. Si mantuviéramos una 3FN pura sin desnormalizar, la base de datos tendría que ejecutar consultas con SUM() y JOIN sobre años de historial para miles de socios concurrentemente. Al almacenar Cant_Cuotas en Deuda_Socio logramos una lectura instantánea O(1), asegurando la consistencia mediante transacciones SQL atómicas cada vez que se registra un pago o se importa una planilla judicial. Asimismo, para asegurar la conciliación bancaria y la idempotencia de los webhooks de MercadoPago, registramos PreferenceID y PaymentID, y modelamos el libro diario contable con Caja y Caja_Movimiento.'",
+  "content": "<strong>Qué decir:</strong> 'Cada socio tiene una cuota por mes, y el UNIQUE entre socio y período impide generarla dos veces. PorcentajePagado va de 0 a 1 con un CHECK, así una cuota puede quedar pendiente, parcial o pagada. Un pago se reparte entre varias cuotas mediante Pago_Cuota. Para no sumar todo el historial cada vez que alguien abre su perfil, guardamos la deuda ya calculada en Deuda_Socio; es una desnormalización a propósito que se actualiza en la misma transacción del pago. Cada pago aprobado genera un movimiento de caja, con un UNIQUE que impide registrarlo dos veces. Y los pagos de la planilla de sueldos quedan atados a su importación, de modo que se puede revertir completa mientras no esté confirmada.'",
   "handover": "Pase a Germán: Germán explicará la integración de MercadoPago y el procesador de planillas con Rollback."
 };
 export default slide;

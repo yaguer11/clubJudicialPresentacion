@@ -6,7 +6,7 @@ const slide = {
   "block": "BLOQUE 8 — TESTING, CALIDAD Y DESPLIEGUE",
   "blockTag": "Bloque 8 · Infraestructura",
   "title": "Despliegue y Arquitectura Cloud",
-  "subtitle": "¿Cómo y dónde está publicado el sistema en internet?",
+  "subtitle": "¿Dónde está publicado el sistema y qué pasa cuando alguien lo usa?",
   "cards": [
     {
       "accent": "accent-gold",
@@ -68,7 +68,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> 'Para que el sistema esté disponible en internet las 24 horas para los socios y la administración, lo subimos a la nube usando Railway. La estructura se divide de forma muy clara en tres partes: primero, la pantalla web en React, que carga rapidísimo y se puede abrir desde cualquier celular o computadora con conexión segura HTTPS. Segundo, el servidor en Node.js, que procesa las reservas y los cobros de MercadoPago y cuenta con auto-reinicio si surge algún imprevisto. Y tercero, la base de datos MySQL, que está oculta en una red interna privada para que nadie externo pueda atacarla, logrando además que las consultas respondan en menos de 2 milisegundos.'",
+  "content": "<strong>Qué decir:</strong> 'Todo el sistema está publicado en Railway. Cuando un socio entra desde el celular, la conexión viaja por HTTPS. Railway sirve la pantalla web hecha en React, y desde ahí el navegador le pide datos a la API en Node.js con Express. La API verifica el token, aplica las reglas y se conecta a MySQL por la red interna del proyecto. Las claves, como el token de MercadoPago o los datos de la base, son variables de entorno de Railway y no están en el código. Desde la API se cobra con MercadoPago, se suben fotos a Cloudinary y se mandan mails con Resend. Además, el sistema trabaja solo: un job cada minuto cancela las señas vencidas y un evento de MySQL arma cada día el resumen de pagos.'",
   "handover": "Pase a Matías: Pasamos a las conclusiones finales. Matías iniciará con el balance de Frontend."
 };
 export default slide;

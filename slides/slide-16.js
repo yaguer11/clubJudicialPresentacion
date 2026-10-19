@@ -6,7 +6,7 @@ const slide = {
   "block": "BLOQUE 3 — AUTENTICACIÓN Y REGISTRO",
   "blockTag": "Bloque 3 · Autenticación",
   "title": "Base de Datos: Autenticación y Roles",
-  "subtitle": "Desacoplamiento de cuentas, integridad y hashing seguro",
+  "subtitle": "La cuenta para entrar, separada de la ficha del socio",
   "cards": [
     {
       "accent": "accent-blue",
@@ -37,7 +37,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> 'Una de las decisiones centrales de diseño fue desacoplar la identidad de login de la ficha social: creamos la tabla Usuario para credenciales puras y vinculamos Socio como entidad satélite. Esto nos da la flexibilidad de tener administradores que no son socios del club y protege la privacidad. Los permisos se modelan con la tabla intermedia Usuario_Rol para asignar múltiples roles RBAC, y a nivel motor garantizamos cero texto plano persistiendo solo hashes Bcrypt de 60 caracteres, junto a restricciones UNIQUE en username, DNI y email.'",
+  "content": "<strong>Qué decir:</strong> 'Separamos la cuenta para entrar de la ficha del socio. En Usuario solo hay nombre de usuario, la contraseña cifrada con Bcrypt y si la cuenta está activa. Los datos civiles, como DNI, legajo y tipo de socio, están en Socio. Gracias a eso, el personal de tesorería o secretaría puede tener cuenta sin figurar en el padrón. Los roles están en un catálogo cerrado, Rol, y la tabla intermedia Usuario_Rol permite que una persona tenga varios, por ejemplo Alquileres y Prensa. Por último, el motor cuida los datos: Username, DNI y Legajo son únicos y, si se borra una cuenta, ON DELETE CASCADE elimina sus roles y su ficha sin dejar registros huérfanos.'",
   "handover": "Pase a Germán: Germán explicará cómo la API gestiona este acceso mediante doble token JWT."
 };
 export default slide;

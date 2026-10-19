@@ -6,7 +6,7 @@ const slide = {
   "block": "BLOQUE 7 — NOTICIAS Y PRENSA",
   "blockTag": "Bloque 7 · Prensa & Noticias",
   "title": "Base de Datos: Noticias y Categorías",
-  "subtitle": "Estructura periodística y programación de publicaciones",
+  "subtitle": "La estructura de una nota periodística, sus fotos y su publicación",
   "cards": [
     {
       "accent": "accent-blue",
@@ -38,7 +38,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> 'El canal de comunicación institucional del club requirió modelar la tabla Noticia con estricto rigor periodístico: incorporamos atributos formales de prensa como Volanta para orientar la sección, Titulo, Copete o bajada como resumen para las tarjetas de portada, Cuerpo de tipo LONGTEXT para artículos extensos con formato enriquecido, ImagenDestacada para la portada y EmbedLink para videos de YouTube incrustados. Normalizamos las etiquetas temáticas en la tabla catálogo Categoria en 3FN (Torneos, Obras, Sociales, Beneficios) para evitar redundancia textual. Asimismo, soportamos la publicación diferida: mediante el atributo FechaPublicacion y el estado BORRADOR o PUBLICADO, la subcomisión de prensa puede redactar comunicados con días de antelación, garantizando que el portal público solo proyecte aquellas notas donde FechaPublicacion sea menor o igual a NOW(), sin requerir tareas programadas adicionales.'",
+  "content": "<strong>Qué decir:</strong> 'La tabla Noticia sigue la estructura de un diario: volanta, título, copete y cuerpo, más imagen destacada y un link de video. Las categorías están en un catálogo, y RESTRICT impide borrar una categoría con noticias. Las fotos de la galería van en Noticia_Imagen con su orden; guardamos la URL y el identificador de Cloudinary para poder borrarlas de la nube. El autor apunta a Usuario con SET NULL: si se da de baja esa cuenta, la noticia sigue publicada. Y con el estado y la fecha de publicación, prensa puede dejar notas en borrador o programadas; el portal solo muestra las publicadas.'",
   "handover": "Pase a Germán: Germán detallará la API editorial, el procesamiento de imágenes con Multer y Cloudinary, y la seguridad con sanitización contra XSS."
 };
 export default slide;

@@ -6,7 +6,7 @@ const slide = {
   "block": "BLOQUE 5 — ESPACIOS Y ALQUILERES",
   "blockTag": "Bloque 5 · Deportes & Alquileres",
   "title": "Base de Datos: Espacios y Alquileres",
-  "subtitle": "Disponibilidad horaria y liberación automática mediante Event Scheduler",
+  "subtitle": "Tarifas, turnos, accesorios y reservas que se liberan solas",
   "cards": [
     {
       "accent": "accent-blue",
@@ -38,7 +38,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> 'El módulo de alquileres y espacios deportivos requirió un diseño relacional altamente riguroso para eliminar el solapamiento histórico de turnos. En la tabla Espacio modelamos tarifas diferenciadas para socios y particulares, seña mínima y seguro de garantía. La tabla Horario_Espacio estructura las franjas horarias por día con una clave UNIQUE compuesta y validación CHECK para evitar rangos nulos. Para el bloqueo efectivo de turnos diseñamos la intermedia Alquiler_Espacio, vinculada a Alquiler. Pero el aporte clave de ingeniería fue automatizar la liberación de reservas: configuramos un Evento Programado en MySQL (Event Scheduler) que se ejecuta cada 60 segundos. Si una reserva en estado PENDIENTE no abona la seña dentro del plazo de 60 minutos (FechaExpiracion < NOW()), el evento actualiza el estado a CANCELADO y libera la franja horaria automáticamente para que vuelva a estar disponible en la plataforma sin intervención administrativa.'",
+  "content": "<strong>Qué decir:</strong> 'Espacio guarda las reglas de cada cancha o quincho: precio para socios y no socios, seña mínima, seguro y anticipación máxima. Con Espacio_Precio_Dia se puede cobrar distinto un sábado que un martes. Horario_Espacio define las franjas, con un UNIQUE que impide repetirlas y un CHECK para que inicio y fin sean distintos. Los accesorios se asocian a cada espacio y llevan su stock. La reserva es Alquiler: guarda total, saldo, estado y, si es un invitado, sus datos y un token de seguimiento. Alquiler_Espacio une la reserva con el turno, y la API valida la disponibilidad en una transacción. Finalmente, FechaExpiracion marca hasta cuándo se puede pagar la seña: un job que corre cada minuto cancela las vencidas y libera el horario.'",
   "handover": "Pase a Germán: Germán explicará cómo la API gestiona la concurrencia atómica, el TokenSeguimiento para invitados y las devoluciones de seña."
 };
 export default slide;

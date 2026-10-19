@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="presentacion_frontend.css" />
     <link rel="stylesheet" href="presentacion_intro.css" />
     <link rel="stylesheet" href="presentacion_backend.css" />
+    <link rel="stylesheet" href="presentacion_db.css" />
   </head>
   <body>
     <div id="app-container">
@@ -494,7 +495,9 @@
               <div class="in-step"><span class="in-step-num">3</span><div class="in-card" style="height: 100%"><h3>Tablero Kanban en Notion</h3><p>Más de <strong>190 tareas</strong> con asignaciones, prioridades y seguimiento de bloqueos.</p></div></div>
               <div class="in-step"><span class="in-step-num">4</span><div class="in-card" style="height: 100%"><h3>Feedback y correcciones</h3><p>Correcciones del tutor por WhatsApp y reuniones con Fernando Rigoni: pedían módulos, los revisaban y sumábamos lo que surgía.</p></div></div>
             </div>
-            <div class="in-frame"><div class="in-frame-media contain"><img src="assets_presentacion/kanban_notion_club.jpg" alt="Tablero Kanban del proyecto en Notion" onclick="openLightbox(this.src)" /></div><div class="in-frame-caption">Tablero Kanban en Notion: tareas reales, estados de avance y revisiones con tutor y supervisor</div></div>
+            <div class="in-col">
+              <div class="in-frame kb-real"><div class="in-frame-media contain"><img src="assets_presentacion/kanban_notion_real.png" alt="Tablero Tareas pendientes del proyecto en Notion" onclick="openLightbox(this.src)" /></div><div class="in-frame-caption">Tablero «Tareas pendientes» en Notion: tareas asignadas a cada integrante y su estado</div></div>
+            </div>
           </div></div>
         </section>
 
@@ -641,20 +644,20 @@
             <div class="in-card green grow">
               <h3>Actores públicos y socios</h3>
               <div class="in-grid" style="grid-template-columns: 1fr 1fr">
-                <div class="in-card in-actor in-center" style="background: #ffffff"><span class="in-icon green"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg></span><b>Particular / invitado</b><p>Alquila directo con un token único, sin registrarse.</p></div>
-                <div class="in-card in-actor in-center" style="background: #ffffff"><span class="in-icon green"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" /></svg></span><b>Socio común</b><p>Tarifas bonificadas y gestión del grupo familiar.</p></div>
-                <div class="in-card in-actor in-center" style="background: #ffffff"><span class="in-icon green"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z" /></svg></span><b>Socio adherente</b><p>Cuota mensual y pagos online.</p></div>
-                <div class="in-card in-actor in-center" style="background: #ffffff"><span class="in-icon green"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg></span><b>Socio vitalicio</b><p>Exento de cuota, con plenos derechos.</p></div>
+                <div class="in-card in-actor in-center" style="background: #ffffff"><span class="in-icon green"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg></span><b>Particular / invitado</b><small class="in-actor-sub">Sin cuenta</small><ul class="in-actor-list"><li>Ve noticias y espacios</li><li>Reserva y paga la seña online</li></ul></div>
+                <div class="in-card in-actor in-center" style="background: #ffffff"><span class="in-icon green"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" /></svg></span><b>Socio común</b><small class="in-actor-sub">Empleado judicial, con legajo</small><ul class="in-actor-list"><li>Cuota descontada del sueldo</li><li>Tarifa de socio y grupo familiar</li></ul></div>
+                <div class="in-card in-actor in-center" style="background: #ffffff"><span class="in-icon green"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z" /></svg></span><b>Socio adherente</b><small class="in-actor-sub">De la comunidad, sin legajo</small><ul class="in-actor-list"><li>Paga la cuota con Mercado Pago</li><li>Tarifa de socio y grupo familiar</li></ul></div>
+                <div class="in-card in-actor in-center" style="background: #ffffff"><span class="in-icon green"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg></span><b>Socio vitalicio</b><small class="in-actor-sub">Exento de cuota</small><ul class="in-actor-list"><li>No genera deuda mensual</li><li>Mantiene todos los beneficios</li></ul></div>
               </div>
             </div>
             <div class="in-card gold grow">
               <h3>Backoffice: 5 roles RBAC</h3>
               <div class="in-col" style="flex: 1; gap: 8px">
-                <div class="in-role-row"><code>SUPERADMIN</code><span>Control total y gestión de administradores</span></div>
-                <div class="in-role-row"><code>ADMIN_USUARIOS</code><span>Padrón de socios y solicitudes de cambio</span></div>
-                <div class="in-role-row"><code>ADMIN_ALQUILER</code><span>Turnos deportivos y devoluciones de seña</span></div>
-                <div class="in-role-row"><code>ADMIN_PLANILLAS</code><span>Importación masiva XLSX y rollback</span></div>
-                <div class="in-role-row"><code>ADMIN_NOTICIAS</code><span>Redacción editorial y programación</span></div>
+                <div class="in-role-row"><div class="in-role-name"><code>SUPERADMIN</code><small>Administración general</small></div><span>Todos los permisos: crea al personal, asigna roles y revierte importaciones.</span></div>
+                <div class="in-role-row"><div class="in-role-name"><code>ADMIN_USUARIOS</code><small>Secretaría</small></div><span>Aprueba altas y cambios de datos, aplica sanciones y exporta el padrón.</span></div>
+                <div class="in-role-row"><div class="in-role-name"><code>ADMIN_ALQUILER</code><small>Subcomisión de Alquileres</small></div><span>Espacios, horarios y tarifas; aprueba y cancela reservas y devuelve seguros.</span></div>
+                <div class="in-role-row"><div class="in-role-name"><code>ADMIN_PLANILLAS</code><small>Tesorería</small></div><span>Importa la planilla de descuentos y controla la deuda de los socios.</span></div>
+                <div class="in-role-row"><div class="in-role-name"><code>ADMIN_NOTICIAS</code><small>Prensa</small></div><span>Publica noticias con fotos y administra las categorías.</span></div>
               </div>
             </div>
           </div></div>
@@ -1060,64 +1063,51 @@
           data-speaker="elenio"
           data-block="BLOQUE 3 — AUTENTICACIÓN Y REGISTRO"
         >
-          <div class="slide-header" style="margin-bottom: 12px; padding-bottom: 10px;">
+          <div class="slide-header">
             <div class="slide-meta">
               <span class="slide-block-tag">Bloque 3 · Autenticación</span>
               <h2 class="slide-title">Base de Datos: Autenticación y Roles</h2>
-              <p class="slide-subtitle">
-                Desacoplamiento de cuentas, integridad y hashing seguro
-              </p>
+              <p class="slide-subtitle">La cuenta para entrar, separada de la ficha del socio</p>
             </div>
             <div class="speaker-subtle-badge speaker-elenio">
               <span class="dot"></span>
               <span>EG · Base de Datos</span>
             </div>
           </div>
-          <div class="slide-body">
-            <div class="grid-2col-visual">
-              <div
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  gap: 10px;
-                  justify-content: center;
-                "
-              >
-                <div class="card-clean accent-blue" style="padding: 12px 14px; gap: 6px;">
-                  <div class="card-heading" style="font-size: 0.92rem;">
-                    1. Desacoplamiento Usuario vs Socio
-                  </div>
-                  <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.35; margin: 0;">
-                    Separamos la cuenta de acceso (<code>Usuario</code>) de los datos civiles del padrón (<code>Socio</code>).
-                  </p>
-                  <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
-                    <li><strong>Administradores no socios:</strong> Permite que personal administrativo opere sin figurar como socios.</li>
-                    <li><strong>Privacidad y seguridad:</strong> El login solo lee credenciales livianas, sin exponer datos personales ni bancarios en el token.</li>
-                  </ul>
-                </div>
-                <div class="card-clean accent-gold" style="padding: 12px 14px; gap: 6px;">
-                  <div class="card-heading" style="font-size: 0.92rem;">2. Modelo RBAC y Reglas de Integridad</div>
-                  <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
-                    <li><strong>Tabla intermedia <code>Usuario_Rol</code>:</strong> Permisos granulares N:M (Superadmin, Secretaría, Alquileres, Tesorería, Noticias) con CASCADE.</li>
-                    <li><strong>Zero contraseñas planas:</strong> Hashing criptográfico irreversible Bcrypt (60 caracteres con 10 salts).</li>
-                    <li><strong>Unicidad estricta:</strong> Claves <code>UNIQUE</code> a nivel motor en <code>Username</code>, <code>DNI</code> y <code>Email</code> contra duplicidades.</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="photo-container" style="padding: 4px; min-height: 0;">
-                <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
-                <img
-                  src="assets_presentacion/diagrama_auth_roles.svg"
-                  alt="Diagrama EER de Autenticación y Roles RBAC"
-                  style="max-height: 300px;"
-                  onclick="openLightbox(this.src)"
-                />
-                <div class="photo-caption" style="margin-top: 2px;">
-                  Esquema Relacional Focalizado — Tablas Usuario, Rol, Usuario_Rol y Socio
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="slide-body be-body">
+<div class="be-wrap be-stepper" data-dur="6200">
+<ol class="be-src"><li><b>La cuenta para entrar</b> Cada persona que usa el sistema tiene una fila en Usuario: nombre de usuario, contraseña cifrada y si la cuenta está activa. Acá no hay datos personales.</li><li><b>La ficha del socio</b> DNI, legajo, tipo de socio y datos de contacto viven en Socio, enlazada a su Usuario. Así el personal administrativo puede tener cuenta sin figurar en el padrón.</li><li><b>El catálogo de roles</b> Rol es una lista cerrada de permisos del backoffice (SUPERADMIN, ADMIN_ALQUILER…). Nadie puede inventar un rol escribiéndolo a mano.</li><li><b>Varios roles por persona</b> Usuario_Rol es la tabla intermedia N:M: una misma persona puede ser de Alquileres y de Prensa. Su clave doble (ID_Usuario, ID_Rol) evita repetir un rol.</li><li><b>Reglas que cuida el motor</b> Contraseñas solo con hash Bcrypt; Username, DNI y Legajo UNIQUE para que no haya duplicados; y ON DELETE CASCADE: si se borra una cuenta, se van sus roles y su ficha sin dejar datos huérfanos.</li></ol>
+<aside class="be-panel">
+  <div class="be-kicker">Recorrido · Modelo de datos</div>
+  <div class="be-stepnum">Paso <b class="be-n">1</b> de <span class="be-total"></span></div>
+  <h3 class="be-title"></h3>
+  <p class="be-text"></p>
+  <div class="be-progress"><i></i></div>
+  <div class="be-dots"></div>
+  <button class="be-play" type="button">❚❚ Pausar</button>
+  <div class="be-eps"><div class="be-eps-h">Tablas del módulo</div><div class="be-ep" data-on="1 5"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Usuario</code></div><div class="be-ep" data-on="2 5"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Socio</code></div><div class="be-ep" data-on="3"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Rol</code></div><div class="be-ep" data-on="4 5"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Usuario_Rol</code></div></div>
+</aside>
+<div class="be-stage db-stage">
+  <div class="db-board">
+    <div class="db-board-h"><span>Modelo de datos simplificado</span><div class="db-legend"><span><span class="db-k pk">PK</span>clave</span><span><span class="db-k fk">FK</span>vínculo</span><span><span class="db-k uq">UQ</span>único</span><span><span class="db-k ck">CK</span>regla</span><span><span class="db-k ft">FT</span>búsqueda</span></div></div>
+    <div class="db-er" style="--c:4; --gx:54px">
+<div class="db-tbl " id="t16-socio" data-from="2" data-on="2"><div class="db-tbl-h"><b>Socio</b><small>La ficha del padrón</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Socio</div><div class="db-col" data-on="2"><span class="db-k fk">FK</span>ID_Usuario</div><div class="db-col" data-on="5"><span class="db-k uq">UQ</span>DNI</div><div class="db-col" data-on="5"><span class="db-k uq">UQ</span>Legajo</div><div class="db-col"><span class="db-k"></span>Tipo<em>3 tipos</em></div></div></div>
+<div class="db-tbl " id="t16-usuario" data-from="1" data-on="1"><div class="db-tbl-h"><b>Usuario</b><small>La cuenta para entrar</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Usuario</div><div class="db-col" data-on="5"><span class="db-k uq">UQ</span>Username</div><div class="db-col" data-on="1 5"><span class="db-k"></span>PasswordHash<em>Bcrypt</em></div><div class="db-col"><span class="db-k"></span>Estado<em>activa</em></div></div></div>
+<div class="db-tbl link" id="t16-ur" data-from="4" data-on="4"><div class="db-tbl-h"><b>Usuario_Rol</b><small>Qué roles tiene cada uno</small></div><div class="db-cols"><div class="db-col" data-on="4"><span class="db-k pk">PK·FK</span>ID_Usuario</div><div class="db-col" data-on="4"><span class="db-k pk">PK·FK</span>ID_Rol</div></div></div>
+<div class="db-tbl cat" id="t16-rol" data-from="3" data-on="3"><div class="db-tbl-h"><b>Rol</b><small>Catálogo de permisos</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Rol</div><div class="db-col" data-on="3 5"><span class="db-k uq">UQ</span>Nombre<em>SUPERADMIN…</em></div></div></div>
+<svg class="db-link" data-a="t16-socio" data-b="t16-usuario" data-ca="0..1" data-cb="1" data-from="2" data-on="2"></svg>
+<svg class="db-link" data-a="t16-usuario" data-b="t16-ur" data-ca="1" data-cb="N" data-from="4" data-on="4 5"></svg>
+<svg class="db-link" data-a="t16-rol" data-b="t16-ur" data-ca="1" data-cb="N" data-from="4" data-on="4"></svg>
+    </div>
+  </div>
+  <div class="db-ex" style="--n:3">
+<div class="be-card " data-on="1 5"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>Contraseña cifrada</div><div class="db-row"><code class="db-strike">club2026</code><span class="to">→</span><code>$2a$10$uOtftMXSvhk…</code></div><p>Se guarda solo el <b>hash Bcrypt</b> (60 caracteres). Al iniciar sesión se compara el hash, nunca el texto.</p></div>
+<div class="be-card " data-on="2"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span>Personal que no es socio</div><div class="db-seq"><div class="db-row"><code>tesoreria</code><span class="to">→</span>tiene cuenta, <b>sin ficha</b> en Socio</div><div class="db-row"><code>DNI 27.345.678</code><span class="to">→</span>cuenta <b>+ ficha</b> de socio</div></div></div>
+<div class="be-card " data-on="3 4"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-3.5 3.2-5.5 7-5.5s7 2 7 5.5"/><circle cx="17" cy="9" r="2.8"/><path d="M17 14.5c2.8.3 5 2 5 5"/></svg></span>Una cuenta, varios roles</div><div class="db-row"><code>mgomez</code><span class="to">→</span><span class="be-pill sm act">ADMIN_ALQUILER</span><span class="be-pill sm pend">ADMIN_NOTICIAS</span></div><p>Son <b>2 filas</b> en Usuario_Rol. La clave doble impide cargar el mismo rol dos veces.</p></div>
+  </div>
+</div>
+</div>
+</div>
         </section>
 
         <!-- SLIDE 17: BACKEND API DE AUTENTICACIÓN -->
@@ -1276,64 +1266,53 @@
           data-speaker="elenio"
           data-block="BLOQUE 4 — GESTIÓN DE SOCIOS"
         >
-          <div class="slide-header" style="margin-bottom: 12px; padding-bottom: 10px;">
+          <div class="slide-header">
             <div class="slide-meta">
               <span class="slide-block-tag">Bloque 4 · Padrón Social</span>
               <h2 class="slide-title">Base de Datos: Socios y Membresía</h2>
-              <p class="slide-subtitle">
-                Modelo normalizado 3FN, trazabilidad de solicitudes e índice FULLTEXT
-              </p>
+              <p class="slide-subtitle">Titular, grupo familiar y cambios que siempre pasan por secretaría</p>
             </div>
             <div class="speaker-subtle-badge speaker-elenio">
               <span class="dot"></span>
               <span>EG · Base de Datos</span>
             </div>
           </div>
-          <div class="slide-body">
-            <div class="grid-2col-visual">
-              <div
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  gap: 10px;
-                  justify-content: center;
-                "
-              >
-                <div class="card-clean accent-blue" style="padding: 12px 14px; gap: 6px;">
-                  <div class="card-heading" style="font-size: 0.92rem;">
-                    1. Normalización 3FN del Grupo Familiar
-                  </div>
-                  <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.35; margin: 0;">
-                    Desacoplamos cargas familiares mediante <code>Miembro_Familiar</code> y el catálogo <code>Parentesco</code>.
-                  </p>
-                  <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
-                    <li><strong>Sin redundancia:</strong> Erradica columnas repetitivas fijas (ej. Hijo1, Hijo2) en la ficha del titular.</li>
-                    <li><strong>Cargas auditadas:</strong> Cada familiar registra DNI, fecha de nacimiento y comprobante en Cloudinary.</li>
-                  </ul>
-                </div>
-                <div class="card-clean accent-gold" style="padding: 12px 14px; gap: 6px;">
-                  <div class="card-heading" style="font-size: 0.92rem;">2. Auditoría de Cambios y FULLTEXT</div>
-                  <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
-                    <li><strong>Trazabilidad en <code>Solicitud_Cambio_Datos</code>:</strong> Cero edición directa en DB. Cambiar DNI, email o CUIL exige revisión y aprobación formal de secretaría.</li>
-                    <li><strong>Búsquedas instantáneas:</strong> Índice <strong>FULLTEXT</strong> sobre <code>(Name, Surname, Email)</code>: filtra socios en milisegundos sin escaneos lentos de tabla.</li>
-                    <li><strong>Integridad de admisión:</strong> Estados controlados (<code>PENDIENTE</code>, <code>APROBADO</code>, <code>RECHAZADO</code>).</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="photo-container" style="padding: 4px; min-height: 0;">
-                <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
-                <img
-                  src="assets_presentacion/diagrama_socios_familiares.svg"
-                  alt="Diagrama EER de Padrón Social, Familiares y Auditoría"
-                  style="max-height: 300px;"
-                  onclick="openLightbox(this.src)"
-                />
-                <div class="photo-caption" style="margin-top: 2px;">
-                  Esquema Relacional Focalizado — Tablas Socio, Miembro_Familiar, Parentesco y Solicitud_Cambio_Datos
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="slide-body be-body">
+<div class="be-wrap be-stepper" data-dur="6200">
+<ol class="be-src"><li><b>La ficha del titular</b> Socio guarda los datos civiles. DNI y Legajo son únicos, Tipo indica si es común, adherente o vitalicio, y Aprobado arranca en falso: el socio nace pendiente hasta que secretaría lo aprueba.</li><li><b>El grupo familiar</b> Cada familiar es una fila en Miembro_Familiar con su DNI, fecha de nacimiento y foto del DNI en Cloudinary. No hay columnas fijas tipo Hijo1, Hijo2: un socio puede tener 0 o 10 familiares.</li><li><b>Parentesco como catálogo</b> CONYUGE, HIJO, HIJA, PADRE, MADRE… se cargan una sola vez y se referencian por ID, así no aparecen variantes mal escritas. RESTRICT impide borrar un parentesco que está en uso.</li><li><b>Cambios de datos auditados</b> El socio no edita sus datos sensibles directamente: crea una Solicitud_Cambio_Datos con los valores nuevos. Cuando secretaría la aprueba, se aplica y queda registrado quién y cuándo.</li><li><b>Altas y bajas de familiares</b> Lo mismo para la familia: Solicitud_Cambio_Familiar indica si es ALTA, BAJA o MODIFICACION y espera la aprobación de secretaría.</li><li><b>Búsqueda rápida</b> Índices FULLTEXT sobre nombre, apellido y email del socio, y nombre y apellido de los familiares: el buscador del panel encuentra resultados sin recorrer la tabla entera.</li></ol>
+<aside class="be-panel">
+  <div class="be-kicker">Recorrido · Modelo de datos</div>
+  <div class="be-stepnum">Paso <b class="be-n">1</b> de <span class="be-total"></span></div>
+  <h3 class="be-title"></h3>
+  <p class="be-text"></p>
+  <div class="be-progress"><i></i></div>
+  <div class="be-dots"></div>
+  <button class="be-play" type="button">❚❚ Pausar</button>
+  <div class="be-eps"><div class="be-eps-h">Tablas del módulo</div><div class="be-ep" data-on="1 6"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Socio</code></div><div class="be-ep" data-on="2 6"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Miembro_Familiar</code></div><div class="be-ep" data-on="3"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Parentesco</code></div><div class="be-ep" data-on="4"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Solicitud_Cambio_Datos</code></div><div class="be-ep" data-on="5"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Solicitud_Cambio_Familiar</code></div></div>
+</aside>
+<div class="be-stage db-stage">
+  <div class="db-board">
+    <div class="db-board-h"><span>Modelo de datos simplificado</span><div class="db-legend"><span><span class="db-k pk">PK</span>clave</span><span><span class="db-k fk">FK</span>vínculo</span><span><span class="db-k uq">UQ</span>único</span><span><span class="db-k ck">CK</span>regla</span><span><span class="db-k ft">FT</span>búsqueda</span></div></div>
+    <div class="db-er" style="--c:3; --gx:60px; --gy:40px">
+<div class="db-tbl " id="t19-mf" style="grid-area:1 / 1" data-from="2" data-on="2 6"><div class="db-tbl-h"><b>Miembro_Familiar</b><small>Cada familiar, una fila</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Miembro</div><div class="db-col" data-on="2"><span class="db-k fk">FK</span>ID_Socio<em>titular</em></div><div class="db-col" data-on="3"><span class="db-k fk">FK</span>ID_Parentesco</div><div class="db-col"><span class="db-k"></span>DNI</div><div class="db-col"><span class="db-k"></span>DNI_Foto_URL<em>Cloudinary</em></div><div class="db-col" data-on="6"><span class="db-k ft">FT</span>Name, Surname</div></div></div>
+<div class="db-tbl " id="t19-socio" style="grid-area:1 / 2" data-from="1" data-on="1 6"><div class="db-tbl-h"><b>Socio</b><small>El titular del padrón</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Socio</div><div class="db-col"><span class="db-k uq">UQ</span>DNI</div><div class="db-col"><span class="db-k uq">UQ</span>Legajo</div><div class="db-col" data-on="1"><span class="db-k"></span>Tipo<em>3 tipos</em></div><div class="db-col" data-on="1"><span class="db-k"></span>Aprobado<em>pendiente</em></div><div class="db-col" data-on="6"><span class="db-k ft">FT</span>Name, Surname, Email</div></div></div>
+<div class="db-tbl " id="t19-scd" style="grid-area:1 / 3" data-from="4" data-on="4"><div class="db-tbl-h"><b>Solicitud_Cambio_Datos</b><small>Pedido de cambio del socio</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Solicitud</div><div class="db-col"><span class="db-k fk">FK</span>ID_Socio</div><div class="db-col" data-on="4"><span class="db-k"></span>New_Email, New_DNI…</div><div class="db-col" data-on="4"><span class="db-k"></span>Estado<em>pendiente</em></div><div class="db-col" data-on="4"><span class="db-k fk">FK</span>ID_Admin<em>quién aprobó</em></div></div></div>
+<div class="db-tbl cat" id="t19-par" style="grid-area:2 / 1" data-from="3" data-on="3"><div class="db-tbl-h"><b>Parentesco</b><small>Catálogo fijo</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Parentesco</div><div class="db-col" data-on="3"><span class="db-k uq">UQ</span>Nombre<em>HIJO, HIJA…</em></div></div></div>
+<div class="db-tbl " id="t19-scf" style="grid-area:2 / 2" data-from="5" data-on="5"><div class="db-tbl-h"><b>Solicitud_Cambio_Familiar</b><small>Altas y bajas de familiares</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Solicitud</div><div class="db-col"><span class="db-k fk">FK</span>ID_Socio</div><div class="db-col"><span class="db-k fk">FK</span>ID_Miembro</div><div class="db-col" data-on="5"><span class="db-k"></span>TipoSolicitud<em>alta · baja</em></div><div class="db-col" data-on="5"><span class="db-k"></span>Estado<em>pendiente</em></div></div></div>
+<svg class="db-link" data-a="t19-socio" data-b="t19-mf" data-ca="1" data-cb="N" data-from="2" data-on="2"></svg>
+<svg class="db-link" data-a="t19-par" data-b="t19-mf" data-ca="1" data-cb="N" data-label="RESTRICT" data-from="3" data-on="3"></svg>
+<svg class="db-link" data-a="t19-socio" data-b="t19-scd" data-ca="1" data-cb="N" data-from="4" data-on="4"></svg>
+<svg class="db-link" data-a="t19-socio" data-b="t19-scf" data-ca="1" data-cb="N" data-from="5" data-on="5"></svg>
+    </div>
+  </div>
+  <div class="db-ex" style="--n:3">
+<div class="be-card " data-on="2 3"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-3.5 3.2-5.5 7-5.5s7 2 7 5.5"/><circle cx="17" cy="9" r="2.8"/><path d="M17 14.5c2.8.3 5 2 5 5"/></svg></span>Sin columnas repetidas</div><div class="db-row"><code class="db-strike">Hijo1 · Hijo2 · Hijo3</code><span class="to">→</span><b>una fila por familiar</b></div><div class="db-row"><code>Lucía · HIJA</code><code>Tomás · HIJO</code><code>Ana · CONYUGE</code></div></div>
+<div class="be-card " data-on="4 5"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m14 6 4 4"/></svg></span>Cambios con aprobación</div><div class="db-row">Email: <code class="db-strike">juan@viejo.com</code><span class="to">→</span><code>juan@nuevo.com</code></div><div class="db-states"><span class="be-pill sm pend">PENDIENTE</span><span class="to">→</span><span class="be-pill sm act">APROBADO</span></div><p>Queda guardado <b>quién</b> lo aprobó y <b>cuándo</b>.</p></div>
+<div class="be-card " data-on="6"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></span>Buscador del panel</div><div class="db-search">garc<span class="caret"></span></div><div class="db-seq"><div class="db-hit"><span><mark>Garc</mark>ía, Juan</span><small>socio</small></div><div class="db-hit"><span><mark>Garc</mark>ía, Lucía</span><small>familiar</small></div></div></div>
+  </div>
+</div>
+</div>
+</div>
         </section>
 
         <!-- SLIDE 20: BACKEND API DE SOCIOS -->
@@ -1493,61 +1472,53 @@
         >
           <div class="slide-header">
             <div class="slide-meta">
-              <span class="slide-block-tag"
-                >Bloque 5 · Deportes & Alquileres</span
-              >
+              <span class="slide-block-tag">Bloque 5 · Deportes & Alquileres</span>
               <h2 class="slide-title">Base de Datos: Espacios y Alquileres</h2>
-              <p class="slide-subtitle">
-                Disponibilidad horaria y liberación automática vía Event
-                Scheduler
-              </p>
+              <p class="slide-subtitle">Tarifas, turnos, accesorios y reservas que se liberan solas</p>
             </div>
             <div class="speaker-subtle-badge speaker-elenio">
               <span class="dot"></span>
               <span>EG · Base de Datos</span>
             </div>
           </div>
-          <div class="slide-body">
-            <div class="grid-2col-visual">
-              <div
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  gap: 10px;
-                  justify-content: center;
-                "
-              >
-                <div class="card-clean accent-blue" style="padding: 12px 14px; gap: 6px;">
-                  <div class="card-heading" style="font-size: 0.92rem;">1. Modelado de Espacios, Horarios y Accesorios</div>
-                  <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
-                    <li><strong>Diferenciación arancelaria:</strong> Tarifas para socio vs. particular, seña mínima y seguro de garantía en <code>Espacio</code>.</li>
-                    <li><strong>Franjas horarias:</strong> <code>Horario_Espacio</code> con restricción <code>UNIQUE (ID_Espacio, DiaSemana, HoraInicio, HoraFin)</code> y <code>CHECK (HoraInicio &lt;&gt; HoraFin)</code>.</li>
-                    <li><strong>Control de inventario:</strong> Relación intermedia <code>Espacio_Accesorio</code> con stock disponible en tiempo real (paletas, redes, pelotas).</li>
-                  </ul>
-                </div>
-                <div class="card-clean accent-gold" style="padding: 12px 14px; gap: 6px;">
-                  <div class="card-heading" style="font-size: 0.92rem;">2. Control de Turnos y MySQL Event Scheduler</div>
-                  <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
-                    <li><strong>Bloqueo atómico:</strong> Tabla <code>Alquiler_Espacio</code> con índice único compuesto que erradica solapamientos de reservas.</li>
-                    <li><strong>Acceso de invitados:</strong> <code>TokenSeguimiento</code> criptográfico (64 chars) para pagar y gestionar sin crear usuario.</li>
-                    <li><strong>Liberación automática:</strong> Evento en MySQL ejecutado cada 60s: si no registra seña en 1 hora (<code>FechaExpiracion &lt; NOW()</code>), expira y libera el turno a la comunidad.</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="photo-container" style="padding: 4px; min-height: 0;">
-                <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
-                <img
-                  src="assets_presentacion/diagrama_alquileres_espacios.svg"
-                  alt="Diagrama EER de Espacios, Horarios y Alquileres"
-                  style="max-height: 300px;"
-                  onclick="openLightbox(this.src)"
-                />
-                <div class="photo-caption" style="margin-top: 2px;">
-                  Esquema Relacional Focalizado — Tablas Espacio, Horario_Espacio, Alquiler y Event Scheduler (60 min)
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="slide-body be-body">
+<div class="be-wrap be-stepper" data-dur="6000">
+<ol class="be-src"><li><b>El espacio y sus reglas</b> Espacio guarda el precio para socios y no socios, la seña mínima, el seguro (porcentaje o monto fijo) y con cuántos meses de anticipación se puede reservar.</li><li><b>Precio según el día</b> Espacio_Precio_Dia permite cobrar distinto un sábado que un martes. Su clave es el espacio más el día de la semana, así cada día tiene una sola tarifa.</li><li><b>Las franjas horarias</b> Horario_Espacio define los turnos (día, hora de inicio y fin). Un UNIQUE impide cargar dos veces la misma franja y un CHECK exige que inicio y fin sean distintos.</li><li><b>Accesorios con stock</b> La relación N:M Espacio_Accesorio dice qué accesorios ofrece cada espacio; Accesorio lleva el stock total y el disponible.</li><li><b>La reserva</b> Alquiler guarda fecha, total, saldo, seguro y estado. Si reserva un invitado, se guardan sus datos de contacto y un TokenSeguimiento de 64 caracteres para que siga su reserva sin crear cuenta.</li><li><b>Reserva y turno, unidos</b> Alquiler_Espacio conecta cada reserva con la franja que ocupa. La API valida la disponibilidad dentro de una transacción para que dos personas no se queden con el mismo turno.</li><li><b>Liberación automática</b> FechaExpiracion marca hasta cuándo se puede pagar la seña (1 hora para socios, 24 hs para un invitado aprobado). Un job que corre cada minuto cancela las vencidas y libera el horario.</li></ol>
+<aside class="be-panel">
+  <div class="be-kicker">Recorrido · Modelo de datos</div>
+  <div class="be-stepnum">Paso <b class="be-n">1</b> de <span class="be-total"></span></div>
+  <h3 class="be-title"></h3>
+  <p class="be-text"></p>
+  <div class="be-progress"><i></i></div>
+  <div class="be-dots"></div>
+  <button class="be-play" type="button">❚❚ Pausar</button>
+  <div class="be-eps"><div class="be-eps-h">Tablas del módulo</div><div class="be-ep" data-on="1 2"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Espacio</code></div><div class="be-ep" data-on="2"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Espacio_Precio_Dia</code></div><div class="be-ep" data-on="3 6"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Horario_Espacio</code></div><div class="be-ep" data-on="4"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Espacio_Accesorio</code></div><div class="be-ep" data-on="5 7"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Alquiler</code></div><div class="be-ep" data-on="6"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Alquiler_Espacio</code></div></div>
+</aside>
+<div class="be-stage db-stage">
+  <div class="db-board">
+    <div class="db-board-h"><span>Modelo de datos simplificado</span><div class="db-legend"><span><span class="db-k pk">PK</span>clave</span><span><span class="db-k fk">FK</span>vínculo</span><span><span class="db-k uq">UQ</span>único</span><span><span class="db-k ck">CK</span>regla</span><span><span class="db-k ft">FT</span>búsqueda</span></div></div>
+    <div class="db-er" style="--c:4; --gx:36px; --gy:44px">
+<div class="db-tbl " id="t22-pd" style="grid-area:1 / 1" data-from="2" data-on="2"><div class="db-tbl-h"><b>Espacio_Precio_Dia</b><small>Tarifa según el día</small></div><div class="db-cols"><div class="db-col" data-on="2"><span class="db-k pk">PK</span>ID_Espacio</div><div class="db-col" data-on="2"><span class="db-k pk">PK</span>DiaSemana</div><div class="db-col"><span class="db-k"></span>PrecioSocio</div><div class="db-col"><span class="db-k"></span>PrecioNoSocio</div></div></div>
+<div class="db-tbl " id="t22-esp" style="grid-area:1 / 2" data-from="1" data-on="1"><div class="db-tbl-h"><b>Espacio</b><small>Cancha, quincho o salón</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Espacio</div><div class="db-col" data-on="1"><span class="db-k"></span>Precio<em>socio</em></div><div class="db-col" data-on="1"><span class="db-k"></span>PrecioNoSocio</div><div class="db-col" data-on="1"><span class="db-k"></span>MontoSeniaMinima</div><div class="db-col" data-on="1"><span class="db-k"></span>SeguroValor</div></div></div>
+<div class="db-tbl " id="t22-acc" style="grid-area:1 / 3" data-from="4" data-on="4"><div class="db-tbl-h"><b>Accesorio</b><small>Unido al espacio vía Espacio_Accesorio</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Accesorio</div><div class="db-col"><span class="db-k"></span>Precio</div><div class="db-col" data-on="4"><span class="db-k"></span>Stock</div><div class="db-col" data-on="4"><span class="db-k"></span>StockDisponible</div></div></div>
+<div class="db-tbl " id="t22-hor" style="grid-area:2 / 2" data-from="3" data-on="3 6"><div class="db-tbl-h"><b>Horario_Espacio</b><small>Las franjas del turno</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Horario</div><div class="db-col"><span class="db-k fk">FK</span>ID_Espacio</div><div class="db-col" data-on="3"><span class="db-k uq">UQ</span>DiaSemana<em>día + horas</em></div><div class="db-col"><span class="db-k"></span>HoraInicio</div><div class="db-col" data-on="3"><span class="db-k ck">CK</span>HoraFin<em>≠ inicio</em></div></div></div>
+<div class="db-tbl link" id="t22-ae" style="grid-area:2 / 3" data-from="6" data-on="6"><div class="db-tbl-h"><b>Alquiler_Espacio</b><small>Qué turno toma la reserva</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_AlquilerEspacio</div><div class="db-col" data-on="6"><span class="db-k fk">FK</span>ID_Alquiler</div><div class="db-col" data-on="6"><span class="db-k fk">FK</span>ID_Horario</div></div></div>
+<div class="db-tbl " id="t22-alq" style="grid-area:2 / 4" data-from="5" data-on="5 7"><div class="db-tbl-h"><b>Alquiler</b><small>La reserva</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Alquiler</div><div class="db-col"><span class="db-k fk">FK</span>ID_Socio<em>o invitado</em></div><div class="db-col"><span class="db-k"></span>Total</div><div class="db-col"><span class="db-k"></span>Saldo</div><div class="db-col" data-on="5"><span class="db-k"></span>Estado</div><div class="db-col" data-on="5"><span class="db-k"></span>TokenSeguimiento</div><div class="db-col" data-on="7"><span class="db-k"></span>FechaExpiracion</div></div></div>
+<svg class="db-link" data-a="t22-pd" data-b="t22-esp" data-ca="N" data-cb="1" data-from="2" data-on="2"></svg>
+<svg class="db-link" data-a="t22-esp" data-b="t22-acc" data-ca="N" data-cb="M" data-from="4" data-on="4"></svg>
+<svg class="db-link" data-a="t22-esp" data-b="t22-hor" data-ca="1" data-cb="N" data-from="3" data-on="3"></svg>
+<svg class="db-link" data-a="t22-hor" data-b="t22-ae" data-ca="1" data-cb="N" data-from="6" data-on="6"></svg>
+<svg class="db-link" data-a="t22-alq" data-b="t22-ae" data-ca="1" data-cb="N" data-from="6" data-on="6"></svg>
+    </div>
+  </div>
+  <div class="db-ex" style="--n:3">
+<div class="be-card " data-on="1 2"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/></svg></span>Precio según el día</div><div class="db-seq"><div class="db-row"><code>MARTES</code>tarifa de día hábil</div><div class="db-row"><code>SÁBADO</code>tarifa de fin de semana</div></div><p>Si el espacio usa precio por día, se toma de <b>Espacio_Precio_Dia</b>; si no, el de Espacio.</p></div>
+<div class="be-card " data-on="5 6"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>Pádel · sábado 20:00</div><div class="db-states"><span class="be-pill sm pend">PENDIENTE</span><span class="to">→</span><span class="be-pill sm pend">SEÑADO</span><span class="to">→</span><span class="be-pill sm act">PAGADO</span></div><p>Un invitado sin cuenta sigue su reserva con un link que lleva su <b>TokenSeguimiento</b>.</p></div>
+<div class="be-card " data-on="7"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>Seña vencida</div><div class="db-row"><span class="db-clock expire">00:59</span><span class="to">→</span><span class="be-pill sm rech">CANCELADO</span></div><p>Un job revisa <b>cada minuto</b>: si <code>FechaExpiracion</code> ya pasó, cancela la reserva y el horario queda libre.</p></div>
+  </div>
+</div>
+</div>
+</div>
         </section>
 
         <!-- SLIDE 23: BACKEND API DE ALQUILERES -->
@@ -1775,56 +1746,51 @@
             <div class="slide-meta">
               <span class="slide-block-tag">Bloque 6 · Finanzas & Cuotas</span>
               <h2 class="slide-title">Base de Datos: Cuotas, Pagos y Cajas</h2>
-              <p class="slide-subtitle">
-                Soporte de pagos parciales y trazabilidad de ingresos
-              </p>
+              <p class="slide-subtitle">Cuotas mensuales, pagos parciales y una caja que no se descuadra</p>
             </div>
             <div class="speaker-subtle-badge speaker-elenio">
               <span class="dot"></span>
               <span>EG · Base de Datos</span>
             </div>
           </div>
-          <div class="slide-body">
-            <div class="grid-2col-visual">
-              <div
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  gap: 10px;
-                  justify-content: center;
-                "
-              >
-                <div class="card-clean accent-blue" style="padding: 12px 14px; gap: 6px;">
-                  <div class="card-heading" style="font-size: 0.92rem;">1. Cuotas y Pagos Parciales Nativos</div>
-                  <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
-                    <li><strong>Control matemático:</strong> <code>Cuota.PorcentajePagado DECIMAL(3,2)</code> con restricción <code>CHECK (0.00 &lt;= valor &lt;= 1.00)</code>.</li>
-                    <li><strong>Flexibilidad contable:</strong> Soporta saldar cuotas al 50% o adelantos sin descalces en centavos ni redondeos erróneos.</li>
-                    <li><strong>Imputación atómica:</strong> <code>Pago_Cuota</code> vincula cada cobro a su cuota con clave única compuesta.</li>
-                  </ul>
-                </div>
-                <div class="card-clean accent-gold" style="padding: 12px 14px; gap: 6px;">
-                  <div class="card-heading" style="font-size: 0.92rem;">2. Desnormalización Justificada en Deuda_Socio</div>
-                  <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
-                    <li><strong>¿Por qué se desnormaliza?:</strong> Evita recálculos continuos <code>O(N)</code> con <code>SUM()</code> y <code>JOIN</code> sobre años de historial de cuotas en operaciones de alta frecuencia (login del socio, ver perfil, validar habilitación de reserva).</li>
-                    <li><strong>Lectura instantánea <code>O(1)</code>:</strong> <code>Deuda_Socio.Cant_Cuotas</code> entrega el saldo al milisegundo; la integridad se mantiene con transacciones SQL atómicas en cada pago o planilla.</li>
-                    <li><strong>Libro Diario en <code>Caja_Movimiento</code>:</strong> Restricción <code>UNIQUE (ID_Pago)</code> y <code>CHECK (Monto &gt; 0)</code>: cada peso ingresado audita medio de cobro y conciliación con pasarela.</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="photo-container" style="padding: 4px; min-height: 0;">
-                <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
-                <img
-                  src="assets_presentacion/diagrama_cuotas_pagos.svg"
-                  alt="Diagrama EER de Cuotas, Pagos, Deudas y Cajas"
-                  style="max-height: 300px;"
-                  onclick="openLightbox(this.src)"
-                />
-                <div class="photo-caption" style="margin-top: 2px;">
-                  Esquema Relacional Focalizado — Cuota, Deuda_Socio, Pago, Caja_Movimiento y Conciliación
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="slide-body be-body">
+<div class="be-wrap be-stepper" data-dur="6200">
+<ol class="be-src"><li><b>Una cuota por mes</b> Cuota tiene un registro por socio y período (ej. 2026-05). El UNIQUE (ID_Socio, Periodo) impide generar dos veces la cuota del mismo mes.</li><li><b>Pagos parciales</b> PorcentajePagado va de 0 a 1, controlado con un CHECK. Así una cuota puede quedar PENDIENTE, PARCIAL o PAGADO sin errores de redondeo.</li><li><b>Un pago, varias cuotas</b> Pago registra el monto, la fecha y el método (MercadoPago, transferencia, efectivo o planilla). Pago_Cuota reparte ese pago entre las cuotas que salda.</li><li><b>La deuda en una sola fila</b> Deuda_Socio guarda la cantidad de cuotas adeudadas ya calculada: es una desnormalización a propósito. Se actualiza en la misma transacción de cada pago, así la lectura es instantánea y siempre coincide.</li><li><b>El libro de caja</b> Cada pago aprobado genera un Caja_Movimiento. El UNIQUE sobre ID_Pago impide registrarlo dos veces y el CHECK exige montos mayores a cero.</li><li><b>Planillas reversibles</b> Los pagos que llegan en la planilla de sueldos quedan atados a su Importacion_Planilla. Mientras no esté confirmada, el rollback deshace en una transacción esos pagos, las cuotas que saldaron y la deuda de cada socio.</li></ol>
+<aside class="be-panel">
+  <div class="be-kicker">Recorrido · Modelo de datos</div>
+  <div class="be-stepnum">Paso <b class="be-n">1</b> de <span class="be-total"></span></div>
+  <h3 class="be-title"></h3>
+  <p class="be-text"></p>
+  <div class="be-progress"><i></i></div>
+  <div class="be-dots"></div>
+  <button class="be-play" type="button">❚❚ Pausar</button>
+  <div class="be-eps"><div class="be-eps-h">Tablas del módulo</div><div class="be-ep" data-on="1 2"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Cuota</code></div><div class="be-ep" data-on="3"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Pago</code></div><div class="be-ep" data-on="3"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Pago_Cuota</code></div><div class="be-ep" data-on="4"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Deuda_Socio</code></div><div class="be-ep" data-on="5"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Caja_Movimiento</code></div><div class="be-ep" data-on="6"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Importacion_Planilla</code></div></div>
+</aside>
+<div class="be-stage db-stage">
+  <div class="db-board">
+    <div class="db-board-h"><span>Modelo de datos simplificado</span><div class="db-legend"><span><span class="db-k pk">PK</span>clave</span><span><span class="db-k fk">FK</span>vínculo</span><span><span class="db-k uq">UQ</span>único</span><span><span class="db-k ck">CK</span>regla</span><span><span class="db-k ft">FT</span>búsqueda</span></div></div>
+    <div class="db-er" style="--c:4; --gx:38px; --gy:48px">
+<div class="db-tbl " id="t26-deu" style="grid-area:1 / 1" data-from="4" data-on="4"><div class="db-tbl-h"><b>Deuda_Socio</b><small>Saldo ya calculado</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Deuda</div><div class="db-col" data-on="4"><span class="db-k uq">UQ</span>ID_Socio</div><div class="db-col" data-on="4"><span class="db-k"></span>Cant_Cuotas<em>adeudadas</em></div></div></div>
+<div class="db-tbl ext" id="t26-soc" style="grid-area:1 / 2"><div class="db-tbl-h"><b>Socio</b><small>El titular</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Socio</div><div class="db-col"><span class="db-k"></span>Tipo</div></div></div>
+<div class="db-tbl " id="t26-cuo" style="grid-area:1 / 3" data-from="1" data-on="1 2"><div class="db-tbl-h"><b>Cuota</b><small>Una por socio y por mes</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Cuota</div><div class="db-col" data-on="1"><span class="db-k uq">UQ</span>ID_Socio</div><div class="db-col" data-on="1"><span class="db-k uq">UQ</span>Periodo<em>2026-05</em></div><div class="db-col" data-on="2"><span class="db-k ck">CK</span>PorcentajePagado<em>0 a 1</em></div><div class="db-col" data-on="2"><span class="db-k"></span>Estado</div></div></div>
+<div class="db-tbl link" id="t26-pc" style="grid-area:2 / 4" data-from="3" data-on="3"><div class="db-tbl-h"><b>Pago_Cuota</b><small>Reparte el pago</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_PagoCuota</div><div class="db-col" data-on="3"><span class="db-k fk">FK</span>ID_Cuota</div><div class="db-col" data-on="3"><span class="db-k fk">FK</span>ID_Pago</div><div class="db-col" data-on="3"><span class="db-k"></span>Monto</div></div></div>
+<div class="db-tbl " id="t26-caja" style="grid-area:2 / 2" data-from="5" data-on="5"><div class="db-tbl-h"><b>Caja_Movimiento</b><small>El libro de caja</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_CajaMovimiento</div><div class="db-col" data-on="5"><span class="db-k uq">UQ</span>ID_Pago</div><div class="db-col" data-on="5"><span class="db-k ck">CK</span>Monto<em>> 0</em></div><div class="db-col"><span class="db-k"></span>TipoMovimiento</div></div></div>
+<div class="db-tbl " id="t26-pago" style="grid-area:2 / 3" data-from="3" data-on="3 6"><div class="db-tbl-h"><b>Pago</b><small>El cobro</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Pago</div><div class="db-col"><span class="db-k"></span>Monto</div><div class="db-col" data-on="3"><span class="db-k"></span>MetodoPago</div><div class="db-col"><span class="db-k"></span>Estado</div><div class="db-col" data-on="6"><span class="db-k fk">FK</span>ID_Importacion</div></div></div>
+<svg class="db-link" data-a="t26-soc" data-b="t26-deu" data-ca="1" data-cb="1" data-from="4" data-on="4"></svg>
+<svg class="db-link" data-a="t26-soc" data-b="t26-cuo" data-ca="1" data-cb="N" data-from="1" data-on="1"></svg>
+<svg class="db-link" data-a="t26-cuo" data-b="t26-pc" data-ca="1" data-cb="N" data-from="3" data-on="3"></svg>
+<svg class="db-link" data-a="t26-pago" data-b="t26-pc" data-ca="1" data-cb="N" data-from="3" data-on="3"></svg>
+<svg class="db-link" data-a="t26-pago" data-b="t26-caja" data-ca="1" data-cb="1" data-from="5" data-on="5"></svg>
+    </div>
+  </div>
+  <div class="db-ex" style="--n:3">
+<div class="be-card " data-on="2 3"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 12h.01M18 12h.01"/></svg></span>Cuota pagada en partes</div><div class="db-meter"><i></i></div><div class="db-meter-l"><span>0 · PENDIENTE</span><span>0.5 · PARCIAL</span><span>1 · PAGADO</span></div><p>Un mismo pago puede saldar <b>varias cuotas</b>, o solo una parte de una.</p></div>
+<div class="be-card " data-on="4"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>Deuda al instante</div><div class="db-count"><b>3</b><span class="to">→</span><b>2</b><span>cuotas adeudadas</span></div><p>Perfil y reservas leen <b>una sola fila</b> en vez de sumar todo el historial.</p></div>
+<div class="be-card " data-on="5 6"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M4 4v6h6"/><path d="M20 20v-6h-6"/><path d="M20 10a8 8 0 0 0-14-4L4 10M4 14a8 8 0 0 0 14 4l2-4"/></svg></span>Cada peso, una sola vez</div><div class="db-seq"><div class="db-row"><code>Pago #1024</code><span class="to">→</span>Caja: INGRESO <span class="db-ok">✓</span></div><div class="db-row"><code>Pago #1024</code><span class="to">→</span>otra vez <span class="db-ko">✗ UNIQUE</span></div></div><p>Una planilla sin confirmar se puede <b>revertir</b> completa.</p></div>
+  </div>
+</div>
+</div>
+</div>
         </section>
 
         <!-- SLIDE 27: BACKEND INTEGRACIÓN PAGOS -->
@@ -1985,56 +1951,47 @@
             <div class="slide-meta">
               <span class="slide-block-tag">Bloque 7 · Prensa & Noticias</span>
               <h2 class="slide-title">Base de Datos: Noticias y Categorías</h2>
-              <p class="slide-subtitle">
-                Estructura periodística y programación de publicaciones
-              </p>
+              <p class="slide-subtitle">La estructura de una nota periodística, sus fotos y su publicación</p>
             </div>
             <div class="speaker-subtle-badge speaker-elenio">
               <span class="dot"></span>
               <span>EG · Base de Datos</span>
             </div>
           </div>
-          <div class="slide-body">
-            <div class="grid-2col-visual">
-              <div
-                style="
-                  display: flex;
-                  flex-direction: column;
-                  gap: 10px;
-                  justify-content: center;
-                "
-              >
-                <div class="card-clean accent-blue" style="padding: 12px 14px; gap: 6px;">
-                  <div class="card-heading" style="font-size: 0.92rem;">1. Estructura Periodística Formal y 3FN</div>
-                  <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
-                    <li><strong>Anatomía de prensa:</strong> <code>Volanta</code> (sección), <code>Titulo</code>, <code>Copete</code> (bajada de tarjeta) y <code>Cuerpo (LONGTEXT)</code> para artículos editoriales completos.</li>
-                    <li><strong>Multimedia enriquecida:</strong> Soporte nativo para <code>EmbedLink</code> (reproductor YouTube responsivo) y galería <code>Noticia_Imagen</code> en Cloudinary.</li>
-                    <li><strong>Catálogo <code>Categoria</code> (3FN):</strong> Normalización de etiquetas (Torneos, Obras, Sociales) eliminando cadenas repetidas.</li>
-                  </ul>
-                </div>
-                <div class="card-clean accent-gold" style="padding: 12px 14px; gap: 6px;">
-                  <div class="card-heading" style="font-size: 0.92rem;">2. Programación Temporal y Seguridad</div>
-                  <ul class="clean-list" style="font-size: 0.78rem; gap: 4px;">
-                    <li><strong>Publicación diferida:</strong> Subcomisión de prensa programa comunicados; la query pública filtra <code>Estado = 'PUBLICADO' AND FechaPublicacion &lt;= NOW()</code> con 0 exposición prematura.</li>
-                    <li><strong>Auditoría de autor:</strong> <code>ID_Autor</code> vincula con <code>Usuario</code> con política <code>ON DELETE SET NULL</code> preservando el histórico de noticias del club.</li>
-                    <li><strong>Gobierno editorial:</strong> Creación y edición restringida estrictamente a roles <code>ADMIN_NOTICIAS</code> y <code>SUPERADMIN</code>.</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="photo-container" style="padding: 4px; min-height: 0;">
-                <span class="photo-zoom-hint">🔍 Clic para ampliar</span>
-                <img
-                  src="assets_presentacion/diagrama_noticias_prensa.svg"
-                  alt="Diagrama EER de Noticias, Categorías y Prensa"
-                  style="max-height: 300px;"
-                  onclick="openLightbox(this.src)"
-                />
-                <div class="photo-caption" style="margin-top: 2px;">
-                  Esquema Relacional Focalizado — Noticia, Categoria (3FN), Noticia_Imagen y Publicación Diferida
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="slide-body be-body">
+<div class="be-wrap be-stepper" data-dur="6200">
+<ol class="be-src"><li><b>La anatomía de una noticia</b> Noticia sigue la estructura de un diario: Volanta (la sección), Título, Copete (la bajada) y Cuerpo en LONGTEXT, más imagen destacada con epígrafe y un link de video opcional.</li><li><b>Categorías como catálogo</b> Institucional, Deportes, Innovación y Beneficios viven en Categoria y se referencian por ID. RESTRICT impide borrar una categoría que todavía tiene noticias.</li><li><b>La galería de fotos</b> Noticia_Imagen guarda varias fotos por nota con su orden. Se guarda la Url y el PublicId de Cloudinary para poder borrarlas de la nube; si se elimina la noticia, CASCADE borra su galería.</li><li><b>El autor no rompe nada</b> ID_Autor apunta al Usuario que la escribió con ON DELETE SET NULL: si esa cuenta se da de baja, la noticia sigue publicada y el historial del club no se pierde.</li><li><b>Borrador, programada o publicada</b> Estado y FechaPublicacion permiten escribir con tiempo y dejar la nota en borrador o programada. El portal solo pide las publicadas.</li></ol>
+<aside class="be-panel">
+  <div class="be-kicker">Recorrido · Modelo de datos</div>
+  <div class="be-stepnum">Paso <b class="be-n">1</b> de <span class="be-total"></span></div>
+  <h3 class="be-title"></h3>
+  <p class="be-text"></p>
+  <div class="be-progress"><i></i></div>
+  <div class="be-dots"></div>
+  <button class="be-play" type="button">❚❚ Pausar</button>
+  <div class="be-eps"><div class="be-eps-h">Tablas del módulo</div><div class="be-ep" data-on="1 5"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Noticia</code></div><div class="be-ep" data-on="2"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Categoria</code></div><div class="be-ep" data-on="3"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Noticia_Imagen</code></div><div class="be-ep" data-on="4"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Usuario</code></div></div>
+</aside>
+<div class="be-stage db-stage">
+  <div class="db-board">
+    <div class="db-board-h"><span>Modelo de datos simplificado</span><div class="db-legend"><span><span class="db-k pk">PK</span>clave</span><span><span class="db-k fk">FK</span>vínculo</span><span><span class="db-k uq">UQ</span>único</span><span><span class="db-k ck">CK</span>regla</span><span><span class="db-k ft">FT</span>búsqueda</span></div></div>
+    <div class="db-er" style="--c:3; --gx:70px; --gy:36px">
+<div class="db-tbl cat" id="t29-cat" style="grid-area:1 / 1" data-from="2" data-on="2"><div class="db-tbl-h"><b>Categoria</b><small>Catálogo de secciones</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Categoria</div><div class="db-col" data-on="2"><span class="db-k uq">UQ</span>Nombre<em>Deportes…</em></div></div></div>
+<div class="db-tbl ext" id="t29-usr" style="grid-area:2 / 1" data-from="4" data-on="4"><div class="db-tbl-h"><b>Usuario</b><small>Quien la redacta</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Usuario</div><div class="db-col"><span class="db-k"></span>Username</div></div></div>
+<div class="db-tbl " id="t29-not" style="grid-area:1 / 2 / 3 / 3" data-from="1" data-on="1 5"><div class="db-tbl-h"><b>Noticia</b><small>El artículo</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Noticia</div><div class="db-col" data-on="1"><span class="db-k"></span>Volanta<em>sección</em></div><div class="db-col" data-on="1"><span class="db-k"></span>Titulo</div><div class="db-col" data-on="1"><span class="db-k"></span>Copete<em>bajada</em></div><div class="db-col" data-on="1"><span class="db-k"></span>Cuerpo<em>LONGTEXT</em></div><div class="db-col"><span class="db-k"></span>ImagenDestacada</div><div class="db-col"><span class="db-k"></span>EmbedLink<em>video</em></div><div class="db-col" data-on="5"><span class="db-k"></span>Estado</div><div class="db-col" data-on="5"><span class="db-k"></span>FechaPublicacion</div><div class="db-col" data-on="2"><span class="db-k fk">FK</span>ID_Categoria</div><div class="db-col" data-on="4"><span class="db-k fk">FK</span>ID_Autor</div></div></div>
+<div class="db-tbl " id="t29-img" style="grid-area:1 / 3 / 3 / 4" data-from="3" data-on="3"><div class="db-tbl-h"><b>Noticia_Imagen</b><small>La galería de fotos</small></div><div class="db-cols"><div class="db-col"><span class="db-k pk">PK</span>ID_Imagen</div><div class="db-col"><span class="db-k fk">FK</span>ID_Noticia</div><div class="db-col" data-on="3"><span class="db-k"></span>Url<em>Cloudinary</em></div><div class="db-col" data-on="3"><span class="db-k"></span>PublicId</div><div class="db-col" data-on="3"><span class="db-k"></span>Orden</div></div></div>
+<svg class="db-link" data-a="t29-cat" data-b="t29-not" data-ca="1" data-cb="N" data-label="RESTRICT" data-from="2" data-on="2"></svg>
+<svg class="db-link" data-a="t29-usr" data-b="t29-not" data-ca="1" data-cb="N" data-label="SET NULL" data-from="4" data-on="4"></svg>
+<svg class="db-link" data-a="t29-not" data-b="t29-img" data-ca="1" data-cb="N" data-label="CASCADE" data-from="3" data-on="3"></svg>
+    </div>
+  </div>
+  <div class="db-ex" style="--n:3">
+<div class="be-card " data-on="1 2 3"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></span>Cómo se ve en el portal</div><div class="db-news"><span class="v" data-on="1">Deportes · Pádel</span><span class="t" data-on="1">Se juega el torneo de primavera</span><span class="c" data-on="1">Inscripciones abiertas hasta el viernes para socios e invitados.</span></div><div class="db-row"><span class="be-pill sm act" data-on="2">Categoría: Deportes</span><span class="be-pill sm pend" data-on="3">3 fotos en la galería</span></div></div>
+<div class="be-card " data-on="4"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span>Si se da de baja al redactor</div><div class="db-seq"><div class="db-row"><code>ID_Autor = 12</code><span class="to">→</span>cuenta eliminada</div><div class="db-row"><code>ID_Autor = NULL</code><span class="to">→</span>la noticia <span class="db-ok">sigue publicada ✓</span></div></div></div>
+<div class="be-card " data-on="5"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>Borrador, programada o publicada</div><div class="db-states"><span class="be-pill sm">BORRADOR</span><span class="to">→</span><span class="be-pill sm pend">PROGRAMADO</span><span class="to">→</span><span class="be-pill sm act">PUBLICADO</span></div><p>Prensa la escribe con tiempo y la deja con <b>fecha de publicación</b>; el portal muestra solo las publicadas.</p></div>
+  </div>
+</div>
+</div>
+</div>
         </section>
 
         <!-- SLIDE 30: BACKEND API DE NOTICIAS -->
@@ -2299,116 +2256,54 @@
             <div class="slide-meta">
               <span class="slide-block-tag">Bloque 8 · Infraestructura</span>
               <h2 class="slide-title">Despliegue y Arquitectura Cloud</h2>
-              <p class="slide-subtitle">
-                ¿Cómo y dónde está publicado el sistema en internet?
-              </p>
+              <p class="slide-subtitle">¿Dónde está publicado el sistema y qué pasa cuando alguien lo usa?</p>
             </div>
             <div class="speaker-subtle-badge speaker-elenio">
               <span class="dot"></span>
               <span>EG · Base de Datos</span>
             </div>
           </div>
-          <div class="slide-body">
-        <!-- GRID DE 3 COLUMNAS SIMPLES Y CLARAS -->
-        <div class="grid-3col" style="align-items: stretch; gap: 16px;">
-          <!-- 1. FRONTEND -->
-          <div class="card-clean accent-gold" style="padding: 16px 18px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-                <div class="card-heading" style="font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
-                  <img src="assets_presentacion/logo_react.svg" alt="React" style="width: 22px; height: 22px;" />
-                  <span>1. Pantalla Web (Frontend)</span>
-                </div>
-                <span class="chip gold" style="font-size: 0.72rem; font-weight: 700;">Lo que ve el socio</span>
-              </div>
-              <ul class="clean-list" style="font-size: 0.86rem; gap: 8px; line-height: 1.45;">
-                <li><strong>Acceso desde cualquier lugar:</strong> La web se abre desde celulares, tablets o computadoras sin instalar nada.</li>
-                <li><strong>Carga instantánea:</strong> La página está optimizada para que cargue en menos de un segundo.</li>
-                <li><strong>Conexión segura:</strong> Funciona con <code>https://</code> y candado verde para proteger los datos de los socios.</li>
-              </ul>
-            </div>
-            <div style="margin-top: 14px; padding-top: 10px; border-top: 1px dashed rgba(194, 154, 29, 0.3); display: flex; align-items: center; gap: 6px;">
-              <span class="tech-chip"><img src="assets_presentacion/logo_react.svg" alt="React" /> React</span>
-              <span class="chip gold">Web Pública</span>
-            </div>
-          </div>
-
-          <!-- 2. BACKEND -->
-          <div class="card-clean accent-green" style="padding: 16px 18px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-                <div class="card-heading" style="font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
-                  <img src="assets_presentacion/logo_nodejs.svg" alt="Node.js" style="width: 22px; height: 22px;" />
-                  <span>2. Servidor en la Nube (API)</span>
-                </div>
-                <span class="chip" style="font-size: 0.72rem; font-weight: 700;">El cerebro del sistema</span>
-              </div>
-              <ul class="clean-list" style="font-size: 0.86rem; gap: 8px; line-height: 1.45;">
-                <li><strong>Activo las 24 horas:</strong> Si ocurre algún error en el servidor, se reinicia solo automáticamente.</li>
-                <li><strong>Seguridad de contraseñas:</strong> Las claves de MercadoPago y del sistema no están en el código, están protegidas en la nube.</li>
-                <li><strong>Conexión con servicios:</strong> Procesa pagos online, sube fotos a Cloudinary y envía emails a los socios.</li>
-              </ul>
-            </div>
-            <div style="margin-top: 14px; padding-top: 10px; border-top: 1px dashed rgba(71, 105, 70, 0.3); display: flex; align-items: center; gap: 6px;">
-              <span class="tech-chip"><img src="assets_presentacion/logo_nodejs.svg" alt="Node.js" /> Node.js</span>
-              <span class="chip">Siempre Activo</span>
-            </div>
-          </div>
-
-          <!-- 3. BASE DE DATOS -->
-          <div class="card-clean accent-blue" style="padding: 16px 18px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-                <div class="card-heading" style="font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
-                  <img src="assets_presentacion/logo_mysql.svg" alt="MySQL" style="width: 22px; height: 22px;" />
-                  <span>3. Base de Datos Protegida</span>
-                </div>
-                <span class="chip blue" style="font-size: 0.72rem; font-weight: 700;">Donde se guarda todo</span>
-              </div>
-              <ul class="clean-list" style="font-size: 0.86rem; gap: 8px; line-height: 1.45;">
-                <li><strong>Red privada e invisible:</strong> Nadie puede entrar a la base de datos desde internet; solo nuestro servidor tiene acceso.</li>
-                <li><strong>Respuesta inmediata:</strong> Como el servidor y la base de datos están juntos en Railway, las consultas tardan menos de 2 milisegundos.</li>
-                <li><strong>Limpieza de turnos:</strong> Si alguien reserva una cancha y no la paga, el sistema la libera solo a los 15 minutos.</li>
-              </ul>
-            </div>
-            <div style="margin-top: 14px; padding-top: 10px; border-top: 1px dashed rgba(25, 118, 210, 0.3); display: flex; align-items: center; gap: 6px;">
-              <span class="tech-chip"><img src="assets_presentacion/logo_mysql.svg" alt="MySQL" /> MySQL</span>
-              <span class="chip blue">Red Privada</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- BANNER RESUMEN CLARO -->
-        <div
-          style="
-            background: #ffffff;
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: 12px 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-            gap: 12px;
-          "
-        >
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(71, 105, 70, 0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-              <img src="assets_presentacion/logo_railway.svg" alt="Railway" style="width: 20px; height: 20px;" />
-            </div>
-            <div>
-              <div style="font-size: 0.9rem; font-weight: 700; color: var(--brand-green);">En resumen: ¿Dónde y cómo está publicado el sistema?</div>
-              <div style="font-size: 0.78rem; color: var(--text-secondary);">Está todo alojado en <strong>Railway</strong>, una plataforma cloud que mantiene el sistema online las 24 hs de forma segura y automática.</div>
-            </div>
-          </div>
-
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <span class="chip" style="background: #e8f5e9; color: #2e7d32; font-size: 0.75rem;">🔒 Seguro (HTTPS)</span>
-            <span class="chip" style="background: #e3f2fd; color: #1565c0; font-size: 0.75rem;">⚡ Rápido (&lt; 2 ms)</span>
-            <span class="chip" style="background: #fff8e1; color: #f57f17; font-size: 0.75rem;">🛡️ Base de datos oculta</span>
-          </div>
-        </div>
-      </div>
+          <div class="slide-body be-body">
+<div class="be-wrap be-stepper" data-dur="6200">
+<ol class="be-src"><li><b>Entra el socio</b> Abre el sitio desde el celular o la computadora, sin instalar nada. Toda la comunicación viaja por HTTPS, cifrada.</li><li><b>La pantalla web</b> Railway publica la aplicación React ya compilada. El navegador la descarga y desde ahí solo le pide datos a la API.</li><li><b>La API</b> El servidor Node.js con Express recibe cada pedido, verifica el token y aplica las reglas del club. Las claves (MercadoPago, base de datos) son variables de entorno de Railway, no están en el código.</li><li><b>La base de datos</b> MySQL vive en el mismo proyecto de Railway y la API se conecta por la red interna. Solo el servidor habla con la base.</li><li><b>Servicios externos</b> Desde la API se cobra con MercadoPago, se suben las fotos a Cloudinary y se envían los emails con Resend.</li><li><b>Trabaja sola</b> Un job de la API corre cada minuto y cancela las reservas con la seña vencida. En MySQL, un evento programado arma cada día el resumen de pagos.</li></ol>
+<aside class="be-panel">
+  <div class="be-kicker">Recorrido · Un pedido en producción</div>
+  <div class="be-stepnum">Paso <b class="be-n">1</b> de <span class="be-total"></span></div>
+  <h3 class="be-title"></h3>
+  <p class="be-text"></p>
+  <div class="be-progress"><i></i></div>
+  <div class="be-dots"></div>
+  <button class="be-play" type="button">❚❚ Pausar</button>
+  <div class="be-eps"><div class="be-eps-h">Piezas del sistema</div><div class="be-ep" data-on="2"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>React · pantalla web</code></div><div class="be-ep" data-on="3 6"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>Node + Express · API</code></div><div class="be-ep" data-on="4 6"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>MySQL · base de datos</code></div><div class="be-ep" data-on="5"><span class="be-m tag db-tic"><span class="be-ic "><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span></span><code>MercadoPago · Cloudinary · Resend</code></div></div>
+</aside>
+<div class="be-stage db-stage">
+  <div class="db-board">
+    <div class="db-board-h"><span>Arquitectura en producción</span></div>
+    <div class="db-er db-arch">
+<div class="db-zone" data-on="6"><span><img src="assets_presentacion/logo_railway.svg" alt="" />Railway · nube del proyecto</span></div>
+<div class="db-node " id="n34-user" style="grid-area:1 / 1" data-from="1" data-on="1"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span><b>Socio o invitado</b><small>Celular o computadora</small><span class="db-tag gold" data-on="1">HTTPS</span></div>
+<div class="db-node " id="n34-front" style="grid-area:1 / 2" data-from="2" data-on="2"><img src="assets_presentacion/logo_react.svg" alt="" /><b>Pantalla web</b><small>React · lo que ve el usuario</small><span class="db-tag ">sitio público</span></div>
+<div class="db-node " id="n34-api" style="grid-area:1 / 3" data-from="3" data-on="3 6"><img src="assets_presentacion/logo_nodejs.svg" alt="" /><b>API</b><small>Node.js + Express · las reglas</small><span class="db-tag gold" data-on="6">job cada minuto</span></div>
+<div class="db-node " id="n34-db" style="grid-area:1 / 4" data-from="4" data-on="4 6"><img src="assets_presentacion/logo_mysql.svg" alt="" /><b>Base de datos</b><small>MySQL · donde se guarda todo</small><span class="db-tag gold" data-on="6">resumen diario</span></div>
+<div class="db-node sm" id="n34-mp" style="grid-area:2 / 2" data-from="5" data-on="5"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 12h.01M18 12h.01"/></svg></span><div><b>MercadoPago</b><small>cobra cuotas y señas</small></div></div>
+<div class="db-node sm" id="n34-cl" style="grid-area:2 / 3" data-from="5" data-on="5"><img src="assets_presentacion/logo_cloudinary.svg" alt="" /><div><b>Cloudinary</b><small>guarda las fotos</small></div></div>
+<div class="db-node sm" id="n34-rs" style="grid-area:2 / 4" data-from="5" data-on="5"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><b>Resend</b><small>envía los emails</small></div></div>
+<svg class="db-link" data-a="n34-user" data-b="n34-front" data-from="2" data-on="1 2"></svg>
+<svg class="db-link" data-a="n34-front" data-b="n34-api" data-from="3" data-on="3"></svg>
+<svg class="db-link" data-a="n34-api" data-b="n34-db" data-from="4" data-on="4"></svg>
+<svg data-route="bus" class="db-link" data-a="n34-api" data-b="n34-mp" data-from="5" data-on="5"></svg>
+<svg data-route="bus" class="db-link" data-a="n34-api" data-b="n34-cl" data-from="5" data-on="5"></svg>
+<svg data-route="bus" class="db-link" data-a="n34-api" data-b="n34-rs" data-from="5" data-on="5"></svg>
+    </div>
+  </div>
+  <div class="db-ex" style="--n:3">
+<div class="be-card " data-on="1 2"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>Conexión segura</div><div class="db-row"><code>https://clubjudicialvm.com.ar</code></div><p>Todo viaja <b>cifrado</b>: contraseñas, datos del socio y pagos.</p></div>
+<div class="be-card " data-on="3 4"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span>Claves fuera del código</div><div class="db-seq"><div class="db-row"><code>MP_ACCESS_TOKEN = ••••••</code></div><div class="db-row"><code>MYSQLHOST = ••••••</code></div></div><p>Son <b>variables de entorno</b> de Railway: no están en GitHub.</p></div>
+<div class="be-card " data-on="6"><div class="be-card-h"><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M4 4v6h6"/><path d="M20 20v-6h-6"/><path d="M20 10a8 8 0 0 0-14-4L4 10M4 14a8 8 0 0 0 14 4l2-4"/></svg></span>Trabaja sola</div><div class="db-seq"><div class="db-row"><b>cada 1 min</b><span class="to">→</span>cancela señas vencidas</div><div class="db-row"><b>cada día</b><span class="to">→</span>arma el resumen de pagos</div></div></div>
+  </div>
+</div>
+</div>
+</div>
         </section>
 
         <!-- SLIDE 35: CONCLUSIÓN MATÍAS -->
@@ -2544,118 +2439,25 @@
             <div class="slide-meta">
               <span class="slide-block-tag">Bloque 9 · Balance de Rol</span>
               <h2 class="slide-title">Conclusiones: Base de Datos</h2>
-              <p class="slide-subtitle">
-                Evolución del modelo relacional, optimización y resolución de problemas reales mediante migraciones
-              </p>
+              <p class="slide-subtitle">Un modelo pensado para las reglas del club y que creció sin romper nada</p>
             </div>
             <div class="speaker-subtle-badge speaker-elenio">
               <span class="dot"></span>
               <span>EG · Base de Datos</span>
             </div>
           </div>
-          <div class="slide-body" style="gap: 14px;">
-            <!-- COLUMNAS PRINCIPALES: LOGROS DE MODELADO + MIGRACIONES CLAVE -->
-            <div class="grid-2col" style="align-items: stretch; gap: 16px;">
-              <!-- 1. MODELADO Y RENDIMIENTO -->
-              <div class="card-clean accent-blue" style="padding: 16px 18px; display: flex; flex-direction: column; justify-content: space-between;">
-                <div>
-                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-                    <div class="card-heading" style="font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
-                      <img src="assets_presentacion/logo_mysql.svg" alt="MySQL" style="width: 20px; height: 20px;" />
-                      <span>Logros de Modelado y Rendimiento</span>
-                    </div>
-                    <span class="chip blue" style="font-size: 0.72rem; font-weight: 700;">Base Sólida</span>
-                  </div>
-                  <ul class="clean-list" style="font-size: 0.86rem; gap: 9px; line-height: 1.45;">
-                    <li>
-                      <strong>Tercera Forma Normal (3FN):</strong> Estructuramos más de 20 tablas sin datos duplicados ni inconsistencias, garantizando integridad referencial estricta.
-                    </li>
-                    <li>
-                      <strong>Desnormalización Inteligente:</strong> Guardamos el saldo acumulado en <code>Deuda_Socio</code> para que la consulta de deudas sea instantánea sin sumar cientos de filas cada vez.
-                    </li>
-                    <li>
-                      <strong>Búsquedas en Sub-milisegundos:</strong> Con índices B-Tree e índices FULLTEXT en Socios, el buscador por nombre, apellido o CUIL responde en menos de 2 ms.
-                    </li>
-                    <li>
-                      <strong>Mantenimiento Autónomo:</strong> Tareas programadas con MySQL Event Scheduler liberan turnos impagos y recalculan resúmenes diarios de caja automáticamente.
-                    </li>
-                  </ul>
-                </div>
-                <div style="margin-top: 12px; padding-top: 8px; border-top: 1px dashed rgba(25, 118, 210, 0.3); display: flex; align-items: center; gap: 6px;">
-                  <span class="tech-chip"><img src="assets_presentacion/logo_mysql.svg" alt="MySQL" /> MySQL 8.0</span>
-                  <span class="chip blue">3FN + B-Tree</span>
-                  <span class="chip">Event Scheduler</span>
+          <div class="slide-body db-body">
+            <div class="db-concl">
+              <div class="db-concl-l">
+                <div class="db-stats"><div class="db-stat" style="--i:0"><b data-count="40">40</b><span>tablas en el modelo relacional</span></div><div class="db-stat" style="--i:1"><b data-count="55">55</b><span>claves foráneas que cuidan la integridad</span></div><div class="db-stat" style="--i:2"><b data-count="21">21</b><span>restricciones UNIQUE contra duplicados</span></div><div class="db-stat" style="--i:3"><b data-count="9">9</b><span>migraciones SQL aplicadas en producción</span></div></div>
+                <div class="db-lessons">
+                  <div class="db-lesson" style="--i:0"><h4><span class="be-ic "><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></span>Modelar con las reglas reales</h4><p>Cada tabla salió de una necesidad concreta del club: socios con familia, turnos que no se pisan, cuotas por planilla. <b>Normalizamos</b> para no duplicar datos y <b>desnormalizamos solo donde hacía falta velocidad</b>, como en Deuda_Socio.</p></div>
+                  <div class="db-lesson gold" style="--i:1"><h4><span class="be-ic "><svg viewBox="0 0 24 24"><path d="M4 4v6h6"/><path d="M20 20v-6h-6"/><path d="M20 10a8 8 0 0 0-14-4L4 10M4 14a8 8 0 0 0 14 4l2-4"/></svg></span>Evolucionar sin romper</h4><p>Cuando el club pidió cambios con el sistema ya en uso, los aplicamos con <b>migraciones SQL</b>: primero en la base de test y después en producción, <b>sin perder datos</b>.</p></div>
                 </div>
               </div>
-
-              <!-- 2. MIGRACIONES CLAVE Y QUÉ RESOLVIERON -->
-              <div class="card-clean accent-gold" style="padding: 16px 18px; display: flex; flex-direction: column; justify-content: space-between;">
-                <div>
-                  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-                    <div class="card-heading" style="font-size: 1.05rem; display: flex; align-items: center; gap: 8px;">
-                      <span>🔄 Migraciones del Proyecto: ¿Qué Resolvieron?</span>
-                    </div>
-                    <span class="chip gold" style="font-size: 0.72rem; font-weight: 700;">Evolución Sin Caídas</span>
-                  </div>
-                  <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.84rem;">
-                    <!-- Migración 1 -->
-                    <div style="background: rgba(194, 154, 29, 0.08); border-left: 3px solid var(--brand-gold); padding: 7px 10px; border-radius: 4px;">
-                      <div style="font-weight: 700; color: var(--primary-dark); font-size: 0.84rem;">1. Horarios Nocturnos que Cruzan Medianoche</div>
-                      <div style="color: var(--text-secondary); font-size: 0.78rem;"><strong>Qué resolvió:</strong> La base rechazaba turnos de 22:00 a 02:00 porque la hora fin era menor. Se flexibilizó el CHECK para permitir alquileres de quinchos que terminan al día siguiente.</div>
-                    </div>
-                    <!-- Migración 2 -->
-                    <div style="background: rgba(71, 105, 70, 0.08); border-left: 3px solid var(--brand-green-light); padding: 7px 10px; border-radius: 4px;">
-                      <div style="font-weight: 700; color: var(--primary-dark); font-size: 0.84rem;">2. Módulo de Seguro de Alquiler y Devoluciones</div>
-                      <div style="color: var(--text-secondary); font-size: 0.78rem;"><strong>Qué resolvió:</strong> Creó la tabla <code>Seguro_Devolucion</code> y campos para cobrar un depósito en garantía y registrar si se reintegra total, parcial o se retiene por roturas.</div>
-                    </div>
-                    <!-- Migración 3 -->
-                    <div style="background: rgba(25, 118, 210, 0.08); border-left: 3px solid #1976d2; padding: 7px 10px; border-radius: 4px;">
-                      <div style="font-weight: 700; color: var(--primary-dark); font-size: 0.84rem;">3. Precios Diferenciados por Día de la Semana</div>
-                      <div style="color: var(--text-secondary); font-size: 0.78rem;"><strong>Qué resolvió:</strong> Agregó <code>Espacio_Precio_Dia</code> para cobrar tarifas distintas en fin de semana vs días hábiles, tanto para socios como para invitados.</div>
-                    </div>
-                    <!-- Migración 4 -->
-                    <div style="background: rgba(100, 100, 100, 0.08); border-left: 3px solid #666; padding: 7px 10px; border-radius: 4px;">
-                      <div style="font-weight: 700; color: var(--primary-dark); font-size: 0.84rem;">4. Reparación y Precisión Exacta en Deudas</div>
-                      <div style="color: var(--text-secondary); font-size: 0.78rem;"><strong>Qué resolvió:</strong> Recálculo con redondeo a 2 decimales para evitar diferencias de centavos al importar los sueldos y descontar cuotas por planilla judicial.</div>
-                    </div>
-                  </div>
-                </div>
-                <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed rgba(194, 154, 29, 0.3); display: flex; align-items: center; gap: 6px;">
-                  <span class="chip gold">Scripts Idempotentes</span>
-                  <span class="chip">Zero Downtime</span>
-                  <span class="chip blue">Versionado SQL</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- BANNER RESUMEN CLARO Y SIMPLE -->
-            <div
-              style="
-                background: #ffffff;
-                border: 1px solid var(--border-subtle);
-                border-radius: var(--radius-md);
-                padding: 10px 16px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-                gap: 12px;
-              "
-            >
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <div style="width: 30px; height: 30px; border-radius: 8px; background: rgba(25, 118, 210, 0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                  <span style="font-size: 1.1rem;">💡</span>
-                </div>
-                <div>
-                  <div style="font-size: 0.88rem; font-weight: 700; color: var(--brand-green);">En resumen: ¿Por qué fue fundamental este trabajo?</div>
-                  <div style="font-size: 0.78rem; color: var(--text-secondary);">La base de datos no solo guarda información: se adaptó a las reglas reales del club mediante migraciones ordenadas sin perder ningún dato ni interrumpir el servicio.</div>
-                </div>
-              </div>
-
-              <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
-                <span class="chip blue" style="font-size: 0.74rem;">🛡️ Datos 100% Íntegros</span>
-                <span class="chip" style="font-size: 0.74rem;">⚡ Menos de 2 ms</span>
-                <span class="chip gold" style="font-size: 0.74rem;">📈 Escalable</span>
+              <div class="db-tl">
+                <div class="db-tl-h">Migraciones del proyecto · qué resolvió cada una</div>
+                <div class="db-tl-list"><div class="db-mig" style="--i:0"><b>Seguro de alquiler<code>seguro_alquiler.sql</code></b><p>Depósito de garantía en cada reserva y la tabla Seguro_Devolucion para registrar si se devuelve total o parcial.</p></div><div class="db-mig" style="--i:1"><b>Reglas de reserva<code>reserva_anticipacion.sql · espacio_activo.sql</code></b><p>Límite de meses de anticipación y la opción de pausar un espacio sin borrarlo.</p></div><div class="db-mig" style="--i:2"><b>Precios por día<code>espacio_precios_por_dia.sql</code></b><p>Tarifa distinta para fines de semana y días hábiles, para socios y no socios.</p></div><div class="db-mig" style="--i:3"><b>Deuda exacta<code>precision_deuda_cuotas.sql</code></b><p>Más decimales en cuotas y deuda, y un recálculo para que la planilla de sueldos no deje diferencias de centavos.</p></div><div class="db-mig" style="--i:4"><b>Horarios nocturnos<code>horarios_nocturnos.sql</code></b><p>Turnos que cruzan la medianoche, como un quincho de 22:00 a 02:00.</p></div><div class="db-mig" style="--i:5"><b>Optimización<code>optimizacion_indices_y_resumen_pagos.sql</code></b><p>Índices FULLTEXT y de fechas, y el resumen diario de pagos que arma un evento de MySQL.</p></div></div>
               </div>
             </div>
           </div>
@@ -2888,7 +2690,7 @@
         },
         10: {
           speaker: "Elenio García [Base de Datos]",
-          content: "<strong>Qué decir:</strong> 'Modelamos cuatro tipos de actores sociales: el particular sin registro, el socio común, el socio adherente y el vitalicio. Para el backoffice administrativo, diseñamos un esquema RBAC con 5 roles: SUPERADMIN, ADMIN_USUARIOS, ADMIN_ALQUILER, ADMIN_PLANILLAS y ADMIN_NOTICIAS para garantizar el principio de mínimo privilegio.'",
+          content: "<strong>Qué decir:</strong> 'Modelamos cuatro actores sociales. El particular no tiene cuenta: mira el catálogo, pide una reserva con tarifa de no socio, el club la aprueba y paga la seña por Mercado Pago siguiendo su reserva con un link con token. El socio común es empleado judicial con legajo y su cuota se descuenta del sueldo por planilla. El adherente es de la comunidad, no tiene legajo judicial y paga su cuota mensual online. El vitalicio no genera cuota pero conserva todos los beneficios. En el backoffice aplicamos RBAC con 5 roles, uno por área del club: Secretaría (ADMIN_USUARIOS) aprueba altas y cambios; la Subcomisión de Alquileres (ADMIN_ALQUILER) maneja espacios, reservas y devoluciones; Tesorería (ADMIN_PLANILLAS) importa la planilla de descuentos y controla la deuda; Prensa (ADMIN_NOTICIAS) publica noticias; y el SUPERADMIN tiene todos los permisos, crea al personal y confirma o revierte las importaciones. Cada uno ve solo lo que necesita: principio de mínimo privilegio.'",
           handover: "Pase a Matías: Matías presentará los casos de uso y diagramas UML."
         },
         11: {
@@ -2918,7 +2720,7 @@
         },
         16: {
           speaker: "Elenio García [Base de Datos]",
-          content: "<strong>Qué decir:</strong> 'Una de las decisiones centrales de diseño fue desacoplar la identidad de login de la ficha social: creamos la tabla Usuario para credenciales puras y vinculamos Socio como entidad satélite. Esto nos otorga la flexibilidad de tener administradores que no son socios del club y protege la privacidad. Los permisos se modelan con la tabla intermedia Usuario_Rol para asignar múltiples roles RBAC, y a nivel motor garantizamos cero texto plano persistiendo solo hashes Bcrypt de 60 caracteres, junto a restricciones UNIQUE en username, DNI y email.'",
+          content: "<strong>Qué decir:</strong> 'Separamos la cuenta para entrar de la ficha del socio. En Usuario solo hay nombre de usuario, la contraseña cifrada con Bcrypt y si la cuenta está activa. Los datos civiles, como DNI, legajo y tipo de socio, están en Socio. Gracias a eso, el personal de tesorería o secretaría puede tener cuenta sin figurar en el padrón. Los roles están en un catálogo cerrado, Rol, y la tabla intermedia Usuario_Rol permite que una persona tenga varios, por ejemplo Alquileres y Prensa. Por último, el motor cuida los datos: Username, DNI y Legajo son únicos y, si se borra una cuenta, ON DELETE CASCADE elimina sus roles y su ficha sin dejar registros huérfanos.'",
           handover: "Pase a Germán: Germán explicará cómo la API gestiona este acceso mediante doble token JWT."
         },
         17: {
@@ -2933,7 +2735,7 @@
         },
         19: {
           speaker: "Elenio García [Base de Datos]",
-          content: "<strong>Qué decir:</strong> 'El modelo del padrón social fue concebido para garantizar administración transparente y auditable: la tabla Socio almacena los datos civiles y el estado de membresía. Para el grupo familiar diseñamos la tabla Miembro_Familiar vinculada al titular, normalizando los tipos de vínculos en el catálogo Parentesco en 3FN para erradicar columnas repetitivas. Un requerimiento crítico del club era la trazabilidad: ningún socio altera unilateralmente su DNI, CUIL o datos sensibles en la base de datos; para ello modelamos Solicitud_Cambio_Datos y Solicitud_Cambio_Familiar, que registran propuestas sujetas a resolución de secretaría. Finalmente, creamos un índice FULLTEXT sobre Nombre, Apellido y Email para búsquedas instantáneas en milisegundos sin escaneos lentos de tabla.'",
+          content: "<strong>Qué decir:</strong> 'El socio titular está en Socio, con DNI y legajo únicos, su tipo y un campo Aprobado que arranca en falso: nadie entra hasta que secretaría lo aprueba. Cada familiar es una fila en Miembro_Familiar, con su foto de DNI en Cloudinary; así no hay columnas fijas como Hijo1 o Hijo2. El parentesco sale de un catálogo, para no tener variantes mal escritas. Los cambios de datos sensibles no se hacen directo: el socio genera una solicitud con los valores nuevos y secretaría la aprueba, quedando registrado quién y cuándo. Lo mismo para altas y bajas de familiares. Y para el buscador del panel usamos índices FULLTEXT sobre nombre, apellido y email.'",
           handover: "Pase a Germán: Germán detallará las reglas de negocio de la API de socios."
         },
         20: {
@@ -2948,7 +2750,7 @@
         },
         22: {
           speaker: "Elenio García [Base de Datos]",
-          content: "<strong>Qué decir:</strong> 'El módulo de alquileres y espacios deportivos requirió un diseño relacional altamente riguroso para eliminar el solapamiento histórico de turnos. En la tabla Espacio modelamos tarifas diferenciadas para socios y particulares, seña mínima y seguro de garantía. La tabla Horario_Espacio estructura las franjas horarias por día con una clave UNIQUE compuesta y validación CHECK para evitar rangos nulos. Para el bloqueo efectivo de turnos diseñamos la intermedia Alquiler_Espacio, vinculada a Alquiler. Pero el aporte clave de ingeniería fue automatizar la liberación de reservas: configuramos un Evento Programado en MySQL (Event Scheduler) que se ejecuta cada 60 segundos. Si una reserva en estado PENDIENTE no abona la seña dentro del plazo de 60 minutos (FechaExpiracion &lt; NOW()), el evento actualiza el estado a CANCELADO y libera la franja horaria automáticamente para que vuelva a estar disponible en la plataforma sin intervención administrativa.'",
+          content: "<strong>Qué decir:</strong> 'Espacio guarda las reglas de cada cancha o quincho: precio para socios y no socios, seña mínima, seguro y anticipación máxima. Con Espacio_Precio_Dia se puede cobrar distinto un sábado que un martes. Horario_Espacio define las franjas, con un UNIQUE que impide repetirlas y un CHECK para que inicio y fin sean distintos. Los accesorios se asocian a cada espacio y llevan su stock. La reserva es Alquiler: guarda total, saldo, estado y, si es un invitado, sus datos y un token de seguimiento. Alquiler_Espacio une la reserva con el turno, y la API valida la disponibilidad en una transacción. Finalmente, FechaExpiracion marca hasta cuándo se puede pagar la seña: un job que corre cada minuto cancela las vencidas y libera el horario.'",
           handover: "Pase a Germán: Germán explicará cómo la API gestiona la concurrencia atómica, el TokenSeguimiento para invitados y las devoluciones de seña."
         },
         23: {
@@ -2968,7 +2770,7 @@
         },
         26: {
           speaker: "Elenio García [Base de Datos]",
-          content: "<strong>Qué decir:</strong> 'El módulo contable requería máxima rigurosidad en el modelado relacional: en la tabla Cuota implementamos el atributo PorcentajePagado DECIMAL(3,2) junto a una restricción de dominio CHECK (PorcentajePagado &gt;= 0.00 AND PorcentajePagado &lt;= 1.00). Esto permite que el sistema soporte pagos parciales de cuotas mensuales de forma nativa y matemáticamente exacta, evitando descalces en centavos. Una decisión clave de arquitectura fue aplicar una desnormalización controlada en la tabla Deuda_Socio: ¿por qué lo hicimos? Porque cada vez que un socio inicia sesión, entra a su perfil o intenta reservar una cancha deportiva, el sistema necesita conocer si tiene cuotas adeudadas. Si mantuviéramos una 3FN pura sin desnormalizar, la base de datos tendría que ejecutar consultas con SUM() y JOIN sobre años de historial para miles de socios concurrentemente. Al almacenar Cant_Cuotas en Deuda_Socio logramos una lectura instantánea O(1), asegurando la consistencia mediante transacciones SQL atómicas cada vez que se registra un pago o se importa una planilla judicial. Asimismo, para asegurar la conciliación bancaria y la idempotencia de los webhooks de MercadoPago, registramos PreferenceID y PaymentID, y modelamos el libro diario contable con Caja y Caja_Movimiento.'",
+          content: "<strong>Qué decir:</strong> 'Cada socio tiene una cuota por mes, y el UNIQUE entre socio y período impide generarla dos veces. PorcentajePagado va de 0 a 1 con un CHECK, así una cuota puede quedar pendiente, parcial o pagada. Un pago se reparte entre varias cuotas mediante Pago_Cuota. Para no sumar todo el historial cada vez que alguien abre su perfil, guardamos la deuda ya calculada en Deuda_Socio; es una desnormalización a propósito que se actualiza en la misma transacción del pago. Cada pago aprobado genera un movimiento de caja, con un UNIQUE que impide registrarlo dos veces. Y los pagos de la planilla de sueldos quedan atados a su importación, de modo que se puede revertir completa mientras no esté confirmada.'",
           handover: "Pase a Germán: Germán explicará la integración de MercadoPago y el procesador de planillas con Rollback."
         },
         27: {
@@ -2983,7 +2785,7 @@
         },
         29: {
           speaker: "Elenio García [Base de Datos]",
-          content: "<strong>Qué decir:</strong> 'El canal de comunicación institucional del club requirió modelar la tabla Noticia con estricto rigor periodístico: incorporamos atributos formales de prensa como Volanta para orientar la sección, Titulo, Copete o bajada como resumen para las tarjetas de portada, Cuerpo de tipo LONGTEXT para artículos extensos con formato enriquecido, ImagenDestacada para la portada y EmbedLink para videos de YouTube incrustados. Normalizamos las etiquetas temáticas en la tabla catálogo Categoria en 3FN (Torneos, Obras, Sociales, Beneficios) para evitar redundancia textual. Asimismo, soportamos la publicación diferida: mediante el atributo FechaPublicacion y el estado BORRADOR o PUBLICADO, la subcomisión de prensa puede redactar comunicados con días de antelación, garantizando que el portal público solo proyecte aquellas notas donde FechaPublicacion sea menor o igual a NOW(), sin requerir tareas programadas adicionales.'",
+          content: "<strong>Qué decir:</strong> 'La tabla Noticia sigue la estructura de un diario: volanta, título, copete y cuerpo, más imagen destacada y un link de video. Las categorías están en un catálogo, y RESTRICT impide borrar una categoría con noticias. Las fotos de la galería van en Noticia_Imagen con su orden; guardamos la URL y el identificador de Cloudinary para poder borrarlas de la nube. El autor apunta a Usuario con SET NULL: si se da de baja esa cuenta, la noticia sigue publicada. Y con el estado y la fecha de publicación, prensa puede dejar notas en borrador o programadas; el portal solo muestra las publicadas.'",
           handover: "Pase a Germán: Germán detallará la API editorial, el procesamiento de imágenes con Multer y Cloudinary, y la seguridad con sanitización contra XSS."
         },
         30: {
@@ -3008,7 +2810,7 @@
         },
         34: {
           speaker: "Elenio García [Base de Datos]",
-          content: "<strong>Qué decir:</strong> 'Desplegamos la solución completa en la nube PaaS de Railway con una arquitectura moderna de 3 niveles: 1) El frontend es una SPA en React 19 empaquetada con Vite 7 que se distribuye a través de una Edge CDN con compresión Brotli y certificados SSL/TLS automáticos; 2) La API REST en Node.js y Express corre dentro de un contenedor Docker/Nixpacks con auto-reinicio y healthchecks continuos, protegiendo todas las claves y tokens de MercadoPago, Cloudinary y Resend en variables de entorno cifradas; y 3) Nuestra base de datos MySQL 8.0 gestionada se comunica con la API dentro de la misma red privada virtual (VPC) sin transitar por el internet público, asegurando tiempos de respuesta de consulta de base de datos menores a 2 milisegundos y aislamiento total contra accesos no autorizados.'",
+          content: "<strong>Qué decir:</strong> 'Todo el sistema está publicado en Railway. Cuando un socio entra desde el celular, la conexión viaja por HTTPS. Railway sirve la pantalla web hecha en React, y desde ahí el navegador le pide datos a la API en Node.js con Express. La API verifica el token, aplica las reglas y se conecta a MySQL por la red interna del proyecto. Las claves, como el token de MercadoPago o los datos de la base, son variables de entorno de Railway y no están en el código. Desde la API se cobra con MercadoPago, se suben fotos a Cloudinary y se mandan mails con Resend. Además, el sistema trabaja solo: un job cada minuto cancela las señas vencidas y un evento de MySQL arma cada día el resumen de pagos.'",
           handover: "Pase a Matías: Pasamos a las conclusiones finales. Matías iniciará con el balance de Frontend."
         },
         35: {
@@ -3023,7 +2825,7 @@
         },
         37: {
           speaker: "Elenio García [Base de Datos]",
-          content: "<strong>Qué decir:</strong> 'Como balance del área de base de datos, el objetivo principal fue construir un motor seguro, rápido y capaz de evolucionar junto a las necesidades del club sin romper nunca el sistema en producción. Por un lado, normalizamos en 3FN asegurando integridad total, y aplicamos una desnormalización inteligente en Deuda_Socio para que las consultas de saldo no demoren nada. Por otro lado, enfrentamos requerimientos reales que resolvimos mediante migraciones SQL controladas: 1) Permitir horarios nocturnos que cruzan la medianoche para quinchos; 2) Crear el módulo de depósito en garantía y devolución de seguro de alquiler; 3) Habilitar tarifas diferenciadas según el día de la semana; y 4) Corregir la precisión a dos decimales en deudas para que el cobro por planilla coincida al centavo. Todo esto se implementó con scripts seguros y sin caída del servicio.'",
+          content: "<strong>Qué decir:</strong> 'Como balance de la base de datos: llegamos a 40 tablas, con 55 claves foráneas y 21 restricciones UNIQUE que protegen la integridad. Cada tabla salió de una necesidad real del club. Normalizamos para no duplicar datos y desnormalizamos solo donde hacía falta velocidad, como en Deuda_Socio. Lo más importante fue que el modelo pudo crecer con el sistema en uso: aplicamos 9 migraciones SQL, primero en la base de test y después en producción. Así sumamos el seguro de alquiler, los precios por día, los horarios que cruzan la medianoche, la precisión exacta de la deuda y la optimización con índices y el resumen diario, sin perder datos.'",
           handover: "Pase a Equipo: Los tres cerraremos con el impacto institucional y las líneas a futuro."
         },
         38: {
@@ -3485,5 +3287,6 @@
       });
     </script>
     <script src="presentacion_backend.js"></script>
+    <script src="presentacion_db.js"></script>
   </body>
 </html>

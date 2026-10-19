@@ -30,15 +30,15 @@ const slide = {
     }
   ],
   "image": {
-    "src": "assets_presentacion/kanban_notion_club.jpg",
-    "alt": "Tablero Kanban de Tareas en Notion — Proyecto Club Judicial",
-    "caption": "Tablero Kanban en Notion: tareas reales del proyecto, estados de avance y revisiones con tutor y supervisor"
+    "src": "assets_presentacion/kanban_notion_real.png",
+    "alt": "Tablero Tareas pendientes del proyecto en Notion",
+    "caption": "Captura real del tablero «Tareas pendientes» en Notion (Club Judicial Villa Mercedes)"
   }
 };
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> 'Adoptamos una metodología iterativa e incremental. Desarrollamos por módulos funcionales: primero Autenticación, luego Socios, Alquileres, Pagos y finalmente Noticias. Gestionamos más de 190 tareas en un tablero Kanban en Notion para coordinar el trabajo del equipo. Lo fundamental fue el ciclo de feedback continuo: el profesor tutor nos enviaba observaciones y correcciones por WhatsApp, y manteníamos reuniones periódicas con Fernando Rigoni. Seguíamos un ciclo claro: ellos nos solicitaban o definían los requerimientos de un módulo, lo implementábamos, ellos lo revisaban, y nosotros corregíamos o incorporábamos las nuevas necesidades que iban surgiendo sobre la marcha.'",
+  "content": "<strong>Qué decir:</strong> 'Adoptamos una metodología iterativa e incremental. Desarrollamos por módulos funcionales: primero Autenticación, luego Socios, Alquileres, Pagos y finalmente Noticias. Gestionamos más de 190 tareas en un tablero Kanban en Notion para coordinar el trabajo del equipo: cada tarjeta tiene un responsable y un estado; por ejemplo, yo modelé las tablas de socios y grupo familiar, Germán el webhook de Mercado Pago y Matías la vista de alquileres en móvil. Lo fundamental fue el ciclo de feedback continuo: el profesor tutor nos enviaba observaciones y correcciones por WhatsApp, y manteníamos reuniones periódicas con Fernando Rigoni. Seguíamos un ciclo claro: ellos nos solicitaban o definían los requerimientos de un módulo, lo implementábamos, ellos lo revisaban, y nosotros corregíamos o incorporábamos las nuevas necesidades que iban surgiendo sobre la marcha.'",
   "handover": "Pase a Germán: Germán explicará el control de versiones y la integración continua."
 };
 export default slide;

@@ -1169,3 +1169,30 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ---------- 6: tablero Kanban real + ejemplos de tareas asignadas ---------- */
+.in-frame.kb-real { flex: 1; background: #191919; }
+.in-frame.kb-real .in-frame-caption { background: #ffffff; }
+.kb-examples { display: flex; flex-direction: column; gap: 8px; }
+.kb-examples-title {
+  font-size: 0.82rem; font-weight: 700; letter-spacing: 0.8px;
+  text-transform: uppercase; color: var(--text-muted);
+}
+.kb-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.kb-card {
+  background: var(--bg-card); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm); padding: 10px 12px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 7px;
+}
+.kb-card b { font-size: 0.95rem; line-height: 1.25; color: var(--primary-dark); }
+.kb-status {
+  font-size: 0.74rem; font-weight: 600; padding: 2px 9px; border-radius: var(--radius-full);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.kb-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.kb-todo { background: #ecebe8; color: #6b6a66; }
+.kb-progress { background: #e3eefa; color: #1f6fc5; }
+.kb-done { background: #e4f1e6; color: #2f7d3a; }
+.kb-person { display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--text-secondary); }
+.kb-person .dot { width: 8px; height: 8px; border-radius: 50%; }
+@media (max-width: 900px) { .kb-cards { grid-template-columns: 1fr; } }

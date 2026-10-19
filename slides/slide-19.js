@@ -6,7 +6,7 @@ const slide = {
   "block": "BLOQUE 4 — GESTIÓN DE SOCIOS",
   "blockTag": "Bloque 4 · Padrón Social",
   "title": "Base de Datos: Socios y Membresía",
-  "subtitle": "Modelo normalizado 3FN y optimización con FULLTEXT",
+  "subtitle": "Titular, grupo familiar y cambios que siempre pasan por secretaría",
   "cards": [
     {
       "accent": "accent-blue",
@@ -38,7 +38,7 @@ const slide = {
 
 export const notes = {
   "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> 'El modelo del padrón social fue concebido para garantizar administración transparente y auditable: la tabla Socio almacena los datos civiles y el estado de membresía. Para el grupo familiar diseñamos la tabla Miembro_Familiar vinculada al titular, normalizando los tipos de vínculos en el catálogo Parentesco en 3FN para erradicar columnas repetitivas. Un requerimiento crítico del club era la trazabilidad: ningún socio altera unilateralmente su DNI, CUIL o datos sensibles en la base de datos; para ello modelamos Solicitud_Cambio_Datos y Solicitud_Cambio_Familiar, que registran propuestas sujetas a resolución de secretaría. Finalmente, creamos un índice FULLTEXT sobre Nombre, Apellido y Email para búsquedas instantáneas en milisegundos sin escaneos lentos de tabla.'",
+  "content": "<strong>Qué decir:</strong> 'El socio titular está en Socio, con DNI y legajo únicos, su tipo y un campo Aprobado que arranca en falso: nadie entra hasta que secretaría lo aprueba. Cada familiar es una fila en Miembro_Familiar, con su foto de DNI en Cloudinary; así no hay columnas fijas como Hijo1 o Hijo2. El parentesco sale de un catálogo, para no tener variantes mal escritas. Los cambios de datos sensibles no se hacen directo: el socio genera una solicitud con los valores nuevos y secretaría la aprueba, quedando registrado quién y cuándo. Lo mismo para altas y bajas de familiares. Y para el buscador del panel usamos índices FULLTEXT sobre nombre, apellido y email.'",
   "handover": "Pase a Germán: Germán detallará las reglas de negocio de la API de socios."
 };
 export default slide;
