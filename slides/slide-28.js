@@ -1,37 +1,36 @@
 const slide = {
   "id": 28,
-  "type": "split",
-  "speaker": "german",
-  "speakerLabel": "GM · Backend",
-  "block": "BLOQUE 8 — TESTING, CALIDAD Y DESPLIEGUE",
-  "blockTag": "Bloque 8 · DevOps & Calidad",
-  "title": "CI y Aislamiento de Datos de Prueba",
-  "subtitle": "Idempotencia, artefactos y paralelismo",
-  "cards": [
+  "type": "frontend-custom",
+  "speaker": "matias",
+  "speakerLabel": "MG · Frontend",
+  "block": "BLOQUE 6 — PAGOS Y CUOTAS",
+  "blockTag": "Bloque 6 · Finanzas & Cuotas",
+  "title": "Frontend: Pago de Cuotas con MercadoPago",
+  "subtitle": "El socio consulta y paga su deuda online",
+  "routes": [
+    "/pagos-cuotas",
+    "/pagos/success · failure · pending"
+  ],
+  "images": [
     {
-      "accent": "accent-green",
-      "heading": "Aislamiento de Datos",
-      "list": [
-        "Base replica",
-        "Sufijos aleatorios",
-        "Preparación de estados"
-      ]
+      "src": "assets_presentacion/frontend/fe_pagos_cuotas_main.png",
+      "alt": "Pago de cuotas del socio"
     },
     {
-      "accent": "accent-gold",
-      "heading": "GitHub Actions",
-      "list": [
-        "merge bloqueado",
-        "grabaciones y capturas",
-        "depuración inmediata"
-      ]
+      "src": "assets_presentacion/frontend/fe_pago_success.png",
+      "alt": "Retorno de pago exitoso"
+    },
+    {
+      "src": "assets_presentacion/frontend/fe_pago_pending.png",
+      "alt": "Retorno de pago pendiente"
     }
-  ]
+  ],
+  "html": "Contenido maquetado directamente en presentacion_pps.html (estilos en presentacion_frontend.css)."
 };
 
 export const notes = {
-  "speaker": "Germán Muñoz [Backend]",
-  "content": "<strong>Qué decir:</strong> 'Utilizamos una base de datos de testing réplica y generamos sufijos aleatorios en los DNI y usuarios para evitar colisiones de clave única. En GitHub Actions, si un test falla, el runner guarda grabaciones en video y capturas de pantalla durante 7 días para facilitar la depuración inmediata.'",
-  "handover": "Pase a Elenio: Elenio explicará el despliegue en la nube."
+  "speaker": "Matías Giménez [Frontend]",
+  "content": "<strong>Qué decir:</strong> 'En /pagos-cuotas el socio ve cuántas cuotas debe, el valor vigente y el total, y paga con MercadoPago: el front genera la preferencia de pago y lo redirige a la pasarela. Si debe más de 6 meses, el guard solo le deja esta pantalla para que regularice. Al volver, la página de retorno lee el payment_id y le explica si se acreditó, quedó pendiente o fue rechazado.'",
+  "handover": "Pase a Elenio: Avanzamos al Módulo de Noticias. Elenio comentará el esquema editorial."
 };
 export default slide;

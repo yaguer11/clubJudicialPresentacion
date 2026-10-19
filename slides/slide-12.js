@@ -1,43 +1,43 @@
 const slide = {
   "id": 12,
-  "type": "split-visual",
-  "speaker": "elenio",
-  "speakerLabel": "EG · Base de Datos",
-  "block": "BLOQUE 3 — AUTENTICACIÓN Y REGISTRO",
-  "blockTag": "Bloque 3 · Autenticación",
-  "title": "Base de Datos: Autenticación y Roles",
-  "subtitle": "Desacoplamiento de cuentas, integridad y hashing seguro",
-  "cards": [
-    {
-      "accent": "accent-blue",
-      "heading": "1. Desacoplamiento Usuario vs Socio",
-      "list": [
-        "Usuario almacena solo credenciales (Username y PasswordHash)",
-        "Socio es una entidad satélite vinculada por clave foránea opcional",
-        "Permite administradores del sistema que no son socios del club",
-        "Protección de datos: el login no expone información sensible"
-      ]
-    },
-    {
-      "accent": "accent-gold",
-      "heading": "2. Modelo RBAC y Reglas de Integridad",
-      "list": [
-        "Tabla intermedia Usuario_Rol para asignación N:M de roles con CASCADE",
-        "0 contraseñas en texto plano: Hash Bcrypt de 60 caracteres (10 salts)",
-        "Restricciones UNIQUE en Username, DNI y Email contra duplicidades"
-      ]
-    }
+  "type": "frontend-custom",
+  "speaker": "matias",
+  "speakerLabel": "MG · Frontend",
+  "block": "BLOQUE 2 — METODOLOGÍA Y ARQUITECTURA",
+  "blockTag": "Bloque 2 · Arquitectura Frontend",
+  "title": "Frontend: SPA y Mapa de Rutas",
+  "subtitle": "27 rutas en React Router 7, protegidas por dos guards",
+  "routes": [
+    "/home",
+    "/espacios",
+    "/espacios/:id/reservar",
+    "/alquiler-guest/:token",
+    "/noticias/:id",
+    "/pagos-alquileres/…",
+    "/unauthorized",
+    "/login",
+    "/register",
+    "/admin/login",
+    "/validar-email/:token",
+    "/reset-password",
+    "/perfil",
+    "/mis-alquileres",
+    "/pagos-cuotas",
+    "/pagos/…",
+    "/admin",
+    "/admin/socios",
+    "/admin/usuarios",
+    "/admin/alquileres",
+    "/admin/espacios/…",
+    "/admin/noticias"
   ],
-  "image": {
-    "src": "assets_presentacion/diagrama_auth_roles.svg",
-    "alt": "Diagrama EER de Autenticación y Roles RBAC",
-    "caption": "Esquema relacional focalizado — Tablas Usuario, Rol, Usuario_Rol y Socio"
-  }
+  "images": [],
+  "html": "Contenido maquetado directamente en presentacion_pps.html (estilos en presentacion_frontend.css)."
 };
 
 export const notes = {
-  "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> 'Una de las decisiones centrales de diseño fue desacoplar la identidad de login de la ficha social: creamos la tabla Usuario para credenciales puras y vinculamos Socio como entidad satélite. Esto nos da la flexibilidad de tener administradores que no son socios del club y protege la privacidad. Los permisos se modelan con la tabla intermedia Usuario_Rol para asignar múltiples roles RBAC, y a nivel motor garantizamos cero texto plano persistiendo solo hashes Bcrypt de 60 caracteres, junto a restricciones UNIQUE en username, DNI y email.'",
-  "handover": "Pase a Germán: Germán explicará cómo la API gestiona este acceso mediante doble token JWT."
+  "speaker": "Matías Giménez [Frontend]",
+  "content": "<strong>Qué decir:</strong> 'Antes de entrar en los módulos, les muestro cómo está armado el frontend. Es una SPA en React 19 con Vite y React Router 7: 27 rutas en cuatro zonas según quién entra, públicas, acceso, socio y backoffice. Abajo está lo que pasa cuando alguien entra a una ruta protegida: primero se valida la sesión; si es socio y debe más de 6 meses, lo mando a pagar; si es su primer ingreso, a completar el perfil; y si es personal, se comparan los roles del JWT con los que pide la ruta, y si no alcanzan va a /unauthorized. A la derecha, la sesión sin cortes: si la API responde 401, apiFetch pide un token nuevo, deja en cola las demás peticiones y las reintenta; si el refresh falla, cierra la sesión.'",
+  "handover": "Sigo yo: cómo definimos el diseño visual del sistema."
 };
 export default slide;

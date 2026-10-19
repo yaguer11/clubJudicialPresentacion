@@ -8,6 +8,15 @@ Presentacion web de la PPS del Club Judicial.
 - `slides/`: carpeta con cada diapositiva separada en archivos `.js`.
 - `slides/index.js`: archivo central que importa todas las diapositivas y exporta `slideDefinitions` y `speakerNotesData`.
 
+<<<<<<< HEAD
+=======
+- `presentacion_frontend.css`: estilos de las diapositivas de Frontend (prefijo `fe-`), separados del CSS general.
+
+- `assets_presentacion/frontend/`: capturas reales del front (escritorio y celular) usadas en esas diapositivas.
+
+
+
+>>>>>>> origin/main
 ## Como editar
 
 1. Abri `presentacion_pps.html` para cambiar la estructura general, CSS o comportamiento global.
@@ -26,6 +35,8 @@ python -m http.server 8000
 Luego abri en el navegador:
 
 ```text
+http://localhost:8000
+# o directamente:
 http://localhost:8000/presentacion_pps.html
 ```
 

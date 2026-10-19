@@ -1,38 +1,34 @@
 const slide = {
   "id": 30,
   "type": "split",
-  "speaker": "matias",
-  "speakerLabel": "MG · Frontend",
-  "block": "BLOQUE 9 — CONCLUSIONES",
-  "blockTag": "Bloque 9 · Balance de Rol",
-  "title": "Conclusiones: Frontend & QA",
-  "subtitle": "Balance individual del desarrollador frontend",
+  "speaker": "german",
+  "speakerLabel": "GM · Backend",
+  "block": "BLOQUE 7 — NOTICIAS Y PRENSA",
+  "blockTag": "Bloque 7 · Prensa & Noticias",
+  "title": "Backend: API de Prensa y Cloudinary",
+  "subtitle": "Subida en memoria, optimización en la nube y sanitización XSS",
   "cards": [
     {
-      "accent": "accent-gold",
-      "heading": "Competencias Técnicas",
+      "accent": "accent-green",
+      "heading": "Gestión Multimedia",
       "list": [
-        "React 19",
-        "Material UI",
-        "RBAC de cliente",
-        "Playwright"
+        "Multer en memoria",
+        "Cloudinary",
+        "Transformación a WebP",
+        "Sanitización XSS"
       ]
     },
     {
-      "accent": "accent-green",
-      "heading": "Cultura de Calidad",
-      "list": [
-        "Pruebas automatizadas",
-        "CI/CD",
-        "Sin regresiones"
-      ]
+      "accent": "accent-gold",
+      "heading": "Endpoints",
+      "code": "<span class=\"method m-get\">GET</span> /api/noticias<br><span class=\"method m-post\">POST</span> /api/noticias<br><span class=\"method m-patch\">PATCH</span> /api/noticias/:id"
     }
   ]
 };
 
 export const notes = {
-  "speaker": "Matías Giménez [Frontend]",
-  "content": "<strong>Qué decir:</strong> 'La PPS me permitió consolidar competencias en React 19, Vite y diseño unificado en Material UI. Implementé seguridad RBAC en cliente con interceptores Axios para renovación silenciosa de tokens y adquirí experiencia formativa invaluable en testing automatizado con Playwright y CI/CD.'",
-  "handover": "Pase a Germán: Germán compartirá sus conclusiones de Backend."
+  "speaker": "Germán Muñoz [Backend]",
+  "content": "<strong>Qué decir:</strong> 'Conectamos Multer en memoria con Cloudinary para optimizar imágenes en la nube en formato WebP sin saturar el servidor local. Aplicamos validaciones contra ataques XSS en el cuerpo y, con el middleware canManageNoticias, restringimos la publicación a los roles ADMIN_NOTICIAS y SUPERADMIN: cualquier otro rol recibe 403.'",
+  "handover": "Pase a Matías: Matías mostrará la portada y la interfaz editorial."
 };
 export default slide;

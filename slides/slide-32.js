@@ -1,37 +1,39 @@
 const slide = {
   "id": 32,
   "type": "split",
-  "speaker": "elenio",
-  "speakerLabel": "EG · Base de Datos",
-  "block": "BLOQUE 9 — CONCLUSIONES",
-  "blockTag": "Bloque 9 · Balance de Rol",
-  "title": "Conclusiones: Base de Datos",
-  "subtitle": "Balance individual del desarrollador de base de datos",
+  "speaker": "matias",
+  "speakerLabel": "MG · Frontend",
+  "block": "BLOQUE 8 — TESTING, CALIDAD Y DESPLIEGUE",
+  "blockTag": "Bloque 8 · Calidad de Software",
+  "title": "Testing E2E Automatizado (Playwright)",
+  "subtitle": "18 archivos de especificación en suite real y mock",
   "cards": [
     {
-      "accent": "accent-blue",
-      "heading": "Modelado y Normalización",
+      "accent": "accent-gold",
+      "heading": "Suite Real",
       "list": [
-        "3FN",
-        "Integridad",
-        "Migraciones"
+        "Registro",
+        "Login",
+        "Reservas",
+        "Pagos",
+        "CRUDs"
       ]
     },
     {
-      "accent": "accent-gold",
-      "heading": "Optimización",
+      "accent": "accent-green",
+      "heading": "Suite Mock",
       "list": [
-        "Índices B-Tree",
-        "FULLTEXT",
-        "Event Scheduler"
+        "page.route()",
+        "Estados visuales",
+        "Errores 401/403/500"
       ]
     }
   ]
 };
 
 export const notes = {
-  "speaker": "Elenio García [Base de Datos]",
-  "content": "<strong>Qué decir:</strong> 'Logramos un modelo relacional en 3FN que asegura la integridad de los datos. La optimización con índices B-Tree y FULLTEXT garantiza consultas en sub-milisegundos, y el Event Scheduler resolvió el histórico problema de turnos bloqueados sin pagar. Las migraciones versionadas aseguran la evolución del esquema.'",
-  "handover": "Pase a Equipo: Los tres cerraremos con el impacto institucional y el trabajo futuro."
+  "speaker": "Matías Giménez [Frontend]",
+  "content": "<strong>Qué decir:</strong> 'Desarrollamos 18 archivos de pruebas E2E con Playwright simulando usuarios reales en Chromium y Firefox. La Suite Real con 17 archivos corre contra backend y base de datos real cubriendo registros, alquileres, pagos y CRUDs; y la Suite Mock valida estados visuales y manejo de errores aisladamente.'",
+  "handover": "Pase a Germán: Germán explicará cómo logramos aislar los datos en las pruebas continuas."
 };
 export default slide;

@@ -1,34 +1,37 @@
 const slide = {
   "id": 25,
-  "type": "split",
-  "speaker": "german",
-  "speakerLabel": "GM · Backend",
-  "block": "BLOQUE 7 — NOTICIAS Y PRENSA",
-  "blockTag": "Bloque 7 · Prensa & Noticias",
-  "title": "Backend: API de Prensa y Cloudinary",
-  "subtitle": "Subida en memoria, optimización en la nube y sanitización XSS",
-  "cards": [
+  "type": "frontend-custom",
+  "speaker": "matias",
+  "speakerLabel": "MG · Frontend",
+  "block": "BLOQUE 5 — ESPACIOS Y ALQUILERES",
+  "blockTag": "Bloque 5 · Deportes & Alquileres",
+  "title": "Frontend: Mis Reservas y Panel de Alquileres",
+  "subtitle": "Seguimiento del socio y gestión diaria",
+  "routes": [
+    "/mis-alquileres",
+    "/admin/alquileres",
+    "/admin/espacios"
+  ],
+  "images": [
     {
-      "accent": "accent-green",
-      "heading": "Gestión Multimedia",
-      "list": [
-        "Multer en memoria",
-        "Cloudinary",
-        "Transformación a WebP",
-        "Sanitización XSS"
-      ]
+      "src": "assets_presentacion/frontend/fe_admin_alquileres_main.png",
+      "alt": "Gestión de alquileres"
     },
     {
-      "accent": "accent-gold",
-      "heading": "Endpoints",
-      "code": "<span class=\"method m-get\">GET</span> /api/noticias<br><span class=\"method m-post\">POST</span> /api/noticias<br><span class=\"method m-patch\">PATCH</span> /api/noticias/:id"
+      "src": "assets_presentacion/frontend/fe_mis_alquileres.png",
+      "alt": "Mis reservas del socio"
+    },
+    {
+      "src": "assets_presentacion/frontend/fe_admin_espacios.jpg",
+      "alt": "Gestión de espacios y accesorios"
     }
-  ]
+  ],
+  "html": "Contenido maquetado directamente en presentacion_pps.html (estilos en presentacion_frontend.css)."
 };
 
 export const notes = {
-  "speaker": "Germán Muñoz [Backend]",
-  "content": "<strong>Qué decir:</strong> 'Conectamos Multer en memoria con Cloudinary para optimizar imágenes en la nube en formato WebP sin saturar el servidor local. Aplicamos validaciones contra ataques XSS en el cuerpo y restringimos la publicación a los roles ADMIN_NOTICIAS y SUPERADMIN.'",
-  "handover": "Pase a Matías: Matías mostrará la interfaz editorial y la presentación en el Home."
+  "speaker": "Matías Giménez [Frontend]",
+  "content": "<strong>Qué decir:</strong> 'Una vez hecha la reserva, el socio la sigue en Mis reservas: ve una cuenta regresiva para pagar la seña, el pago en revisión si transfirió, y puede cancelar o cambiar la fecha con más de 10 días de anticipación. Del lado del panel, alquileres se filtra por estado y fecha, alterna entre tabla y tarjetas, exporta a Excel y permite cargar reservas manuales o cancelar con devolución de seña. Y en espacios se configuran precios por día, horarios, imágenes y accesorios con stock.'",
+  "handover": "Pase a Elenio: Pasamos al Módulo de Pagos y Cuotas. Elenio explicará la estructura de cuotas y cajas."
 };
 export default slide;

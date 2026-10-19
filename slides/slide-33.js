@@ -1,37 +1,37 @@
 const slide = {
   "id": 33,
   "type": "split",
-  "speaker": "equipo",
-  "speakerLabel": "Equipo PPS",
-  "block": "BLOQUE 9 — CONCLUSIONES",
-  "blockTag": "Bloque 9 · Impacto",
-  "title": "Impacto Organizacional y Trabajo Futuro",
-  "subtitle": "Transformación del Club Judicial y líneas evolutivas",
+  "speaker": "german",
+  "speakerLabel": "GM · Backend",
+  "block": "BLOQUE 8 — TESTING, CALIDAD Y DESPLIEGUE",
+  "blockTag": "Bloque 8 · DevOps & Calidad",
+  "title": "CI y Aislamiento de Datos de Prueba",
+  "subtitle": "Idempotencia, artefactos y paralelismo",
   "cards": [
     {
       "accent": "accent-green",
-      "heading": "Impacto real",
+      "heading": "Aislamiento de Datos",
       "list": [
-        "Cero solapamientos",
-        "Autogestión 24/7",
-        "Menor carga administrativa"
+        "Base replica",
+        "Sufijos aleatorios",
+        "Preparación de estados"
       ]
     },
     {
       "accent": "accent-gold",
-      "heading": "Futuro",
+      "heading": "GitHub Actions",
       "list": [
-        "Push notifications",
-        "BI para la directiva",
-        "Control QR"
+        "merge bloqueado",
+        "grabaciones y capturas",
+        "depuración inmediata"
       ]
     }
   ]
 };
 
 export const notes = {
-  "speaker": "Equipo Completo (Los Tres)",
-  "content": "<strong>Qué decir:</strong> 'El impacto en el Club Judicial es contundente: cero solapamientos en reservas, los socios ganaron autogestión 24/7 para consultar y pagar cuotas, y secretaría redujo el trabajo manual repetitivo. Como líneas futuras proyectamos notificaciones push, analítica para la directiva y control de acceso físico QR.'",
-  "handover": "Pase a Cierre: Cierre de la presentación y apertura de preguntas del tribunal."
+  "speaker": "Germán Muñoz [Backend]",
+  "content": "<strong>Qué decir:</strong> 'Utilizamos una base de datos de testing réplica y generamos sufijos aleatorios en los DNI y usuarios para evitar colisiones de clave única. En GitHub Actions, si un test falla, el runner guarda grabaciones en video y capturas de pantalla durante 7 días para facilitar la depuración inmediata.'",
+  "handover": "Pase a Elenio: Elenio explicará el despliegue en la nube."
 };
 export default slide;

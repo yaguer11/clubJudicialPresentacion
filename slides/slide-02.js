@@ -24,10 +24,10 @@ const slide = {
       "text": "El socio no podía consultar deuda ni reservar de forma remota."
     }
   ],
-  "image": {
-    "src": "assets_presentacion/clubjudicial.webp",
-    "alt": "Complejo Polideportivo Club Judicial",
-    "caption": "Predio Polideportivo del Club Judicial — Villa Mercedes, San Luis"
+  "animation": {
+    "id": "anim-planilla",
+    "description": "Animación SVG: una persona pasa a mano los socios de una planilla en papel a un Excel, uno por uno.",
+    "caption": "Así se cargaba el padrón: de la planilla en papel al Excel, socio por socio"
   }
 };
 
