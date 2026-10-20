@@ -48,22 +48,27 @@
   padding: 0;
 }
 
+html,
 body {
   font-family: var(--font-primary);
   background-color: var(--bg-stage);
   color: var(--primary-dark);
   overflow: hidden;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  height: 100dvh;
+  width: 100%;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 #app-container {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow: hidden;
 }
 
 /* ====================================================================
@@ -178,7 +183,7 @@ main#slide-stage {
 .slide {
   position: absolute;
   width: calc(100% - 48px);
-  height: calc(100% - 36px);
+  height: calc(100% - 32px);
   max-width: 1480px;
   background: var(--bg-slide);
   border: 1px solid rgba(71, 105, 70, 0.15);
@@ -194,6 +199,8 @@ main#slide-stage {
     opacity 0.35s ease,
     transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1);
   overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .slide.active {
@@ -857,91 +864,108 @@ footer.bottom-bar {
   transform: translateX(3px);
 }
 
-@media (max-width: 900px) {
-  body {
-    overflow: auto;
-    height: auto;
-    width: 100%;
-  }
+/* ====================================================================
+ RESPONSIVE DESIGN — TABLETS, MÓVILES Y PANTALLAS TÁCTILES
+ ==================================================================== */
 
-  #app-container {
-    min-height: 100vh;
-    height: auto;
-  }
-
+/* 1. TABLETS Y DISPOSITIVOS TÁCTILES (<= 1024px o hover: none)
+      Las barras de control NUNCA deben ocultarse en pantallas táctiles o tabletas */
+@media (max-width: 1024px), (hover: none) {
   header.top-bar,
   footer.bottom-bar {
-    height: auto;
-    padding: 10px 12px;
-    gap: 8px;
-  }
-
-  header.top-bar {
-    flex-wrap: wrap;
-  }
-
-  .brand-group {
-    width: 100%;
-    align-items: flex-start;
-  }
-
-  .brand-text h1 {
-    font-size: 0.72rem;
-    line-height: 1.2;
-  }
-
-  .brand-text p {
-    font-size: 0.62rem;
-    line-height: 1.3;
-  }
-
-  .top-actions {
-    width: 100%;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .btn-action {
-    flex: 1 1 calc(50% - 8px);
-    justify-content: center;
-    padding: 7px 10px;
-    font-size: 0.68rem;
+    position: static !important;
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
   }
 
   .progress-track {
-    top: 0;
+    display: block !important;
+    position: relative !important;
+    top: auto !important;
+    height: 3px !important;
+  }
+}
+
+/* 2. TABLET Y PANTALLAS MEDIANAS (<= 900px) */
+@media (max-width: 900px) {
+  header.top-bar,
+  footer.bottom-bar {
+    height: 52px;
+    padding: 0 16px;
+    gap: 10px;
+  }
+
+  .brand-logo-mini {
+    height: 28px;
+  }
+
+  .brand-text h1 {
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 240px;
+  }
+
+  .brand-text p {
+    font-size: 0.64rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 220px;
+  }
+
+  .btn-action {
+    padding: 5px 10px;
+    font-size: 0.72rem;
   }
 
   main#slide-stage {
-    padding: 10px 10px 14px;
+    padding: 8px 12px;
   }
 
   .slide {
-    width: calc(100% - 14px);
-    height: calc(100% - 18px);
-    padding: 16px 16px 18px;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    border-radius: var(--radius-md);
+    padding: 20px 22px;
   }
 
   .slide-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 8px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
   }
 
   .slide-title {
-    font-size: 1.5rem;
+    font-size: clamp(1.3rem, 4vw, 1.7rem);
   }
 
   .slide-subtitle {
-    font-size: 0.8rem;
+    font-size: 0.84rem;
+  }
+
+  .slide-body {
+    flex: none;
+    min-height: auto;
+    height: auto;
+    gap: 14px;
   }
 
   .grid-2col,
-  .grid-2col-visual,
+  .grid-2col-visual {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
   .grid-3col,
   .grid-4col {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
   .team-pills {
@@ -959,180 +983,241 @@ footer.bottom-bar {
   }
 
   .speaker-subtle-badge {
-    font-size: 0.68rem;
+    font-size: 0.7rem;
+    padding: 3px 8px;
   }
 
   .bottom-bar {
-    flex-wrap: wrap;
-  }
-
-  .slide-counter {
-    width: 100%;
-    justify-content: space-between;
+    flex-wrap: nowrap;
     gap: 8px;
   }
 
+  .slide-counter {
+    font-size: 0.82rem;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
   .quick-jump-select {
-    max-width: 100%;
-    flex: 1;
+    max-width: 260px;
+    flex: 1 1 auto;
+    font-size: 0.78rem;
+    padding: 5px 8px;
   }
 
   .nav-buttons {
-    margin-left: auto;
-  }
-
-  #speaker-notes-panel {
-    width: calc(100vw - 20px);
-    right: 10px;
-    bottom: 74px;
-  }
-}
-
-@media (max-width: 480px) {
-  .brand-logo-mini {
-    display: none;
-  }
-
-  .brand-text {
-    width: 100%;
-  }
-
-  .top-actions {
+    flex-shrink: 0;
     gap: 6px;
   }
 
-  .btn-action {
-    flex: 1 1 100%;
-    font-size: 0.62rem;
-    padding: 6px 8px;
+  .btn-nav {
+    width: 36px;
+    height: 36px;
   }
 
-  .slide {
-    padding: 14px 14px 16px;
-  }
-
-  .slide-title {
-    font-size: 1.25rem;
-  }
-
-  .slide-body {
-    gap: 12px;
-  }
-
-  .card-clean {
-    padding: 14px;
-  }
-
-  .card-heading {
-    font-size: 0.95rem;
-  }
-
-  .clean-list {
-    font-size: 0.82rem;
-  }
-
-  .code-snippet {
-    font-size: 0.72rem;
-  }
-
-  .hero-heading {
-    font-size: 1.7rem;
-  }
-
-  .photo-container {
-    min-height: 200px;
-  }
-
-  .progress-track {
-    top: 0;
+  #speaker-notes-panel {
+    position: fixed;
+    width: calc(100vw - 24px);
+    right: 12px;
+    left: 12px;
+    bottom: 60px;
+    max-height: calc(100dvh - 120px);
+    padding: 18px 20px;
   }
 }
 
-@media (max-width: 390px) {
+/* 3. MÓVILES (<= 640px) */
+@media (max-width: 640px) {
   header.top-bar,
   footer.bottom-bar {
-    padding: 8px 10px;
+    height: 48px;
+    padding: 0 10px;
+  }
+
+  .brand-group {
+    gap: 6px;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .brand-logo-mini {
+    height: 24px;
   }
 
   .brand-text h1 {
-    font-size: 0.58rem;
+    font-size: 0.76rem;
+    max-width: 160px;
   }
 
   .brand-text p {
     display: none;
   }
 
+  .top-actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+
   .btn-action {
-    font-size: 0.56rem;
-    padding: 5px 7px;
+    padding: 4px 8px;
+    font-size: 0.68rem;
+    gap: 4px;
+  }
+
+  .btn-action svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .btn-count {
+    display: none;
+  }
+
+  .btn-fs-text {
+    display: none;
+  }
+
+  main#slide-stage {
+    padding: 4px;
   }
 
   .slide {
-    width: calc(100% - 10px);
-    height: calc(100% - 14px);
-    padding: 12px 12px 14px;
+    padding: 14px 14px 18px 14px;
+    border-radius: var(--radius-sm);
   }
 
   .slide-header {
-    margin-bottom: 12px;
-    padding-bottom: 10px;
-  }
-
-  .slide-block-tag {
-    font-size: 0.62rem;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
   }
 
   .slide-title {
-    font-size: 1.08rem;
+    font-size: 1.25rem;
+    line-height: 1.2;
   }
 
   .slide-subtitle {
-    font-size: 0.7rem;
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+
+  .grid-3col,
+  .grid-4col {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .card-clean {
-    padding: 12px;
+    padding: 12px 14px;
+    gap: 8px;
   }
 
-  .clean-list,
-  .card-clean p,
-  .card-clean li {
-    font-size: 0.76rem;
-    line-height: 1.45;
+  .card-heading {
+    font-size: 0.92rem;
+  }
+
+  .clean-list {
+    font-size: 0.8rem;
+    gap: 6px;
+  }
+
+  .code-snippet {
+    font-size: 0.72rem;
+    padding: 8px 10px;
   }
 
   .hero-heading {
-    font-size: 1.4rem;
-  }
-
-  .team-pill-card {
-    padding: 10px 12px;
+    font-size: 1.6rem;
   }
 
   .photo-container {
-    min-height: 160px;
+    min-height: 180px;
+    padding: 6px;
+  }
+
+  .photo-container img {
+    max-height: 260px;
+  }
+
+  .quick-jump-select {
+    max-width: 180px;
+    font-size: 0.74rem;
+    padding: 4px 6px;
+    height: 32px;
   }
 
   .btn-nav {
-    width: 32px;
-    height: 32px;
-    font-size: 0.95rem;
+    width: 34px;
+    height: 34px;
+    font-size: 1.05rem;
   }
 
   #speaker-notes-panel {
-    width: calc(100vw - 12px);
-    right: 6px;
-    bottom: 68px;
+    width: calc(100vw - 16px);
+    right: 8px;
+    left: 8px;
+    bottom: 54px;
+    max-height: calc(100dvh - 100px);
+    padding: 14px;
+  }
+
+  #index-modal {
+    padding: 10px;
+  }
+
+  .index-content {
+    padding: 14px 16px;
+    max-height: calc(100dvh - 20px);
+  }
+
+  .index-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .index-item {
+    padding: 8px 10px;
+    font-size: 0.78rem;
+  }
+}
+
+/* 4. MÓVILES MUY PEQUEÑOS (<= 380px) */
+@media (max-width: 380px) {
+  .brand-text h1 {
+    max-width: 110px;
+    font-size: 0.72rem;
+  }
+
+  .btn-action .btn-text {
+    display: none;
+  }
+
+  .btn-action {
+    padding: 5px 7px;
+  }
+
+  .slide-title {
+    font-size: 1.12rem;
+  }
+
+  .quick-jump-select {
+    max-width: 140px;
+    font-size: 0.7rem;
+  }
+
+  .slide-counter {
+    font-size: 0.74rem;
   }
 }
 
 /* ====================================================================
- PANTALLA COMPLETA — la diapositiva ocupa todo el monitor/proyector.
- Las barras superior e inferior quedan ocultas y aparecen solo al
- acercar el mouse al borde de arriba o de abajo (los atajos de
- teclado I, G, F y las flechas siguen funcionando siempre).
+ PANTALLA COMPLETA EN ESCRITORIO
+ Para pantallas grandes con mouse (> 1024px y hover: hover).
+ En modo pantalla completa, las barras se ocultan y reaccionan al mouse.
  ==================================================================== */
-@media (min-width: 901px) {
+@media (min-width: 1025px) and (hover: hover) {
   header.top-bar,
   footer.bottom-bar {
     position: fixed;

@@ -1527,7 +1527,41 @@
 }
 
 @media (max-width: 900px) {
-  .be-wrap,
+  /* Stepper de Backend y DB */
+  .be-wrap {
+    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex: none;
+    min-height: auto;
+    height: auto;
+    gap: 14px;
+  }
+  .be-panel {
+    flex: none;
+    min-height: auto;
+    max-height: none;
+    padding: 14px 16px;
+    overflow: visible;
+  }
+  .be-title {
+    font-size: 1.25rem;
+  }
+  .be-text {
+    font-size: 0.92rem;
+    min-height: auto;
+  }
+  .be-eps {
+    margin-top: 10px;
+    max-height: 140px;
+    overflow-y: auto;
+  }
+  .be-stage {
+    flex: none;
+    min-height: auto;
+    width: 100%;
+  }
+
   .be-grid-17,
   .be-race,
   .be-row2,
@@ -1537,13 +1571,67 @@
   .be-concl,
   .be-impact,
   .be-arch-body,
-  .be-end-team { grid-template-columns: 1fr; }
-  .be-flow20, .be-flow20b, .be-mpflow, .be-pipe, .be-mods { grid-template-columns: 1fr; }
-  .be-flow20 .be-link, .be-flow20b .be-link, .be-mpflow .be-link, .be-ci-link { display: none; }
-  .be-ci-pipe, .be-ci-top { flex-wrap: wrap; }
-  .be-scenes { min-height: 640px; }
-  .be-seq { overflow-x: auto; }
-  .be-end { padding: 24px; gap: 20px; }
+  .be-end-team {
+    grid-template-columns: 1fr !important;
+    flex: none;
+  }
+  .be-flow20,
+  .be-flow20b,
+  .be-mpflow,
+  .be-pipe,
+  .be-mods {
+    grid-template-columns: 1fr !important;
+  }
+  .be-flow20 .be-link,
+  .be-flow20b .be-link,
+  .be-mpflow .be-link,
+  .be-ci-link {
+    display: none;
+  }
+  .be-ci-pipe,
+  .be-ci-top {
+    flex-wrap: wrap;
+  }
+  .be-scenes {
+    min-height: 480px;
+  }
+  .be-seq {
+    overflow-x: auto;
+  }
+
+  /* Diapositiva 39: Cierre */
+  .slide.be-endslide {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  .be-end {
+    min-height: 100%;
+    height: auto;
+    justify-content: flex-start;
+    padding: 22px 18px;
+    gap: 16px;
+  }
+  .be-end-top .unvim {
+    height: 32px;
+  }
+  .be-end-top .club {
+    height: 52px;
+  }
+  .be-end-title {
+    font-size: clamp(2rem, 6vw, 3.8rem);
+  }
+  .be-end-sub {
+    font-size: 1.05rem;
+  }
+  .be-end-team {
+    grid-template-columns: 1fr !important;
+    gap: 8px;
+    width: 100%;
+  }
+  .be-end-meta {
+    font-size: 0.76rem;
+    line-height: 1.35;
+  }
 }
 
 /* --- Ajustes de escala y conectores (diapositivas 17 y 20) --- */
