@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>
       Sistema de Gestión Integral — Club Judicial Villa Mercedes | Defensa de
       PPS
@@ -47,37 +47,40 @@
             id="btn-index"
             class="btn-action"
             title="Índice de Diapositivas (I)"
+            aria-label="Índice de Diapositivas"
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
               <path
                 d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"
               />
             </svg>
-            Índice (39)
+            <span class="btn-text">Índice <span class="btn-count">(39)</span></span>
           </button>
           <button
             id="btn-notes"
             class="btn-action"
             title="Guión / Notas de Orador (G)"
+            aria-label="Guión del Orador"
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
               <path
                 d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"
               />
             </svg>
-            Guión del Orador
+            <span class="btn-text">Guión</span>
           </button>
           <button
             id="btn-fullscreen"
             class="btn-action"
             title="Pantalla Completa (F / F11)"
+            aria-label="Pantalla Completa"
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
               <path
                 d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
               />
             </svg>
-            F11
+            <span class="btn-text btn-fs-text">F11</span>
           </button>
         </div>
       </header>
@@ -3034,15 +3037,38 @@
         }
       });
 
-      // Gestos táctiles
+      // Gestos táctiles optimizados (no interfieren con el scroll vertical)
       let touchStartX = 0;
-      document.addEventListener("touchstart", (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-      });
-      document.addEventListener("touchend", (e) => {
-        const diff = e.changedTouches[0].screenX - touchStartX;
-        if (diff < -50) goToSlide(currentSlide + 1);
-        if (diff > 50) goToSlide(currentSlide - 1);
+      let touchStartY = 0;
+      document.addEventListener(
+        "touchstart",
+        (e) => {
+          if (e.touches.length === 1) {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+          }
+        },
+        { passive: true },
+      );
+      document.addEventListener(
+        "touchend",
+        (e) => {
+          if (e.changedTouches.length === 1) {
+            const diffX = e.changedTouches[0].clientX - touchStartX;
+            const diffY = e.changedTouches[0].clientY - touchStartY;
+            // Solo pasar de slide si el gesto es netamente horizontal
+            if (Math.abs(diffX) > 55 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
+              if (diffX < 0) goToSlide(currentSlide + 1);
+              else goToSlide(currentSlide - 1);
+            }
+          }
+        },
+        { passive: true },
+      );
+
+      // Sincronizar estado de pantalla completa
+      document.addEventListener("fullscreenchange", () => {
+        document.body.classList.toggle("is-fullscreen", !!document.fullscreenElement);
       });
 
       // Inicialización de la presentación
